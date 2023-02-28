@@ -1,0 +1,29 @@
+=== Enllaç al repositori
+
+**Enllaç** -> https://git.copernic.cat/cadafalch.miro.jaume/marketplace[Enllaç Repositori]
+
+=== Branca de Producció 
+
+La branca de producció és la branca **[underline]#main#**.
+
+=== Arxiu .env
+
+L'arxiu **.env** està copiat amb un nou diferent per poder pujar al git.
+El nom de l'arxiu es diu **EnvFile**, recordar de substituir-ho pel teu propi.
+
+=== Guia per pujar el Vagrant
+
+Per pujar el **Vagrant** has d'anar dins de l'arrel principal del projecte, a la carpeta **/marketPlace_Server**.
+Un cop a dins llences la comanda **vagrant up**.
+
+=== Guia per iniciar l'aplicació 
+
+
+Un cop aixecat el **Vagrant** has d'introduir la següent ruta http://172.16.0.100 al navedador, i ja podràs fer gaudir l'aplicació.  
+
+.Atenció::
+[IMPORTANT]
+====
+Avis el **Vagrant** pot trigar amb aixecar-se entre 1~2 minuts.
+
+====

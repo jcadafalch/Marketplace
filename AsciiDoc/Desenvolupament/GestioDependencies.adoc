@@ -1,0 +1,48 @@
+=== Gestió de dependencies
+La gestió de dependencies la fem amb composer.
+
+Per instalar composer al projecte seguim els següents passos:
+
+* Obrim un terminal
+* Executem: 
+
+[,PS]
+----
+$ composer init
+----
+* Escrivim el nom de paquet
+* Afegim una petita descripció del nostre projecte
+* Per a l’entrada d’estabilitat mínima, premem Intro
+* Seleccionem el tipus de paquet: *project*
+* No especifiquem llicencia, per tant premem Intro
+* La següent línia preguntarà si volem definir les nostres dependències; en aquest moment, escrivim no i premem Retorn, i repetim el mateix per a les dependències de dev.
+** Finalment confirmem la configuració i Composer ens generà el fitxer *composer.json*
+ 
+image::Images\Desenvolupament\ConfComposer.PNG[]
+
+* Modifiquem el *composer.json* per afegir com a coautors els altres integrants del projecte
+
+[,JSON]
+----
+{
+  "name": "gexpenses/gexpenses",
+  "description": "Gexpenses project",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Jaume Cadafalch",
+      "email": "84527588+jcadafalch@users.noreply.github.com"
+    },
+    {
+      "name": "Daniel Rodriguez Saez",
+      "email": "rodriguez.saez.daniel@alumnat.copernic.cat"
+    },
+    {
+      "name": "Jose Antonio Curtido Cortes",
+      "email": "curtido.cortes.jose.antonio@alumnat.copernic.cat"
+    }
+  ],
+  "require": {}
+}
+
+----

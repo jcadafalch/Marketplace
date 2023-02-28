@@ -1,0 +1,16 @@
+=== Injecció de dependencies
+==== PHPMailer
+Per instalar PHPMailer, obrim un terminal, ens col·loquem a la carpeta arrel del projecte.
+
+[,PS]
+----
+$ composer require phpmailer/phpmailer
+----
+image::Images\Desenvolupament\instalarPhpMailer.PNG[Imatge del terminal al instalar el phpmailer, 800]
+
+Un cop instalat, veurem que se'ns ha creat una nova carpeta anomenada _vendor_ on dins trobarem: una carpeta composer i la carpeta de la dependencia que acabem d'instalar.
+
+El fitxer *composer.json* també s'ha actualitzat afegint la nova dependencia.
+I s'ha creat un nou fitxer anomenat _composer.lock_ la qual inclou una llista de les versions exactes dels paquets que s’han instal·lat.
+
+image::Images\Desenvolupament\CarpetesAmbPhpMailerInstalat.PNG[Imatge de les carpetes i fitxers creats després de instalar PhpMailer]

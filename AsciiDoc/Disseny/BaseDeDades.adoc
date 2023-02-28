@@ -1,0 +1,13 @@
+:sectnums: |,all|
+=== Base de dades
+==== Diagrama Relacional
+
+Aquí va la imatge
+
+==== Scripts
+===== Creació de la base de dades
+[,SQL]
+----
+
+----
+
