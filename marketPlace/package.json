@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "compile:sass": "node-sass sass/main.scss css/style.css"
+    "compile:sass": "node-sass public/sass/layout/layout.scss public/css/style.css"
   },
   "devDependencies": {
     "axios": "^1.1.2",
