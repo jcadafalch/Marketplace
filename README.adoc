@@ -57,5 +57,5 @@ Aquesta idea ha sorgit, en cerca de tot petit artesà que no té possibilitat de
 
 == Memòria
 
-**Enllaç Memòria**->  https://git.copernic.cat/cadafalch.miro.jaume/marketplace/-/blob/main/Documentacio/Memoria.adoc[Memoria]
+**Enllaç Memòria**->  https://git.copernic.cat/cadafalch.miro.jaume/marketplace/-/blob/Develop/Documentacio/Memoria.adoc[Memoria]
 
