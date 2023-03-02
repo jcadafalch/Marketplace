@@ -57,7 +57,7 @@ include::Linies_Futures\LiniesFutures.adoc[]
 == Conclusions
 
 === Aportacions del projecte als coneixements de l’alumne
-Hem après a desenvolupar una BBDD relacional sobre la base d'unes necessitats específiques i connectar-la amb el servidor de la pàgina. D'altra banda, la creació i configuració de tot el back-end en PHP i les formes paleolítiques de comunicació sense frameworks amb el front-end. De la part del front, hem après la importància del dinamisme en la pàgina web que aporta JS així com la notorietat d'uns estils ben pensats en CSS, i el difícil que resulta fer la pàgina web com vols utilitzant NOMÉS flexbox com a mètode d'organització visual del DOM.
+
 
 == Glossari 
 
