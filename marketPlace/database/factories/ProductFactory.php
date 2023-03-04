@@ -19,7 +19,8 @@ class ProductFactory extends Factory
         return [
             'name'=>fake()->word() . fake()->word(),
             'description'=>fake()->paragraph(1,true) . fake()->word(),
-            'price'=>fake()->randomFloat(2,0,999) 
+            'price'=>fake()->randomFloat(2,0,999),
+            'url'=> 'https://picsum.photos/200/300',
         ];
     }
 }
