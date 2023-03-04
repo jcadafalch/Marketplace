@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->unique()->nullable(false);
             $table->string('description')->nullable(false);
+            $table->decimal('price', 5, 2);
             $table->timestamp('selled_at')->nullable();
         });
     }
