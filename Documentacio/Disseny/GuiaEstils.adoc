@@ -1,17 +1,27 @@
 === Guia d'estils
-* Colors
+==== Colors
 
 .Colors
 [width="100%",options="header,footer"]
 |====================
-^| Primary color ^| Light Color ^| Dark Color ^| Darker Color ^|  Complementary color 
-^| #exa ^| #exa ^| #exa ^| #exa ^|  #exa
-^a| 
-^a| color
-^a| color
-^a| color
-^a| color
+^| Primary color ^| Secunday Color ^| Text Color ^| Hover Color 
+^| #88a8f9 ^| #576DA5 ^| #000000 ^| #FFFFFF 
+^a| image::https://encycolorpedia.com/88a8f9.svg[primary color, 100]
+^a| image::https://encycolorpedia.com/576da5.svg[secondary color, 100]
+^a| image::https://encycolorpedia.com/000000.svg[text color, 100]
+^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
+
 |====================
+
+* **Primary color**	
+** El Color primario de la app es el azul, se utiliza en la cabecera, el pie de pagina y los botones
+* **Secunday Color**
+** Utilizado para el Hover de los enlaces e iconos. Al ponerse encima de un enlace o icono cambia de color negro a azul.
+* **Text Color**
+** El texto de la aplicacion se visualizara en color negro.
+* **Hover Color**
+** Al posesionarse encima de un botón el texto del mismo cambiará de negro a blanco.
+
 .Ombres
 [width="100%",options="header,footer"]
 |====================
@@ -19,49 +29,56 @@
 ^| #exa  ^| #exa  ^| #exa 
 ^a|  color
 ^a| color
-^a| image::https://encycolorpedia.com/c44d75.svg[secondary color, 100]
+^a| 
 |====================
 
-* Logo
+==== Logo
 
 
 Casos de uso:
  
 El *logotip genèric* sempre serà de color _#complementary_ i s'ubicarà sempre que es pugui sobre _#light_. En aquest cas, la 'G' sempre anirà separada de 'expenses' i totes les lletres seran majúscules per a mantenir els estàndards d'imatge de marca.
 
-.Logo genèric
-[width="25%"]
+.Logo Header
+[width="40%"]
 |====================
-^a|  Logo
+^a| image::Logo.png[]
 |====================
 
 
-El logo negatiu s'usarà únicament en els casos en els quals hagi d'emplaçar-se el logotip amb el color #darker de fons. En aquest cas, totes les lletres aniran juntes i tan sols la primera serà majúscula. Està pensat d'aquesta manera com un ús secundari del logo, sent el genèric el que prevaldrà sempre
 
-
-.Logo negatiu
-[width="25%"]
+.Logo Footer
+[width="40%"]
 |====================
-^a|  Logo
+^a|  image::Logo_footer.png[]
 |====================
 
 
 
 * Tipografia
 
-** "Gill Sans"
-** "Gill Sans MT" 
-** "Calibri"
-** "Trebuchet MS"
-** "Sans-Serif"
+** "**Poppins Bold**"
+** "**Poppins Regular**" 
 
+image::Tipografia\Tipografias.png[]
 
-* Icones
+==== Icones
 
+.icono sin hover
+image::Images\Iconos\Icono.png[width="20%"]
 
+.icon con hover
+image::Images\Iconos\Icono_hover.png[width="20%"]
 
+==== Botones
 
-* Hovers
+.boton sin hover
+image::Images\Buttons\Button.png[width="20%"]
+
+.boton con Hover
+image::Images\Buttons\Botton_Hover.png[width="20%"]
+
+==== Hovers
 
 Els _hover_ que succeeixin sobre un fons _#light_ es representaran amb un fons de color _#light shadow_; sense obligació de canviar el color de cap altre element implicat.
 
@@ -69,7 +86,7 @@ Els _hover_ que succeeixin sobre un fons _#light_ es representaran amb un fons d
 .hover sobre #light
 [width="25%"]
 |====================
-^a|  image::./../Images/Hovers/hover-light.png[hover light]
+^a|  
 |====================
 
   
@@ -79,18 +96,18 @@ Els _hover_ que succeeixin sobre un fons _#darker_ es representaran canviant el 
 .hover sobre #darker
 [width="25%"]
 |====================
-^a|  image::./../Images/Hovers/hover-darker.png[hover darker]
+^a|  
 |====================
 
 
-* Fons de pantalla
+==== Fondo de pantalla
 
 
-El fons de pantalla sempre serà el primary-color:
+El fondo de pantalla sera de color blanco. 
 
-[width="10%",options="header,footer"]
+[width="10%"]
 |====================
 ^| Primary color
 ^| #Logo
-^a| image::https://encycolorpedia.com/59d0d7.svg[primary color, 100] 
+^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
 |====================
