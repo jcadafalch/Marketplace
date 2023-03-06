@@ -4,16 +4,17 @@
 
 @section('content')
 
-    {{-- <div>
+    <h1> Home Page </h1>
+    <div class="products-section">
         @foreach ($products as $key => $product)
-            <div>
-                <img src="{{ $product->image }}" style="height:200px" />
+            <div class="product">
+                <img src="{{ $product->url }}" style="height:200px" />
                 <h4>
                     {{ $product->name }}
                 </h4>
-                @include('catalog.partials.catalog')
+
             </div>
         @endforeach
-    </div> --}}
-    Home
+    </div>
+
 @endsection
