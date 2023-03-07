@@ -1,15 +1,22 @@
-// Layouts 
+// Layouts
 
+html {
+    font-size: 62.5%;
+    /* 1 rem = 10 px*/
+}
 
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-
-// Arxius importats, codi dividit en arxius de manera mes organitzada 
+// Arxius importats, codi dividit en arxius de manera mes organitzada
 // Compta de posar amb '';
-@import 'generales';
-@import 'header';
-@import 'main';
-@import 'aside';
-@import 'footer';
-@import 'home';
-
-
+@import "generales";
+@import "header";
+@import "main";
+@import "aside";
+@import "footer";

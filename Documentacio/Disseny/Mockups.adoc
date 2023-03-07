@@ -1,3 +1,8 @@
-
 === Mockups
-==== Landing Page
+==== Home Page
+
+.Home con usuario sin iniciar sessión
+image::.\..\Images\Mokups\HomeNoRegistrado.png[width="60%"]
+
+.Home con usuario que ha iniciado sessión
+image::.\..\Images\Mokups\HomeRegistrado.png[width="60%"]
