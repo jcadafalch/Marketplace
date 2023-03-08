@@ -1,6 +1,6 @@
 <header>
     <div class="logoHeader">
-        <img src="/marketPlace/resources/images/LogoFooter.png" alt="Logo" />
+        <img src="{{ asset('images/LogoFooter.png') }}" alt="Logo" />
     </div>
 
     <div class="headerOptions">
@@ -16,7 +16,7 @@
             </span>
         </div>
         <div class="login">
-            <button>Registra't / Inicia Sessió</button>
+            <button> <a href="{{ route('auth.login') }}" >Registra't / Inicia Sessió</a></button>
         </div>
         <div class="cartAndProfile" style="display: none">
             <div>
