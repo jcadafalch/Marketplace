@@ -1,8 +1,26 @@
-
-footer{
-    clear: both;
+@use "./utils.scss" as utils;
+footer {
+    background: utils.$primaryColor;
     width: 100%;
-    background: #0d2c44;
-    color: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
 }
 
+.footer-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer-content img {
+    height: auto;
+    width: 9rem;
+    padding: 1rem;
+}
+
+.footer-content p {
+    text-align: center;
+    margin: 0;
+}
