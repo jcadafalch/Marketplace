@@ -14,7 +14,7 @@ class Product extends Model
         'selled_at',
     ];
 
-    public function categoria() {
-        return $this->belongsToMany(Category::class);
+    public function categories() {
+        return $this->belongsToMany(Category::class)->withTimeStamps();
     }
 }

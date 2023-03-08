@@ -16,11 +16,15 @@ class DatabaseSeeder extends Seeder
         \App\Models\Product::factory(5)->create();
           
         // Creem 5 categories aleatoris
-        \App\Models\Category::factory(5)->create();
-
-
-      
-
+        $Category = \App\Models\Category::factory(5)->create();
+        
+        // Agafem tots el productes que hem creat
+        $allProducts = \App\Models\Category::all();
+     
+        foreach ($allProducts as $p) {
+        // Fem la unio
+        $p->products()->attach(\App\Models\Category::find($p->id));
+        }
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
