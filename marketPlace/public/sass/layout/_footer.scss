@@ -27,5 +27,11 @@ footer {
 
 .footer-content .copyright {
     text-align: center;
-    margin: 0;
+    align-self: flex-end;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.footer-copyright {
+    display: flex;
 }
