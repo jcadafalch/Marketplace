@@ -9,9 +9,10 @@ footer {
 
 .footer-content {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto 1fr;
     gap: 20px;
     align-items: center;
+    font-size: 1.25rem;
 }
 
 .footer-content img {
@@ -20,7 +21,11 @@ footer {
     padding: 1rem;
 }
 
-.footer-content p {
+.footer-content .creators {
+    text-align: start;
+}
+
+.footer-content .copyright {
     text-align: center;
     margin: 0;
 }
