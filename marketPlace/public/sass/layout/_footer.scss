@@ -1,6 +1,5 @@
-@use "./utils.scss" as utils;
 footer {
-    background: utils.$primaryColor;
+    background: $primaryColor;
     width: 100%;
     position: fixed;
     left: 0;

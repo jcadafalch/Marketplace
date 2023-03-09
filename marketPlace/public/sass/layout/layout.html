@@ -17,16 +17,16 @@
         <header>
             <div class="logoHeader">
                 <img
-                    src="/marketPlace/resources/images/LogoFooter.png"
+                    src="/marketPlace\public\images\LogoFooter.png"
                     alt="Logo"
                 />
             </div>
 
             <div class="buscador">
                 <select id="selectCategories">
-                    <option value="">Totes les categories</option>
-                    <option value="">Totes les categories</option>
-                    <option value="">Totes les categories</option>
+                    <option value="">Todas las categorías</option>
+                    <option value="">Todas las categorías</option>
+                    <option value="">Todas las categorías</option>
                 </select>
                 <input
                     type="search"
@@ -42,17 +42,19 @@
             <div class="cartAndProfile">
                 <div class="displayIcon">
                     <p id="numberOfProducts">0</p>
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined shoppingCart">
                         shopping_cart
                     </span>
                 </div>
 
-                <div class="displayIcon user">
+                <div class="displayIcon user" style="display: none">
                     <span class="material-symbols-outlined"> person </span>
-                    <p>jcadafalch</p>
+                    <p>username</p>
                 </div>
-                <div class="login" style="display: none">
-                    <button>Registra't / Inicia Sessió</button>
+                <div class="login">
+                    <button>
+                        <a href="/login">Regístrate / Inicia Sesión</a>
+                    </button>
                 </div>
             </div>
         </header>
@@ -60,7 +62,7 @@
         <footer>
             <div class="footer-content">
                 <img
-                    src="/marketPlace/resources/images/LogoFooter.png"
+                    src="/marketPlace\public\images\LogoFooter.png"
                     alt="Logo"
                 />
                 <div class="creators">

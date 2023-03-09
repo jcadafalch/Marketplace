@@ -1,5 +1,5 @@
-// Layouts
-
+$primaryColor: #88a8f9;
+$textColor: #000000;
 html {
     font-size: 62.5%;
     /* 1 rem = 10 px*/
@@ -15,8 +15,6 @@ html {
 
 // Arxius importats, codi dividit en arxius de manera mes organitzada
 // Compta de posar amb '';
-@import "generales";
+
 @import "header";
-@import "main";
-@import "aside";
 @import "footer";

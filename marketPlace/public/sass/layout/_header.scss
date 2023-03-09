@@ -1,13 +1,13 @@
-@use "./utils.scss" as utils;
-
 header {
-    background: utils.$primaryColor;
+    background: $primaryColor;
     width: fit-content;
     min-width: 100%;
     display: grid;
     grid-template-columns: 0.1fr auto 0.2fr;
     align-items: center;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .logoHeader {
@@ -15,7 +15,6 @@ header {
     justify-self: start;
     height: 14rem;
     width: 12rem;
-    //padding-left: 2rem;
     img {
         width: 12rem;
         height: auto;
@@ -27,13 +26,12 @@ header {
     background-color: white;
     border-radius: 3.5rem;
     padding: 1rem 3rem 1rem 3rem;
-    margin: 4rem;
+    margin: 2rem 5rem 2rem 0rem;
     grid-column: 2;
     display: flex;
     justify-self: center;
     align-items: center;
     width: 80%;
-    min-width: 10%;
 }
 
 .cartAndProfile {
@@ -44,20 +42,38 @@ header {
     margin-right: 2rem;
 }
 
+.shoppingCart {
+    font-size: 3rem;
+}
 .displayIcon {
     display: flex;
     align-items: center;
     font-size: 2rem;
     justify-content: space-between;
 }
-.user p {
-    margin: 1rem;
+.user {
+    span {
+        margin-left: 2rem;
+    }
+    p {
+        margin: 1rem 0rem 1rem 0rem;
+    }
 }
 
-.login button {
-    background-color: utils.$primaryColor;
-    padding: 1.5rem 2rem 1.5rem 2rem;
-    border-radius: 3.5rem;
+.login {
+    margin-left: 2rem;
+    min-width: fit-content;
+    button {
+        background-color: $primaryColor;
+        padding: 1.5rem 2rem 1.5rem 2rem;
+        border-radius: 3.5rem;
+        min-width: 16rem;
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+        }
+    }
 }
 
 #selectCategories {
