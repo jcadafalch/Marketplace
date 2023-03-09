@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,16 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $num = uniqid();
+        $url = "https://api.lorem.space/image/movie?w=150&h=220";
+        $contents = file_get_contents($url);
+        $name = "imgN" . $num .".jpg";
+        Storage::disk('img')->put($name, $contents);
         return [
             'name'=>fake()->word() . fake()->word(),
             'description'=>fake()->paragraph(1,true) . fake()->word(),
             'price'=>fake()->randomFloat(2,0,999),
-            'url'=> 'https://picsum.photos/200/300',
+            'url'=>  "public/images" . $name,
         ];
     }
 }
