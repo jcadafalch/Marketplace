@@ -7,15 +7,15 @@
     <h1> Home Page </h1>
     <div class="products-section">
         @foreach ($products as $key => $product)
-            <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                <div class="product">
+            <div class="product">
+                <a href="{{ route('product.show', ['id' => $product->id]) }}">
                     <img src="{{ $product->url }}" style="height:200px" />
                     <h4>
                         {{ $product->name }}
                     </h4>
-
-                </div>
-            </a>
+                </a>
+                <input type="button" value="Añadir a carrito">
+            </div>
         @endforeach
     </div>
 
