@@ -1,4 +1,37 @@
 === Diari
 
-==== Setmana del 27/02/2023 al 02/03/2023 
-Aqui explicaremos que hem fet.
+==== Semana 1 (27/02/2023 - 02/03/2023).
+
+*Planificación de la semana* 
+
+* [*] Planficació inicial del projecte - 13h  
+* [*]  Crear estructura de memoria - 1h.
+* [*]  Crear compte Gmail + Notion - 1h
+* [*] Crear Trello - 1h
+* [*] Crear proyecto Laravel - 1h
+* [*] Crear repository Git - 1h
+* [*] Crear logger en Laravel - 2h
+* [*] Recerca de MarketPlace, per agafar ideés de com desenvolupar la nostra aplicació - 2h
+* [*] Pensar estructura de base dades - 2h
+* [*] Crear Model Factories - 1h
+* [*] Guia d'estils - 9h
+* [*] Crear Seeders - 1h
+* [*] Crear header i footer - 2h
+* [*] HomePage - diseño - 4h
+* [*] Crear model i migració de la estructura de la base de dades - 6h
+* [*] HomePage - FrontEnd - 6h
+
+ 
+Total horas invertidas: *53 horas*. 
+
+*Desviación de tareas de la semana* 
+
+Esta semana se ha llegado con éxito a completar todas las tareas planeadas en la planificación semanal.
+
+*Valoracion*
+
+Nos hemos dado cuenta, que depende que tareas hemos tardo menos y en otras más de lo planificado. Finalmente, se han podido completar todas las tareas planificadas para esta semana, en el total de horas planificado.
+
+
+==== Semana 2 (06/03/2023 - 09/03/2023).
+

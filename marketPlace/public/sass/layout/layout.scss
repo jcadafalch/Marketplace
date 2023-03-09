@@ -11,6 +11,23 @@ html {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    /* 1 rem = 10 px*/
+}
+
+.content--section {
+    margin: 3rem 10rem 0rem 10rem;
+    font-size: 1.6rem;
+}
+
+@media (max-width: 400px) {
+    .content--section {
+        margin: 3rem 3rem 0rem 3rem;
+    }
 }
 
 // Arxius importats, codi dividit en arxius de manera mes organitzada
@@ -18,3 +35,4 @@ html {
 
 @import "header";
 @import "footer";
+@import "home";

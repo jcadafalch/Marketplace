@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function producte() {
-        return $this->belongsToMany(Product::class);
+    public function products() {
+        return $this->belongsToMany(Product::class)->withTimeStamps();
     }
 }
