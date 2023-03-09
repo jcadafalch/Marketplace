@@ -9,12 +9,13 @@
         @foreach ($products as $key => $product)
             <div class="product">
                 <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                    <img src="{{ $product->url }}" style="height:200px" />
+                    <img src="{{ $product->url }}" />
                     <h4>
                         {{ $product->name }}
                     </h4>
-                    <p> {{ $product->price }}€ </p>
                 </a>
+
+                <p> {{ $product->price }}€ </p>
                 <input type="button" value="Añadir">
             </div>
         @endforeach
