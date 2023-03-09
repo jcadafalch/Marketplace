@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Creem 5 productes aleatoris 
-        \App\Models\Product::factory(5)->create();
+        \App\Models\Product::factory(20)->create();
           
         // Creem 5 categories aleatoris
         $Category = \App\Models\Category::factory(5)->create();
