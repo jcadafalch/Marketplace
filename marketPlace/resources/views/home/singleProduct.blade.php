@@ -5,13 +5,11 @@
 @section('content')
 
     <div>
+        <img src="{{ $product->url }}" />
 
-        {{-- TODO: Portada del llibre --}}
-        <img src="{{ $product->url }}" style="height:200px"/>
-
-        <h4>
-            {{ $product->name }}
-        </h4>
+        <h4>{{ $product->name }}</h4>
+        <p>{{ $product->description }}</p>
+        <p>{{ $product->price }}</p>
     </div>
 
 @endsection

@@ -2,10 +2,13 @@
     display: grid;
 
     grid-template-rows: repeat(auto-fit, 30rem);
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 
     margin: 1rem auto;
     gap: 6rem;
+
+    justify-items: center;
+    align-items: center;
 }
 
 .product {
@@ -14,6 +17,11 @@
 
     a {
         text-decoration: none;
+
+        img {
+            width: 20rem;
+            height: 20rem;
+        }
     }
 
     input {
@@ -22,4 +30,5 @@
         border-radius: 2rem;
         padding: 0.5rem;
     }
+
 }

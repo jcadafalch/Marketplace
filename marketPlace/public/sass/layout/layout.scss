@@ -3,6 +3,8 @@ $textColor: #000000;
 html {
     font-size: 62.5%;
     /* 1 rem = 10 px*/
+    position: relative;
+    min-height: 100%;
 }
 
 * {
@@ -17,6 +19,10 @@ html {
 html {
     font-size: 62.5%;
     /* 1 rem = 10 px*/
+}
+
+body {
+    margin-bottom: 12rem;
 }
 
 .content--section {
