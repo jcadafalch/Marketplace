@@ -29,7 +29,7 @@
         </div>
         <div class="login">
             <button>
-                <a href="{{ redirect('/login') }}">Regístrate / Inicia Sesión</a>
+                <a href="{{ route('auth.login') }}">Regístrate / Inicia Sesión</a>
             </button>
         </div>
     </div>
