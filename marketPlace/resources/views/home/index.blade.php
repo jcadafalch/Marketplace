@@ -17,6 +17,8 @@
                 <input type="button" value="Añadir a carrito">
             </div>
         @endforeach
-    </div>
-
+        </div>
+            <script>
+            const products = <?php echo json_encode($products); ?>;
+            </script>
 @endsection
