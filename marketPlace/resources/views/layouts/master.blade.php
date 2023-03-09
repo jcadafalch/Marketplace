@@ -17,7 +17,6 @@
     <div class = "content--section">
         @yield('content')
     </div>
-    <script src="{{ asset('js/home.js') }}"></script>
     @include('partials.footer')    
 </body>
 </html>

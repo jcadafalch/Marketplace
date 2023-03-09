@@ -19,6 +19,5 @@
         @endforeach
         </div>
             <script>
-            const products = <?php echo json_encode($products); ?>;
             </script>
 @endsection
