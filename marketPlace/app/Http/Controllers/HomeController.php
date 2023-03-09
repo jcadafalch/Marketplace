@@ -11,4 +11,9 @@ class HomeController extends Controller
     {
         return view('home.index' , ['products' => Product::all()]);
     }
+
+     public function show($id)
+    {
+        return view('home.singleProduct', ['product' => Product::findOrFail($id)]);
+    }
 }
