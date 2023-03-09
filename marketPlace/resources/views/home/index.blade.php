@@ -13,8 +13,9 @@
                     <h4>
                         {{ $product->name }}
                     </h4>
+                    <p> {{ $product->price }}€ </p>
                 </a>
-                <input type="button" value="Añadir a carrito">
+                <input type="button" value="Añadir">
             </div>
         @endforeach
     </div>

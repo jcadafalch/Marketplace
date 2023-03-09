@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home.index' , ['products' => Product::all()]);
+        return view('home.index' , ['products' => Product::with('categories')->get()]);
     }
 
      public function show($id)

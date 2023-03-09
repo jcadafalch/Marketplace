@@ -1,4 +1,12 @@
 // Layouts
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
 html {
     font-size: 62.5%;
@@ -7,15 +15,13 @@ html {
 
 .content--section {
     margin: 3rem 10rem 0rem 10rem;
+    font-size: 1.6rem;
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+@media (max-width:400px) {
+    .content--section {
+        margin: 3rem 3rem 0rem 3rem;
+    }
 }
 
 // Arxius importats, codi dividit en arxius de manera mes organitzada
