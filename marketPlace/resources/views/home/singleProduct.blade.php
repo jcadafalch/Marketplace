@@ -7,7 +7,7 @@
     <div>
 
         {{-- TODO: Portada del llibre --}}
-        <img src="{{ $product->url }}" style="height:200px"/>
+        <img src="{{ asset('storage/img/' . $product->url) }}" style="height:200px"/>
 
         <h4>
             {{ $product->name }}

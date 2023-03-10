@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'name'=>fake()->word() . fake()->word(),
             'description'=>fake()->paragraph(1,true) . fake()->word(),
             'price'=>fake()->randomFloat(2,0,999),
-            'url'=>  "public/images" . $name,
+            'url'=>  $name,
         ];
     }
 }
