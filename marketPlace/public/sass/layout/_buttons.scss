@@ -6,6 +6,11 @@
         border-radius: 2rem;
         padding: 0.5rem;
         width: 100%;
+
+        &:hover{
+            background-color: #576DA5;
+            color: white;
+        }
     }
 
 }
