@@ -9,7 +9,9 @@
         @foreach ($products as $key => $product)
             <div class="product">
                 <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                    <img src="{{ $product->url }}" />
+
+                    <img src="{{ asset('storage/img/' . $product->url) }}" />
+
                     <h4>
                         {{ $product->name }}
                     </h4>
@@ -20,5 +22,5 @@
             </div>
         @endforeach
     </div>
-
+    <script></script>
 @endsection

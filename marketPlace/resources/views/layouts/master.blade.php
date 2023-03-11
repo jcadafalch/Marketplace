@@ -19,7 +19,6 @@
     <div class="content--section">
         @yield('content')
     </div>
-    @include('partials.footer')
+    @include('partials.footer')    
 </body>
-
 </html>
