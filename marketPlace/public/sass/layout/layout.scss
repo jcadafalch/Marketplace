@@ -16,24 +16,13 @@ html {
     font-family: "Poppins", sans-serif;
 }
 
-html {
-    font-size: 62.5%;
-    /* 1 rem = 10 px*/
-}
-
 body {
     margin-bottom: 12rem;
 }
 
 .content--section {
-    margin: 3rem 10rem 0rem 10rem;
+    margin: 3vh 10vw 0vh 10vw;
     font-size: 1.6rem;
-}
-
-@media (max-width: 400px) {
-    .content--section {
-        margin: 3rem 3rem 0rem 3rem;
-    }
 }
 
 // Arxius importats, codi dividit en arxius de manera mes organitzada
