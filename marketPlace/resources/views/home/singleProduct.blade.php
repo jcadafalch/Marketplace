@@ -5,7 +5,7 @@
 @section('content')
 
     <div>
-        <img src="{{ $product->url }}" />
+        <img src="{{ asset('storage/img/' . $product->url) }}" />
 
         <h4>{{ $product->name }}</h4>
         <p>{{ $product->description }}</p>
