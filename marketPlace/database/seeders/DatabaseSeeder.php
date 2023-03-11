@@ -7,18 +7,17 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
      */
-
     public function run(): void
     { 
-    // Productes a generar    
+    // Variables de control 
     $numProducts = 20;
-    // Categories a generar
     $numCategories = 20;
     
     
@@ -30,19 +29,26 @@ class DatabaseSeeder extends Seeder
     $this->command->info('Taula del mitg inicialitzada amb èxit');
     }
 
+    /**
+     * Funcio per generar Productes
+     */
     private static function generateProducts($numProducts){
-        // Eliminem les dades de la taula 
-        DB::table('products')->delete();
+        $allProducts = Product::all();
+       
+        foreach ($allProducts as $p) {
+            Storage::disk('img')->delete($p->url);
+        }
 
-         // Creem 5 productes aleatoris 
-         Product::factory($numProducts)->create();
+        DB::table('products')->delete();
+        Product::factory($numProducts)->create();
     }
 
+    /**
+     * Funcio per generaer Categories
+     */
     private static function generateCategories($numCategories){
-        // Eliminem les dades de la taula 
         DB::table('categories')->delete();
         
-        // Array de categories
         $Categoris = [
             1 => [
                 'name' => 'Moda',
@@ -60,8 +66,6 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Art',
             ],
         ];
-        
-        // Creem 5 categories aleatoris
         Category::factory($numCategories)->create();
         
         // Proves per inserta categories a mà
@@ -72,18 +76,18 @@ class DatabaseSeeder extends Seeder
         }*/
     }
 
+    /**
+     * Funcio per fer atach amb producte categoria
+     */
     private static function attachProductCategories(){
-        // Eliminem les dades de la taula 
         DB::table('category_product')->delete();
         
-        // Agafem tots el productes que hem creat
         $allProducts = Category::all();
         $numCategores = Category::count();
         
         foreach ($allProducts as $p) {
-        $randomCategory = rand(1, $numCategores);
-        // Fem la unio
-         $p->products()->attach(Category::find($randomCategory));
+            $randomCategory = rand(1, $numCategores);
+            $p->products()->attach(Category::find($randomCategory));
         }
     }
 }
