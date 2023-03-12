@@ -1,13 +1,14 @@
 <header>
     <div class="logoHeader">
-        <img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" />
+         <a href="{{ route('home.index') }}"><img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" /></a> 
     </div>
 
     <div class="buscador">
         <select id="selectCategories">
-            <option value="">Todas las categorías</option>
-            <option value="">Todas las categorías</option>
-            <option value="">Todas las categorías</option>
+            <option value="allCategories">All Categories</option>
+            @foreach ($categories as $key => $category)
+            <option value="{{ $category->name }}">{{ $category->name }}</option>
+            @endforeach
         </select>
         <input type="search" name="" id="search" placeholder="Introduce el articulo que quieres buscar" />
         <span class="material-symbols-rounded" id="headerButtonSearch">
