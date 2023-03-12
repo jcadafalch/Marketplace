@@ -7,6 +7,7 @@
     <h1> Todos los productos </h1>
     <ul class="products-section">
         @foreach ($products as $key => $product)
+
             <li class="product">
                 <div class="product-image">
                     <a href="{{ route('product.show', ['id' => $product->id]) }}">
