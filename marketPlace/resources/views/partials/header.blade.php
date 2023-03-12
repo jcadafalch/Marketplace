@@ -4,16 +4,17 @@
     </div>
 
     <div class="buscador">
-        <select id="selectCategories">
+        <form  class="header-buscardor-form" action="" method="post">
+         @csrf
+           <select id="selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
             <option value="{{ $category->name }}">{{ $category->name }}</option>
             @endforeach
-        </select>
-        <input type="search" name="" id="search" placeholder="Introduce el articulo que quieres buscar" />
-        <span class="material-symbols-rounded" id="headerButtonSearch">
-            search
-        </span>
+            </select>
+            <input type="search" name="search" id="search" placeholder="Introduce el articulo que quieres buscar" />
+            <button class="header-buscador-form-button" type="submit" ><span class="material-symbols-rounded" id="headerButtonSearch">search</span></button>
+        </form>
     </div>
 
     <div class="cartAndProfile">
