@@ -22,10 +22,16 @@ class HomeController extends Controller
         
         $category = $request['category'];
         $fieldSearch = $request['search'];
-        dd( $category . ' ' . $fieldSearch );
+        //dd( $category . ' ' . $fieldSearch );
 
+        $productsFilter = Product::searchByName($request);
+        //$productsFilter = Product::searchByAll($request);
 
-
-        return view('home.index', ['products' => Product::all()], ['categories' => Category::all()]);
+        /*$productsFilter = Product::with('categories')->where('name', 'LIKE' ,'%' . $fieldSearch . '%') 
+        ->get();
+        /*$productsFilter = Category::with('products')->where('name', 'LIKE' ,'%' . $category . '%') 
+        ->get();*/
+        //dd($productsFilter);
+        return view('home.index', ['products' => $productsFilter], ['categories' => Category::all()]);
     }
 }
