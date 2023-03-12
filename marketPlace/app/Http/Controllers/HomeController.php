@@ -17,4 +17,15 @@ class HomeController extends Controller
     {
         return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()]);
     }
+
+    public function searchProduct(Request $request){
+        
+        $category = $request['category'];
+        $fieldSearch = $request['search'];
+        dd( $category . ' ' . $fieldSearch );
+
+
+
+        return view('home.index', ['products' => Product::all()], ['categories' => Category::all()]);
+    }
 }

@@ -17,6 +17,7 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::post('/', [HomeController::class, 'searchProduct'])->name('home.index');
 
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
 
