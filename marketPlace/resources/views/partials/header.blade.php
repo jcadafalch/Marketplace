@@ -1,6 +1,6 @@
 <header>
     <div class="logoHeader">
-        <img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" />
+        <a href="{{route('home.index')}}"><img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" /></a>
     </div>
 
     <div class="buscador">
