@@ -46,7 +46,20 @@ header {
     width: 100%;
     margin-right: 1rem;
 }
-
+.header-buscardor-form {
+    display: flex;
+}
+.header-buscador-form-button {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    span {
+        font-size: 3rem;
+    }
+}
 .cartAndProfile {
     grid-column: 3;
     display: flex;
@@ -55,11 +68,13 @@ header {
     margin-right: 2rem;
 }
 
-.displayIcon {
+.displayIcon a {
     display: flex;
     align-items: center;
     font-size: 2rem;
     justify-content: space-between;
+    text-decoration: none;
+    color: black;
 }
 
 .shoppingCart {
