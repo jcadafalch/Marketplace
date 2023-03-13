@@ -19,6 +19,8 @@
     <div class="content--section">
         @yield('content')
     </div>
-    @include('partials.footer')    
+    @include('partials.footer')   
+
+    <script src="{{ asset('js/addToCart.js') }}"></script> 
 </body>
 </html>

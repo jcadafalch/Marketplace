@@ -7,7 +7,6 @@
     <h1> Todos los productos </h1>
     <ul class="products-section">
         @foreach ($products as $key => $product)
-
             <li class="product">
                 <div class="product-image">
                     <a href="{{ route('product.show', ['id' => $product->id]) }}">
@@ -21,11 +20,11 @@
                     <p class="product-price"> {{ $product->price }}€ </p>
                 </div>
 
-                <input class="button-addToCart" type="button" value="Añadir">
+                <input class="button-addToCart" type="button" value="Añadir" id={{ $product->id }}>
             </li>
         @endforeach
     </ul>
 
     {{ $products->links() }}
-
+    
 @endsection
