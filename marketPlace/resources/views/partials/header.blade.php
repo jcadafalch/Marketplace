@@ -2,10 +2,7 @@
     <div class="logoHeader">
         <a href="{{ route('home.index') }}"><img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" /></a>
     </div>
-
-    <!--<div class="">-->
-    <form class="header-buscardor-form buscador" action="" method="post">
-        @csrf
+    <form class="header-buscardor-form buscador" action="{{ route('home.index') }}" method="get">
         <select id="selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
@@ -16,8 +13,6 @@
         <button class="header-buscador-form-button" type="submit"><span class="material-symbols-rounded"
                 id="headerButtonSearch">search</span></button>
     </form>
-    <!--</div>-->
-
     <div class="cartAndProfile">
         <div class="displayIcon">
             <p id="numberOfProducts">0</p>
