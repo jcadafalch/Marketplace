@@ -22,8 +22,10 @@ class Product extends Model
 
     public static function searchByName($request){
         $fieldSearch = $request['search'];
-        return $productsFilter = Product::with('categories')->where('name', 'LIKE' ,'%' . $fieldSearch . '%') 
-        ->get();
+        //dd($fieldSearch);
+        return $productsFilter = Product::with('categories')->where('name', 'LIKE' ,'%' . $fieldSearch . '%')
+        ->orderBy('name', 'ASC')
+        ->paginate(5);
     }
 
     public static function searchByAll($request){
@@ -31,11 +33,11 @@ class Product extends Model
         $category = $request['category'];
         return $productsFilter = 
         DB::table('products')
-            ->join('category_product', 'id', '=', 'category_product.id')
-            ->join('categories', 'categories.id', '=', 'category_product.id')
-            ->where('name', 'LIKE' ,'%' . $fieldSearch . '%')
-            ->where('c.name','LIKE' ,'%' . $category . '%')
-            ->select('name','price','url','categories.name');  
+            ->join('category_product', 'products.id', '=', 'category_product.id')
+            ->where('products.name', 'LIKE' ,'%' . $fieldSearch . '%')
+            ->where('category_product.id','LIKE' ,'%' . $category . '%')
+            ->orderBy('products.name', 'ASC')
+            ->paginate(5);
     }
     
 }
