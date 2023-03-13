@@ -9,7 +9,7 @@
         <select id="selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
-                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
         <input type="search" name="search" id="search" placeholder="Introduce el articulo que quieres buscar" />
