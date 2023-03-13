@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         Paginator::useBootstrap();
-        return view('home.index' , ['products' => Product::with('categories')->paginate(5), ['categories' => Category::all()]]);
+        return view('home.index' , ['products' => Product::with('categories')->paginate(5)],['categories' => Category::all()]);
     }
 
      public function show($id)
