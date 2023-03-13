@@ -20,7 +20,7 @@
                     <p class="product-price"> {{ $product->price }}€ </p>
                 </div>
 
-                <input class="button-addToCart" type="button" value="Añadir" id={{ $product->id }}>
+                <input class="button-addToCart" type="button" value="Añadir" id="{{ $product->id }}">
             </li>
         @endforeach
     </ul>
