@@ -18,7 +18,13 @@
     @include('partials.header')
     <div class="content--section">
         @yield('content')
+    @if (session('status'))
+        <div class="products-section">
+            <p>{{ session('status') }} </p>
+        </div>
+    @endif
     </div>
-    @include('partials.footer')    
+    @include('partials.footer')
 </body>
+
 </html>
