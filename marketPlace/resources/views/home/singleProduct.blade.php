@@ -11,7 +11,7 @@
         <p class="product-description">{{ $product->description }}</p>
         <p class="product-price">{{ $product->price }}</p>
 
-        <input class="button-addToCart" type="button" value="Añadir">
+        <input class="button-addToCart" type="button" value="Añadir" id="{{ $product->id }}">
     </div>
 
 @endsection
