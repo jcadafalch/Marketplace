@@ -21,19 +21,15 @@ class HomeController extends Controller
     }
 
     public function searchProduct(Request $request){
-        
-        $category = $request['category'];
-        $fieldSearch = $request['search'];
-        //dd( $category . ' ' . $fieldSearch );
-
-        $productsFilter = Product::searchByName($request);
-        //$productsFilter = Product::searchByAll($request);
-
-        /*$productsFilter = Product::with('categories')->where('name', 'LIKE' ,'%' . $fieldSearch . '%') 
-        ->get();
-        /*$productsFilter = Category::with('products')->where('name', 'LIKE' ,'%' . $category . '%') 
-        ->get();*/
-        //dd($productsFilter);
+        $request->session()->forget('status');
+        if( $request['category'] == 'allCategories'){
+            $productsFilter = Product::searchByName($request);
+        }else{
+            $productsFilter = Product::searchByAll($request);
+        }
+        if($productsFilter->count() == 0){
+            $request->session()->flash('status','404 Not found '); 
+        }
         return view('home.index', ['products' => $productsFilter], ['categories' => Category::all()]);
     }
 }
