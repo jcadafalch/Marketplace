@@ -46,12 +46,18 @@ header {
     width: 100%;
     margin-right: 1rem;
 }
-.header-buscardor-form{
+.header-buscardor-form {
     display: flex;
 }
-.header-buscador-form-button{
+.header-buscador-form-button {
     display: flex;
     align-self: flex-end;
+    align-items: center;
+    background-color: white;
+    border: none;
+    span {
+        font-size: 3rem;
+    }
 }
 .cartAndProfile {
     grid-column: 3;

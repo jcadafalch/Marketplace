@@ -1,21 +1,22 @@
 <header>
     <div class="logoHeader">
-         <a href="{{ route('home.index') }}"><img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" /></a> 
+        <a href="{{ route('home.index') }}"><img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" /></a>
     </div>
 
-    <div class="buscador">
-        <form  class="header-buscardor-form" action="" method="post">
-         @csrf
-           <select id="selectCategories" name="category">
+    <!--<div class="">-->
+    <form class="header-buscardor-form buscador" action="" method="post">
+        @csrf
+        <select id="selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
-            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                <option value="{{ $category->name }}">{{ $category->name }}</option>
             @endforeach
-            </select>
-            <input type="search" name="search" id="search" placeholder="Introduce el articulo que quieres buscar" />
-            <button class="header-buscador-form-button" type="submit" ><span class="material-symbols-rounded" id="headerButtonSearch">search</span></button>
-        </form>
-    </div>
+        </select>
+        <input type="search" name="search" id="search" placeholder="Introduce el articulo que quieres buscar" />
+        <button class="header-buscador-form-button" type="submit"><span class="material-symbols-rounded"
+                id="headerButtonSearch">search</span></button>
+    </form>
+    <!--</div>-->
 
     <div class="cartAndProfile">
         <div class="displayIcon">
