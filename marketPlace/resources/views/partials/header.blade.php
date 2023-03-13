@@ -25,15 +25,17 @@
                 shopping_cart
             </span>
         </div>
-
-        <div class="displayIcon user" style="display: none">
-            <span class="material-symbols-outlined"> person </span>
-            <p>username</p>
-        </div>
-        <div class="login">
-            <button>
-                <a href="{{ route('auth.login') }}">Regístrate / Inicia Sesión</a>
-            </button>
-        </div>
+        @guest
+            <div class="login">
+                <button>
+                    <a href="{{ route('auth.login') }}">Regístrate / Inicia Sesión</a>
+                </button>
+            </div>
+        @else
+            <div class="displayIcon user">
+                <span class="material-symbols-outlined"> person </span>
+                <p>username</p>
+            </div>
+        @endguest
     </div>
 </header>
