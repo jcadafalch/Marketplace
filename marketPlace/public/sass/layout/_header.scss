@@ -91,10 +91,11 @@ header {
     margin-left: 2rem;
     min-width: fit-content;
     button {
-        background-color: $primaryColor;
+        background-color: transparent;
         padding: 1.5rem 2rem 1.5rem 2rem;
         border-radius: 3.5rem;
         min-width: 17rem;
+        border: 1px solid black;
         a {
             display: inline-block;
             text-decoration: none;

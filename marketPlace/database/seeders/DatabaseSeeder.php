@@ -58,15 +58,16 @@ class DatabaseSeeder extends Seeder
             3 => [
                 'name' => 'Fornitures',
             ],
-            4 =>[
+            4 => [
                 'name' => 'Toys',
             ],
-            5 =>[
+            5 => [
                 'name' => 'Art',
             ],
         ];
+
         //Category::factory($numCategories)->create();
-        
+
         // Proves per inserta categories a mà
         foreach ($Categoris as $c) {
             $category = new Category();
@@ -80,10 +81,10 @@ class DatabaseSeeder extends Seeder
      */
     private static function attachProductCategories(){
         DB::table('category_product')->delete();
-        
+
         $allProducts = Category::all();
         $numCategores = Category::count();
-        
+
         foreach ($allProducts as $p) {
             $randomCategory = rand(1, $numCategores);
             $p->products()->attach(Category::find($randomCategory));

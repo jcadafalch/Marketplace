@@ -4,22 +4,28 @@
 
 @section('content')
 
-    <h1> Home Page </h1>
-    <div class="products-section">
+    <h1> Todos los productos </h1>
+    <ul class="products-section">
         @foreach ($products as $key => $product)
-            <div class="product">
-                <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                    <img src="{{ asset('storage/img/' . $product->url)}}" style="height:200px" />
-                    <h4>
-                        {{ $product->name }}
-                    </h4>
-                </a>
 
-                <p> {{ $product->price }}€ </p>
-                <input type="button" value="Añadir">
-            </div>
+            <li class="product">
+                <div class="product-image">
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <img src="{{ asset('storage/img/' . $product->url) }}" />
+                    </a>
+                </div>
+                <div class="product-details">
+                    <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                        <p class="product-name"> {{ $product->name }} </p>
+                    </a>
+                    <p class="product-price"> {{ $product->price }}€ </p>
+                </div>
+
+                <input class="button-addToCart" type="button" value="Añadir">
+            </li>
         @endforeach
-        </div>
-            <script>
-            </script>
+    </ul>
+
+    {{ $products->links() }}
+
 @endsection
