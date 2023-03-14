@@ -60,7 +60,7 @@ class HomeTest extends TestCase
     
     public function test_get_one_category_with_filter_by_name(){
         $request = [
-            'search' => '',
+            'search' => 'quis',
             'category' => '4',
         ];
 
