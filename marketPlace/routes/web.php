@@ -20,4 +20,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
 
-Route::get('/producte/show/{id}', [HomeController::class, 'show'])->name('product.show');
+Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.show');
