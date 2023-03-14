@@ -21,6 +21,7 @@ class HomeController extends Controller
     }
 
     public function searchProduct(Request $request){
+        Paginator::useBootstrap();
         $request->session()->forget('status');
         if( $request['category'] == 'allCategories'){
             $productsFilter = Product::searchByName($request);
