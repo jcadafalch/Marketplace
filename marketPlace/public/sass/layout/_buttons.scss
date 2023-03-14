@@ -7,7 +7,7 @@
         padding: 0.5rem;
         width: 100%;
 
-        &:hover{
+        &:hover:enabled{
             background-color: #576DA5;
             color: white;
         }
