@@ -38,6 +38,7 @@ header {
     padding: 0.5rem;
     border-style: none;
     margin-right: 1rem;
+    background-color: white;
 }
 
 #search {
@@ -99,10 +100,19 @@ header {
         border-radius: 3.5rem;
         min-width: 17rem;
         border: 1px solid black;
+        font-size: 1.3rem;
+        font-weight: 500;
         a {
             display: inline-block;
             text-decoration: none;
             color: black;
+        }
+        &:hover {
+            background-color: $hoverColor;
+            border: none;
+            a {
+                color: white;
+            }
         }
     }
 }
