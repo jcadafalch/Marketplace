@@ -16,6 +16,7 @@
     <div class="cartAndProfile">
         <div class="displayIcon">
             <p id="numberOfProducts">0</p>
+
             <span class="material-symbols-outlined shoppingCart">
                 shopping_cart
             </span>
