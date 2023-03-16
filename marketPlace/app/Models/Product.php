@@ -15,7 +15,18 @@ class Product extends Model
         'url'
     ];
 
-    public function categories() {
+    public function categories()
+    {
         return $this->belongsToMany(Category::class)->withTimeStamps();
+    }
+
+    public static function getInfoFromId($id)
+    {
+        
+        $products = array();
+        foreach ($id as $key => $value) {
+            array_push($products, Product::all()->where("id", $value));
+        }
+        return $products;
     }
 }
