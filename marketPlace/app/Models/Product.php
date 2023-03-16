@@ -39,5 +39,4 @@ class Product extends Model
             ->orderBy('products.name', 'ASC')
             ->paginate(5);
     }
-    
 }
