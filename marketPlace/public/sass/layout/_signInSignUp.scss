@@ -1,0 +1,55 @@
+@import "buttons";
+
+// body {
+//     background-color: $primaryColor;
+// }
+.LogInContent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    justify-items: center;
+    align-items: center;
+
+    font-size: 1.6rem;
+    height: 100vh;
+
+    background-color: $primaryColor;
+
+    &-left {
+        background: rgba(255, 255, 255, .5);
+        padding: 4rem;
+        border-radius: 10px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, .15);
+            transform: rotate(-6deg);
+            border-radius: 10px;
+            z-index: -1;
+        }
+    }
+}
+
+.card {
+
+    &-header {
+        padding-bottom: 2rem;
+    }
+    &-form {
+        display: grid;
+        gap: 1.5rem;
+
+        .form-item {
+            position: relative;
+
+            input {
+                padding: 1rem;
+                border: none;
+                border-radius: 3rem;
+            }
+        }
+    }
+}
