@@ -27,9 +27,10 @@ class HomeTest extends TestCase
     }
    
     public function test_get_one_category(){
+        $this->createDummyAllProduct();
         $p = new Product();
         $p->id = '1';
-        $p->name = 'incidunt';
+        $p->name = 'voluptas';
         $p->price = 29.01;
         $p->url = 'http://127.0.0.1:8000/storage/img/imgN6411ef20a3f31.jpg';
     
@@ -37,25 +38,25 @@ class HomeTest extends TestCase
        
         $request = [
             'search' => '',
-            'category' => '1',
+            'category' => 2,
         ];
         $search = Product::searchByAll($request);
-        $actual = $search->toArray();
-        //echo $actual'
-        $this->assertEquals($expected,$actual[0]->name);
+        $actual = $search;
+      
+        $this->assertEquals($expected, $actual[0]->name);
     }
-      /*
+      
     public function test_get_all_categories_with_filter_by_name(){
-        
+        $this->createDummyAllProduct();
         $request = [
-            'search' => 'Iure',
+            'search' => 'dolores',
         ];
         $actual = Product::searchByName($request);
         
         $p = new Product();
-        $p->id = 4;
-        $p->name = "iure";
-        $p->price = 761.73;
+        $p->id = 5;
+        $p->name = "dolores";
+        $p->price = 739.06;
         $p->url = 'http://127.0.0.1:8000/storage/img/imgN6411ef220da04.jpg';
         $expected = $p->name;
 
@@ -63,36 +64,53 @@ class HomeTest extends TestCase
     }
     
     public function test_get_one_category_with_filter_by_name(){
+        $this->createDummyAllProduct();
         $request = [
-            'search' => 'Saepe',
-            'category' => '5',
+            'search' => 'laboriosam',
+            'category' => 3,
         ];
 
         $actual = Product::searchByAll($request);
         $p = new Product();
-        $p->id = 5;
-        $p->name = 'saepe';
-        $p->price = 584.36;
+        $p->id = 3;
+        $p->name = 'laboriosam';
+        $p->price = 139.13;
         $p->url = 'http://127.0.0.1:8000/storage/img/imgN6411ef225c065.jpg';
         $expected = $p->name;
         
         $this->assertEquals($expected, $actual[0]->name);
     }
 
+    public function test_get_not_found_product_by_name_not_exist(){
+        $this->createDummyAllProduct();
 
-    private function createDummyProduct(): Product {
-        $post = new BlogPost();
-        $post->title = 'Títol 1';
-        $post->content = "Contingut 1";
-        $post->save();
+        $request = [
+            'search' => '12312312414',
+            'category' => 3,
+        ];
+        
+        $response = $this->call('GET', '/searchProduct', ['search' => '12312312414','category' =>3,]);
+        $response->assertSeeText('404 Not found!');
+    }
 
-        return $post;
-    }*/
+    public function test_get_not_found_product_by_category_not_exist(){
+        $this->createDummyAllProduct();
+
+        $request = [
+            'search' => '',
+            'category' =>13123132,
+        ];
+        ['search' => '','category' =>13123132,];
+
+        $response =  $response = $this->call('GET', '/searchProduct', ['search' => '','category' =>13123132,]);
+        $response->assertSeeText('404 Not found!');
+    }
+
     private function createDummyAllProduct() {
 
         $Products =  [
             1 => [
-                'name' => 'quae',
+                'name' => 'quàe',
                 'id' => '1',
                 'price' => 222.74,
                 'url' => 'imgN64120e0448e76.jpg',
