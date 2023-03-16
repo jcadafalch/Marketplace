@@ -17,9 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     { 
     // Variables de control 
-    $numProducts = 20;
-    $numCategories = 20;
-    
+    $numProducts = 5;
+    $numCategories = 5;
     
     self::generateProducts($numProducts);
     $this->command->info('Taula productes inicialitzada amb èxit');   
@@ -34,7 +33,7 @@ class DatabaseSeeder extends Seeder
      */
     private static function generateProducts($numProducts){
         $allProducts = Product::all();
-       
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         foreach ($allProducts as $p) {
             Storage::disk('img')->delete($p->url);
         }
@@ -67,14 +66,14 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        Category::factory($numCategories)->create();
+        //Category::factory($numCategories)->create();
 
         // Proves per inserta categories a mà
-        /*foreach ($Categoris as $c) {
+        foreach ($Categoris as $c) {
             $category = new Category();
             $category->name = $c['name'];
             $category->save();
-        }*/
+        }
     }
 
     /**

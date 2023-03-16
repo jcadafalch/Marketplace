@@ -20,4 +20,18 @@ class HomeController extends Controller
     {
         return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()]);
     }
+
+    public function searchProduct(Request $request){
+        Paginator::useBootstrap();
+        $request->session()->forget('status');
+        if( $request['category'] == 'allCategories'){
+            $productsFilter = Product::searchByName($request);
+        }else{
+            $productsFilter = Product::searchByAll($request);
+        }
+        if($productsFilter->count() == 0){
+            $request->session()->flash('status','404 Not found '); 
+        }
+        return view('home.index', ['products' => $productsFilter], ['categories' => Category::all()]);
+    }
 }
