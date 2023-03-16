@@ -7,7 +7,19 @@
         padding: 0.5rem;
         width: 100%;
 
-        &:hover:enabled{
+        &:hover:enabled {
+            background-color: #576DA5;
+            color: white;
+        }
+    }
+
+    &-LogIn {
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 2rem;
+        padding: 1rem;
+
+        &:hover:enabled {
             background-color: #576DA5;
             color: white;
         }
