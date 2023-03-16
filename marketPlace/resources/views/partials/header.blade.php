@@ -29,9 +29,11 @@
         </div>
         @guest
             <div class="header-cartAndProfile-login">
-                <button>
-                    <a href="{{ route('auth.login') }}">Regístrate / Inicia Sesión</a>
-                </button>
+                <a href="{{ route('auth.login') }}">
+                    <button>
+                        Regístrate / Inicia Sesión
+                    </button>
+                </a>
             </div>
         @else
             <div class="header-cartAndProfile-displayIcon header-cartAndProfile-user">

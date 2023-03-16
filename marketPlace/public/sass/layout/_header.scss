@@ -84,24 +84,25 @@
         &-login {
             margin-left: 2rem;
             min-width: fit-content;
-            button {
-                background-color: transparent;
-                padding: 1.5rem 2rem 1.5rem 2rem;
-                border-radius: 3.5rem;
-                min-width: 17rem;
-                border: 1px solid black;
-                font-size: 1.3rem;
-                font-weight: 500;
-                a {
-                    display: inline-block;
-                    text-decoration: none;
-                    color: black;
-                }
-                &:hover {
-                    background-color: $hoverColor;
-                    border: none;
-                    a {
-                        color: white;
+            a {
+                display: inline-block;
+                text-decoration: none;
+                color: black;
+                button {
+                    background-color: transparent;
+                    padding: 1.5rem 2rem 1.5rem 2rem;
+                    border-radius: 3.5rem;
+                    min-width: 17rem;
+                    border: 1px solid black;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: $hoverColor;
+                        border: none;
+                        a {
+                            color: white;
+                        }
                     }
                 }
             }
