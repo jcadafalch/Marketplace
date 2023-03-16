@@ -11,8 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        Paginator::useBootstrap();
-        return view('home.index' , ['products' => Product::with('categories')->paginate(5)],['categories' => Category::all()]);
+        Paginator::defaultSimpleView('default');
+        return view('home.index' , ['products' => Product::with('categories')->paginate(10)],['categories' => Category::all()]);
     }
 
      public function show($id)
@@ -21,7 +21,7 @@ class HomeController extends Controller
     }
 
     public function searchProduct(Request $request){
-        Paginator::useBootstrap();
+        Paginator::defaultSimpleView('default');
         $request->session()->forget('status');
         if( $request['category'] == 'allCategories'){
             $productsFilter = Product::searchByName($request);
