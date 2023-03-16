@@ -28,7 +28,7 @@ class HomeController extends Controller
             $productsFilter = Product::searchByAll($request);
         }
         if($productsFilter->count() == 0){
-            $request->session()->flash('status','404 Not found '); 
+            $request->session()->flash('status','404 Not found!'); 
         }
         return view('home.index', ['products' => $productsFilter], ['categories' => Category::all()]);
     }
