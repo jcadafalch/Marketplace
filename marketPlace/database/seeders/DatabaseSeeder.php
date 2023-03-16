@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
@@ -16,64 +17,101 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     { 
-    // Variables de control 
-    $numProducts = 5;
-    $numCategories = 5;
+    if ($this->command->confirm('Vols reiniciar la bdd?', true)) {
+       
+        $this->command->call('migrate:Rollback');
+        $this->command->call('migrate');
+    }
+    if ($this->command->confirm('Vols recrear un entorn per proves unitaries', false)) {
+        $numProducts = $this->command->ask('Quantes productes vols generar?');
+        $numCategories = $this->command->ask('Quants categories vols generar?');
+        
+        self::generateProducts($numProducts);
+        $this->command->info('Taula productes inicialitzada amb èxit');   
+        self::generateCategoriesEntornDeProves($numCategories);
+        $this->command->info('Taula categories inicialitzada amb èxit');
+        self::attachProductCategories();
+        $this->command->info('Taula del mitg inicialitzada amb èxit');
+    }
+    if ($this->command->confirm('Vols recrear el Fakers?', true)) {
+        $numProducts = $this->command->ask('Quantes productes vols generar?');
+        $numCategories = $this->command->ask('Quants categories vols generar?');;
+        
+        self::generateProducts($numProducts);
+        $this->command->info('Taula productes inicialitzada amb èxit');   
+        self::generateCategories($numCategories);
+        $this->command->info('Taula categories inicialitzada amb èxit');
+        self::attachProductCategories();
+        $this->command->info('Taula del mitg inicialitzada amb èxit');
+    }
+   
     
-    self::generateProducts($numProducts);
-    $this->command->info('Taula productes inicialitzada amb èxit');   
-    self::generateCategories($numCategories);
-    $this->command->info('Taula categories inicialitzada amb èxit');
-    self::attachProductCategories();
-    $this->command->info('Taula del mitg inicialitzada amb èxit');
     }
 
     /**
      * Funcio per generar Productes
      */
     private static function generateProducts($numProducts){
+        //DB::table('products')->delete();
+       
         $allProducts = Product::all();
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+
         foreach ($allProducts as $p) {
             Storage::disk('img')->delete($p->url);
         }
-
-        DB::table('products')->delete();
         Product::factory($numProducts)->create();
+        
     }
+    
+    
+    /**
+    * Funcio per generaer Categories
+    */
+    private static function generateCategoriesEntornDeProves($numCategories){
+    DB::table('categories')->delete();
+    $Categoris = [
+        1 => [
+            'name' => 'Moda',
+        ],
+        2 => [
+            'name' => 'Accesoris',
+        ],
+        3 => [
+            'name' => 'Fornitures',
+        ],
+        4 => [
+            'name' => 'Toys',
+        ],
+        5 => [
+            'name' => 'Art',
+        ],
+    ];
+    // Proves per inserta categories a mà
+        foreach ($Categoris as $c) {
+            $category = new Category();
+            $category->name = $c['name'];
+            $category->save();
+        }
+    }
+    private static function attachProductCategoriesEntornDeProves(){
+        DB::table('category_product')->delete();
+
+        $allProducts = Category::all();
+        $numCategores = Category::count();
+
+        foreach ($allProducts as $p) {
+            $p->products()->attach(Category::find($p->id));
+        }
+    }
+
+
 
     /**
      * Funcio per generaer Categories
      */
     private static function generateCategories($numCategories){
         DB::table('categories')->delete();
-        
-        $Categoris = [
-            1 => [
-                'name' => 'Moda',
-            ],
-            2 => [
-                'name' => 'Accesoris',
-            ],
-            3 => [
-                'name' => 'Fornitures',
-            ],
-            4 => [
-                'name' => 'Toys',
-            ],
-            5 => [
-                'name' => 'Art',
-            ],
-        ];
-
-        //Category::factory($numCategories)->create();
-
-        // Proves per inserta categories a mà
-        foreach ($Categoris as $c) {
-            $category = new Category();
-            $category->name = $c['name'];
-            $category->save();
-        }
+        Category::factory($numCategories)->create();
     }
 
     /**
