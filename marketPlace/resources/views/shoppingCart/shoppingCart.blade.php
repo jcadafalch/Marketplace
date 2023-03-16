@@ -7,7 +7,7 @@
             <h5>6 artículos</h5>
         </section>
         <main class="shoppingcart-main">
-            <article class="shoppingcart-main-article">
+            <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal">
                 <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}" alt="">
                 <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
                 <p class="shoppingcart-main-article-productDescription">
@@ -25,101 +25,101 @@
                 </button>
                 <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
             </article>
-            <article class="shoppingcart-main-article">
-                <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
-                    alt="">
-                <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
-                <p class="shoppingcart-main-article-productDescription">
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                </p>
-                <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
-                </button>
-                <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
-            </article>
-            <article class="shoppingcart-main-article">
-                <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
-                    alt="">
-                <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
-                <p class="shoppingcart-main-article-productDescription">
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                </p>
-                <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
-                </button>
-                <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
-            </article>
-            <article class="shoppingcart-main-article">
-                <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
-                    alt="">
-                <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
-                <p class="shoppingcart-main-article-productDescription">
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                </p>
-                <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
-                </button>
-                <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
-            </article>
-            <article class="shoppingcart-main-article">
-                <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
-                    alt="">
-                <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
-                <p class="shoppingcart-main-article-productDescription">
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                </p>
-                <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
-                </button>
-                <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
-            </article>
-            <article class="shoppingcart-main-article">
-                <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
-                    alt="">
-                <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
-                <p class="shoppingcart-main-article-productDescription">
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                    descripció descripcio
-                    descripcio descripció
-                </p>
-                <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
-                </button>
-                <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
-            </article>
+            <!--<article class="shoppingcart-main-article">
+                        <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
+                            alt="">
+                        <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
+                        <p class="shoppingcart-main-article-productDescription">
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                        </p>
+                        <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                        <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
+                    </article>
+                    <article class="shoppingcart-main-article">
+                        <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
+                            alt="">
+                        <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
+                        <p class="shoppingcart-main-article-productDescription">
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                        </p>
+                        <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                        <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
+                    </article>
+                    <article class="shoppingcart-main-article">
+                        <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
+                            alt="">
+                        <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
+                        <p class="shoppingcart-main-article-productDescription">
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                        </p>
+                        <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                        <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
+                    </article>
+                    <article class="shoppingcart-main-article">
+                        <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
+                            alt="">
+                        <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
+                        <p class="shoppingcart-main-article-productDescription">
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                        </p>
+                        <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                        <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
+                    </article>
+                    <article class="shoppingcart-main-article">
+                        <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}"
+                            alt="">
+                        <h3 class="shoppingcart-main-article-productName">Nom producte</h3>
+                        <p class="shoppingcart-main-article-productDescription">
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                            descripció descripcio
+                            descripcio descripció
+                        </p>
+                        <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                        <h3 class="shoppingcart-main-article-productPrice">10,99 €</h3>
+                    </article>-->
 
         </main>
 

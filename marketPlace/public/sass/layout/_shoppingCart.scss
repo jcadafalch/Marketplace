@@ -21,8 +21,16 @@
             gap: 1rem;
             padding: 1rem 1rem 0rem 0rem;
             background-color: white;
-            box-shadow: 0 3px 5px 0 grey;
+            //box-shadow: 0 3px 5px 0 grey;
             border-radius: 2rem;
+
+            &-boxshadowDelete {
+                box-shadow: 0 3px 5px 0 rgba(255, 0, 0, 1);
+            }
+
+            &-boxshadowNormal {
+                box-shadow: 0 3px 5px 0 grey;
+            }
 
             &-productImage {
                 grid-area: shoppingcart-main-article-productImage;
