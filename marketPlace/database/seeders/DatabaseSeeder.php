@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Taula del mitg inicialitzada amb èxit');
     }
     if ($this->command->confirm('Vols recrear el Fakers?', true)) {
+        $productCategories = $this->command->ask('Quantes categories te que tindre un producte?');
         $numProducts = $this->command->ask('Quantes productes vols generar?');
         $numCategories = $this->command->ask('Quants categories vols generar?');;
         
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Taula productes inicialitzada amb èxit');   
         self::generateCategories($numCategories);
         $this->command->info('Taula categories inicialitzada amb èxit');
-        self::attachProductCategories();
+        self::attachProductCategories( $productCategories);
         $this->command->info('Taula del mitg inicialitzada amb èxit');
     }
    
@@ -117,15 +118,25 @@ class DatabaseSeeder extends Seeder
     /**
      * Funcio per fer atach amb producte categoria
      */
-    private static function attachProductCategories(){
+    private static function attachProductCategories($productCategories){
         DB::table('category_product')->delete();
 
-        $allProducts = Category::all();
+        $allProducts = Product::all();
         $numCategores = Category::count();
 
-        foreach ($allProducts as $p) {
-            $randomCategory = rand(1, $numCategores);
-            $p->products()->attach(Category::find($randomCategory));
+
+        $array = [];
+       foreach ($allProducts as $p) {
+
+            for ($i=0; $i < $productCategories ; $i++) { 
+             $randomCategory = rand(1, $numCategores);
+             array_push($array,$randomCategory);
+
+               
+            }  
+            for ($e=0; $e < sizeof($array); $e++) { 
+                $p->categories()->attach($array[$e]);
+                }
         }
     }
 }
