@@ -1,11 +1,36 @@
-:toc-title: Taula de continguts
-:figure-caption: Figura
-:table-caption: Taula
-:example-caption: Exemple
 :toc: left
 :toclevels: 2
 :sectnums: |,all|
 
-<<<<
+= Market Place Project
 
-include::AsciiDoc/Memoria.adoc[]
+
+
+== Membres del grup 
+
+- **Jaume Cadafalch Miró **
+- **Mariam Pipoyan Paronyan**
+- **Daniel Rodriguez Saez** 
+- **Adrián Ramírez Masagú**
+
+== Enllaços d'interès
+
+**Enllaç repository**->   https://git.copernic.cat/cadafalch.miro.jaume/marketplace[Enllaç Repositori]
+
+**Enllaç trello**-> https://trello.com/b/usLdqm1T/abp-2-grupo5[Trello]
+
+**Enllaç Figma**-> https://www.figma.com/files/team/1212387761263253029[Figma]
+
+**Enllaç Video**-> 
+
+**Enllaç Presentacío** -> 
+
+== Portafolis  
+
+**Jaume Cadafalch Miró** -> https://jcadafalch.github.io/[Jaume]
+
+**Mariam Pipoyan Paronyan** -> https://mariampipoyan.gitlab.io/portfolio/[Mariam]
+
+**Daniel Rodriguez Saez** ->  https://daniel.rodriguez.saez.19.gitlab.io/portfolio/[Daniel]
+
+**Adrián Ramírez Masagú** -> https://aramirezma2002.gitlab.io/portafolis/es/[Adrian]
