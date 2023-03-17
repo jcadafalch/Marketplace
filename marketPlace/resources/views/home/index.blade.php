@@ -25,6 +25,6 @@
         @endforeach
     </ul>
 
-    {{ $products->links() }}
+    {{ $products->links('vendor.pagination.default') }}
 
 @endsection
