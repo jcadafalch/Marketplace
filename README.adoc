@@ -3,8 +3,11 @@
 :toclevels: 2
 :sectnums: |,all|
 
-= Market Place Project
+= **Market Place Project**
 
+== Nom de l'aplicació 
+
+**Craft Made**  
 
 
 == Membres del grup 
@@ -14,7 +17,9 @@
 - **Daniel Rodriguez Saez** 
 - **Adrián Ramírez Masagú**
 
-== Portafolis  
+== Enllaços d'interès
+
+==== Portafolis  
 
 **Jaume Cadafalch Miró** -> https://jcadafalch.github.io/[Jaume]
 
@@ -26,36 +31,25 @@
 
 
 
-
-== Branca de Producció 
-
-La branca de producció és la branca **[underline]#main#**.
-
-== Arxiu .env
-
-L'arxiu **.env** està copiat amb un nou diferent per poder pujar al git.
-El nom de l'arxiu es diu **EnvFile**, recordar de substituir-ho pel teu propi.
-
-== Enllaços d'interès
+==== Repositori 
 
 **Enllaç repository**->   https://git.copernic.cat/cadafalch.miro.jaume/marketplace[Enllaç Repositori]
 
+==== Trello 
 **Enllaç trello**-> https://trello.com/b/usLdqm1T/abp-2-grupo5[Trello]
 
-**Enllaç Figma**-> https://campus.copernic.cat/[Figma]
+==== Figma
+
+**Enllaç Figma**-> https://www.figma.com/file/lhnUePoFlLxbGH0cAHY7vo/Untitled?node-id=0%3A1&t=6tywv1oy3LxnwLWO-1[Figma]
+
+==== Presentació 
 
 **Enllaç Video**-> 
 
 **Enllaç Presentacío** -> 
 
-== Descripció del objectiu de l’aplicació
 
-L'objectiu d'aquesta pràctica és, el desenvolupament d'un Market Place per artesans que vulguin vendre els seus productes de manera online.
-
-La finalitat és poder oferir el teu producte, de manera online. És a dir, un artesà, tindrà un diversos productes, que oferirà a la nostra pàgina web. El client podrà navegar per tota la web en cerca del producte desitjat. La nostra aplicació web serà capaç de filtrar els productes en diferents categories, per poder facilitar la cerca de l'usuari.
-Aquesta idea ha sorgit, en cerca de tot petit artesà que no té possibilitat de poder oferir el seu producte de manera online.
-
-== Memòria
+==== Memòria
 
 **Enllaç Memòria**->  https://git.copernic.cat/cadafalch.miro.jaume/marketplace/-/blob/Develop/Documentacio/Memoria.adoc[Memoria]
 
