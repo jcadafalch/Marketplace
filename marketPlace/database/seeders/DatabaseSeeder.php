@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     { 
     if ($this->command->confirm('Vols reiniciar la bdd?', true)) {
-       
+        self::clearImages();
         $this->command->call('migrate:Rollback');
         $this->command->call('migrate');
     }
@@ -53,17 +53,16 @@ class DatabaseSeeder extends Seeder
      * Funcio per generar Productes
      */
     private static function generateProducts($numProducts){
-        //DB::table('products')->delete();
-       
+        Product::factory($numProducts)->create();
+    }
+    
+    private static function clearImages(){   
         $allProducts = Product::all();
 
         foreach ($allProducts as $p) {
             Storage::disk('img')->delete($p->url);
         }
-        Product::factory($numProducts)->create();
-        
     }
-    
     
     /**
     * Funcio per generaer Categories
@@ -125,18 +124,16 @@ class DatabaseSeeder extends Seeder
         $numCategores = Category::count();
 
 
-        $array = [];
+        
        foreach ($allProducts as $p) {
-
+        $array = [];
             for ($i=0; $i < $productCategories ; $i++) { 
              $randomCategory = rand(1, $numCategores);
-             array_push($array,$randomCategory);
-
-               
+             array_push($array,$randomCategory);            
             }  
             for ($e=0; $e < sizeof($array); $e++) { 
                 $p->categories()->attach($array[$e]);
-                }
+            } 
         }
     }
 }
