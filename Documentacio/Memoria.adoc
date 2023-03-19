@@ -1,0 +1,159 @@
+:toc: left
+:toclevels: 2
+:sectnums: |,all|
+
+== Introducció
+
+=== Membres del grup 
+
+- **Jaume Cadafalch Miró **
+- **Mariam Pipoyan Paronyan**
+- **Daniel Rodriguez Saez** 
+- **Adrián Ramírez Masagú**
+
+=== Descripció del objectiu de l’aplicació
+
+L'objectiu d'aquesta pràctica és, el desenvolupament d'un Market Place per artesans que vulguin vendre els seus productes de manera online.
+
+La finalitat és poder oferir el teu producte, de manera online. És a dir, un artesà, tindrà un diversos productes, que oferirà a la nostra pàgina web. El client podrà navegar per tota la web en cerca del producte desitjat. La nostra aplicació web serà capaç de filtrar els productes en diferents categories, per poder facilitar la cerca de l'usuari.
+Aquesta idea ha sorgit, en cerca de tot petit artesà que no té possibilitat de poder oferir el seu producte de manera online.
+
+
+== Guia d'usabilitat de l'aplicació
+
+include::Guia/GuiaUsuari.adoc[]
+== Memòria
+
+include::Memoria\memoria.adoc[]
+
+== Recollida de requisits
+
+===  Tecnologies empleades
+- Php
+- Laravel
+- Node
+- Sass
+- JavaScript
+- Sql
+- MariaDb
+- Asciidoc
+- Markdown
+- Linux
+- Ruby
+- Apache
+- Vagrant
+
+=== Requisits de Funcionament  
+
+
+ 
+== Disseny
+include::./Disseny/Disseny.adoc[]
+
+== Desenvolupament
+
+include::Desenvolupament/Vagrant.adoc[]
+
+include::Desenvolupament/GestioDependencies.adoc[]
+
+include::Desenvolupament/InjeccioDependencies.adoc[]
+include::Desenvolupament/PhpMailer.adoc[]
+
+
+==  Manual d’instal·lació/distribució de l’aplicació.
+include::Manual_de_Instalacio\ManualDeInstalacio.adoc[]
+
+== Manual d’usuari
+
+
+
+== Línies futures
+
+include::Linies_Futures\LiniesFutures.adoc[]
+
+== Conclusions
+
+=== Aportacions del projecte als coneixements de l’alumne
+
+
+== Glossari 
+
+===  Recursos de consulta
+
+==== Documentació per Php 
+
+* https://quejox.gitlab.io/materialsweb/curs22_23/daw_m07desenvolupamentwebservidor/apunts.html[Apunts de Php de Josep Queralt]
+
+* https://quejox.gitlab.io/materialsweb/curs22_23/daw_m03uf6programacio/apunts.html[Manual de PDO, Php, Bdd de Josep Queralt]
+
+* https://www.php.net/manual/es/index.php[Web Oficial Php]
+
+* https://mailtrap.io/blog/php-email-sending/[Web oficial Enviament de correus]
+
+==== JavaScript
+
+* https://jbosom.gitlab.io/apuntspublics/Manuals/JavaScript/ManualJavaScript.html[Apunts de JavaScript de Jordi Bosom]
+
+* https://developer.mozilla.org/en-US/docs/Web/JavaScript[Manual Oficial de JavaScript]
+
+* https://www.w3schools.com/js/[Manual de JavaScript w3schools]
+
+==== Html & Css
+
+* https://jbosom.gitlab.io/apuntspublics/Manuals/HTML5_CSS/HTML5_i_CSS.html[Apunts d'Html & Css de Jordi Bosom]
+
+* https://www.w3schools.com/html/[Manual oficial d'Htlm]
+
+* https://jbosom.gitlab.io/apuntspublics/Manuals/HTML5_CSS/CSS.html[Apunts d'Css de Jordi Bosom]
+
+* https://www.w3schools.com/css/[Manual oficial de Css]
+
+==== MariaDb
+
+* https://mariadb.org/[Manual oficial Maridb]
+
+==== Vagrant 
+
+* https://campus.copernic.cat/pluginfile.php/171233/mod_resource/content/1/M08IntroduccioVagrant.html[Apunts Vagrant Josep Queralt]
+
+* https://jbosom.gitlab.io/apuntspublics/DAW/M08/UF3/M08_UF3_Vagrant.html[Apunts Vagrant Jordi Bosom]
+
+==== Git
+
+* https://jbosom.gitlab.io/apuntspublics/Manuals/GitLab/ManualGit.html[Apunts Git Jordi Bosom]
+
+==== AsciiDoc
+
+* https://jbosom.gitlab.io/apuntspublics/DAW/M08/UF4/ManualAsciiDoc.html[Apuns AsciiDoc Jordi Bosom]
+
+* https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[Manual Oficial AsciiDoc]
+
+
+
+
+== Presentació del projecte
+
+
+== Appendix: Llicència: 
+=== Llicència pel text:
+image::https://licensebuttons.net/l/by-sa/4.0/88x31.png[Tux,170,150]
+
+Aquesta obra està subjecta a una llicència de link:https://creativecommons.org/licenses/by-sa/4.0/[Reconeixement-CompartirIgual 4.0 Internacional de Creative Commons]
+
+Per reutilitzar parts d’aquest projecte heu de seguir les indicacions següents:
+
+*Atribució*
+
+Heu de proporcionar crèdit als autors incloent un enllaç a la URL original d’aquest projecte, o a una còpia estable i de lliure accés, i que contingui la informació completa de l’autoria tal com apareix aquí.
+
+*Compartir igual*
+
+Si feu modificacions o afegitons a la pàgina que reutilitzeu, heu de llicenciarlos sota la llicència Reconeixement-CompartirIgual de Creative Commons o posterior.
+
+*Indicar els canvis*
+
+Si en feu modificacions o afegitons, heu d’indicar que l’obra original ha estat modificada. En una wiki o un repositori de Git la informació històrica que proporciona el sistema és suficient.
+
+*Nota de llicència*
+
+Cada còpia o versió modificada que redistribuïu ha d’incloure una nota de llicència indicant que l’obra s’ha alliberat sota la CC-BY-SA i un enllaç a la llicència original, o bé el text complet de la llicència.

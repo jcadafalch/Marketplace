@@ -1,0 +1,12 @@
+=== Mockups
+==== Home Page
+
+.Home con usuario sin iniciar sessión
+image::.\..\Images\Mokups\HomeNoRegistrado.png[width="60%"]
+
+.Home con usuario que ha iniciado sessión
+image::.\..\Images\Mokups\HomeRegistrado.png[width="60%"]
+
+=== Carrito de la compra
+.Carrito de la compra sin iniciar sessión
+image::.\..\Images\Mokups\CarritoCompraNoRegistrado.png[with="40%"]

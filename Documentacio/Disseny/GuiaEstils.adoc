@@ -1,0 +1,113 @@
+=== Guia d'estils
+==== Colors
+
+.Colors
+[width="100%",options="header,footer"]
+|====================
+^| Primary color ^| Secunday Color ^| Text Color ^| Hover Color 
+^| #88a8f9 ^| #576DA5 ^| #000000 ^| #FFFFFF 
+^a| image::https://encycolorpedia.com/88a8f9.svg[primary color, 100]
+^a| image::https://encycolorpedia.com/576da5.svg[secondary color, 100]
+^a| image::https://encycolorpedia.com/000000.svg[text color, 100]
+^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
+
+|====================
+
+* **Primary color**	
+** El Color primario de la app es el azul, se utiliza en la cabecera, el pie de pagina y los botones
+* **Secunday Color**
+** Utilizado para el Hover de los enlaces e iconos. Al ponerse encima de un enlace o icono cambia de color negro a azul.
+* **Text Color**
+** El texto de la aplicacion se visualizara en color negro.
+* **Hover Color**
+** Al posesionarse encima de un botón el texto del mismo cambiará de negro a blanco.
+
+.Ombres
+[width="100%",options="header,footer"]
+|====================
+^| Light Shadow ^| Dark Shadow ^| Complementary Shadow
+^| #exa  ^| #exa  ^| #exa 
+^a|  color
+^a| color
+^a| 
+|====================
+
+==== Logo
+
+
+Casos de uso:
+ 
+El *logotip genèric* sempre serà de color _#complementary_ i s'ubicarà sempre que es pugui sobre _#light_. En aquest cas, la 'G' sempre anirà separada de 'expenses' i totes les lletres seran majúscules per a mantenir els estàndards d'imatge de marca.
+
+.Logo Header
+[width="40%"]
+|====================
+^a| image::Logo.png[]
+|====================
+
+
+
+.Logo Footer
+[width="40%"]
+|====================
+^a|  image::Logo_footer.png[]
+|====================
+
+
+
+* Tipografia
+
+** "**Poppins Bold**"
+** "**Poppins Regular**" 
+
+image::Tipografia\Tipografias.png[]
+
+==== Icones
+
+.icono sin hover
+image::Images\Iconos\Icono.png[width="20%"]
+
+.icon con hover
+image::Images\Iconos\Icono_hover.png[width="20%"]
+
+==== Botones
+
+.boton sin hover
+image::Images\Buttons\Button.png[width="20%"]
+
+.boton con Hover
+image::Images\Buttons\Botton_Hover.png[width="20%"]
+
+==== Hovers
+
+Els _hover_ que succeeixin sobre un fons _#light_ es representaran amb un fons de color _#light shadow_; sense obligació de canviar el color de cap altre element implicat.
+
+
+.hover sobre #light
+[width="25%"]
+|====================
+^a|  
+|====================
+
+  
+Els _hover_ que succeeixin sobre un fons _#darker_ es representaran canviant el color de l'element implicat a _#complementary_.
+
+
+.hover sobre #darker
+[width="25%"]
+|====================
+^a|  
+|====================
+
+
+==== Fondo de pantalla
+
+
+El fondo de pantalla sera de color blanco. 
+
+[width="10%"]
+|====================
+^| Primary color
+^| #Logo
+^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
+|====================
