@@ -5,6 +5,14 @@
 @section('content')
 
     <h1> Todos los productos </h1>
+    <div class="order">
+                        <p>Ordenar por</p>
+                        <ul>
+                            <li id="asc"><a href="#">A-Z</a></li>
+                            <li id="desc"><a href="#">Z-A</a></li>
+                        </ul>
+
+                    </div>
     <ul class="products-section">
         @foreach ($products as $key => $product)
             <li class="product" id="{{ $product->id }}">
