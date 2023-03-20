@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Taula del mitg inicialitzada amb èxit');
     }
     if ($this->command->confirm('Vols recrear el Fakers?', true)) {
-        $productCategories = $this->command->ask('Quantes categories te que tindre un producte?');
+        $productCategories = $this->command->ask('Quantes categories ha de tenir un producte?');
         $numProducts = $this->command->ask('Quantes productes vols generar?');
         $numCategories = $this->command->ask('Quants categories vols generar?');;
         
