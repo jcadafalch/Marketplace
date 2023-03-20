@@ -5,14 +5,15 @@
 @section('content')
 
     <h1> Todos los productos </h1>
-    <div class="order">
-                        <p>Ordenar por</p>
-                        <ul>
-                            <li id="asc"><a href="#">A-Z</a></li>
-                            <li id="desc"><a href="#">Z-A</a></li>
-                        </ul>
 
-                    </div>
+    <form class="form-order" action="{{ route('home.searchProduct') }}" method="post">
+        <select name="order">
+            <option value="asc">A-Z</option>
+            <option value="asc">A-Z</option>
+            <option value="desc" selected>Z-A</option>
+        </select>
+    </form>
+
     <ul class="products-section">
         @foreach ($products as $key => $product)
             <li class="product" id="{{ $product->id }}">
