@@ -27,7 +27,7 @@ class Product extends Model
 
         return $productsFilter = Product::with('categories')->where('name', 'LIKE' ,'%' . $fieldSearch . '%')
         ->orderBy('name', $order)
-        ->paginate(env('PAGINATE'));
+        ->paginate(env('PAGINATE', 10));
     }
 
     public static function searchByAll($request){
@@ -41,6 +41,6 @@ class Product extends Model
             ->where('products.name', 'LIKE' ,'%' . $fieldSearch . '%')
             ->where('category_product.id','LIKE' ,'%' . $category . '%')
             ->orderBy('products.name', $order)
-            ->paginate(env('PAGINATE'));
+            ->paginate(env('PAGINATE', 10));
     }
 }
