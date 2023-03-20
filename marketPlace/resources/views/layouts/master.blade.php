@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -18,15 +18,16 @@
     @include('partials.header')
     <div class="content--section">
         @yield('content')
-    @if (session('status'))
-        <div class="products-section">
-            <p>{{ session('status') }} </p>
-        </div>
-    @endif
+        @if (session('status'))
+            <div class="products-section">
+                <p>{{ session('status') }} </p>
+            </div>
+        @endif
     </div>
-    @include('partials.footer')   
+    @include('partials.footer')
 
-    <script src="{{ asset('js/addToCart.js') }}"></script> 
+    <script src="{{ asset('js/addToCart.js') }}"></script>
+    <script src="{{ asset('js/orderBy.js') }}"></script>
 </body>
 
 </html>

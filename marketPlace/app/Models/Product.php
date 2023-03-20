@@ -22,21 +22,25 @@ class Product extends Model
 
     public static function searchByName($request){
         $fieldSearch = $request['search'];
-        //dd($fieldSearch);
+        $order = $request['order'];
+        $order = empty($request['order']) ? 'ASC' : $request['order'];
+
         return $productsFilter = Product::with('categories')->where('name', 'LIKE' ,'%' . $fieldSearch . '%')
-        ->orderBy('name', 'ASC')
-        ->paginate(5);
+        ->orderBy('name', $order)
+        ->paginate(env('PAGINATE', 10));
     }
 
     public static function searchByAll($request){
         $fieldSearch = $request['search'];
         $category = $request['category'];
+        $order = $request['order'];
+        $order = empty($request['order']) ? 'ASC' : $request['order'];
         return $productsFilter = 
         DB::table('products')
             ->join('category_product', 'products.id', '=', 'category_product.id')
             ->where('products.name', 'LIKE' ,'%' . $fieldSearch . '%')
             ->where('category_product.id','LIKE' ,'%' . $category . '%')
-            ->orderBy('products.name', 'ASC')
-            ->paginate(5);
+            ->orderBy('products.name', $order)
+            ->paginate(env('PAGINATE', 10));
     }
 }
