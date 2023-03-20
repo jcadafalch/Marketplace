@@ -12,12 +12,28 @@ class HomeController extends Controller
 {
     public function index()
     {
-        Paginator::useBootstrap();
-        return view('home.index' , ['products' => Product::with('categories')->paginate(5)],['categories' => Category::all()]);
+        Paginator::defaultView('default');
+
+        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE'))],['categories' => Category::all()]);
     }
 
      public function show($id)
     {
         return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()]);
+    }
+
+    public function searchProduct(Request $request){
+        // Paginator::defaultSimpleView('default');
+        
+        $request->session()->forget('status');
+        if( $request['category'] == 'allCategories'){
+            $productsFilter = Product::searchByName($request);
+        }else{
+            $productsFilter = Product::searchByAll($request);
+        }
+        if($productsFilter->count() == 0){
+            $request->session()->flash('status','404 Not found!'); 
+        }
+        return view('home.index', ['products' => $productsFilter], ['categories' => Category::all()]);
     }
 }

@@ -1,4 +1,4 @@
-header {
+.header {
     background: $primaryColor;
     width: fit-content;
     min-width: 100%;
@@ -8,101 +8,113 @@ header {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     padding-left: 2rem;
     padding-right: 2rem;
-}
 
-.logoHeader {
-    grid-column: 1;
-    justify-self: start;
-    height: 14rem;
-    width: 12rem;
-    img {
+    &-logoHeader {
+        grid-column: 1;
+        justify-self: start;
+        height: 14rem;
         width: 12rem;
-        height: auto;
-        padding: 1rem;
+        img {
+            width: 12rem;
+            height: auto;
+            padding: 1rem;
+        }
     }
-}
 
-.buscador {
-    background-color: white;
-    border-radius: 3.5rem;
-    padding: 1rem 3rem 1rem 3rem;
-    margin: 2rem 5rem 2rem 0rem;
-    grid-column: 2;
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    width: 80%;
-}
-
-#selectCategories {
-    padding: 0.5rem;
-    border-style: none;
-    margin-right: 1rem;
-}
-
-#search {
-    padding: 0.5rem;
-    border-style: none;
-    width: 100%;
-    margin-right: 1rem;
-}
-.header-buscardor-form {
-    display: flex;
-}
-.header-buscador-form-button {
-    display: flex;
-    align-self: flex-end;
-    align-items: center;
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    span {
-        font-size: 3rem;
-    }
-}
-.cartAndProfile {
-    grid-column: 3;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-right: 2rem;
-}
-
-.displayIcon a {
-    display: flex;
-    align-items: center;
-    font-size: 2rem;
-    justify-content: space-between;
-    text-decoration: none;
-    color: black;
-}
-
-.shoppingCart {
-    font-size: 3rem;
-}
-
-.user {
-    span {
-        margin-left: 2rem;
-    }
-    p {
-        margin: 1rem 0rem 1rem 0rem;
-    }
-}
-
-.login {
-    margin-left: 2rem;
-    min-width: fit-content;
-    button {
-        background-color: transparent;
-        padding: 1.5rem 2rem 1.5rem 2rem;
+    &-buscador-form-container {
+        background-color: white;
         border-radius: 3.5rem;
-        min-width: 17rem;
-        border: 1px solid black;
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: black;
+        padding: 1rem 3rem 1rem 3rem;
+        margin: 2rem 5rem 2rem 0rem;
+        grid-column: 2;
+        display: flex;
+        justify-self: center;
+        align-items: center;
+        width: 80%;
+
+        &-selectCategories {
+            padding: 0.5rem;
+            border-style: none;
+            margin-right: 1rem;
+            background-color: white;
+        }
+
+        &-search {
+            padding: 0.5rem;
+            border-style: none;
+            width: 100%;
+            margin-right: 1rem;
+        }
+
+        &-button {
+            display: flex;
+            align-self: flex-end;
+            align-items: center;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            span {
+                font-size: 3rem;
+            }
+        }
+    }
+
+    &-cartAndProfile {
+        grid-column: 3;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-right: 2rem;
+
+        &-displayIcon {
+            a {
+                display: flex;
+                align-items: center;
+                font-size: 2rem;
+                justify-content: space-between;
+                text-decoration: none;
+                color: black;
+            }
+
+            &-shoppingCart {
+                font-size: 3rem;
+            }
+        }
+
+        &-login {
+            margin-left: 2rem;
+            min-width: fit-content;
+            a {
+                display: inline-block;
+                text-decoration: none;
+                color: black;
+                button {
+                    background-color: transparent;
+                    padding: 1.5rem 2rem 1.5rem 2rem;
+                    border-radius: 3.5rem;
+                    min-width: 17rem;
+                    border: 1px solid black;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: $hoverColor;
+                        border: none;
+                        a {
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-user {
+            span {
+                margin-left: 2rem;
+            }
+            p {
+                margin: 1rem 0rem 1rem 0rem;
+            }
         }
     }
 }

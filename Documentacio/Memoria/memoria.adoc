@@ -24,14 +24,48 @@
  
 Total horas invertidas: *53 horas*. 
 
-*Desviación de tareas de la semana* 
-
-Esta semana se ha llegado con éxito a completar todas las tareas planeadas en la planificación semanal.
-
 *Valoracion*
 
 Nos hemos dado cuenta, que depende que tareas hemos tardo menos y en otras más de lo planificado. Finalmente, se han podido completar todas las tareas planificadas para esta semana, en el total de horas planificado.
 
 
 ==== Semana 2 (06/03/2023 - 09/03/2023).
+
+*Planificación de la semana* 
+
+* [*] Backend - HomePage - 3h  
+* [*] Login (temporal) - 1h
+* [*] Pagina detalle Producto basico - 5h
+* [*] Modificar pagina Home ppara poder añadir productos al carrito de compra - 2h
+* [*] Testos unitarios pagina Producto - 3h
+* [*] Diseño pagina Carrito - 2h
+* [ ] Arreglar bug en Header (harra de busqueda) - 2h
+* [ ] Filtro de busqueda pagina Home (backend) - 5h
+* [ ] Modificar Header para mostrar y modificar Productos que están en carrito - 1h
+* [ ] Carrito de la compra (frontEnd) - 6h
+* [ ] Testos unitarios pagina Home - 5h
+* [ ] Pagina carrito de compra (backEnd) - 9h
+* [ ] Revisar bug diseño responsive en Header 
+Total horas invertidas: *16 horas*. 
+
+*Valoracion*
+
+Debido a una mala planificación de las tareas de esta semana e imprevistos surgidos que han derivado en más horas no nos ha dado tiempor a acabar todas las tareas.
+
+==== Semana 3 (13/03/2023 - 16/03/2023). (en proceso)
+
+*Planificación de la semana* 
+
+* [*] Arreglar bug en Header (harra de busqueda) - 2h
+* [*] Filtro de busqueda pagina Home (backend) - 5h
+* [*] Modificar Header para mostrar y modificar Productos que están en carrito - 1h
+* [ ] Carrito de la compra (frontEnd) - 6h
+* [ ] Testos unitarios pagina Home - 5h
+* [ ] Pagina carrito de compra (backEnd) - 9h
+* [ ] Revisar bug diseño responsive en Header 
+* [ ] Revisar inserción de acentos en BBDD y Laravel - 6h
+ 
+Total horas invertidas: *28 horas*. 
+
+*Valoracion*
 

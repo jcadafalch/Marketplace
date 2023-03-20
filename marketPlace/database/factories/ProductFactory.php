@@ -23,8 +23,8 @@ class ProductFactory extends Factory
         $name = "imgN" . $num .".jpg";
         Storage::disk('img')->put($name, $contents);
         return [
-            'name'=>fake()->unique()->word(),
-            'description'=>fake()->unique()->paragraph(1,true),
+            'name'=>fake()->unique()->name(),
+            'description'=>fake()->unique()->realText(60,1),
             'price'=>fake()->randomFloat(2,0,999),
             'url'=>  $name,
         ];

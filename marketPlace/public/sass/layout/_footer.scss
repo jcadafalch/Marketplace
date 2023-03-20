@@ -1,36 +1,32 @@
-footer {
+.footer {
     background: $primaryColor;
     width: 100%;
     position: absolute;
     left: 0;
     bottom: 0;
-}
 
-.footer-content {
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-    gap: 20px;
-    align-items: center;
-    font-size: 1.25rem;
-}
+    &-content {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        gap: 20px;
+        align-items: center;
+        font-size: 1.25rem;
 
-.footer-content img {
-    height: auto;
-    width: 9rem;
-    padding: 1rem;
-}
+        &-image {
+            height: auto;
+            width: 9rem;
+            padding: 1rem;
+        }
 
-.footer-content .creators {
-    text-align: start;
-}
+        &-creators {
+            text-align: start;
+        }
 
-.footer-content .copyright {
-    text-align: center;
-    align-self: flex-end;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.footer-copyright {
-    display: flex;
+        &-copyright {
+            text-align: center;
+            align-self: flex-end;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+    }
 }
