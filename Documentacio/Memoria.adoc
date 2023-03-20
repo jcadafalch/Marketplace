@@ -2,6 +2,23 @@
 :toclevels: 2
 :sectnums: |,all|
 
+== Introducció
+
+=== Membres del grup 
+
+- **Jaume Cadafalch Miró **
+- **Mariam Pipoyan Paronyan**
+- **Daniel Rodriguez Saez** 
+- **Adrián Ramírez Masagú**
+
+=== Descripció del objectiu de l’aplicació
+
+L'objectiu d'aquesta pràctica és, el desenvolupament d'un Market Place per artesans que vulguin vendre els seus productes de manera online.
+
+La finalitat és poder oferir el teu producte, de manera online. És a dir, un artesà, tindrà un diversos productes, que oferirà a la nostra pàgina web. El client podrà navegar per tota la web en cerca del producte desitjat. La nostra aplicació web serà capaç de filtrar els productes en diferents categories, per poder facilitar la cerca de l'usuari.
+Aquesta idea ha sorgit, en cerca de tot petit artesà que no té possibilitat de poder oferir el seu producte de manera online.
+
+
 == Guia d'usabilitat de l'aplicació
 
 include::Guia/GuiaUsuari.adoc[]
