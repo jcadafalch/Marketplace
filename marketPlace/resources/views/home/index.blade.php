@@ -7,7 +7,7 @@
     <h1> Todos los productos </h1>
 
     <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
-        <select id="order">
+        <select name="order" id="order">
             <option value="" disabled selected hiden>Ordenar por</option>
             <option value="ASC">A-Z</option>
             <option value="DESC">Z-A</option>
