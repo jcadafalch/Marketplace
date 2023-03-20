@@ -22,3 +22,4 @@ Route::get('/searchProduct', [HomeController::class, 'searchProduct'])->name('ho
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
 Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.show');
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
+Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');

@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.masterAuth')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <title>LogIn</title>
-</head>
+@section('title', 'Recuperar Contraseña')
 
-<body>
+@section('content')
+
     <div class="LogInContent">
         <div class="LogInContent-left">
             <div class="card-header">
@@ -17,6 +11,7 @@
             </div>
             <div>
                 <form class="card-form">
+                @csrf
                     <div class="form-item">
                         <input type="text" name="name" placeholder="Nombre">
                     </div>
@@ -34,8 +29,8 @@
                             Registarse
                         </button>
                     </div>
-
                 </form>
+                <a href="{{ route('auth.recoveryPassword') }}">¿Has olvidado la contraseña?</a>
             </div>
         </div>
         <div class="LogInContent-right">
@@ -45,6 +40,5 @@
         </div>
     </div>
     </div>
-</body>
 
-</html>
+@endsection

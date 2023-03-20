@@ -10,4 +10,8 @@ class LogInController extends Controller
     {
         return view('auth.login');
     }
+
+    public function recoveryPassword(){
+        return view('auth.recoveryPassword');
+    }
 }
