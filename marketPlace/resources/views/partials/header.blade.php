@@ -4,7 +4,6 @@
     </div>
 
     <form class="header-buscador-form-container buscador" action="{{ route('home.searchProduct') }}" method="get">
-        @csrf
         <select id="selectCategories" class="header-buscador-form-container-selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
