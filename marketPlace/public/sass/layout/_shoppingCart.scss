@@ -59,11 +59,6 @@
 
                 border: none;
                 color: red;
-
-                //@include changeProductBackgroundColor($isHovered: false);
-                &:hover {
-                    color: black;
-                }
             }
 
             &-productPrice {
