@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         Paginator::defaultView('default');
 
-        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE'))],['categories' => Category::all()]);
+        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))],['categories' => Category::all()]);
     }
 
      public function show($id)
@@ -24,6 +24,9 @@ class HomeController extends Controller
 
     public function searchProduct(Request $request){
         // Paginator::defaultSimpleView('default');
+        $fieldSearch = $request['search'];
+        $category = $request['category'];
+        $order = $request['order'];
         
         $request->session()->forget('status');
         if( $request['category'] == 'allCategories'){
@@ -34,6 +37,6 @@ class HomeController extends Controller
         if($productsFilter->count() == 0){
             $request->session()->flash('status','404 Not found!'); 
         }
-        return view('home.index', ['products' => $productsFilter], ['categories' => Category::all()]);
+        return view('home.index', ['products' => $productsFilter->appends(['category' => $category,'search' => $fieldSearch, 'order' => $order])], ['categories' => Category::all()]);
     }
 }
