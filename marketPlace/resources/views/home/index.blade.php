@@ -5,6 +5,15 @@
 @section('content')
 
     <h1> Todos los productos </h1>
+
+    <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
+        <select name="order" id="order">
+            <option value="" disabled selected hiden>Ordenar por</option>
+            <option value="ASC">A-Z</option>
+            <option value="DESC">Z-A</option>
+        </select>
+    </form>
+
     <ul class="products-section">
         @foreach ($products as $key => $product)
             <li class="product" id="{{ $product->id }}">
@@ -25,6 +34,6 @@
         @endforeach
     </ul>
 
-    {{ $products->links() }}
+    {{ $products->links('vendor.pagination.default') }}
 
 @endsection

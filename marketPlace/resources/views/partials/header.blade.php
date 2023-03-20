@@ -3,7 +3,7 @@
         <a href="{{ route('home.index') }}"><img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" /></a>
     </div>
 
-    <form class="header-buscador-form-container buscador" action="{{ route('home.index') }}" method="get">
+    <form class="header-buscador-form-container buscador" action="{{ route('home.searchProduct') }}" method="get">
         <select id="selectCategories" class="header-buscador-form-container-selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
