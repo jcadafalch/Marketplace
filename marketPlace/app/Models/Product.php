@@ -27,7 +27,7 @@ class Product extends Model
 
         return $productsFilter = Product::with('categories')->where('name', 'LIKE' ,'%' . $fieldSearch . '%')
         ->orderBy('name', $order)
-        ->paginate(5);
+        ->paginate(env('PAGINATE'));
     }
 
     public static function searchByAll($request){
@@ -35,13 +35,12 @@ class Product extends Model
         $category = $request['category'];
         $order = $request['order'];
         $order = empty($request['order']) ? 'ASC' : $request['order'];
-        
         return $productsFilter = 
         DB::table('products')
             ->join('category_product', 'products.id', '=', 'category_product.id')
             ->where('products.name', 'LIKE' ,'%' . $fieldSearch . '%')
             ->where('category_product.id','LIKE' ,'%' . $category . '%')
             ->orderBy('products.name', $order)
-            ->paginate(5);
+            ->paginate(env('PAGINATE'));
     }
 }

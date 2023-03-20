@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
         Paginator::defaultView('default');
 
-        return view('home.index' , ['products' => Product::with('categories')->paginate(10)],['categories' => Category::all()]);
+        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE'))],['categories' => Category::all()]);
     }
 
      public function show($id)
