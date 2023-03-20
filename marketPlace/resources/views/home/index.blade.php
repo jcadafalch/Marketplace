@@ -6,11 +6,11 @@
 
     <h1> Todos los productos </h1>
 
-    <form class="form-order" action="{{ route('home.searchProduct') }}" method="post">
-        <select name="order">
-            <option value="asc">A-Z</option>
-            <option value="asc">A-Z</option>
-            <option value="desc" selected>Z-A</option>
+    <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
+        <select id="order">
+            <option value="" disabled selected hiden>Ordenar por</option>
+            <option value="ASC">A-Z</option>
+            <option value="DESC">Z-A</option>
         </select>
     </form>
 
