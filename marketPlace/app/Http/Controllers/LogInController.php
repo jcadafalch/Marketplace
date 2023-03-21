@@ -14,4 +14,8 @@ class LogInController extends Controller
     public function recoveryPassword(){
         return view('auth.recoveryPassword');
     }
+
+    public function createNewTenant(){
+        return view('tenant.createNewTenant');
+    }
 }
