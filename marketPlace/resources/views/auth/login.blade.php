@@ -1,6 +1,6 @@
 @extends('layouts.masterAuth')
 
-@section('title', 'Recuperar Contraseña')
+@section('title', 'Login')
 
 @section('content')
 
