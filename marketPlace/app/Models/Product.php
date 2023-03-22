@@ -22,11 +22,10 @@ class Product extends Model
     }
 
     public static function getInfoFromId($id)
-    {
-        
+    {   
         $products = array();
         foreach ($id as $key => $value) {
-            array_push($products, Product::all()->where("id", $value));
+            array_push($products, Product::all()->where("id", $value)->first());
         }
         return $products;
     }
