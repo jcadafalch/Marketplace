@@ -6,19 +6,19 @@
         <h5>6 artículos</h5>
     </section>
     @foreach ($producte as $key => $productec)
-        <article class="shoppingcart-article">
-            <img src="{{ asset('/images/LogoFooter.png') }}" alt="">
-            <h3>{{ $productec[$key]->name }}</h3>
-
-            <p>{{ $productec[$key]->description }}</p>
-            <button>
-                <span class="material-symbols-outlined">
+        {{/* dd($productec) */}}
+        <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal">
+            <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}" alt="">
+            <h3 class="shoppingcart-main-article-productName">{{ $productec[$key]->name }}</h3>
+            <p class="shoppingcart-main-article-productDescription">
+                {{ $productec[$key]->description }}
+            </p>
+            <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
+                <span class="material-symbols-outlined shoppingcart-main-article-productDelete-span">
                     delete
                 </span>
             </button>
-            <p class="shoppingcart-productprice">
-                {{ $productec[$key]->price }} €
-            </p>
+            <h3 class="shoppingcart-main-article-productPrice"> {{ $productec[$key]->price }} €</h3>
         </article>
     @endforeach
     <aside class="shoppingcart-aside">
