@@ -17,7 +17,7 @@
             <input type="text" name="shopName">
         </div>
         <div class="userForm-form-item">
-            <p>Nombre completo de la persona fisica</p>
+            <p>Nombre completo</p>
             <input type="text" name="name" >
         </div>
         <div class="userForm-form-item">
