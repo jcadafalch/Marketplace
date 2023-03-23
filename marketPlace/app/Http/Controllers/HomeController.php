@@ -14,12 +14,12 @@ class HomeController extends Controller
     {
         Paginator::defaultView('default');
 
-        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))],['categories' => Category::all()->where('parent_id', null)]);
+        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))],['categories' => Category::all()]);
     }
 
      public function show($id)
     {
-        return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()->where('parent_id', null)]);
+        return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()]);
     }
 
     public function searchProduct(Request $request){
@@ -37,6 +37,6 @@ class HomeController extends Controller
         if($productsFilter->count() == 0){
             $request->session()->flash('status','404 Not found!'); 
         }
-        return view('home.index', ['products' => $productsFilter->appends(['category' => $category,'search' => $fieldSearch, 'order' => $order])], ['categories' => Category::all()->where('parent_id', null)]);
+        return view('home.index', ['products' => $productsFilter->appends(['category' => $category,'search' => $fieldSearch, 'order' => $order])], ['categories' => Category::all()]);
     }
 }
