@@ -5,7 +5,7 @@
 @section('content')
 <div class= "userForm">
     <div class="userForm-title" >
-    <h1>Craft Made</h1>
+    <a href="{{ route('home.index') }}"><img class='userForm-logo' src="{{ asset('/images/logo.png') }}" alt="Logo" /></a>
     </div>
     <form class="userForm-form" method="">
         @csrf
@@ -21,7 +21,7 @@
             <strong>Por favor verifique su bandeja de spam.</strong></p>
         </div>
         <div class="userForm-form-button">
-            <button class="button-recovery" type="submit">Enviar</button>
+            <button class="button-form" type="submit">Enviar</button>
         </div>      
     </form>
 </div>

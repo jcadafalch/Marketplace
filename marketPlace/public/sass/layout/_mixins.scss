@@ -11,6 +11,10 @@
         justify-items: center;
         height: 100%;
      
+        &-logo {
+            width: 22rem;
+        }
+
         &-title{
             display: grid;
             padding: 4rem;
@@ -26,14 +30,15 @@
             justify-items: center;
             gap: 1.6rem;
             height: fit-content;
+
             &-label{
                 font-weight:bold;
-                font-size: 3rem;
+                font-size: 2.4rem;
             }
             &-item{
                 p{
                     margin-left: 1rem;
-                    font-size: 1.4rem;
+                    font-size: 1.6rem;
                     font-weight:bold;
                     padding: 0.3rem;
                 }
