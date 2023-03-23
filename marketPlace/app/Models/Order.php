@@ -14,4 +14,8 @@ class Order extends Model
         'UserId',
         'InProcess',
     ];
+
+    public static function getOrderFromOrderId($id){
+        return Order::all()->where("in_process", false)->first();
+    }
 }

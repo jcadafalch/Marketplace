@@ -18,4 +18,8 @@ class OrderLine extends Model
     public function orders(){
         return $this->belongsToOne(Order::class)->withTimeStamps();
     }
+
+    public static function getOrderFromId($id){
+        return OrderLine::all()->where("id", $id)->first();
+    }
 }
