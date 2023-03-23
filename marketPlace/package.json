@@ -21,6 +21,6 @@
     "author": "daniel",
     "license": "ISC",
     "dependencies": {
-        "sass": "^1.58.3"
+        "sass": "^1.59.2"
     }
 }
