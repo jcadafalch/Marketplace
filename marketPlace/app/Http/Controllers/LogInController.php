@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class LogInController extends Controller
@@ -16,6 +17,6 @@ class LogInController extends Controller
     }
 
     public function createNewTenant(){
-        return view('tenant.createNewTenant');
+        return view('tenant.createNewTenant',['categories' => Category::all()]);
     }
 }

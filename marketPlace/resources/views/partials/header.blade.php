@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header-logoHeader">
-        <a href="{{ route('home.index') }}"><img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" /></a>
+        <a href="{{ route('home.index') }}"><img src="{{ asset('/images/logo.png') }}" alt="Logo" /></a>
     </div>
 
     <form class="header-buscador-form-container buscador" action="{{ route('home.searchProduct') }}" method="get">
