@@ -57,24 +57,19 @@ class Product extends Model
        $fieldCamps = array_merge($searchName,$subcategoriesName);
 
        
+       //dd($fieldCamps);
        
+        //dd($result);
         $result = DB::table('products')
         ->join('category_product', 'products.id', '=', 'category_product.id')
         ->where('category_product.id','LIKE' ,'%' . $category . '%')
-        ->where('products.name', 'LIKE' ,'%' .$fieldCamps[0] . '%')->get();
-       
+        ->where('products.name', 'LIKE' ,'%' . $fieldCamps[0] . '%')->paginate(env('PAGINATE', 10));
         //dd($result);
-        dd(DB::table('products')
-        ->join('category_product', 'products.id', '=', 'category_product.id')
-        ->where('category_product.id','LIKE' ,'%' . $category . '%')
-        ->where('products.name', 'LIKE' ,'%' . $fieldCamps[2] . '%')->paginate(env('PAGINATE', 10)));
- 
-
-        for ($i=3; $i < count($fieldCamps); $i++) { 
+        for ($i=1; $i < count($fieldCamps); $i++) { 
           //dd($fieldCamps[$i]);  
         $p = DB::table('products')
           ->join('category_product', 'products.id', '=', 'category_product.id')
-          ->where('category_product.id','LIKE' ,'%' . $category . '%')
+          ->where('category_product.category_id','LIKE' ,'%' . $category . '%')
           ->where('products.name', 'LIKE' ,'%' . $fieldCamps[$i] . '%')->get();
           //$diferentProducts = $p->diff($result);
         
@@ -85,7 +80,17 @@ class Product extends Model
 
         $diferenIdProducts = array_diff($p->pluck('id')->toArray(),$result->pluck('id')->toArray());
         //dd($diferenIdProducts);
+        for ($j=0; $j < count($diferenIdProducts) ; $j++) { 
+          $result->add(
+          DB::table('products')
+          ->where('products.id','=' , $diferenIdProducts[0])->first()
+          ); 
+          //dd($result);
         }
+        }
+        //dd($result);
+        return $result;
+        
         
         //dd($diferenIdProducts);
         //$diferentProducts = $p->diff(Category::whereIn('id', $result->pluck('id')->toArray()));
