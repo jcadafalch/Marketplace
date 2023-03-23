@@ -9,7 +9,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,12 +36,11 @@ class DatabaseSeeder extends Seeder
     if ($this->command->confirm('Vols recrear el Fakers?', true)) {
         $productCategories = $this->command->ask('Quantes categories ha de tenir un producte?');
         $numProducts = $this->command->ask('Quantes productes vols generar?');
-        $numCategories = $this->command->ask('Quants categories vols generar?');
-        $numSubCategories = $this->command->ask('Quants subcategories ha de tenir una cetegoria?');
+        $numCategories = $this->command->ask('Quants categories vols generar?');;
         
         self::generateProducts($numProducts);
         $this->command->info('Taula productes inicialitzada amb èxit');   
-        self::generateCategories($numCategories, $numSubCategories);
+        self::generateCategories($numCategories);
         $this->command->info('Taula categories inicialitzada amb èxit');
         self::attachProductCategories( $productCategories);
         $this->command->info('Taula del mitg inicialitzada amb èxit');
@@ -111,42 +109,9 @@ class DatabaseSeeder extends Seeder
     /**
      * Funcio per generaer Categories
      */
-    private static function generateCategories($numCategories, $numSubCategories){
+    private static function generateCategories($numCategories){
         DB::table('categories')->delete();
         Category::factory($numCategories)->create();
-        $allCategories = Category::all();
-        $numCategores = Category::count();
-        $paraentId = rand(1, $numCategores);
-
-        $Categoris = [
-            1 => [
-                'name' => 'Moda',
-            ],
-            2 => [
-                'name' => 'Accesoris',
-            ],
-            3 => [
-                'name' => 'Fornitures',
-            ],
-            4 => [
-                'name' => 'Toys',
-            ],
-            5 => [
-                'name' => 'Art',
-            ],
-        ];
-
-
-        $i = 0 ;
-        foreach ( $allCategories as $c) {
-            ++$i;
-            $paraentId = rand(1, $numCategores);
-            $subCategory = new Category();
-            $subCategory->name = $Categoris[$i]['name'];
-            $subCategory->parent_id =  $paraentId;
-            $subCategory->save();
-        }
-
     }
 
     /**
