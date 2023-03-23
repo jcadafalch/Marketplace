@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogInController;
+use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShoppingCartController;
 
@@ -27,3 +28,4 @@ Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('sho
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
 Route::get('/crearNuevaTienda', [LogInController::class, 'createNewTenant'])->name('tenant.createNewTenant');
 Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
+Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
