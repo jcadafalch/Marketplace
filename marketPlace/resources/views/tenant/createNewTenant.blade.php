@@ -1,4 +1,4 @@
-@extends('layouts.masterAuth')
+@extends('layouts.master')
 
 @section('title', 'Recuperar Contraseña')
 
@@ -25,7 +25,7 @@
             <input type="text" name="nif">
         </div>
         <div class="userForm-form-button">
-            <button class="button-recovery" type="submit">Enviar</button>
+            <button class="button-form" type="submit">Enviar</button>
         </div>      
     </form>
 </div>
