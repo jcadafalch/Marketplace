@@ -1,6 +1,6 @@
 @extends('layouts.masterAuth')
 
-@section('title', 'Recuperar Contraseña')
+@section('title', 'Registre')
 
 @section('content')
 <div class= "userForm">
@@ -29,8 +29,11 @@
             <input type="password" name="mail">
         </div>
         <div class="userForm-form-button">
-            <button class="button-form" type="submit">Enviar</button>
+            <button class="button-form" type="submit">Registrase</button>
         </div>      
     </form>
+    <div class="userForm-form-help already-account">
+        <p>¿Ya tienes cuenta? <a href="{{Route("auth.login")}}">Inicia sesión</a></p>
+    </div>
 </div>
 @endsection
