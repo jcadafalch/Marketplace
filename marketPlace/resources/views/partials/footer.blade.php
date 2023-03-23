@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="footer-content">
-        <img src="{{ asset('/images/LogoFooter.png') }}" alt="Logo" class="footer-content-image" />
+        <img src="{{ asset('/images/logoFooter.png') }}" alt="Logo" class="footer-content-image" />
         <div class="footer-content-creators">
             <p>Mariam Pipoyan Paronyan</p>
             <p>Daniel Rodríguez Saez</p>
