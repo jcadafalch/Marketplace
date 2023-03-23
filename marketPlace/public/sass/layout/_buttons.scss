@@ -24,5 +24,16 @@
             color: white;
         }
     }
+    &-recovery{
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 2rem;
+        padding: 1rem;
+        width: 29rem;
 
+        &:hover:enabled {
+            background-color: #576DA5;
+            color: white;
+        }
+    }
 }

@@ -7,19 +7,14 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <title>@yield('title')</title>
 </head>
 
 <body>
-    <div class="content--section">
+    <div class="content--section--auth">
         @yield('content')
-        @if (session('status'))
-            <div class="products-section">
-                <p>{{ session('status') }} </p>
-            </div>
-        @endif
     </div>
 </body>
 
