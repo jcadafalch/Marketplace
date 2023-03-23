@@ -23,10 +23,9 @@
         <div class="userForm-form-button">
             <button class="button-form" type="submit">Iniciar sesión</button>
         </div>
-        <div class="userForm-form-help">
-            <p>¿No tienes cuenta?</p>
-            <p><a href="{{Route("auth.register")}}">¡Registrate ahora!</a></p>
-        </div>
     </form>
+    <div class="userForm-form-help already-account">
+        <p>¿No tienes cuenta? <a href="{{Route("auth.register")}}">Registrate aquí</a></p>
+    </div>
 </div>
 @endsection
