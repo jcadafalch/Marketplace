@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
@@ -24,7 +25,9 @@ class Product extends Model
     return $this->belongsToMany(Category::class)->withTimeStamps();
   }
 
-  
+  /**
+  * Funció per cerca per nom i ordenació
+  */
   public static function searchByName($request)
   {
     $fieldSearch = $request['search'];
@@ -35,6 +38,10 @@ class Product extends Model
       ->orderBy('name', $order)
       ->paginate(env('PAGINATE', 10));
   }
+  
+  /**
+  * Funció obtenir informació del producte per l'id 
+  */
   public static function getInfoFromId($id)
   {
     $products = array();
@@ -43,6 +50,10 @@ class Product extends Model
     }
     return $products;
   }
+
+  /**
+  * Funció per buscar per nom, categoria i subCategoria  
+  */
   public static function searchByAll($request)
   {
     $fieldSearch = $request['search'];
@@ -59,6 +70,9 @@ class Product extends Model
     return self::getAllSearchedProducts($searchName, $category, $fieldCamps, $order);
   }
 
+  /**
+  * Funció per buscar per nom introduit a la cerca i amb ordenació 
+  */
   public static function getAllSearchedProducts($searchName, $category, $fieldCamps, $order){
     $result = new Collection();
     for ($i = 0; $i < count($fieldCamps); $i++) {
@@ -66,14 +80,15 @@ class Product extends Model
         ->join('category_product', 'products.id', '=', 'category_product.id')
         ->where('category_product.category_id', 'LIKE', '%' . $category . '%')
         ->where('products.name', 'LIKE', '%' . $fieldCamps[$i] . '%')->paginate(env('PAGINATE', 10));
-      
+
         if ($result == $p || $i == 0) {
         $result = $p;
         continue;
       }
-
+      // Ens quedem només amb els id no repetits
       $diferenIdProducts = array_diff($p->pluck('id')->toArray(), $result->pluck('id')->toArray());
 
+      // Busquem els productes per l'id i els guardem amb una collection
       for ($j = 0; $j < count($diferenIdProducts); $j++) {
         $result->add(
           DB::table('products')
@@ -81,10 +96,9 @@ class Product extends Model
         );
       }
     }  
-
-    //dd(strtolower($order));
-    //$result = $order == 'ASC' ?  $result->sortBy('name') : $result->sortByDesc('name');
-    dd($result);
-    return $result;
+    $resultOrder = $order == 'ASC' ?  $result->sortBy('name') : $result->sortByDesc('name');
+    
+    // Instanciem  un objecte Paginator, amb els paràmetres de la collection
+    return new LengthAwarePaginator($resultOrder, $result->total(), $result->perPage());
   }
 }
