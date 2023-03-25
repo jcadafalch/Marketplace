@@ -12,6 +12,8 @@
             <option value="ASC">A-Z</option>
             <option value="DESC">Z-A</option>
         </select>
+        <input type="hidden" name="category" id="category"/>
+        <input type="hidden" name="search" id="search"/>
     </form>
 
     <ul class="products-section">

@@ -7,10 +7,10 @@
         <select id="selectCategories" class="header-buscador-form-container-selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option  value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
-        <input type="search" name="search" id="search" class="header-buscador-form-container-search"
+        <input type="search" name="search"  class="header-buscador-form-container-search"
             placeholder="Introduce el articulo que quieres buscar" />
         <button class="header-buscador-form-container-button" type="submit">
             <span class="material-symbols-rounded" id="headerButtonSearch">search</span>
