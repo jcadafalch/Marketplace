@@ -16,26 +16,24 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-        if (!isset($_SESSION["shoppingCartProductsId"])) {
-            $_SESSION["shoppingCartProductsId"] = [];
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $_COOKIE["shoppingCartProductsId"] = "";
         } 
-        $producte = Product::getInfoFromId($_SESSION["shoppingCartProductsId"]);
+        $producte = Product::getInfoFromId($_COOKIE["shoppingCartProductsId"]);
         $categories = Category::all();
-        Log::info("ShoppingCart-Header number of categories: " . count($categories));
         return view('shoppingCart.shoppingCart', ['categories' => $categories], ['producte' => $producte]);
     }
 
     public function addProduct($id)
     {
-        if (!isset($_SESSION["shoppingCartProductsId"])) {
-            $_SESSION["shoppingCartProductsId"] = [];
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $_COOKIE["shoppingCartProductsId"] = [];
         }
 
         //$_SESSION["shoppingCartProductsId"] = [];
 
-        array_push($_SESSION["shoppingCartProductsId"], intval($id));
-        Log::debug($_SESSION["shoppingCartProductsId"]);
-        $shoppingCartProductsIdJsonList = json_encode($_SESSION["shoppingCartProductsId"]);
+        array_push($_COOKIE["shoppingCartProductsId"], intval($id));
+        $shoppingCartProductsIdJsonList = $_SESSION["shoppingCartProductsId"]."$id;";
         return $shoppingCartProductsIdJsonList;
     }
 }

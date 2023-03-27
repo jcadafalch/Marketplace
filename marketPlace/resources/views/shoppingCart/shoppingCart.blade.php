@@ -6,7 +6,7 @@
         <h5>{{count($producte)}} artículos</h5>
     </section>
     <div style="display: none">{{$total = 0}}</div>
-    @if ($producte == [])
+    @if ($producte[0] == null)
         <article>
             <h1>No hay nada crack</h1>
         </article>
