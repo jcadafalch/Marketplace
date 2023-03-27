@@ -11,7 +11,7 @@
             @endforeach
         </select>
         <input type="search" name="search" id="search" class="header-buscador-form-container-search"
-            placeholder="Introduce el articulo que quieres buscar" />
+            placeholder="Buscar en Craft Made" />
         <button class="header-buscador-form-container-button" type="submit">
             <span class="material-symbols-rounded" id="headerButtonSearch">search</span>
         </button>
