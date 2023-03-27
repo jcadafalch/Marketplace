@@ -27,8 +27,11 @@ class HomeController extends Controller
         $fieldSearch = $request['search'];
         $category = $request['category'];
         $order = $request['order'];
-        
-        $request->session()->forget('status');
+       
+        // Guardem la categoria y la cerca a sessió  
+        $request->session()->put('category', $category);
+        $request->session()->put('search', $fieldSearch);
+
         if( $request['category'] == 'allCategories'){
             $productsFilter = Product::searchByName($request);
         }else{

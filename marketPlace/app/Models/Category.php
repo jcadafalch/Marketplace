@@ -16,4 +16,12 @@ class Category extends Model
     public function products() {
         return $this->belongsToMany(Product::class)->withTimeStamps();
     }
+    
+    /**
+     * Funcio per obtenir les subCategories
+     */
+    public static function getSubCategories($parentId){
+        return Category::select('name')
+        ->where('parent_id', $parentId)->get();
+    }
 }
