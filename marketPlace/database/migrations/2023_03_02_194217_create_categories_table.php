@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name')->unique()->nullable(false);
+            $table->bigInteger('parent_id')->nullable(true);
         });
     }
 
