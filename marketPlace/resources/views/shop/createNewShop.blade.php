@@ -9,9 +9,8 @@
                 <label>Dar de alta tu tienda</label>
             </div>
         </div>
-        <form class="userForm-form" method="">
+        <form class="userForm-form" action="{{ route('register.createNewShop') }}" method="post">
             @csrf
-
             <div class="userForm-form-item">
                 <p>Nombre de la tienda</p>
                 <input type="text" name="shopName">
