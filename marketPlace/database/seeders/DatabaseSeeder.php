@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
@@ -23,7 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->command->call('migrate:Rollback');
         $this->command->call('migrate');
     }
-    if ($this->command->confirm('Vols recrear un entorn per proves unitaries', false)) {
+        $numUsers = $this->command->ask('Quant usuaris vols crear?');
+        self::createUsers($numUsers);
+    
+      if ($this->command->confirm('Vols recrear un entorn per proves unitaries', false)) {
         $numProducts = $this->command->ask('Quantes productes vols generar?');
         $numCategories = $this->command->ask('Quants categories vols generar?');
         
@@ -49,6 +53,10 @@ class DatabaseSeeder extends Seeder
     }
    
     
+    }
+
+    private static function createUsers($numUsers){
+        User::factory($numUsers)->create();
     }
     
     /**
