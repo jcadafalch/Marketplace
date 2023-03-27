@@ -26,8 +26,8 @@ class Product extends Model
   }
 
   /**
-  * Funció per cerca per nom i ordenació
-  */
+   * Funció per cerca per nom i ordenació
+   */
   public static function searchByName($request)
   {
     $fieldSearch = $request['search'];
@@ -38,22 +38,25 @@ class Product extends Model
       ->orderBy('name', $order)
       ->paginate(env('PAGINATE', 10));
   }
-  
+
   /**
-  * Funció obtenir informació del producte per l'id 
-  */
+   * Funció obtenir informació del producte per l'id 
+   */
   public static function getInfoFromId($id)
   {
     $products = array();
-    foreach ($id as $key => $value) {
-      array_push($products, Product::all()->where("id", $value)->first());
+    foreach (str_split($id) as $char) {
+      if ($char != ";") {
+        array_push($products, Product::all()->where("id", $char)->first());
+      }
+      //array_push($products, Product::all()->where("id", $value)->first());
     }
     return $products;
   }
 
   /**
-  * Funció per buscar per nom, categoria i subCategoria  
-  */
+   * Funció per buscar per nom, categoria i subCategoria  
+   */
   public static function searchByAll($request)
   {
     $fieldSearch = $request['search'];
@@ -66,14 +69,15 @@ class Product extends Model
     $searchName = explode(' ', $fieldSearch);
     $fieldCamps = array_merge($searchName, $subcategoriesName);
 
-   
+
     return self::getAllSearchedProducts($searchName, $category, $fieldCamps, $order);
   }
 
   /**
-  * Funció per buscar per nom introduit a la cerca i amb ordenació 
-  */
-  public static function getAllSearchedProducts($searchName, $category, $fieldCamps, $order){
+   * Funció per buscar per nom introduit a la cerca i amb ordenació 
+   */
+  public static function getAllSearchedProducts($searchName, $category, $fieldCamps, $order)
+  {
     $result = new Collection();
     for ($i = 0; $i < count($fieldCamps); $i++) {
       $p = DB::table('products')
@@ -81,7 +85,7 @@ class Product extends Model
         ->where('category_product.category_id', 'LIKE', '%' . $category . '%')
         ->where('products.name', 'LIKE', '%' . $fieldCamps[$i] . '%')->paginate(env('PAGINATE', 10));
 
-        if ($result == $p || $i == 0) {
+      if ($result == $p || $i == 0) {
         $result = $p;
         continue;
       }
@@ -95,9 +99,9 @@ class Product extends Model
             ->where('products.id', '=', $diferenIdProducts[0])->first()
         );
       }
-    }  
+    }
     $resultOrder = $order == 'ASC' ?  $result->sortBy('name') : $result->sortByDesc('name');
-    
+
     // Instanciem  un objecte Paginator, amb els paràmetres de la collection
     return new LengthAwarePaginator($resultOrder, $result->total(), $result->perPage());
   }
