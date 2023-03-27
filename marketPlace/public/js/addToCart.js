@@ -16,7 +16,25 @@ const addProductToShoppingCart = async (productId) => {
     }
 };
 
-let cartItems = localStorage.getItem("productes");
+const getShoppingCartProductsIdCookie = () => {
+    const name = "shoppingCartProductsId";
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (const cookie of cookies) {
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURLComponent(
+                    cookie.substring(name.length + 1)
+                );
+                break;
+            }
+        }
+        return cookieValue;
+    }
+};
+
+let cartItems =
+    getShoppingCartProductsIdCookie(); /*localStorage.getItem("productes");*/
 const arrayProducts = cartItems === null ? [] : JSON.parse(cartItems);
 
 let counter = arrayProducts.length;
@@ -40,16 +58,19 @@ button.forEach((element) => {
                     return;
                 }
 
-                const arrayProductsJSON = JSON.stringify(res);
-                localStorage.setItem("productes", arrayProductsJSON);
+                element.setAttribute("disabled", true);
+                return;
+
+                //const arrayProductsJSON = JSON.stringify(res);
+                //localStorage.setItem("productes", arrayProductsJSON);
             });
             //arrayProducts.push(parseInt(element.id));
 
-            element.setAttribute("disabled", true);
-            return;
+            /* element.setAttribute("disabled", true);
+            return; */
         }
 
-        const arrayProductsJSON = JSON.stringify(arrayProducts);
-        localStorage.setItem("productes", arrayProductsJSON);
+        /*const arrayProductsJSON = JSON.stringify(arrayProducts);
+        localStorage.setItem("productes", arrayProductsJSON);*/
     });
 });
