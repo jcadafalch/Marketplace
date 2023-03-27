@@ -26,4 +26,4 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
 Route::get('/crearNuevaTienda', [LogInController::class, 'createNewTenant'])->name('tenant.createNewTenant');
-Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
+Route::get('/shoppingCart/addProduct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
