@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopCreate;
 
 class ShopController extends Controller
 {
@@ -18,16 +19,23 @@ class ShopController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function registerShop(Request $request)
+    public function registerShop(ShopCreate $request)
     {
-            dd($request);
+        //dd($request);
             // Primera forma de crear un objecte
+        $validated = $request->validated();
+
+        dd($validated);
         $shop = new Shop();
-        $shop->name =  $validated['title'];
-        $shop->shop_name =  $validated['content'];
-        $shop->nif = 'hoa';
-        $shop->produc_id = 1;
+        $shop->name =  $request['name'];;
+        $shop->shop_name =  $request['shopName'];
+        $shop->nif =  $request['nif'];
+        $shop->product_id = 1;
+        $shop->user_id = 1;
         $shop->save();  
+
+        session()->flash( 'status','Tienda creada correctamente!!');
+        return redirect()->route('home.index');
     }
 
     /**
