@@ -14,12 +14,12 @@ class HomeController extends Controller
     {
         Paginator::defaultView('default');
 
-        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))],['categories' => Category::all()]);
+        return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))],['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
      public function show($id)
     {
-        return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()]);
+        return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function searchProduct(Request $request){
