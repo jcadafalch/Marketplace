@@ -1,27 +1,27 @@
-
 @import "buttons";
 
-@mixin userForm (){
-    
+@mixin userForm () {
 
-    .userForm{
+
+    .userForm {
         display: grid;
         padding: 1.5rem;
-        font-size:2rem;
+        font-size: 2rem;
         justify-items: center;
         height: 100%;
-     
+
         &-logo {
             width: 22rem;
         }
 
-        &-title{
+        &-title {
             display: grid;
             padding: 4rem;
             align-items: end;
             justify-content: end;
         }
-        &-form{
+
+        &-form {
             display: grid;
             padding: 4rem;
             border-radius: 4rem;
@@ -31,35 +31,43 @@
             gap: 1.6rem;
             height: fit-content;
 
-            &-label{
-                font-weight:bold;
+            &-label {
+                font-weight: bold;
                 font-size: 2.4rem;
             }
-            &-item{
-                p{
+
+            &-item {
+                p {
                     margin-left: 1rem;
                     font-size: 1.6rem;
-                    font-weight:bold;
+                    font-weight: bold;
                     padding: 0.3rem;
                 }
+
+                span {
+                    font-size: 1.4rem; 
+                }
             }
-            input{
+
+            input {
                 padding: 1rem;
-                border:1px solid $textColor;
+                border: 1px solid $textColor;
                 border-radius: 3rem;
                 min-width: 29rem;
             }
-            &-help{
-              max-width: 24rem;
-                p{
+
+            &-help {
+                max-width: 24rem;
+
+                p {
                     font-size: 1.3rem;
                     text-align: start;
                 }
             }
         }
     }
-    
-    .already-account{
+
+    .already-account {
         margin: 10px 0 20px 0;
     }
 }

@@ -15,11 +15,11 @@
             </div>
             <div class="userForm-form-item">
                 <p>Dirección de E-Mail</p>
-                <input type="text" name="mail">
+                <input type="email" name="mail">
             </div>
             <div class="userForm-form-item">
                 <p>Contraseña</p>
-                <input type="email" name="mail">
+                <input type="password" name="mail">
                 </br><span><a href="{{ Route('auth.recoveryPassword') }}">¿Has olvidado la contraseña?</a></span>
             </div>
             <div class="userForm-form-button">
