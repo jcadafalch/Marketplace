@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Recuperar Contraseña')
+@section('title', 'Crear tienda')
 
 @section('content')
     <div class="userForm">
