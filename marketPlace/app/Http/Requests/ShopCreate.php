@@ -28,11 +28,11 @@ class ShopCreate extends FormRequest
         ];
     }
 
-    public function message(): array
+    public function messages(): array
     {
         return [
             'required' => 'El campo :attribute no puede estar vacio.',
-            'min' => [ 'string' => 'El camp :attribute ha de tenir  :min caràcters.',
+            'min' => [ 'string' => 'El campo :attribute tiene que tener como minimo :min caracteres.',
             ],
         ];
     }
