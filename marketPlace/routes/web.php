@@ -37,11 +37,10 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 
 // carrito
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
-Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
 Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop');
 Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 
 // gestion usuario
-Route::get('/crearNuevaTienda', [LogInController::class, 'createNewTenant'])->name('tenant.createNewTenant');
 
 // tienda
+Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
