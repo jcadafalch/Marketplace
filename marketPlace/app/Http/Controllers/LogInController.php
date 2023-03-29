@@ -84,4 +84,5 @@ class LogInController extends Controller
     {
         return view('tenant.createNewTenant', ['categories' => Category::all()]);
     }
+
 }
