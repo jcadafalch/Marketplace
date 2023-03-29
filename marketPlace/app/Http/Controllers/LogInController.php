@@ -27,8 +27,7 @@ class LogInController extends Controller
     public function recoveryPasswordSender(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            // |exists:users
+            'email' => 'required|email|exists:users',
         ]);
 
         $token = Str::random(64);
@@ -41,10 +40,10 @@ class LogInController extends Controller
 
         Mail::send('email.forgetPassword', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
-            $message->subject('Reset Password');
+            $message->subject('Recuperar contraseña');
         });
 
-        return back()->with('message', 'We have e-mailed your password reset link!');
+        return back()->with('message', 'Hemos enviado un correo con el enlace para recuperar la contraseña!');
     }
 
     public function showResetPasswordForm($token)
@@ -55,8 +54,7 @@ class LogInController extends Controller
     public function submitResetPasswordForm(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            // |exists:users
+            'email' => 'required|email|exists:users',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required'
         ]);
@@ -77,7 +75,7 @@ class LogInController extends Controller
 
         DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
 
-        return redirect('/login')->with('message', 'Your password has been changed!');
+        return redirect('/login')->with('message', 'La contraseña se ha cambiado correctamente!');
     }
     
     public function createNewTenant()
