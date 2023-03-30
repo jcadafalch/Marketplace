@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogInController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ShoppingCartController;
@@ -37,10 +38,11 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 
 // carrito
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
-Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop');
 Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 
 // gestion usuario
+Route::get('/perfil', [UserController::class, 'profile'])->name('user.profile');
 
 // tienda
 Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
+Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop');

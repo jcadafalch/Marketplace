@@ -5,29 +5,42 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopCreate;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Funció que et retorna la vista de crear nova shop. 
      */
     public function createNewShop(){
-        return view('shop.createNewShop',['categories' => Category::all()]);
+        return view('shop.createNewShop',['categories' => Category::all()->where('parent_id', '=', null)]);
     }
     
     /**
-     * Show the form for creating a new resource.
+     * Funció per crear una nova shop. 
      */
-    public function registerShop(Request $request)
+    public function registerShop(ShopCreate $request)
     {
-            dd($request);
-            // Primera forma de crear un objecte
+        //dd($request);
+        $validated = $request->validated();
+        
+        
+        //Obtenir l'id de l'usuari que està connectat
+        $userId = Auth::id();
+
+
+        dd($userId);
         $shop = new Shop();
-        $shop->name =  $validated['title'];
-        $shop->shop_name =  $validated['content'];
-        $shop->nif = 'hoa';
-        $shop->produc_id = 1;
+        $shop->name = $request['name'];;
+        $shop->shop_name = $request['shopName'];
+        $shop->nif = $request['nif'];
+        $shop->product_id = 1;
+        $shop->user_id = $userId;  
         $shop->save();  
+
+        session()->flash( 'status','Tienda creada correctamente!!');
+        return redirect()->route('home.index');
     }
 
     /**

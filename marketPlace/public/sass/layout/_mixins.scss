@@ -25,7 +25,6 @@
             display: grid;
             padding: 4rem;
             border-radius: 4rem;
-            //border: 0.1rem solid $textColor;
             box-shadow: 0 3px 5px 0 black;
             justify-items: center;
             gap: 1.6rem;
@@ -43,26 +42,69 @@
                     font-weight: bold;
                     padding: 0.3rem;
                 }
-
-                span {
-                    font-size: 1.4rem; 
+                span{
+                  font-size: 1.4rem;  
                 }
-            }
-
-            input {
+                input{
                 padding: 1rem;
                 border: 1px solid $textColor;
                 border-radius: 3rem;
                 min-width: 29rem;
             }
-
-            &-help {
-                max-width: 24rem;
-
-                p {
+            }
+            &-uploadPhoto{
+                display: flex;
+                width: 26.1rem;
+                align-items: end;
+                justify-content: space-between;
+                &-text{
+                    p{  
+                        font-size: 1.6rem;
+                        font-weight:bold;
+                    }
+                }
+                &-button{
+                    input{
+                        width: 13.2rem;
+                        height:2.2rem ;
+                      
+                    }
+                }
+            }
+            &-avatar{
+                img{
+                    height:12rem ;
+                    width:12rem ;
+                }
+            }
+            &-userInfo{
+                display: flex;
+                width: 26.1rem;
+                align-items: end;
+                justify-content: space-between;
+                p{
+                    font-size:1.3rem ;
+                    text-align: left;
+                    font-weight:bold;
+                    font-size: 1.6rem;
+                }
+                input{
+                    padding: 0.2rem;
+                    border:1px solid $textColor;
+                    border-radius: 3rem;   
+                } 
+            }
+            &-help{
+              max-width: 24rem;
+                p{
                     font-size: 1.3rem;
                     text-align: start;
                 }
+            }
+            &-error{
+                color:  #FF6169;
+                font-size: 1.5rem;
+                //list-style: none;
             }
         }
     }
