@@ -8,18 +8,18 @@
             <a href="{{ route('home.index') }}"><img class='userForm-logo' src="{{ asset('/images/logo.png') }}"
                     alt="Logo" /></a>
         </div>
-        <form class="userForm-form" method="">
+        <form class="userForm-form" method="post">
             @csrf
             <div class="userForm-form-label">
                 <label>Iniciar sesión</label>
             </div>
             <div class="userForm-form-item">
                 <p>Dirección de E-Mail</p>
-                <input type="email" name="mail">
+                <input type="email" name="email">
             </div>
             <div class="userForm-form-item">
                 <p>Contraseña</p>
-                <input type="password" name="mail">
+                <input type="password" name="password">
                 </br><span><a href="{{ Route('auth.recoveryPassword') }}">¿Has olvidado la contraseña?</a></span>
             </div>
             <div class="userForm-form-button">

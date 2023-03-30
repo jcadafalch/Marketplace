@@ -7,7 +7,9 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
@@ -81,6 +83,23 @@ class LogInController extends Controller
     public function createNewTenant()
     {
         return view('tenant.createNewTenant', ['categories' => Category::all()]);
+    }
+
+    public function doLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('home.index'));
+        } else {
+            return back()->withErrors(['login' => 'El nombre de usuario o correo electrónico o contraseña son incorrectos.'])->withInput();
+        }
     }
 
 }
