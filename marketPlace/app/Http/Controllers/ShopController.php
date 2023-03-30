@@ -14,7 +14,7 @@ class ShopController extends Controller
      * Funció que et retorna la vista de crear nova shop. 
      */
     public function createNewShop(){
-        return view('shop.createNewShop',['categories' => Category::all()]);
+        return view('shop.createNewShop',['categories' => Category::all()->where('parent_id', '=', null)]);
     }
     
     /**
