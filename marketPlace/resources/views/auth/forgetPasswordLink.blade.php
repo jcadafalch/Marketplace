@@ -16,7 +16,7 @@
                 <p>Correo electronico</p>
                 <input type="text" name="email" required>
                 @if ($errors->has('email'))
-                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                    </br><span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
             </div>
 
@@ -24,7 +24,7 @@
                 <p>Contraseña</p>
                 <input type="password" name="password" required>
                 @if ($errors->has('password'))
-                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                    </br><span class="text-danger">{{ $errors->first('password') }}</span>
                 @endif
             </div>
 
@@ -32,7 +32,7 @@
                 <p>Confirma la contraseña</p>
                 <input type="password" name="password_confirmation" required>
                 @if ($errors->has('password_confirmation'))
-                    <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                    </br><span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                 @endif
             </div>
 

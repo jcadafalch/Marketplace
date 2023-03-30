@@ -23,7 +23,7 @@
                 <p>Dirección de e-mail</p>
                 <input type="email" name="email">
                 @if ($errors->has('email'))
-                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                    </br><span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
             </div>
             <div class="userForm-form-help">
