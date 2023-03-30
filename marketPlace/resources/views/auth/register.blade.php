@@ -13,7 +13,7 @@
             <label>Registro</label>
         </div>
         <div class="userForm-form-item">
-            <p>Nombre y Apellidos</p>            
+            <p>Nombre de usuario</p>            
             <input type="text" name="mail">
         </div>
         <div class="userForm-form-item">
