@@ -6,8 +6,10 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -56,6 +58,13 @@ class DatabaseSeeder extends Seeder
     }
 
     private static function createUsers($numUsers){
+        User::factory()->create([
+            'name' => "Adrian Ramirez",
+            'email' => "adrian@test.com",
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234'),
+            'remember_token' => Str::random(10),
+        ]);
         User::factory($numUsers)->create();
     }
     

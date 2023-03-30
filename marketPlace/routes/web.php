@@ -24,6 +24,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 // login & registro
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
+Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin'); 
 Route::get('/register', [RegisterController::class, 'index'])->name('auth.register');
 
 // contaseña
