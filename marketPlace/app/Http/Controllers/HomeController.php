@@ -40,6 +40,6 @@ class HomeController extends Controller
         if($productsFilter->count() == 0){
             $request->session()->flash('status','404 Not found!'); 
         }
-        return view('home.index', ['products' => $productsFilter->appends(['category' => $category,'search' => $fieldSearch, 'order' => $order])], ['categories' => Category::all()]);
+        return view('home.index', ['products' => $productsFilter->appends(['category' => $category,'search' => $fieldSearch, 'order' => $order])], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 }
