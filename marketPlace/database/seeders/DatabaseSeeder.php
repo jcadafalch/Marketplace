@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Shop;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
@@ -28,6 +29,8 @@ class DatabaseSeeder extends Seeder
     }
         $numUsers = $this->command->ask('Quant usuaris vols crear?');
         self::createUsers($numUsers);
+        $numShops = $this->command->ask('Quantes tendes vols crear??');
+        self::createShops($numShops);
     
       if ($this->command->confirm('Vols recrear un entorn per proves unitaries', false)) {
         $numProducts = $this->command->ask('Quantes productes vols generar?');
@@ -57,6 +60,9 @@ class DatabaseSeeder extends Seeder
     
     }
 
+    /**
+    * Funcio per generar Usuaris
+    */
     private static function createUsers($numUsers){
         User::factory()->create([
             'name' => "User Test",
@@ -66,6 +72,13 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         User::factory($numUsers)->create();
+    }
+    
+    /**
+    * Funcio per generar Tendes
+    */
+    private static function createShops($numShops){
+        Shop::factory($numShops)->create();
     }
     
     /**
