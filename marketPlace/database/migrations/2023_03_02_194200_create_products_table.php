@@ -19,6 +19,9 @@ return new class extends Migration
             $table->decimal('price', 5, 2);
             $table->string('url');
             $table->timestamp('selled_at')->nullable();
+
+            $table->unsignedBigInteger('shop_id')->index();
+            $table->foreign('shop_id')->references('id')->on('shops')->cascadeOnDelete();
         });
     }
 
