@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 session_start();
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartController extends Controller
 {
@@ -27,10 +28,12 @@ class ShoppingCartController extends Controller
 
     public function addProduct($id)
     {
-        if (!isset($_COOKIE["shoppingCartProductsId"])) {
-            setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
-        } else {
-            setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+        if (Auth::check()) {
+            if (!isset($_COOKIE["shoppingCartProductsId"])) {
+                setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+            } else {
+                setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+            }
         }
     }
 }
