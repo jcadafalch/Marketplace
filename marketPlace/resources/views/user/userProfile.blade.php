@@ -10,8 +10,8 @@
 
             <div></div>
 
-            <button>Modificar perfil</button>
-            <button>Mi tienda</button>
+            <a href={{route('user.profile')}}><button>Modificar perfil</button></a>
+            <a href={{route('shop.createNewShop')}}><button>Mi tienda</button></a>
 
     </div>
 
