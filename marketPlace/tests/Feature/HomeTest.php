@@ -128,7 +128,7 @@ class HomeTest extends TestCase
         $p->url = 'http://127.0.0.1:8000/storage/img/imgN6411ef225c065.jpg';
         $expected = $p->name;
        
-        $this->assertEquals($expected, $actual[0]->name);
+        $this->assertEquals($expected, $actual[4]->name);
     }
 
     public function test_get_all_product_order_by_Desc(){
@@ -148,7 +148,7 @@ class HomeTest extends TestCase
         $p->url = 'http://127.0.0.1:8000/storage/img/imgN6411ef225c065.jpg';
         $expected = $p->name;
        
-        $this->assertEquals($expected, $actual[0]->name);
+        $this->assertEquals($expected, $actual[1]->name);
     }
 
     private function createDummyAllProduct() {

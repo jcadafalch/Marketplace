@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Shop;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,15 +19,19 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         $num = uniqid();
-        $url = "https://api.lorem.space/image/movie?w=150&h=220";
+        $url = fake()->imageUrl(640, 480, 'animals', true);
         $contents = file_get_contents($url);
         $name = "imgN" . $num .".jpg";
         Storage::disk('img')->put($name, $contents);
+
+        $allShopId = Shop::count();
+        $shopId = rand(2, $allShopId);
         return [
             'name'=>fake()->unique()->name(),
             'description'=>fake()->unique()->realText(60,1),
             'price'=>fake()->randomFloat(2,0,999),
-            'url'=>  $name,
+            'url'=> $name,
+            'shop_id'=> $shopId,
         ];
     }
 }

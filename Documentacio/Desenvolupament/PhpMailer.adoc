@@ -9,12 +9,23 @@ Per configurar el PhpMailer necessitem saber:
 ** En el nostre cas, desde la compte de Google hem generat una contrasenya per aquest servei
 
 [source,php]
+// ----
+// $mail = new PHPMailer(); 
+// $mail->isSMTP();
+// $mail->Host = "smtp.gmail.com";
+// $mail->SMTPAuth = true;
+// $mail->Port = 587;
+// $mail->Username = 'xxxxx@xxxx.xxx';
+// $mail->Password = 'xxxxxxxx';
+// ----
+
 ----
-$mail = new PHPMailer(); 
-$mail->isSMTP();
-$mail->Host = "smtp.gmail.com";
-$mail->SMTPAuth = true;
-$mail->Port = 587;
-$mail->Username = 'xxxxx@xxxx.xxx';
-$mail->Password = 'xxxxxxxx';
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME='f98bfc33f06af5'
+MAIL_PASSWORD='8346738b7ec6b1'
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
 ----
