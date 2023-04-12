@@ -16,10 +16,12 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
+        dd(isset($_COOKIE["shoppingCartProductsId"]));
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
-            setcookie('shoppingCartProductsId', 0);
-        } 
-        $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        }
         $categories = Category::all();
         return view('shoppingCart.shoppingCart', ['categories' => $categories], ['producte' => $producte]);
     }
@@ -27,11 +29,9 @@ class ShoppingCartController extends Controller
     public function addProduct($id)
     {
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
-            setcookie("shoppingCartProductsId", 0);
+            setcookie("shoppingCartProductsId", "$id.");
+        } else {
+            setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.");
         }
-
-        // dd( $_SESSION["shoppingCartProductsId"]);
-
-        $_COOKIE["shoppingCartProductsId"]."$id;";
     }
 }

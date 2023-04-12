@@ -46,7 +46,7 @@ class Product extends Model
   {
     $products = array();
     foreach (str_split($id) as $char) {
-      if ($char != ";" && $id[0] != 0) {
+      if ($char != "." && $id[0] != 0) {
         array_push($products, Product::all()->where("id", $char)->first());
       }
       //array_push($products, Product::all()->where("id", $value)->first());
