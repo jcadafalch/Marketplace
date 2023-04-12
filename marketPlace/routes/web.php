@@ -25,7 +25,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 // login & registro
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
 Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin'); 
-Route::get('/register', [RegisterController::class, 'index'])->name('auth.register');
+Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
+Route::post('/register', [RegisterController::class, 'store'])->name('auth.store'); 
 
 // contaseña
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');

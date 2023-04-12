@@ -399,6 +399,11 @@ body {
       font-size: 1.6rem;
       font-weight: bold;
       padding: 0.3rem; }
+    .userForm-form-item label {
+      margin-left: 1rem;
+      font-size: 1.6rem;
+      font-weight: bold;
+      padding: 0.3rem; }
     .userForm-form-item span {
       font-size: 1.4rem; }
     .userForm-form-item input {
@@ -440,7 +445,7 @@ body {
         font-size: 1.3rem;
         text-align: start; }
     .userForm-form-error {
-      color: #FF6169;
+      color: #ff6169;
       font-size: 1.5rem; }
 
 .already-account {
@@ -504,6 +509,11 @@ body {
       font-size: 1.6rem;
       font-weight: bold;
       padding: 0.3rem; }
+    .userForm-form-item label {
+      margin-left: 1rem;
+      font-size: 1.6rem;
+      font-weight: bold;
+      padding: 0.3rem; }
     .userForm-form-item span {
       font-size: 1.4rem; }
     .userForm-form-item input {
@@ -545,7 +555,7 @@ body {
         font-size: 1.3rem;
         text-align: start; }
     .userForm-form-error {
-      color: #FF6169;
+      color: #ff6169;
       font-size: 1.5rem; }
 
 .already-account {

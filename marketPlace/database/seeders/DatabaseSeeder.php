@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
     */
     private static function createUsers($numUsers){
         User::factory()->create([
-            'name' => "User Test",
+            'username' => "User Test",
             'email' => "usertest@test.com",
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
