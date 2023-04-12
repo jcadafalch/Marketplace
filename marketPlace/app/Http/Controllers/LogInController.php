@@ -37,7 +37,8 @@ class LogInController extends Controller
         DB::table('password_reset_tokens')->insert([
             'email' => $request->email,
             'token' => $token,
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'expires_at' => Carbon::now()->addDay()
         ]);
 
         Mail::send('email.forgetPassword', ['token' => $token], function ($message) use ($request) {
@@ -64,7 +65,8 @@ class LogInController extends Controller
         $updatePassword = DB::table('password_reset_tokens')
             ->where([
                 'email' => $request->email,
-                'token' => $request->token
+                'token' => $request->token,
+                ['expires_at', '>', Carbon::now()]
             ])
             ->first();
 
@@ -75,11 +77,11 @@ class LogInController extends Controller
         $user = User::where('email', $request->email)
             ->update(['password' => Hash::make($request->password)]);
 
-        DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
-
-        return redirect('/login')->with('message', 'La contraseña se ha cambiado correctamente!');
+        //DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
+        
+        return redirect()->route('auth.login')->with('message', 'La contraseña se ha cambiado correctamente!');
     }
-    
+
     public function createNewTenant()
     {
         return view('tenant.createNewTenant', ['categories' => Category::all()]);
@@ -101,5 +103,4 @@ class LogInController extends Controller
             return back()->withErrors(['login' => 'El nombre de usuario o correo electrónico o contraseña son incorrectos.'])->withInput();
         }
     }
-
 }
