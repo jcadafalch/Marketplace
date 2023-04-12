@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
     }
     if ($this->command->confirm('Vols recrear el Fakers?', true)) {
         $productCategories = $this->command->ask('Quantes categories ha de tenir un producte?');
-        $numProducts = $this->command->ask('Quantes productes vols generar?');
+        $numProducts = $this->command->ask('Quants productes vols generar?');
         $numCategories = $this->command->ask('Quants categories vols generar?');
         $numCategories2nivell = $this->command->ask('Quants categories de segon nivell vols generar?');
         $numSubCategories = $this->command->ask('Quants subcategories ha de tenir una cetegoria?');
