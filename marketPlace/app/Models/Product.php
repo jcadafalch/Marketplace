@@ -111,7 +111,6 @@ class Product extends Model
         ->join('category_product', 'products.id', '=', 'category_product.id')
         ->join('categories', 'category_product.id', '=', 'categories.id')
         ->where('categories.name', 'LIKE', $categoriLevel2Name)
-        ->where('categories.parent_id', '=', null)
         ->orderBy('products.name', $orderBy)->paginate(env('PAGINATE', 10));
   }
 }
