@@ -24,7 +24,7 @@ class UserController extends Controller
     public function editProfile(Request $request)
     {
 
-        $id = 13; //Auth::user()->id;
+        $id = Auth::user()->id;
         $user = User::findOrFail($id);
 
         if ($request->file('profilePhoto') !== null) {
