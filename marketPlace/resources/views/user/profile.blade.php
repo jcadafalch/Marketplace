@@ -28,18 +28,18 @@
                     <p>Nombre</p>
                 </div>
                 <div class="userForm-form-userInfo-userName">
-                     <input type="text" name="userName" value="{{ old('password') }}">
+                     <input type="text" name="userName" value="{{ old('userName') }}">
                 </div>
             </div>
             <div class="userForm-form-item">
                 <p>Cambiar contraseña</p>
-                <input type="text" name="password" value="{{ old('password') }}" placeholder="Contraseña actual">
+                <input type="password" name="password" value="{{ old('password') }}" placeholder="Contraseña actual">
             </div>
             <div class="userForm-form-item">
-                <input type="text" name="newPassword" value="{{ old('newPassword') }}" placeholder="Nueva Contraseña">
+                <input type="password" name="newPassword" value="{{ old('newPassword') }}" placeholder="Nueva Contraseña">
             </div>
             <div class="userForm-form-item">
-                <input type="text" name="repeatNewPassword" value="{{ old('repeatNewPassword') }}" placeholder="Repita nueva Contraseña">
+                <input type="password" name="repeatNewPassword" value="{{ old('repeatNewPassword') }}" placeholder="Repita nueva Contraseña">
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar Cambios</button>
