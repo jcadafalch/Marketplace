@@ -47,13 +47,16 @@ class DatabaseSeeder extends Seeder
         $productCategories = $this->command->ask('Quantes categories ha de tenir un producte?');
         $numProducts = $this->command->ask('Quantes productes vols generar?');
         $numCategories = $this->command->ask('Quants categories vols generar?');
+        $numCategories2nivell = $this->command->ask('Quants categories de segon nivell vols generar?');
         $numSubCategories = $this->command->ask('Quants subcategories ha de tenir una cetegoria?');
         
         self::generateProducts($numProducts);
         $this->command->info('Taula productes inicialitzada amb èxit');   
         self::generateCategories($numCategories, $numSubCategories);
         $this->command->info('Taula categories inicialitzada amb èxit');
-        self::attachProductCategories( $productCategories);
+        self::categoriesSegonNivell($numCategories2nivell);
+        $this->command->info('Categories de level 2 inicialitzades amb èxit'); 
+        self::attachProductCategories($productCategories);
         $this->command->info('Taula del mitg inicialitzada amb èxit');
     }
    
@@ -125,6 +128,10 @@ class DatabaseSeeder extends Seeder
             $category->save();
         }
     }
+
+    /**
+     * Funcio per unificar Productes amb Categories
+     */
     private static function attachProductCategoriesEntornDeProves(){
         DB::table('category_product')->delete();
 
@@ -136,8 +143,6 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-
-
     /**
      * Funcio per generaer Categories
      */
@@ -147,36 +152,13 @@ class DatabaseSeeder extends Seeder
         $allCategories = Category::all();
         $numCategores = Category::count();
         $paraentId = rand(1, $numCategores);
-
-        $Categoris = [
-            1 => [
-                'name' => 'Moda',
-            ],
-            2 => [
-                'name' => 'Accesoris',
-            ],
-            3 => [
-                'name' => 'Fornitures',
-            ],
-            4 => [
-                'name' => 'Toys',
-            ],
-            5 => [
-                'name' => 'Art',
-            ],
-        ];
-
-
-        $i = 0 ;
-        foreach ( $allCategories as $c) {
-            ++$i;
-            $paraentId = rand(1, $numCategores);
-            $subCategory = new Category();
-            $subCategory->name = $Categoris[$i]['name'];
-            $subCategory->parent_id =  $paraentId;
-            $subCategory->save();
-        }
-
+    }
+    
+    /**
+     * Funcio per crear categories de nivell 2
+     */
+    public function categoriesSegonNivell($numCategories2nivell){
+        Category::factory($numCategories2nivell)->level2()->create();
     }
 
     /**
@@ -187,8 +169,6 @@ class DatabaseSeeder extends Seeder
 
         $allProducts = Product::all();
         $numCategores = Category::count();
-
-
         
        foreach ($allProducts as $p) {
         $array = [];
@@ -200,7 +180,6 @@ class DatabaseSeeder extends Seeder
                 $p->categories()->attach($array[$e]);
             } 
         }
-    }
-    
+    }  
 }
 
