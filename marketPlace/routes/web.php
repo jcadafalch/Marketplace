@@ -42,7 +42,9 @@ Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('sho
 Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 
 // gestion usuario
-Route::get('/perfil', [UserController::class, 'profile'])->name('user.profile');
+Route::get('/cambiarPerfil', [UserController::class, 'profile'])->name('user.profile');
+Route::get('/perfil', [UserController::class, 'userProfile'])->name('user.userProfile');
+Route::patch('/cambiarPerfil', [UserController::class, 'editProfile'])->name('user.changeProfile');
 
 // tienda
 Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');

@@ -9,8 +9,9 @@
                 <label>Perfil publico</label>
             </div>
         </div>
-        <form class="userForm-form" action="{{ route('register.createNewShop') }}" method="post">
+        <form class="userForm-form" action="{{ route('user.changeProfile') }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('patch')
             <div class="userForm-form-avatar">
                 <img src="https://img.freepik.com/vector-premium/perfil-avatar-hombre-icono-redondo_24640-14044.jpg">
             </div >
