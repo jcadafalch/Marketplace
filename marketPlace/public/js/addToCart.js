@@ -21,7 +21,7 @@ const getShoppingCartProductsIdCookie = () => {
     const name = "shoppingCartProductsId";
     let cookieValue = null;
     if (document.cookie && document.cookie !== "") {
-        const cookies = document.cookie.split(";");
+        const cookies = document.cookie.split(".");
         for (const cookie of cookies) {
             if (cookie.substring(0, name.length + 1) === name + "=") {
                 cookieValue = decodeURLComponent(

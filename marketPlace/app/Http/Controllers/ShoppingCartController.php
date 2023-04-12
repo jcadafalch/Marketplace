@@ -16,7 +16,6 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-        dd(isset($_COOKIE["shoppingCartProductsId"]));
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
             $producte = [];
         } else {
@@ -29,9 +28,9 @@ class ShoppingCartController extends Controller
     public function addProduct($id)
     {
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
-            setcookie("shoppingCartProductsId", "$id.");
+            setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
         } else {
-            setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.");
+            setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
         }
     }
 }
