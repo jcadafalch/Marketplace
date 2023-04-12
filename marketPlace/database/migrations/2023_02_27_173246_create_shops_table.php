@@ -17,9 +17,6 @@ return new class extends Migration
             $table->string('name')->nullable(false);
             $table->string('shop_name')->unique()->nullable(false);
             $table->string('nif')->unique()->nullable(false);
-
-            $table->unsignedBigInteger('product_id')->index();
-            $table->foreign('product_id')->references('id')->on('products')->nullable()->cascadeOnDelete();
             
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();

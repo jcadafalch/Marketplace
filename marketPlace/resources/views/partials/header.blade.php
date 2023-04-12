@@ -41,7 +41,7 @@
         @else
             <div class="header-cartAndProfile-displayIcon header-cartAndProfile-user">
                 <span class="material-symbols-outlined"> person </span>
-                <p>username</p>
+                <p>{{Auth::user()->email;}}</p>
             </div>
         @endguest
     </div>

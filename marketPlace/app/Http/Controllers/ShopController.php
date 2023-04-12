@@ -22,20 +22,16 @@ class ShopController extends Controller
      */
     public function registerShop(ShopCreate $request)
     {
-        //dd($request);
+        // Validacions
         $validated = $request->validated();
-        
         
         //Obtenir l'id de l'usuari que està connectat
         $userId = Auth::id();
 
-
-        dd($userId);
         $shop = new Shop();
         $shop->name = $request['name'];;
         $shop->shop_name = $request['shopName'];
         $shop->nif = $request['nif'];
-        $shop->product_id = 1;
         $shop->user_id = $userId;  
         $shop->save();  
 
