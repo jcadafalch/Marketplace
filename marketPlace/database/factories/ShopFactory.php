@@ -10,13 +10,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ShopFactory extends Factory
 {
+  
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    {   
         $allUsersId = User::count();
         $userId = rand(1, $allUsersId);
         
