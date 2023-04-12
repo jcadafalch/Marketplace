@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 session_start();
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\OrderLine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
