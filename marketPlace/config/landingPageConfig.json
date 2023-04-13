@@ -2,17 +2,22 @@
     "categorys": {
         "0": {
             "title": "Productos en Rebajas",
-            "categoryName": "officia",
+            "categoryName": "eligendi",
             "orderBy": "DESC"
         },
         "1": {
             "title": "Productos más vendidos",
-            "categoryName": "officia",
+            "categoryName": "cupiditate",
             "orderBy": "DESC"
         },
         "2": {
             "title": "Novedades",
-            "categoryName": "officia",
+            "categoryName": "non",
+            "orderBy": "DESC"
+        },
+        "3": {
+            "title": "Novedades",
+            "categoryName": "consequatur",
             "orderBy": "DESC"
         }
     }
