@@ -16,27 +16,26 @@ const addProductToShoppingCart = async (productId) => {
         return null;
     }
 };
-
 const getShoppingCartProductsIdCookie = () => {
-    const name = "shoppingCartProductsId";
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-        const cookies = document.cookie.split(".");
-        for (const cookie of cookies) {
-            if (cookie.substring(0, name.length + 1) === name + "=") {
-                cookieValue = decodeURLComponent(
-                    cookie.substring(name.length + 1)
-                );
-                break;
-            }
+    const cookieName = "shoppingCartProductsId";
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+        const parts = cookies[i].split("=");
+        if (decodeURIComponent(parts[0].trim()) == cookieName) {
+            const cookieValue = decodeURIComponent(parts[1].slice(0, -1))
+                .toString()
+                .split(".");
+
+            return cookieValue.map(Number);
         }
-        return cookieValue;
     }
+
+    return null;
 };
 
-let cartItems =
-    getShoppingCartProductsIdCookie(); /*localStorage.getItem("productes");*/
-const arrayProducts = cartItems === null ? [] : JSON.parse(cartItems);
+let cartItems = getShoppingCartProductsIdCookie();
+const arrayProducts = cartItems === null ? [] : cartItems;
 
 let counter = arrayProducts.length;
 contador.innerHTML = parseInt(counter);
@@ -61,17 +60,7 @@ button.forEach((element) => {
 
                 element.setAttribute("disabled", true);
                 return;
-
-                //const arrayProductsJSON = JSON.stringify(res);
-                //localStorage.setItem("productes", arrayProductsJSON);
             });
-            //arrayProducts.push(parseInt(element.id));
-
-            /* element.setAttribute("disabled", true);
-            return; */
         }
-
-        /*const arrayProductsJSON = JSON.stringify(arrayProducts);
-        localStorage.setItem("productes", arrayProductsJSON);*/
     });
 });

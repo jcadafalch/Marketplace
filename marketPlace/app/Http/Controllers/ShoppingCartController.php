@@ -35,11 +35,13 @@ class ShoppingCartController extends Controller
                 
             }
             setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+            return true;
         } else {
             if(Auth::check()){
 
             }
             setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+            return true;
         }
     }
 }
