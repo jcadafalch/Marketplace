@@ -30,12 +30,16 @@ class ShoppingCartController extends Controller
 
     public function addProduct($id)
     {
-        if (Auth::check()) {
-            if (!isset($_COOKIE["shoppingCartProductsId"])) {
-                setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
-            } else {
-                setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            if(Auth::check()){
+                
             }
+            setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+        } else {
+            if(Auth::check()){
+
+            }
+            setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
         }
     }
 }
