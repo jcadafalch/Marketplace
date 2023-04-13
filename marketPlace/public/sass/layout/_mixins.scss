@@ -42,67 +42,87 @@
                     font-weight: bold;
                     padding: 0.3rem;
                 }
-                span{
-                  font-size: 1.4rem;  
+
+                span {
+                    font-size: 1.4rem;
                 }
-                input{
-                padding: 1rem;
-                border: 1px solid $textColor;
-                border-radius: 3rem;
-                min-width: 29rem;
+
+                input {
+                    padding: 1rem;
+                    border: 1px solid $textColor;
+                    border-radius: 3rem;
+                    min-width: 29rem;
+                }
             }
-            }
-            &-uploadPhoto{
+
+            &-uploadPhoto {
                 display: flex;
                 width: 26.1rem;
                 align-items: end;
                 justify-content: space-between;
-                &-text{
-                    p{  
+
+                &-text {
+                    p {
                         font-size: 1.6rem;
-                        font-weight:bold;
+                        font-weight: bold;
                     }
                 }
-                &-button{
-                    input{
+
+                &-button {
+                    input {
                         width: 13.3rem;
-                        height:2.2rem ;
-                      
+                        height: 2.2rem;
+
                     }
                 }
             }
-            &-avatar{
-                img{
-                    height:12rem ;
-                    width:12rem ;
+
+            &-avatar {
+                display: inline-block;
+                position: relative;
+                width: 10rem;
+                height: 10rem;
+                overflow: hidden;
+                border-radius: 50%;
+
+                img {
+                    width: auto;
+                    height: 100%;
+                    // margin-left: -50px;
                 }
             }
-            &-userInfo{
+
+            &-userInfo {
                 display: flex;
                 width: 26.1rem;
                 align-items: end;
                 justify-content: space-between;
-                p{
-                    font-size:1.3rem ;
+
+                p {
+                    font-size: 1.3rem;
                     text-align: left;
-                    font-weight:bold;
+                    font-weight: bold;
                     font-size: 1.6rem;
                 }
-                input{
-                    padding: 0.2rem;
-                    border:1px solid $textColor;
-                    border-radius: 3rem;   
-                } 
+
+                input {
+                    padding: 0.5rem;
+                    border: 1px solid $textColor;
+                    border-radius: 3rem;
+                }
             }
-            &-help{
-              max-width: 24rem;
-                p{
+
+            &-help {
+                max-width: 24rem;
+
+                p {
                     font-size: 1.3rem;
                     text-align: start;
                 }
             }
-            &-error{
-                color:  #FF6169;
+
+            &-error {
+                color: #FF6169;
                 font-size: 1.5rem;
                 //list-style: none;
             }
