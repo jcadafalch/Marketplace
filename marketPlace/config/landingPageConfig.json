@@ -1,0 +1,19 @@
+{
+    "categorys": {
+        "0": {
+            "title": "Productos en Rebajas",
+            "categoryName": "officia",
+            "orderBy": "DESC"
+        },
+        "1": {
+            "title": "Productos más vendidos",
+            "categoryName": "officia",
+            "orderBy": "DESC"
+        },
+        "2": {
+            "title": "Novedades",
+            "categoryName": "officia",
+            "orderBy": "DESC"
+        }
+    }
+}
