@@ -1,0 +1,33 @@
+.profile {
+    .user {
+        &-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+            justify-items: center;
+            align-items: center;
+        }
+
+        &-img {
+            display: inline-block;
+            position: relative;
+            width: 10rem;
+            height: 10rem;
+            overflow: hidden;
+            border-radius: 50%;
+
+            img {
+                width: auto;
+                height: 100%;
+                margin-left: -50px;
+            }
+        }
+
+        &-info {
+        }
+
+        &-name {
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+    }
+}
