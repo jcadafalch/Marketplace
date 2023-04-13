@@ -101,4 +101,16 @@ class Product extends Model
     // Instanciem  un objecte Paginator, amb els paràmetres de la collection
     return new LengthAwarePaginator($resultOrder, $result->total(), $result->perPage());
   }
+
+  public static function landingPageFilter(){
+    $categoriLevel2Name = env('LANDING_PAGE_CATEGORI_LEVEL_2_NAME');
+    $orderBy = env('LANDING_PAGE_ORDER_BY', 'ASC');
+    
+   return DB::table('products')
+   ->select('products.id','products.created_at', 'products.updated_at','products.name', 'products.description','products.price','products.url','products.selled_at','products.shop_id')
+        ->join('category_product', 'products.id', '=', 'category_product.id')
+        ->join('categories', 'category_product.id', '=', 'categories.id')
+        ->where('categories.name', 'LIKE', $categoriLevel2Name)
+        ->orderBy('products.name', $orderBy)->paginate(env('PAGINATE', 10));
+  }
 }
