@@ -20,6 +20,9 @@ use App\Http\Controllers\ShoppingCartController;
 |
 */
 
+//logout
+Route::get('/logout', [UserController::class, 'logout'])->name('auth.logout');
+
 // landing & home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/landinPage', [LandingPageController::class, 'index'])->name('landingPage.index');
