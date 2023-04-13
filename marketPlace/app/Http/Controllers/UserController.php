@@ -28,7 +28,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if ($request->file('profilePhoto') !== null) {
-            $path = $request->file('profilePhoto')->storeAs('public/img/profile', 'profileImg' . $id . '.jpg');
+            $path = $request->file('profilePhoto')->storeAs('public/img/profile', 'profileImg' . Auth::user()->id . '.jpg');
             $user->path = $path;
         }
 
