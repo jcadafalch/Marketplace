@@ -40,8 +40,10 @@
             </div>
         @else
             <div class="header-cartAndProfile-displayIcon header-cartAndProfile-user">
-                <span class="material-symbols-outlined"> person </span>
-                <p>{{Auth::user()->email;}}</p>
+                <a href="{{route('user.userProfile')}}">
+                    <span class="material-symbols-outlined"> person </span>
+                    <p>{{ Auth::user()->name }}</p>
+                </a>
             </div>
         @endguest
     </div>
