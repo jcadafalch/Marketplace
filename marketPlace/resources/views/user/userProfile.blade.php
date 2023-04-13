@@ -3,17 +3,20 @@
 @section('title', 'Perfil')
 
 @section('content')
- <div class="userForm">
-            <div class="title">
-                <h2>Perfil publico</h2>
+    <div class="profile">
+        <div class="user-content">
+            <div class="user-img">
+                <img src="{{ asset('storage/img/profileImg' .'1'. '.jpg') }}" alt="Girl in a jacket">
             </div>
 
-            <div></div>
+            <div class="user-info">
+                <p class="user-name">Nombre de usuario</p>
 
-            <a href={{route('user.profile')}}><button>Modificar perfil</button></a>
-            <a href={{route('shop.createNewShop')}}><button>Mi tienda</button></a>
+                <a href={{ route('user.profile') }}><button class="button-changeProfile">Modificar perfil</button></a>
+                <a href={{ route('shop.createNewShop') }}><button class="button-newShop">Mi tienda</button></a>
+            </div>
 
-    </div>
+        </div>
 
 
-@endsection
+    @endsection
