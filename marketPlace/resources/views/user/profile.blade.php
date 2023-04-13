@@ -13,7 +13,7 @@
             @csrf
             @method('patch')
             <div class="userForm-form-avatar">
-                <img src="https://img.freepik.com/vector-premium/perfil-avatar-hombre-icono-redondo_24640-14044.jpg">
+                <img src="{{ asset('storage/img/profile/profileImg' . Auth::user()->id . '.jpg') }}" onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
             </div >
             <div class="userForm-form-uploadPhoto">
                 <div class ="userForm-form-uploadPhoto-text">
@@ -28,7 +28,7 @@
                     <p>Nombre</p>
                 </div>
                 <div class="userForm-form-userInfo-userName">
-                     <input type="text" name="userName" value="{{ old('userName') }}">
+                     <input type="text" name="userName" value="{{ old('userName') }}" placeholder="{{Auth::user()->name}}">
                 </div>
             </div>
             <div class="userForm-form-item">
