@@ -22,7 +22,7 @@ use App\Http\Controllers\ShoppingCartController;
 
 // landing & home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/landinPage', [LandingPageController::class, 'index'])->name('landingPage.index');
+Route::get('/landingPage', [LandingPageController::class, 'index'])->name('landingPage.index');
 
 // login & registro
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');

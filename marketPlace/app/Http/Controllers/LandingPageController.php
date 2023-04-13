@@ -14,6 +14,6 @@ class LandingPageController extends Controller
         $title = env('LANDING_PAGE_TITLE');
         Paginator::defaultView('default');
         $productsFilter = Product::landingPageFilter();
-        return view('home.index', ['title' => $title,'products' => $productsFilter], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('landingPage', ['title' => $title,'products' => $productsFilter], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 }
