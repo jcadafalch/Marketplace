@@ -565,8 +565,8 @@ body {
 .userForm-form-avatar {
   display: inline-block;
   position: relative;
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -722,8 +722,8 @@ body {
 .userForm-form-avatar {
   display: inline-block;
   position: relative;
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -773,8 +773,8 @@ body {
 .profile .user-img {
   display: inline-block;
   position: relative;
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   overflow: hidden;
   border-radius: 50%;
 }
@@ -785,6 +785,7 @@ body {
 .profile .user-name {
   margin-bottom: 1rem;
   font-weight: 700;
+  font-size: 24px;
 }
 
 /*# sourceMappingURL=style.css.map */
