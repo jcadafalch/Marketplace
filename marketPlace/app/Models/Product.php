@@ -45,10 +45,10 @@ class Product extends Model
   public static function getInfoFromId($id)
   {
     $products = array();
-    foreach (str_split($id) as $char) {
-      if ($char != "." && $id[0] != 0) {
-        array_push($products, Product::all()->where("id", $char)->first());
-      }
+    $idArray = explode(".", $id);
+    foreach ($idArray as $char) {
+      array_push($products, Product::all()->where("id", $char)->first());
+      
       //array_push($products, Product::all()->where("id", $value)->first());
     }
     return $products;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -97,6 +98,12 @@ class LogInController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            if (!isset($_COOKIE["shoppingCartProductsId"])) {
+                Order::getIdsFromUserId(Auth::id());
+                //crear cookie con ids
+            } else {
+                Order::addIds($_COOKIE["shoppingCartProductsId"], Auth::id());
+            }
             $request->session()->regenerate();
             return redirect()->intended(route('home.index'));
         } else {

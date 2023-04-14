@@ -19,6 +19,7 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
+
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
             $producte = [];
         } else {
@@ -31,14 +32,14 @@ class ShoppingCartController extends Controller
     public function addProduct($id)
     {
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
-            if(Auth::check()){
-                
-            }
             setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+            if(Auth::check()){
+                Order::addIds("$id.", Auth::id());
+            }
             return true;
         } else {
             if(Auth::check()){
-
+                Order::addIds($_COOKIE["shoppingCartProductsId"], Auth::id());
             }
             setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
             return true;

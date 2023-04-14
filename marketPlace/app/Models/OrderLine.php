@@ -22,4 +22,8 @@ class OrderLine extends Model
     public static function getOrderFromId($id){
         return OrderLine::all()->where("id", $id)->first();
     }
+
+    public static function getOrderlineFromOrderId($id){
+        return OrderLine::all()->where("order_id", $id);
+    }
 }
