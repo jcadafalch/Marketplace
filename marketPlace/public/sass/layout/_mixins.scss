@@ -40,9 +40,11 @@
                     font-weight: bold;
                     padding: 0.3rem;
                 }
+
                 span {
                     font-size: 1.4rem;
                 }
+
                 input {
                     padding: 1rem;
                     border: 1px solid $textColor;
@@ -68,12 +70,22 @@
                     }
                 }
             }
+
             &-avatar {
+                display: inline-block;
+                position: relative;
+                width: 15rem;
+                height: 15rem;
+                overflow: hidden;
+                border-radius: 50%;
+
                 img {
-                    height: 12rem;
-                    width: 12rem;
+                    width: auto;
+                    height: 100%;
+                    // margin-left: -50px;
                 }
             }
+
             &-userInfo {
                 display: flex;
                 width: 26.1rem;
@@ -85,19 +97,23 @@
                     font-weight: bold;
                     font-size: 1.6rem;
                 }
+
                 input {
-                    padding: 0.2rem;
+                    padding: 0.5rem;
                     border: 1px solid $textColor;
                     border-radius: 3rem;
                 }
             }
+
             &-help {
                 max-width: 24rem;
+
                 p {
                     font-size: 1.3rem;
                     text-align: start;
                 }
             }
+
             &-error {
                 color: #ff6169;
                 font-size: 1.5rem;

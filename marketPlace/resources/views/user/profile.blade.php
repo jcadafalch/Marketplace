@@ -9,10 +9,11 @@
                 <label>Perfil publico</label>
             </div>
         </div>
-        <form class="userForm-form" action="{{ route('register.createNewShop') }}" method="post">
+        <form class="userForm-form" action="{{ route('user.changeProfile') }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('patch')
             <div class="userForm-form-avatar">
-                <img src="https://img.freepik.com/vector-premium/perfil-avatar-hombre-icono-redondo_24640-14044.jpg">
+                <img src="{{ asset('storage/img/profile/profileImg' . Auth::user()->id . '.jpg') }}" onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
             </div >
             <div class="userForm-form-uploadPhoto">
                 <div class ="userForm-form-uploadPhoto-text">
@@ -27,18 +28,18 @@
                     <p>Nombre</p>
                 </div>
                 <div class="userForm-form-userInfo-userName">
-                     <input type="text" name="userName" value="{{ old('password') }}">
+                     <input type="text" name="userName" value="{{ old('userName') }}" placeholder="{{Auth::user()->name}}">
                 </div>
             </div>
             <div class="userForm-form-item">
                 <p>Cambiar contraseña</p>
-                <input type="text" name="password" value="{{ old('password') }}" placeholder="Contraseña actual">
+                <input type="password" name="password" value="{{ old('password') }}" placeholder="Contraseña actual">
             </div>
             <div class="userForm-form-item">
-                <input type="text" name="newPassword" value="{{ old('newPassword') }}" placeholder="Nueva Contraseña">
+                <input type="password" name="newPassword" value="{{ old('newPassword') }}" placeholder="Nueva Contraseña">
             </div>
             <div class="userForm-form-item">
-                <input type="text" name="repeatNewPassword" value="{{ old('repeatNewPassword') }}" placeholder="Repita nueva Contraseña">
+                <input type="password" name="repeatNewPassword" value="{{ old('repeatNewPassword') }}" placeholder="Repita nueva Contraseña">
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar Cambios</button>

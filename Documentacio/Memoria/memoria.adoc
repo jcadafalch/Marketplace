@@ -154,5 +154,39 @@ Nuestro error ha sido que hemos creído que ciertas tareas que se harían más r
 * [ ] Pagina perfil usuari backend - 9h
 
 *Valoracion*
+
 Esta semana hemos contado con un día menos debido a que el miércoles no ha habido clase. + 
 Al inicio de la semana, mientras documentábamos la semana anterior, nos hemos dado cuenta de que perdemos mucho tiempo organizándonos y planificándonos, principalmente por dejarlo para última hora.
+
+==== Semana 6 (12/04/2023 - 13/03/2023).
+*Planificación de la semana* 
+
+* [*] Cambiar orden de las migraciones por término de la estructura de la creación  - 1h
+* [*] Acabar backend por la creación de una tienda nueva  - 3h
+* [*] Afegir nom d'usuari que ha iniciat sessió al header  - 1h
+* [*] Crear factoria para shop.  - 1h
+* [*] Cambiar api de imágenes  - 1h
+* [*] Eliminar migración duplicada - 1h
+* [*] Añadir creación de tienda al seeder - 1h
+* [*] Página perfil de usuario Backend - 9h
+* [*] Página he olvidado contraseña backend -4h 
+* [*] Refactor backend LandingPage - 4h
+* [*] Refactor JavaScript añadir producto al carrete de la compra - 5h
+* [*] Frontend perfil de usuario -2h
+* [*] Diseño Landing Page -2h 
+* [*] Backend Logout -1h
+* [*] Aplicar refactor de categorias -12h
+
+
+Total horas calculadas: *44 horas*
+
+
+
+*Valoracion*
+
+Esta semana ha sido una semana un poco especial, ya que veníamos de semana Santa, algunos de nuestros hemos aprovechado para avanzar.
+La valoración global es que ha sido una semana corta, donde se ha avanzado bastante.( Teniendo en cuenta las circunstancias de venir de un puente).
+
+*Desviaciones*
+
+Dado que ha sido semana santa y que esta semana solo hemos 2 días, ha sido una semana irregular, cosa que haces imposible calcular una desviación que se acerque a la realidad.
