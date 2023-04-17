@@ -5,7 +5,7 @@
         border: none;
         border-radius: 2rem;
         padding: 0.5rem;
-        width: 100%;
+        margin: 1rem;
 
         &:hover:enabled {
             background-color: #576DA5;
@@ -30,6 +30,31 @@
         border-radius: 2rem;
         padding: 1rem;
         width: 29rem;
+
+        &:hover:enabled {
+            background-color: #576DA5;
+            color: white;
+        }
+    }
+
+    &-changeProfile{
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+
+        &:hover:enabled {
+            background-color: #576DA5;
+            color: white;
+        }
+    }
+
+    &-newShop{
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 2rem;
+        padding: 0.5rem;
 
         &:hover:enabled {
             background-color: #576DA5;

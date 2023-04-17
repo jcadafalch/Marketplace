@@ -4,6 +4,6 @@
 .Sketch pagina home
 image::.\..\Images\Sketching\HomePage.jpg[]
 
-=== Carrito de la compra
+==== Carrito de la compra
 .Sketch Carrito de la compra sin iniciar sessión
 image::.\..\Images\Sketching\CarritoCompra.jpg[][with="40%"]

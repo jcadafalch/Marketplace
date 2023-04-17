@@ -7,11 +7,15 @@
         <select id="selectCategories" class="header-buscador-form-container-selectCategories" name="category">
             <option value="allCategories">All Categories</option>
             @foreach ($categories as $key => $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @if ($category->id == session('category'))
+                    <option value="{{ $category->id }}" selected="true">{{ $category->name }}</option>
+                @else
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endif
             @endforeach
         </select>
-        <input type="search" name="search" id="search" class="header-buscador-form-container-search"
-            placeholder="Introduce el articulo que quieres buscar" />
+        <input type="search" name="search" class="header-buscador-form-container-search"
+            placeholder="Buscar en Craft Made" value="{{ session('search') }}" />
         <button class="header-buscador-form-container-button" type="submit">
             <span class="material-symbols-rounded" id="headerButtonSearch">search</span>
         </button>
@@ -34,10 +38,20 @@
                     </button>
                 </a>
             </div>
+
         @else
             <div class="header-cartAndProfile-displayIcon header-cartAndProfile-user">
-                <span class="material-symbols-outlined"> person </span>
-                <p>username</p>
+                <a href="{{route('user.userProfile')}}">
+                    <span class="material-symbols-outlined"> person </span>
+                    <p>{{ Auth::user()->name }}</p>
+                </a>
+            </div>
+            <div class="header-cartAndProfile-login">
+                <a href="{{ route('auth.logout') }}">
+                    <button>
+                        Logout
+                    </button>
+                </a>
             </div>
         @endguest
     </div>
