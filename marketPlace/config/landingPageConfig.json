@@ -2,22 +2,17 @@
     "categorys": {
         "0": {
             "title": "Productos en Rebajas",
-            "categoryName": "eligendi",
+            "categoryName": "nisi",
             "orderBy": "DESC"
         },
         "1": {
             "title": "Productos más vendidos",
-            "categoryName": "cupiditate",
+            "categoryName": "eum",
             "orderBy": "DESC"
         },
         "2": {
             "title": "Novedades",
-            "categoryName": "non",
-            "orderBy": "DESC"
-        },
-        "3": {
-            "title": "Novedades",
-            "categoryName": "consequatur",
+            "categoryName": "facere",
             "orderBy": "DESC"
         }
     }

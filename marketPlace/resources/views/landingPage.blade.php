@@ -6,22 +6,19 @@
 
     <div class='landing'>
         <div>
-            <ul class="products-section">
-            <h3>Titulo</h3>
-                @foreach ($products as $key => $product)
-                    <li class="product" id="{{ $product->id }}">
-                        <div class="product-image">
-                            <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ asset('storage/img/' . $product->url) }}" />
-                            </a>
-                        </div>
-                        <div class="product-details">
-                            <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <p class="product-name"> {{ $product->name }} </p>
-                            </a>
-                        </div>
-                    </li>
-                @endforeach
+            <ul class="landing-products">
+                @for ($i = 0; $i < count($titles); $i++)
+                    <h3>{{ $titles[$i] }}</h3>
+
+                    @for ($j = 0; $j < count($products); $j++)
+                        @if ($i == $j)
+                            @foreach ($products[$j] as $item)
+                                <img src="{{ asset('storage/img/' . $item->url) }}" width="10%" />
+                            @endforeach
+                        @endif
+                    @endfor
+
+                @endfor
             </ul>
         </div>
     </div>
