@@ -6,20 +6,21 @@
 
     <div class='landing'>
         <div>
-            <ul class="landing-products">
-                @for ($i = 0; $i < count($titles); $i++)
-                    <h3>{{ $titles[$i] }}</h3>
 
-                    @for ($j = 0; $j < count($products); $j++)
+            @for ($i = 0; $i < count($titles); $i++)
+                <ul class="landing-card">
+                    <h3 class="landing-title" >{{ $titles[$i] }}</h3>
+
+                    @for ($j = 0; $j < /*count($products)*/ 4; $j++)
                         @if ($i == $j)
                             @foreach ($products[$j] as $item)
-                                <img src="{{ asset('storage/img/' . $item->url) }}" width="10%" />
+                                <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image" src="{{ asset('storage/img/' . $item->url) }}" /></a>
                             @endforeach
                         @endif
                     @endfor
+                </ul>
+            @endfor
 
-                @endfor
-            </ul>
         </div>
     </div>
 
