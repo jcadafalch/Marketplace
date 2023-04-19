@@ -2,17 +2,17 @@
     "categorys": {
         "0": {
             "title": "Productos en Rebajas",
-            "categoryName": "nisi",
+            "categoryName": "dolores",
             "orderBy": "DESC"
         },
         "1": {
             "title": "Productos más vendidos",
-            "categoryName": "eum",
+            "categoryName": "numquam",
             "orderBy": "DESC"
         },
         "2": {
             "title": "Novedades",
-            "categoryName": "facere",
+            "categoryName": "cupiditate",
             "orderBy": "DESC"
         }
     }
