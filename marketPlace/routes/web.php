@@ -5,7 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogInController;
+use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ShoppingCartController;
 
 /*
@@ -19,8 +21,12 @@ use App\Http\Controllers\ShoppingCartController;
 |
 */
 
+//logout
+Route::get('/logout', [UserController::class, 'logout'])->name('auth.logout');
+
 // landing & home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/landinPage', [LandingPageController::class, 'index'])->name('landingPage.index');
 
 // login & registro
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
@@ -43,6 +49,7 @@ Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addP
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
 Route::get('/crearNuevaTienda', [LogInController::class, 'createNewTenant'])->name('tenant.createNewTenant');
 Route::get('/shoppingCart/addProduct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
+Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 
 // gestion usuario
 Route::get('/cambiarPerfil', [UserController::class, 'profile'])->name('user.profile');
