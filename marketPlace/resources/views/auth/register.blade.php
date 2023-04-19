@@ -14,47 +14,34 @@
                 <label>Registro</label>
             </div>
             <div class="userForm-form-item">
-                {{-- <p>Nombre de usuario</p> --}}
-                <label for="username">{{ __('Nombre de usuario') }}</label>
-                <input id="username" type="text" name="username" value="{{ old('name') }}" required
-                    autocomplete="username" autofocus>
-                @error('username')
-                    <span role="alert">
+                <p>Nombre de usuario</p>
+                <input type="text" name="nombreUsuario" value="{{ old('nombreUsuario') }}" required>
 
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             </div>
             <div class="userForm-form-item">
-                {{-- <p>E-Mail</p> --}}
-                <label for="email">{{ __('Correo electronico') }}</label>
-                <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                    autocomplete="email">
-                @error('email')
-                    <span role="alert">
-                        <strong> {{ $message }}</strong>
-                    </span>
-                @enderror
+                <p>E-Mail</p>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required>
             </div>
             <div class="userForm-form-item">
-                {{-- <p>Contraseña</p> --}}
-                <label for="password">{{ __('Contraseña') }}</label>
-                <input id="password" type="password" name="password" required autocomplete="new-password">
-                @error('password')
-                    <br>
-                    <span role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <p>Contraseña</p>
+                <input type="password" name="contraseña" required>
             </div>
             <div class="userForm-form-item">
-                {{-- <p>Confirma tu contraseña</p> --}}
-                <label for="password-confirm">{{ __('Confirma tu contraseña') }}</label>
-                <input id="password-confirm" type="password" name="password-confirm" required autocomplete="new-password">
+                <p>Confirma tu contraseña</p>
+                <input type="password" name="confirmaContraseña" required>
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Registrase</button>
             </div>
+            @if ($errors->any())
+                <div class="userForm-form-item">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="userForm-form-error">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
         <div class="userForm-form-help already-account">
             <p>¿Ya tienes cuenta? <a href="{{ Route('auth.login') }}">Inicia sesión</a></p>

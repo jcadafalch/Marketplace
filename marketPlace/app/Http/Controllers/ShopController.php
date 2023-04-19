@@ -35,7 +35,6 @@ class ShopController extends Controller
         $shop->user_id = $userId;  
         $shop->save();  
 
-        session()->flash( 'status','Tienda creada correctamente!!');
         return redirect()->route('home.index');
     }
 

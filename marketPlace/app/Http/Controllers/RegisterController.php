@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRegister;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -27,20 +29,21 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRegister $request)
     {
-        $request->validate([
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
 
-        User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+         $validated = $request->validated();
 
-        return redirect()->route('home.index')->withSuccess('Te has registrado de forma satisfactoria');
+         User::create([
+             'name' => $request->nombreUsuario,
+             'email' => $request->email,
+             'password' => Hash::make($request->contraseña),
+            ]);
+            
+            
+        Log::info("Nuevo usuario registrado: ");
+        Log::info($request);
+
+        return redirect()->route('auth.login')->with('status', 'Se acaba de enviar un correo para verificar el registro.');
     }
 }
