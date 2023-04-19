@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Show')
+@section('title', 'Craft Made')
 
 @section('content')
 
@@ -9,15 +9,14 @@
 
             @for ($i = 0; $i < count($titles); $i++)
                 <ul class="landing-card">
-                    <h3 class="landing-title" >{{ $titles[$i] }}</h3>
-
-                    @for ($j = 0; $j < /*count($products)*/ 4; $j++)
-                        @if ($i == $j)
-                            @foreach ($products[$j] as $item)
-                                <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image" src="{{ asset('storage/img/' . $item->url) }}" /></a>
-                            @endforeach
-                        @endif
-                    @endfor
+                    <div class="landing-info">
+                        <h3 class="landing-title">{{ $titles[$i] }}</h3>
+                        <a id="{{$i}}" href="{{ route('landingPage.showAll',['id' => $i]) }}" ><button class="button-landing"> Ver todo </button></a>
+                    </div>
+                    @foreach ($products[$i] as $item)
+                        <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image"
+                                src="{{ asset('storage/img/' . $item->url) }}" /></a>
+                    @endforeach
                 </ul>
             @endfor
 
