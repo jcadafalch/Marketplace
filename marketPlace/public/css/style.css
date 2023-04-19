@@ -212,6 +212,16 @@ body {
   background-color: #576DA5;
   color: white;
 }
+.button-landing {
+  background-color: #88a8f9;
+  border: none;
+  border-radius: 2rem;
+  padding: 1.2rem;
+}
+.button-landing:hover:enabled {
+  background-color: #576DA5;
+  color: white;
+}
 
 .products-section {
   display: grid;
@@ -408,6 +418,16 @@ body {
   background-color: #576DA5;
   color: white;
 }
+.button-landing {
+  background-color: #88a8f9;
+  border: none;
+  border-radius: 2rem;
+  padding: 1.2rem;
+}
+.button-landing:hover:enabled {
+  background-color: #576DA5;
+  color: white;
+}
 
 .LogInContent {
   display: grid;
@@ -500,6 +520,16 @@ body {
   padding: 0.5rem;
 }
 .button-newShop:hover:enabled {
+  background-color: #576DA5;
+  color: white;
+}
+.button-landing {
+  background-color: #88a8f9;
+  border: none;
+  border-radius: 2rem;
+  padding: 1.2rem;
+}
+.button-landing:hover:enabled {
   background-color: #576DA5;
   color: white;
 }
@@ -649,6 +679,16 @@ body {
   padding: 0.5rem;
 }
 .button-newShop:hover:enabled {
+  background-color: #576DA5;
+  color: white;
+}
+.button-landing {
+  background-color: #88a8f9;
+  border: none;
+  border-radius: 2rem;
+  padding: 1.2rem;
+}
+.button-landing:hover:enabled {
   background-color: #576DA5;
   color: white;
 }
@@ -774,22 +814,25 @@ body {
 
 .landing-card {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   align-items: center;
   justify-items: center;
   gap: 2rem;
   margin: 2rem;
   padding: 2rem;
-  background-color: peachpuff;
   border-radius: 3rem;
   box-shadow: 0 3px 5px 0 black;
 }
-.landing-title {
-  font-size: 24px;
+.landing-info {
   padding: 2rem;
 }
+.landing-title {
+  font-size: 24px;
+  margin-bottom: 2rem;
+}
 .landing-image {
-  width: 10rem;
+  width: 15rem;
+  border-radius: 3rem;
 }
 
 /*# sourceMappingURL=style.css.map */
