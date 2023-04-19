@@ -106,6 +106,7 @@ class Product extends Model
     $title = [];
     $p = [];
     $result = [];
+    $limit = 4;
     
     $landingPageConfigRute = base_path() . env('LANDING_PAGE_CONFIG');
     $landingPageConfig = json_decode(file_get_contents($landingPageConfigRute), true);
@@ -117,6 +118,7 @@ class Product extends Model
         ->join('category_product', 'products.id', '=', 'category_product.id')
         ->join('categories', 'category_product.category_id', '=', 'categories.id')
         ->where('categories.name', 'LIKE', $landingPageConfig['categorys'][$i]['categoryName'])
+        ->limit($limit)
         ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
       );
       array_push($title, $landingPageConfig['categorys'][$i]['title']);
