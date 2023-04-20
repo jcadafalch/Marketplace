@@ -25,7 +25,13 @@ class ApiController extends Controller
     }
 
     public function getAllImage(Request $request){
-        self::generateResponse("Cojo todas las imagenes", 200, "");
+     
+        try {
+            $allFiles =  Storage::disk('img')->allFiles();
+            self::generateResponse("Return all Files", 200, $allFiles);
+        } catch (\Throwable $th) {
+            self::generateResponse("failed to obtain all images", 500, "Contact technical service");
+        }
         return response()->json($this->response);
     }
 
