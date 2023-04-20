@@ -660,7 +660,7 @@ body {
 }
 
 .product-name {
-  line-height: 5rem;
+  margin-bottom: 1rem;
 }
 .product-detailsPage {
   display: grid;
