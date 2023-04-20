@@ -159,70 +159,6 @@ body {
   font-size: 1rem;
 }
 
-.button-addToCart {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-  margin: 1rem;
-}
-.button-addToCart:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-LogIn {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem;
-}
-.button-LogIn:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-form {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem;
-  width: 29rem;
-}
-.button-form:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-changeProfile {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-}
-.button-changeProfile:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-newShop {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-}
-.button-newShop:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-landing {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1.2rem;
-}
-.button-landing:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-
 .products-section {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
@@ -470,70 +406,6 @@ body {
   border-radius: 3rem;
 }
 
-.button-addToCart {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-  margin: 1rem;
-}
-.button-addToCart:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-LogIn {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem;
-}
-.button-LogIn:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-form {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem;
-  width: 29rem;
-}
-.button-form:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-changeProfile {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-}
-.button-changeProfile:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-newShop {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-}
-.button-newShop:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-landing {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1.2rem;
-}
-.button-landing:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-
 .userForm {
   display: grid;
   padding: 1.5rem;
@@ -635,70 +507,6 @@ body {
 
 .already-account {
   margin: 10px 0 20px 0;
-}
-
-.button-addToCart {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-  margin: 1rem;
-}
-.button-addToCart:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-LogIn {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem;
-}
-.button-LogIn:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-form {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem;
-  width: 29rem;
-}
-.button-form:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-changeProfile {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-}
-.button-changeProfile:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-newShop {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.5rem;
-}
-.button-newShop:hover:enabled {
-  background-color: #576DA5;
-  color: white;
-}
-.button-landing {
-  background-color: #88a8f9;
-  border: none;
-  border-radius: 2rem;
-  padding: 1.2rem;
-}
-.button-landing:hover:enabled {
-  background-color: #576DA5;
-  color: white;
 }
 
 .userForm {
@@ -849,6 +657,34 @@ body {
 .landing-image {
   width: 15rem;
   border-radius: 3rem;
+}
+
+.product-name {
+  line-height: 5rem;
+}
+.product-detailsPage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 3rem;
+}
+.product-images {
+  display: flex;
+  flex-direction: column;
+}
+.product-images-main {
+  width: 76%;
+  height: auto;
+}
+.product-images-sec {
+  width: 25%;
+  height: auto;
+}
+.product-price {
+  font-weight: 600;
+  line-height: 5rem;
+}
+.product-storeName {
+  line-height: 5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
