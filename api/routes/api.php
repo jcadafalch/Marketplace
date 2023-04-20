@@ -23,5 +23,5 @@ Route::get('/createImage', [ApiController::class, 'createImage']);
 Route::post('/pushImage', [ApiController::class, 'pushImage']);
 
 Route::delete('/deleteImage', [ApiController::class, 'deleteImage']);
-Route::delete('/deleteImageByProductId', [ApiController::class, 'deleteImageByProductId']);
+Route::delete('/deleteImageByProductId', [ApiController::class, 'deleteImageByProductName']);
 
