@@ -103,14 +103,25 @@ class Product extends Model
   }
 
   public static function landingPageFilter(){
-    $categoriLevel2Name = env('LANDING_PAGE_CATEGORI_LEVEL_2_NAME');
-    $orderBy = env('LANDING_PAGE_ORDER_BY', 'ASC');
+    $title = [];
+    $p = [];
+    $result = [];
     
-   return DB::table('products')
-   ->select('products.id','products.created_at', 'products.updated_at','products.name', 'products.description','products.price','products.url','products.selled_at','products.shop_id')
+    $landingPageConfigRute = base_path() . env('LANDING_PAGE_CONFIG');
+    $landingPageConfig = json_decode(file_get_contents($landingPageConfigRute), true);
+
+   
+    for ($i=0; $i < count($landingPageConfig['categorys']) ; $i++) { 
+      array_push($p , DB::table('products')
+      ->select('products.id','products.created_at', 'products.updated_at','products.name', 'products.description','products.price','products.url','products.selled_at','products.shop_id')
         ->join('category_product', 'products.id', '=', 'category_product.id')
-        ->join('categories', 'category_product.id', '=', 'categories.id')
-        ->where('categories.name', 'LIKE', $categoriLevel2Name)
-        ->orderBy('products.name', $orderBy)->paginate(env('PAGINATE', 10));
+        ->join('categories', 'category_product.category_id', '=', 'categories.id')
+        ->where('categories.name', 'LIKE', $landingPageConfig['categorys'][$i]['categoryName'])
+        ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
+      );
+      array_push($title, $landingPageConfig['categorys'][$i]['title']);
+    }
+    array_push($result, $title, $p);
+    return $result;
   }
 }

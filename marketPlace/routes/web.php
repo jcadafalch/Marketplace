@@ -26,7 +26,8 @@ Route::get('/logout', [UserController::class, 'logout'])->name('auth.logout');
 
 // landing & home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/landinPage', [LandingPageController::class, 'index'])->name('landingPage.index');
+Route::get('/landingPage', [LandingPageController::class, 'index'])->name('landingPage');
+Route::get('/landingPage/{id}', [LandingPageController::class, 'showAll'])->name('landingPage.showAll');
 
 // login & registro
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
