@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Shop;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
 
@@ -18,8 +19,10 @@ class HomeController extends Controller
     }
 
      public function show($id)
-    {
-        return view('home.singleProduct', ['product' => Product::findOrFail($id)], ['categories' => Category::all()->where('parent_id', '=', null)]);
+    {   
+        // dd(Shop::getShopNameByProductId(1));
+
+        return view('home.singleProduct', ['product' => Product::findOrFail($id), 'shop' => Shop::getShopNameByProductId($id)], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function searchProduct(Request $request){
