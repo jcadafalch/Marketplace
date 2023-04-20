@@ -10,15 +10,15 @@
         &-img {
             display: inline-block;
             position: relative;
-            width: 10rem;
-            height: 10rem;
+            width: 15rem;
+            height: 15rem;
             overflow: hidden;
             border-radius: 50%;
 
             img {
                 width: auto;
                 height: 100%;
-                margin-left: -50px;
+                // margin-left: -50px;
             }
         }
 
@@ -28,6 +28,7 @@
         &-name {
             margin-bottom: 1rem;
             font-weight: 700;
+            font-size: 24px;
         }
     }
 }

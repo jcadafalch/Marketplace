@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
@@ -28,11 +29,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if ($request->file('profilePhoto') !== null) {
-            $path = $request->file('profilePhoto')->storeAs('public/img/profile', 'profileImg' . $id . '.jpg');
+            $path = $request->file('profilePhoto')->storeAs('public/img/profile', 'profileImg' . Auth::user()->id . '.jpg');
             $user->path = $path;
         }
 
-        if ($request->string('userName') !== null && $request->string('userName')->length() > 0 ) {
+        if ($request->string('userName') !== null && $request->string('userName')->length() > 0) {
             $user->name = $request->string('userName');
         }
 
@@ -45,5 +46,15 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user.userProfile', ['categories' => Category::all()->where('parent_id', '=', null)]);
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogInController;
+use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ShoppingCartController;
@@ -19,6 +20,9 @@ use App\Http\Controllers\ShoppingCartController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//logout
+Route::get('/logout', [UserController::class, 'logout'])->name('auth.logout');
 
 // landing & home
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -43,6 +47,7 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 // carrito
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
+Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 
 // gestion usuario
 Route::get('/cambiarPerfil', [UserController::class, 'profile'])->name('user.profile');
