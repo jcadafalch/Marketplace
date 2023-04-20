@@ -3,107 +3,139 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
     private  $response = [
         "status" => "",
-        "msg" => ""
+        "msg" => "",
+        "filename" => ""
     ];
 
     public function getImage(Request $request){
 
-        if($request->id == 1){
-            $this->response["msg"] = "Cojo una imagen";
-            $this->response["status"] = 200;
+        if($request->name == 1){
+            self::generateResponse("Cojo una imagen",200,  $request->name);
         }else{
-            $this->response["msg"] = "Imagen no encontrada";
-            $this->response["status"] = 404 . " Not Found";
+            self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
         }
       
         return response()->json($this->response);
     }
 
     public function getAllImage(Request $request){
-        
-        $this->response["msg"] = "Cojo todas las imagenes";
-        $this->response["status"] = 200;
+        self::generateResponse("Cojo todas las imagenes", 200, "");
         return response()->json($this->response);
     }
 
     public function createImage(Request $request){
+
+        try {
+            $fileName =  $request->ContextName;
+            $image = imagecreate(500, 300);
+                
+            // Set the background color of image
+            $background_color = self::generateColors($image);
         
-        $this->response["msg"] = "Creo una imagen";
-        $this->response["status"] = 200;
-        return response()->json($this->response);
-        /* V1 
-        header("Content-Type: image/png");
-        $im = @imagecreate(110, 20)
-        or die("Cannot Initialize new GD image stream");
-        $background_color = imagecolorallocate($im, 0, 0, 0);
-        $text_color = imagecolorallocate($im, 233, 14, 91);
-        imagestring($im, 1, 5, 5,  "A Simple Text String", $text_color);
-        imagepng($im);
-        return $im;
-        imagedestroy($im);*/
-        /* V2
-        // Create the size of image or blank image
-        $image = imagecreate(500, 300);
-  
-        // Set the vertices of polygon
-        $values = array(
-            50,  50,  // Point 1 (x, y)
-            50, 250,  // Point 2 (x, y)
-            250, 50,  // Point 3 (x, y)
-            250,  250 // Point 3 (x, y)
-        );
-        // Set the background color of image
-        $background_color = imagecolorallocate($image,  0, 153, 0);
-     
-        // Fill background with above selected color
-        imagefill($image, 0, 0, $background_color);
-   
-        // Allocate a color for the polygon
-        $image_color = imagecolorallocate($image, 255, 255, 255);
-     
-        // Draw the polygon
-        imagepolygon($image, $values, 4, $image_color);
-     
-        // Output the picture to the browser
-        header('Content-type: image/png');
-        $filaName = "prueba";
-        imagepng($image);*/
+            // Fill background with above selected color
+            imagefill($image, 0, 0, $background_color);
+            
+            self::createPolygon($image);
+            self::generateText($image, $fileName);
+        
+            $photoName = self::saveImageToStorage($image);
+            imagedestroy($image);
+            self::generateResponse("Image create successful", 200, $photoName);
+
+        } catch (Throwable $th) {
+            self::generateResponse("Faild to create image", 500, $request->name);
+        }
+
+       return response()->json($this->response);
     }
 
     public function deleteImage(Request $request){
-        if($request->id == 1){
-            $this->response["msg"] = "Imagen Borrada";
-            $this->response["status"] = 200; 
-        }else{
-            $this->response["msg"] = "Imagen no encontrada";
-            $this->response["status"] = 404 . " Not Found";
+        
+        try{
+            Storage::disk('img')->delete($request->name);
+            self::generateResponse( "Imagen Borrada", 200, $request->name);
+        }catch (Throwable $th) {
+            self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
         }
       
         return response()->json($this->response);
     }
 
-    public function deleteImageByProductId(Request $request){
+    public function deleteImageByProductName(Request $request){
         
-        if($request->id == 1){
-            $this->response["msg"] = "Borro todas las imagenes por un id de producto";
-            $this->response["status"] = 200; 
+        if($request->name == 1){
+            self::generateResponse("Borro todas las imagenes por un id de producto", 200, $request->name);
         }else{
-            $this->response["msg"] = "Producto no encontrada";
-            $this->response["status"] = 404 . " Not Found";
+            self::generateResponse("Producto no encontrada", 404 . " Not Found", $request->name);
         }
        
         return response()->json($this->response);
     }
 
     public function pushImage(Request $request){
-        $this->response["msg"] = "Subo una imagen";
-        $this->response["status"] = 200; 
 
+        self::generateResponse("Subo una imagen", 200, "");
         return response()->json($this->response);
     }
+
+
+    /**
+     * This PHP function generates a random RGB color and returns it as a background color for an
+     * image.
+     * 
+     * @param image The  parameter is a reference to an image resource created using a function
+     * like imagecreatetruecolor() or imagecreatefromjpeg(). This function generates a random RGB color
+     * and returns it as a background color for the image.
+     * 
+     * @return a background color for an image, which is created using the `imagecolorallocate()`
+     * function in PHP. The background color is generated randomly using three integers between 0 and
+     * 255, which represent the red, green, and blue color values.
+     */
+    public function generateColors($image){
+          
+          $color1 = random_int( 0, 255);
+          $color2 = random_int( 0, 255);
+          $color3 = random_int( 0, 255);
+
+       return $background_color = imagecolorallocate($image, $color1, $color2, $color3);
+    }
+
+    
+    public function generateText($image, $fileName){
+        $font = 'arial.ttf';
+        $black = imagecolorallocate($image, 0, 0, 0);
+        imagettftext($image, 20, 0, 200, 170, $black, $font, $fileName);
+    }
+
+
+    public function createPolygon($image){
+        $values = array(
+            50,  50,  // Point 1 (x, y)
+            50, 250,  // Point 2 (x, y)
+            250, 50,  // Point 3 (x, y)
+            250,  250 // Point 3 (x, y)
+        );
+
+        $image_color = imagecolorallocate($image, 255, 255, 255);
+        imagepolygon($image, $values, 4, $image_color);   
+    }
+
+    public function saveImageToStorage($image){
+        $RandomNum = uniqid();
+        $path = "storage/img/" . $RandomNum . ".png";
+        imagepng($image,$path);
+        return "http://127.0.0.1:8000/storage/img/" .  $RandomNum  . ".png";
+    }
+
+    public function generateResponse($mensaje, $status, $filename){
+        $this->response["msg"] = $mensaje;
+        $this->response["status"] = $status;
+        $this->response["filename"] = $filename;
+    }           
 }
