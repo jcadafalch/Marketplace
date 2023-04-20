@@ -1,0 +1,41 @@
+.product {
+    &-name {
+        // line-height: 5rem;
+        margin-bottom: 1rem;
+    }
+
+    &-detailsPage {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+
+        gap: 3rem;
+    }
+
+
+    &-images {
+        display: flex;
+        flex-direction: column;
+
+        &-main {
+            width: 76%;
+            height: auto;
+            // width: 31rem;
+        }
+
+        &-sec {
+            width: 25%;
+            height: auto;
+            // width: 10rem;
+        }
+    }
+
+    &-price {
+        font-weight: 600;
+        line-height: 5rem;
+    }
+
+    &-storeName {
+        line-height: 5rem;
+    }
+
+}

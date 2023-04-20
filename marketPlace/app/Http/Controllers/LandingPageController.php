@@ -11,9 +11,17 @@ class LandingPageController extends Controller
 {
     public function index()
     {
-        $title = env('LANDING_PAGE_TITLE');
-        Paginator::defaultView('default');
+        // Paginator::defaultView('default');
         $productsFilter = Product::landingPageFilter();
-        return view('home.index', ['title' => $title,'products' => $productsFilter], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        //  dd($productsFilter);
+        return view('landingPage', ['titles' => $productsFilter[0],'products' => $productsFilter[1]], ['categories' => Category::all()->where('parent_id', '=', null)]);
+    }
+
+    public function showAll($id)
+    {
+        // Paginator::defaultView('default');
+        $productsFilter = Product::landingPageFilter();
+        // dd($productsFilter[1]);
+        return view('home.index', ['titles' => $productsFilter[0],'products' => $productsFilter[1][$id]], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 }

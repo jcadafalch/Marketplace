@@ -61,4 +61,16 @@
             color: white;
         }
     }
+
+    &-landing {
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 2rem;
+        padding: 1.2rem;
+
+        &:hover:enabled {
+            background-color: #576DA5;
+            color: white;
+        }
+    }
 }

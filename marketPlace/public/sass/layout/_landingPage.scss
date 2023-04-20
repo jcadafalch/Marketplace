@@ -1,0 +1,30 @@
+.landing {
+    &-card {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+
+        align-items: center;
+        justify-items: center;
+
+        gap: 2rem;
+        margin: 2rem;
+        padding: 2rem;
+
+        border-radius: 3rem;
+        box-shadow: 0 3px 5px 0 black;
+    }
+
+    &-info {
+        padding: 2rem;
+    }
+
+    &-title {
+        font-size: 24px;
+        margin-bottom: 2rem;
+    }
+
+    &-image {
+        width: 15rem;
+        border-radius: 3rem;
+    }
+}

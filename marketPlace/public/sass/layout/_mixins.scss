@@ -1,6 +1,6 @@
-@import "buttons";
+@mixin userForm () {
 
-@mixin userForm() {
+
     .userForm {
         display: grid;
         padding: 1.5rem;
@@ -52,21 +52,25 @@
                     min-width: 29rem;
                 }
             }
+
             &-uploadPhoto {
                 display: flex;
                 width: 26.1rem;
                 align-items: end;
                 justify-content: space-between;
+
                 &-text {
                     p {
                         font-size: 1.6rem;
                         font-weight: bold;
                     }
                 }
+
                 &-button {
                     input {
                         width: 13.3rem;
                         height: 2.2rem;
+
                     }
                 }
             }
@@ -91,6 +95,7 @@
                 width: 26.1rem;
                 align-items: end;
                 justify-content: space-between;
+
                 p {
                     font-size: 1.3rem;
                     text-align: left;
@@ -115,7 +120,7 @@
             }
 
             &-error {
-                color: #ff6169;
+                color: #FF6169;
                 font-size: 1.5rem;
                 //list-style: none;
             }
