@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegister;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class RegisterController extends Controller
 {
@@ -34,17 +38,19 @@ class RegisterController extends Controller
 
          $validated = $request->validated();
 
-         User::create([
+         $user = User::create([
              'name' => $request->nombreUsuario,
              'email' => $request->email,
              'password' => Hash::make($request->contraseña),
              'remember_token' => Str::random(10),
-            ]);
-            
-            
+        ]);
+
+        // $user = User::where('email','like',$request->email);
+        event(new Registered($user));
+        auth()->login($user);
         Log::info("Nuevo usuario registrado: ");
         Log::info($request);
 
-        return redirect()->route('auth.login')->with('status', 'Se acaba de enviar un correo para verificar el registro.');
+        return redirect()->route('auth.login')->with('success', 'Se acaba de enviar un correo para verificar el registro.');
     }
 }

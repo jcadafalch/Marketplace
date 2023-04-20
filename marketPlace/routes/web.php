@@ -1,14 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogInController;
-use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ShoppingCartController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,20 @@ use App\Http\Controllers\ShoppingCartController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Auth::routes([
+//   'verify' => true
+// ]);
+
+Route::get('/email/verify', function () {
+  return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+  $request->fulfill();
+
+  return redirect('/login');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 //logout
 Route::get('/logout', [UserController::class, 'logout'])->name('auth.logout');
