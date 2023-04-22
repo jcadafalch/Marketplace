@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
@@ -13,19 +14,20 @@ class ApiController extends Controller
         "filename" => ""
     ];
 
+    private $urlImage = "http://127.0.0.1:8000/storage/img/";
     public function getImage(Request $request){
-
-        if($request->name == 1){
-            self::generateResponse("Cojo una imagen",200,  $request->name);
-        }else{
+    Log::error("posar log ");
+       try {
+            $file = Storage::disk('img')->get($request->name);
+            self::generateResponse("Cojo una imagen",200, $file);
+       } catch (\Throwable $th) {
             self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
-        }
-      
+       }
         return response()->json($this->response);
     }
 
     public function getAllImage(Request $request){
-     
+        Log::error("posar log ");
         try {
             $allFiles =  Storage::disk('img')->allFiles();
             self::generateResponse("Return all Files", 200, $allFiles);
@@ -36,11 +38,10 @@ class ApiController extends Controller
     }
 
     public function createImage(Request $request){
-
+        Log::error("posar log ");
         try {
             $fileName =  $request->ContextName;
             $image = imagecreate(500, 300);
-                
             // Set the background color of image
             $background_color = self::generateColors($image);
         
@@ -62,8 +63,9 @@ class ApiController extends Controller
     }
 
     public function deleteImage(Request $request){
-        
+        Log::error("posar log ");
         try{
+          
             Storage::disk('img')->delete($request->name);
             self::generateResponse( "Imagen Borrada", 200, $request->name);
         }catch (Throwable $th) {
@@ -74,13 +76,17 @@ class ApiController extends Controller
     }
 
     public function deleteImageByProductName(Request $request){
-        
-        if($request->name == 1){
-            self::generateResponse("Borro todas las imagenes por un id de producto", 200, $request->name);
-        }else{
-            self::generateResponse("Producto no encontrada", 404 . " Not Found", $request->name);
+        Log::error($request->all());
+
+        // recibir todas $request->all();
+        try {
+            self::generateResponse("Borro todas las imagenes por un id de producto", 200, $request);
+            Storage::disk('img')->delete($request->name);
+
+        } catch (\Throwable $th) {
+            self::generateResponse("Producto no encontrada", 404 . " Not Found", $request);
         }
-       
+           
         return response()->json($this->response);
     }
 
