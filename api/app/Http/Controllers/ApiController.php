@@ -14,12 +14,26 @@ class ApiController extends Controller
         "filename" => ""
     ];
 
-    private $urlImage = "http://127.0.0.1:8000/storage/img/";
+    private $urlImage = "storage/img/";
+
     public function getImage(Request $request){
-    Log::error("posar log ");
+    Log::error("agafar un imatge");
+    
        try {
-            $file = Storage::disk('img')->get($request->name);
-            self::generateResponse("Cojo una imagen",200, $file);
+            //$file = Storage::disk('img')->get($request->name);
+            //$file = $file != null ? $file : "Imagen no encontrada"; 
+
+            $allFiles =  Storage::disk('img')->allFiles();
+
+            for ($i=0; $i < count($allFiles); $i++) { 
+               if($allFiles[$i] == $request->name ){
+                self::generateResponse("Cojo una imagen",200, $allFiles[$i]);
+                break;
+               }else{
+                self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
+               }
+            }
+           
        } catch (\Throwable $th) {
             self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
        }
@@ -27,7 +41,7 @@ class ApiController extends Controller
     }
 
     public function getAllImage(Request $request){
-        Log::error("posar log ");
+        Log::error("Agafar totes les imagetges");
         try {
             $allFiles =  Storage::disk('img')->allFiles();
             self::generateResponse("Return all Files", 200, $allFiles);
@@ -38,7 +52,7 @@ class ApiController extends Controller
     }
 
     public function createImage(Request $request){
-        Log::error("posar log ");
+        Log::error("Imatge creade");
         try {
             $fileName =  $request->ContextName;
             $image = imagecreate(500, 300);
@@ -63,7 +77,7 @@ class ApiController extends Controller
     }
 
     public function deleteImage(Request $request){
-        Log::error("posar log ");
+        Log::error("imatge" . $request->name);
         try{
           
             Storage::disk('img')->delete($request->name);
@@ -76,22 +90,38 @@ class ApiController extends Controller
     }
 
     public function deleteImageByProductName(Request $request){
-        Log::error($request->all());
-
-        // recibir todas $request->all();
         try {
-            self::generateResponse("Borro todas las imagenes por un id de producto", 200, $request);
-            Storage::disk('img')->delete($request->name);
+            $allImages = $request->all();
 
+            for ($i=0; $i < count($allImages); $i++) { 
+                Log::error("imatge eliminada:" . $allImages[$i]);
+                Storage::disk('img')->delete($allImages[$i]);
+            }
+            self::generateResponse("imagenes de un producto borradas", 200, $allImages);
         } catch (\Throwable $th) {
-            self::generateResponse("Producto no encontrada", 404 . " Not Found", $request);
+            self::generateResponse("Producto no encontrada", 404 . " Not Found", $allImages);
         }
            
         return response()->json($this->response);
     }
 
-    public function pushImage(Request $request){
+    public function deleteAllImages(){
+        Log::error("Se han borrado todas las imagenes");
+            try {
+                $allFiles =  Storage::disk('img')->allFiles();
+                for ($i=0; $i < count($allFiles) ; $i++) { 
+                    Storage::disk('img')->delete($allFiles[$i]);  
+                }
+                self::generateResponse("Imagenes borradas correctamente", 200, "");
+            } catch (\Throwable $th) {
+                self::generateResponse("Fallo al borrar las imagenes", 500 , "");
+            }
 
+            return response()->json($this->response);
+    }
+
+    public function pushImage(Request $request){
+        Log::error("Imatge pujada al servidor at:");
         self::generateResponse("Subo una imagen", 200, "");
         return response()->json($this->response);
     }
@@ -139,10 +169,13 @@ class ApiController extends Controller
     }
 
     public function saveImageToStorage($image){
-        $RandomNum = uniqid();
-        $path = "storage/img/" . $RandomNum . ".png";
+        $urlServer = "http://" . $_SERVER['HTTP_HOST'] . "/";
+        $RandomNameImage = uniqid() . ".png";
+        $path = $this->urlImage . $RandomNameImage;
+       
         imagepng($image,$path);
-        return "http://127.0.0.1:8000/storage/img/" .  $RandomNum  . ".png";
+
+        return $urlServer . $this->urlImage .  $RandomNameImage;
     }
 
     public function generateResponse($mensaje, $status, $filename){
