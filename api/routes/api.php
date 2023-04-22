@@ -17,10 +17,11 @@ use App\Http\Controllers\ApiController;
 
 Route::get('/getImage', [ApiController::class, 'getImage']);
 Route::get('/getImages', [ApiController::class, 'getAllImage']);
-
 Route::get('/createImage', [ApiController::class, 'createImage']);
 
+
 Route::post('/pushImage', [ApiController::class, 'pushImage']);
+
 
 Route::delete('/deleteImage', [ApiController::class, 'deleteImage']);
 Route::delete('/deleteImageByProductId', [ApiController::class, 'deleteImageByProductName']);

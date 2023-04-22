@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ApiController extends Controller
 {
@@ -24,16 +25,19 @@ class ApiController extends Controller
             //$file = $file != null ? $file : "Imagen no encontrada"; 
 
             $allFiles =  Storage::disk('img')->allFiles();
+            if(count($allFiles) > 0){
+                for ($i=0; $i < count($allFiles); $i++) { 
+                    if($allFiles[$i] == $request->name ){
+                     self::generateResponse("Cojo una imagen",200, $allFiles[$i]);
+                     break;
+                    }else{
+                     self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
+                    }
+                 }
 
-            for ($i=0; $i < count($allFiles); $i++) { 
-               if($allFiles[$i] == $request->name ){
-                self::generateResponse("Cojo una imagen",200, $allFiles[$i]);
-                break;
-               }else{
-                self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
-               }
+            }else{
+                self::generateResponse("No hay imagenes en la api", 500 . " Not Found", "Por favor genera alguna");
             }
-           
        } catch (\Throwable $th) {
             self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
        }
@@ -41,10 +45,15 @@ class ApiController extends Controller
     }
 
     public function getAllImage(Request $request){
-        Log::error("Agafar totes les imagetges");
+        Log::error("Agafar totes les imatges");
         try {
             $allFiles =  Storage::disk('img')->allFiles();
-            self::generateResponse("Return all Files", 200, $allFiles);
+
+            if(count($allFiles) > 0){
+                self::generateResponse("Return all Files", 200, $allFiles);
+            }else{
+                self::generateResponse("No hay imagenes en la api", 404 . " Not Found", "Por favor genera alguna");
+            }          
         } catch (\Throwable $th) {
             self::generateResponse("failed to obtain all images", 500, "Contact technical service");
         }
@@ -52,7 +61,7 @@ class ApiController extends Controller
     }
 
     public function createImage(Request $request){
-        Log::error("Imatge creade");
+        Log::error("Imagen creada");
         try {
             $fileName =  $request->ContextName;
             $image = imagecreate(500, 300);
@@ -77,10 +86,11 @@ class ApiController extends Controller
     }
 
     public function deleteImage(Request $request){
-        Log::error("imatge" . $request->name);
-        try{
-          
+        Log::error("imagen borrada" . $request->name);
+        try{      
+
             Storage::disk('img')->delete($request->name);
+            //Log::error(Storage::disk('img')->exists($request->name));
             self::generateResponse( "Imagen Borrada", 200, $request->name);
         }catch (Throwable $th) {
             self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
@@ -90,11 +100,12 @@ class ApiController extends Controller
     }
 
     public function deleteImageByProductName(Request $request){
+        Log::error("Imagenes de un producto borradas");
         try {
             $allImages = $request->all();
 
             for ($i=0; $i < count($allImages); $i++) { 
-                Log::error("imatge eliminada:" . $allImages[$i]);
+                Log::error("imagen eliminada:" . $allImages[$i]);
                 Storage::disk('img')->delete($allImages[$i]);
             }
             self::generateResponse("imagenes de un producto borradas", 200, $allImages);
@@ -121,8 +132,22 @@ class ApiController extends Controller
     }
 
     public function pushImage(Request $request){
-        Log::error("Imatge pujada al servidor at:");
-        self::generateResponse("Subo una imagen", 200, "");
+        /*$request->validate([
+            'image' => 'required|image|mimes:png,jpg,gif,svg|max:2048',
+        ]);*/
+
+        try {
+            Log::error("Imagen subida");
+            $RandomNameImage = uniqid() . "." . $request["imagen"]->extension();
+        
+            //$request["imagen"]->store('img');
+            Storage::disk('img')->put($RandomNameImage ,$request["imagen"]->get());
+            Log::error("Imatge pujada al servidor at:");
+            self::generateResponse("Subo una imagen", 200, $RandomNameImage);
+        } catch (\Throwable $th) {
+            self::generateResponse("Fallo al subir la imagen", 200, "Suba otra vez la imagen");
+        }
+      
         return response()->json($this->response);
     }
 
@@ -174,7 +199,7 @@ class ApiController extends Controller
         $path = $this->urlImage . $RandomNameImage;
        
         imagepng($image,$path);
-
+        
         return $urlServer . $this->urlImage .  $RandomNameImage;
     }
 
