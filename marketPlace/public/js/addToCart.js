@@ -54,6 +54,7 @@ button.forEach((element) => {
             contador.innerHTML = parseInt(counter);
 
             addProductToShoppingCart(parseInt(element.id)).then((res) => {
+                console.log(res);
                 if (res !== true) {
                     return;
                 }

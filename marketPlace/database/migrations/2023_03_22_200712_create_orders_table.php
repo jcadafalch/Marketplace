@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("user_id")->nullable();
         
-            $table->boolean("in_process");
+            $table->boolean("in_process")->nullable();
         });
     }
 

@@ -44,5 +44,6 @@ class ShoppingCartController extends Controller
             setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
             return true;
         }
+
     }
 }

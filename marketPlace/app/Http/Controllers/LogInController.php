@@ -98,13 +98,9 @@ class LogInController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            if (!isset($_COOKIE["shoppingCartProductsId"])) {
-                Order::getIdsFromUserId(Auth::id());
-                //crear cookie con ids
-            } else {
-                Order::addIds($_COOKIE["shoppingCartProductsId"], Auth::id());
-            }
             $request->session()->regenerate();
+
+            Order::checkForShoppingCart(Auth::id());
             return redirect()->intended(route('home.index'));
         } else {
             return back()->withErrors(['login' => 'El nombre de usuario o correo electrónico o contraseña son incorrectos.'])->withInput();

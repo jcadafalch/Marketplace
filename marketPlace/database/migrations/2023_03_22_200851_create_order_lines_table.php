@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger("order_id");
+            $table->unsignedBigInteger("order_id")->nullable();
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
 
-            $table->unsignedBigInteger('product_id')->index();
+            $table->unsignedBigInteger('product_id')->index()->nullable();
 
-            $table->decimal('price', 5, 2);
+            $table->decimal('price', 5, 2)->nullable();
 
 
         });
