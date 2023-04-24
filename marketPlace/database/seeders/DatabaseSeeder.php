@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
         self::createUsers($numUsers);
         $numShops = $this->command->ask('Quantes tendes vols crear??');
         self::createShops($numShops);
+        self::createUsersTest();
+        $this->command->info('Usuaris de test creats');   
     
       if ($this->command->confirm('Vols recrear un entorn per proves unitaries', false)) {
         $numProducts = $this->command->ask('Quantes productes vols generar?');
@@ -61,6 +63,38 @@ class DatabaseSeeder extends Seeder
     }
    
     
+    }
+
+
+
+    private static function createUsersTest(){
+        User::factory()->create([
+            'name' => "comprador",
+            'path' => "storage/app/public/img/imgN640cc8af60f70.jpg",
+            'email' => "comprador@test.com",
+            'email_verified_at' => now(),
+            'password' => Hash::make('12345678'),
+            'remember_token' => Str::random(10),
+        ]);
+
+        User::factory()->create([
+            "id" => 999,
+            'name' => "venedor",
+            'path' => "storage/app/public/img/imgN640cc8af60f70.jpg",
+            'email' => "venedor@test.com",
+            'email_verified_at' => now(),
+            'password' => Hash::make('12345678'),
+            'remember_token' => Str::random(10),
+        ]);
+
+        Shop::factory()->create([
+            'name'=>'venedor',
+            'shop_name'=>fake()->unique()->company(),
+            'nif'=>fake()->unique()->postcode(),
+            'user_id'=> 999,
+        ]);
+
+
     }
 
     /**
