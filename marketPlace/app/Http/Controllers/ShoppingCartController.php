@@ -44,6 +44,16 @@ class ShoppingCartController extends Controller
             setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
             return true;
         }
+    }
 
+    public function delProduct($id)
+    {
+        if (isset($_COOKIE["shoppingCartProductsId"])) {
+            setcookie("shoppingCartProductsId", str_replace("$id.", "", $_COOKIE["shoppingCartProductsId"]), ["Path" => "/", "SameSite" => "Lax"]);
+            if(Auth::check()){
+                Order::addIds("$id.", Auth::id());
+            }
+            return true;
+        }
     }
 }

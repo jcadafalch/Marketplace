@@ -80,4 +80,13 @@ class Order extends Model
             }
         }
     }
+
+    public static function delIds($id)
+    {
+        $userOrder = Order::all()->where("user_id", Auth::id())->first();
+        if ($userOrder != null) {
+           $deleteOrderLine = OrderLine::all()->where("product_id", $id)->where("order_id", $userOrder->id)->first();
+            $deleteOrderLine->delete();
+        }
+    }
 }

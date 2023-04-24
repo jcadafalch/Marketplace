@@ -25,7 +25,7 @@
         @endif
     </div>
     @include('partials.footer')
-
+    <script src="{{ asset('js/DeleteFromCart.js')}}"></script>
     <script src="{{ asset('js/addToCart.js') }}"></script>
     <script src="{{ asset('js/orderBy.js') }}"></script>
 </body>
