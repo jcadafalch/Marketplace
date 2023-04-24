@@ -16,17 +16,17 @@
         @endif
         <form class="userForm-form" method="post">
             @csrf
-            <div class="userForm-form-label">
-                <label>Iniciar sesión</label>
+            <div class="userForm-form-title">
+                <h3>Iniciar sesión</h3>
             </div>
             <div class="userForm-form-item">
-                <p>Dirección de E-Mail</p>
+                <label>Dirección de E-Mail</label>
                 <input type="email" name="email">
             </div>
             <div class="userForm-form-item">
-                <p>Contraseña</p>
+                <label>Contraseña</label>
                 <input type="password" name="password">
-                </br><span><a href="{{ Route('auth.recoveryPassword') }}">¿Has olvidado la contraseña?</a></span>
+                <span><a href="{{ Route('auth.recoveryPassword') }}">¿Has olvidado la contraseña?</a></span>
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Iniciar sesión</button>

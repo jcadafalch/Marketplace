@@ -25,87 +25,55 @@ body {
 }
 
 .header {
-  background-color: #88a8f9;
-  padding-right: 2rem;
-  grid-area: header;
+  background-color: #7097fa;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: 0.125rem;
+  gap: 2rem;
   align-items: center;
   border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  justify-items: center;
 }
-.header-logo {
-  justify-self: center;
-  /* img {
-    height: auto;
-    width: auto;
-  } */
+.header-logoHeader img {
+  width: 100%;
+  height: auto;
 }
 .header-buscador-form-container {
   background-color: white;
   border-radius: 3.5rem;
-  padding: 1rem 3rem 1rem 3rem;
-  margin: 2rem 5rem 2rem 7rem;
+  padding: 1rem;
   display: flex;
-  justify-self: center;
-  align-items: center;
-  /*&:focus-within {
-    width: 100%;
-    border-style: none;
-  }*/
+  justify-content: space-around;
 }
 .header-buscador-form-container-selectCategories {
-  padding: 0.5rem;
   border-style: none;
-  margin-right: 1rem;
-  background-color: white;
-  width: fit-content;
 }
 .header-buscador-form-container-search {
-  padding: 0.5rem;
   border-style: none;
-  margin-right: 1rem;
-  width: fit-content;
-  min-width: 10rem;
 }
 .header-buscador-form-container-button {
-  align-self: flex-end;
-  align-items: center;
-  background-color: transparent;
+  background-color: white;
   border: none;
-  position: sticky;
   cursor: pointer;
-}
-.header-buscador-form-container-button span {
-  font-size: 3rem;
 }
 .header-cartAndProfile {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .header-cartAndProfile-displayIcon a {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   font-size: 2rem;
   justify-content: space-between;
   text-decoration: none;
   color: black;
 }
-.header-cartAndProfile-displayIcon-shoppingCart {
-  font-size: 3rem;
-}
 .header-cartAndProfile-login {
   margin-left: 2rem;
 }
-.header-cartAndProfile-login a {
-  display: inline-block;
-  text-decoration: none;
-  color: black;
-}
 .header-cartAndProfile-login a button {
   background-color: transparent;
-  padding: 1.5rem 2rem 1.5rem 2rem;
+  padding: 1.5rem 1rem 1.5rem 1rem;
   border-radius: 3.5rem;
   border: 1px solid black;
   font-size: 1.3rem;
@@ -115,8 +83,6 @@ body {
 .header-cartAndProfile-login a button:hover {
   background-color: #576da5;
   border: none;
-}
-.header-cartAndProfile-login a button:hover a {
   color: white;
 }
 .header-cartAndProfile-user {
@@ -130,7 +96,7 @@ body {
 }
 
 .footer {
-  background: #88a8f9;
+  background: #7097fa;
   width: 100%;
   position: absolute;
   left: 0;
@@ -143,6 +109,7 @@ body {
   align-items: center;
   font-size: 1.25rem;
   padding: 1rem;
+  justify-items: end;
 }
 .footer-content-image {
   height: auto;
@@ -223,7 +190,7 @@ body {
 .shoppingcart-main-article {
   margin-top: 2rem;
   display: grid;
-  grid-template-columns: 1fr 10fr 2fr;
+  grid-template-columns: 2fr 6fr 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "shoppingcart-main-article-productImage shoppingcart-main-article-productName shoppingcart-main-article-productDelete" "shoppingcart-main-article-productImage shoppingcart-main-article-productDescription shoppingcart-main-article-productPrice";
   gap: 1rem;
@@ -236,10 +203,11 @@ body {
 }
 .shoppingcart-main-article-boxshadowNormal {
   box-shadow: 0 3px 5px 0 grey;
+  padding: 1rem;
 }
 .shoppingcart-main-article-productImage {
   grid-area: shoppingcart-main-article-productImage;
-  width: 12rem;
+  width: 100%;
   height: auto;
   padding: 0.5rem;
 }
@@ -268,6 +236,7 @@ body {
   padding-bottom: 1rem;
 }
 .shoppingcart-aside {
+  margin-top: 3rem;
   grid-column: 3;
   align-self: self-start;
   background-color: white;
@@ -276,6 +245,8 @@ body {
   gap: 1rem;
   grid-template-rows: auto auto auto auto;
   box-shadow: 0 3px 5px 0 gray;
+  border-radius: 3rem;
+  padding: 2rem;
 }
 .shoppingcart-aside-subtotalcontent {
   display: flex;
@@ -288,7 +259,7 @@ body {
   justify-content: space-between;
 }
 .shoppingcart-aside-sendorder {
-  background-color: #88a8f9;
+  background-color: #7097fa;
   border: none;
   width: 100%;
   height: 4rem;
@@ -302,7 +273,7 @@ body {
 }
 
 .button-addToCart {
-  background-color: #88a8f9;
+  background-color: #7097fa;
   border: none;
   border-radius: 2rem;
   padding: 0.5rem;
@@ -313,7 +284,7 @@ body {
   color: white;
 }
 .button-LogIn {
-  background-color: #88a8f9;
+  background-color: #7097fa;
   border: none;
   border-radius: 2rem;
   padding: 1rem;
@@ -323,7 +294,7 @@ body {
   color: white;
 }
 .button-form {
-  background-color: #88a8f9;
+  background-color: #7097fa;
   border: none;
   border-radius: 2rem;
   padding: 1rem;
@@ -334,7 +305,7 @@ body {
   color: white;
 }
 .button-changeProfile {
-  background-color: #88a8f9;
+  background-color: #7097fa;
   border: none;
   border-radius: 2rem;
   padding: 0.5rem;
@@ -345,7 +316,7 @@ body {
   color: white;
 }
 .button-newShop {
-  background-color: #88a8f9;
+  background-color: #7097fa;
   border: none;
   border-radius: 2rem;
   padding: 0.5rem;
@@ -355,7 +326,7 @@ body {
   color: white;
 }
 .button-landing {
-  background-color: #88a8f9;
+  background-color: #7097fa;
   border: none;
   border-radius: 2rem;
   padding: 1.2rem;
@@ -372,7 +343,7 @@ body {
   align-items: center;
   font-size: 1.6rem;
   height: 100vh;
-  background-color: #88a8f9;
+  background-color: #7097fa;
 }
 .LogInContent-left {
   background: rgba(255, 255, 255, 0.5);
@@ -431,11 +402,15 @@ body {
   gap: 1.6rem;
   height: fit-content;
 }
-.userForm-form-label {
+.userForm-form-title {
   font-weight: bold;
   font-size: 2.4rem;
 }
-.userForm-form-item p {
+.userForm-form-item {
+  display: flex;
+  flex-direction: column;
+}
+.userForm-form-item label {
   margin-left: 1rem;
   font-size: 1.6rem;
   font-weight: bold;
@@ -456,7 +431,7 @@ body {
   align-items: end;
   justify-content: space-between;
 }
-.userForm-form-uploadPhoto-text p {
+.userForm-form-uploadPhoto-text label {
   font-size: 1.6rem;
   font-weight: bold;
 }
@@ -482,7 +457,7 @@ body {
   align-items: end;
   justify-content: space-between;
 }
-.userForm-form-userInfo p {
+.userForm-form-userInfo label {
   font-size: 1.3rem;
   text-align: left;
   font-weight: bold;
@@ -534,11 +509,15 @@ body {
   gap: 1.6rem;
   height: fit-content;
 }
-.userForm-form-label {
+.userForm-form-title {
   font-weight: bold;
   font-size: 2.4rem;
 }
-.userForm-form-item p {
+.userForm-form-item {
+  display: flex;
+  flex-direction: column;
+}
+.userForm-form-item label {
   margin-left: 1rem;
   font-size: 1.6rem;
   font-weight: bold;
@@ -559,7 +538,7 @@ body {
   align-items: end;
   justify-content: space-between;
 }
-.userForm-form-uploadPhoto-text p {
+.userForm-form-uploadPhoto-text label {
   font-size: 1.6rem;
   font-weight: bold;
 }
@@ -585,7 +564,7 @@ body {
   align-items: end;
   justify-content: space-between;
 }
-.userForm-form-userInfo p {
+.userForm-form-userInfo label {
   font-size: 1.3rem;
   text-align: left;
   font-weight: bold;

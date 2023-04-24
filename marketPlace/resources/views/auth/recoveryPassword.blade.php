@@ -17,10 +17,10 @@
         <form class="userForm-form" method="post" action="{{ route('auth.recoveryPasswordSender') }}">
             @csrf
             <div class="userForm-form-label">
-                <label>Ayuda de contraseña</label>
+                <h3>Ayuda de contraseña</h3>
             </div>
             <div class="userForm-form-item">
-                <p>Dirección de e-mail</p>
+                <label>Dirección de e-mail</label>
                 <input type="email" name="email">
                 @if ($errors->has('email'))
                     </br><span class="text-danger">{{ $errors->first('email') }}</span>

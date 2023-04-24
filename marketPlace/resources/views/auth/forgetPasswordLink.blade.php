@@ -13,7 +13,7 @@
             <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="userForm-form-item">
-                <p>Correo electronico</p>
+                <label>Correo electronico</label>
                 <input type="text" name="email" required>
                 @if ($errors->has('email'))
                     </br><span class="text-danger">{{ $errors->first('email') }}</span>
@@ -21,7 +21,7 @@
             </div>
 
             <div class="userForm-form-item">
-                <p>Contraseña</p>
+                <label>Contraseña</label>
                 <input type="password" name="password" required>
                 @if ($errors->has('password'))
                     </br><span class="text-danger">{{ $errors->first('password') }}</span>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="userForm-form-item">
-                <p>Confirma la contraseña</p>
+                <label>Confirma la contraseña</label>
                 <input type="password" name="password_confirmation" required>
                 @if ($errors->has('password_confirmation'))
                     </br><span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
