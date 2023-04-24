@@ -8,7 +8,7 @@
     <div style="display: none">{{$total = 0}}</div>
     @if ($producte == [])
         <article>
-            <h1>No hay nada crack</h1>
+            <h2>No hay productos en el carrito</h2>
         </article>
     @else
     @foreach ($producte as $key => $productec)

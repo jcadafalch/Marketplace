@@ -3,7 +3,8 @@ const contador = document.querySelector("#numberOfProducts");
 
 const addProductToShoppingCart = async (productId) => {
     try {
-        const response = await fetch(`/shoppingCart/addProdct/${productId}`);
+        const response = await fetch(`/shoppingCart/addProduct/${productId}`);
+        console.log(response);
         if (response.ok) {
             const data = await response.json();
             return data;
@@ -15,9 +16,26 @@ const addProductToShoppingCart = async (productId) => {
         return null;
     }
 };
+const getShoppingCartProductsIdCookie = () => {
+    const cookieName = "shoppingCartProductsId";
+    const cookies = document.cookie.split(";");
 
-let cartItems = localStorage.getItem("productes");
-const arrayProducts = cartItems === null ? [] : JSON.parse(cartItems);
+    for (let i = 0; i < cookies.length; i++) {
+        const parts = cookies[i].split("=");
+        if (decodeURIComponent(parts[0].trim()) == cookieName) {
+            const cookieValue = decodeURIComponent(parts[1].slice(0, -1))
+                .toString()
+                .split(".");
+
+            return cookieValue.map(Number);
+        }
+    }
+
+    return null;
+};
+
+let cartItems = getShoppingCartProductsIdCookie();
+const arrayProducts = cartItems === null ? [] : cartItems;
 
 let counter = arrayProducts.length;
 contador.innerHTML = parseInt(counter);
@@ -35,21 +53,15 @@ button.forEach((element) => {
             counter++;
             contador.innerHTML = parseInt(counter);
 
+            element.setAttribute("disabled", true);
+
             addProductToShoppingCart(parseInt(element.id)).then((res) => {
-                if (res === null) {
+                if (res !== true) {
                     return;
                 }
 
-                const arrayProductsJSON = JSON.stringify(res);
-                localStorage.setItem("productes", arrayProductsJSON);
+                return;
             });
-            //arrayProducts.push(parseInt(element.id));
-
-            element.setAttribute("disabled", true);
-            return;
         }
-
-        const arrayProductsJSON = JSON.stringify(arrayProducts);
-        localStorage.setItem("productes", arrayProductsJSON);
     });
 });

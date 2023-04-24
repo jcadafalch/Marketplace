@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -98,6 +99,8 @@ class LogInController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            Order::checkForShoppingCart(Auth::id());
             return redirect()->intended(route('home.index'));
         } else {
             return back()->withErrors(['login' => 'El nombre de usuario o correo electrónico o contraseña son incorrectos.'])->withInput();
