@@ -23,20 +23,6 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-// Auth::routes([
-//   'verify' => true
-// ]);
-
-Route::get('/email/verify', function () {
-  return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-  $request->fulfill();
-
-  return redirect('/login');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
 //logout
 Route::get('/logout', [UserController::class, 'logout'])->name('auth.logout');
 
@@ -50,6 +36,13 @@ Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
 Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin'); 
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('auth.store'); 
+
+// NO TOCAR, si se cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+  $request->fulfill();
+
+  return redirect('/login');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 // contaseña
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');

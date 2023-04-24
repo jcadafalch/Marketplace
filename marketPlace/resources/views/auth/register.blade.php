@@ -1,6 +1,6 @@
 @extends('layouts.masterAuth')
 
-@section('title', 'Registre')
+@section('title', 'Registro')
 
 @section('content')
     <div class="userForm">

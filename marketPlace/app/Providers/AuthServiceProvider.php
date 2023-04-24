@@ -25,10 +25,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)
-                ->greeting('hola GG')
-                ->subject('Verifica tu correo electronico')
-                ->line('Haga clic en el botón de abajo para verificar su dirección de correo electrónico.')
-                ->action('Verificar dirección de correo', $url);
+            ->subject('Verifica tu correo electronico')
+            ->greeting('Verificar registro')
+            ->line('Se acaba de registrar en '.env('APP_NAME', 'Laravel').' .')
+            ->line('Haga clic en el botón de abajo para verificar su dirección de correo electrónico.')
+            ->action('Verificar dirección de correo', $url);
         });
     }
 }
