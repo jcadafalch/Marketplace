@@ -26,8 +26,8 @@ class Product extends Model
   }
 
   /**
-  * Funció per cerca per nom i ordenació
-  */
+   * Funció per cerca per nom i ordenació
+   */
   public static function searchByName($request)
   {
     $fieldSearch = $request['search'];
@@ -38,10 +38,10 @@ class Product extends Model
       ->orderBy('name', $order)
       ->paginate(env('PAGINATE', 10));
   }
-  
+
   /**
-  * Funció obtenir informació del producte per l'id 
-  */
+   * Funció obtenir informació del producte per l'id 
+   */
   public static function getInfoFromId($id)
   {
     $products = array();
@@ -52,8 +52,8 @@ class Product extends Model
   }
 
   /**
-  * Funció per buscar per nom, categoria i subCategoria  
-  */
+   * Funció per buscar per nom, categoria i subCategoria  
+   */
   public static function searchByAll($request)
   {
     $fieldSearch = $request['search'];
@@ -66,14 +66,15 @@ class Product extends Model
     $searchName = explode(' ', $fieldSearch);
     $fieldCamps = array_merge($searchName, $subcategoriesName);
 
-   
+
     return self::getAllSearchedProducts($searchName, $category, $fieldCamps, $order);
   }
 
   /**
-  * Funció per buscar per nom introduit a la cerca i amb ordenació 
-  */
-  public static function getAllSearchedProducts($searchName, $category, $fieldCamps, $order){
+   * Funció per buscar per nom introduit a la cerca i amb ordenació 
+   */
+  public static function getAllSearchedProducts($searchName, $category, $fieldCamps, $order)
+  {
     $result = new Collection();
     for ($i = 0; $i < count($fieldCamps); $i++) {
       $p = DB::table('products')
@@ -81,7 +82,7 @@ class Product extends Model
         ->where('category_product.category_id', 'LIKE', '%' . $category . '%')
         ->where('products.name', 'LIKE', '%' . $fieldCamps[$i] . '%')->paginate(env('PAGINATE', 10));
 
-        if ($result == $p || $i == 0) {
+      if ($result == $p || $i == 0) {
         $result = $p;
         continue;
       }
@@ -95,31 +96,36 @@ class Product extends Model
             ->where('products.id', '=', $diferenIdProducts[0])->first()
         );
       }
-    }  
+    }
     $resultOrder = $order == 'ASC' ?  $result->sortBy('name') : $result->sortByDesc('name');
-    
+
     // Instanciem  un objecte Paginator, amb els paràmetres de la collection
     return new LengthAwarePaginator($resultOrder, $result->total(), $result->perPage());
   }
 
-  public static function landingPageFilter(){
+  public static function landingPageFilter()
+  {
     $title = [];
     $p = [];
     $result = [];
-    
+
     $landingPageConfigRute = base_path() . env('LANDING_PAGE_CONFIG');
     $landingPageConfig = json_decode(file_get_contents($landingPageConfigRute), true);
 
-   
-    for ($i=0; $i < count($landingPageConfig['categorys']) ; $i++) { 
-      array_push($p , DB::table('products')
-      ->select('products.id','products.created_at', 'products.updated_at','products.name', 'products.description','products.price','products.url','products.selled_at','products.shop_id')
-        ->join('category_product', 'products.id', '=', 'category_product.id')
-        ->join('categories', 'category_product.category_id', '=', 'categories.id')
-        ->where('categories.name', 'LIKE', $landingPageConfig['categorys'][$i]['categoryName'])
-        ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
-      );
-      array_push($title, $landingPageConfig['categorys'][$i]['title']);
+    
+    if (isset($landingPageConfig['categorys'])) {
+      for ($i = 0; $i < count($landingPageConfig['categorys']); $i++) {
+        array_push(
+          $p,
+          DB::table('products')
+            ->select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.url', 'products.selled_at', 'products.shop_id')
+            ->join('category_product', 'products.id', '=', 'category_product.id')
+            ->join('categories', 'category_product.category_id', '=', 'categories.id')
+            ->where('categories.name', 'LIKE', $landingPageConfig['categorys'][$i]['categoryName'])
+            ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
+        );
+        array_push($title, $landingPageConfig['categorys'][$i]['title']);
+      }
     }
     array_push($result, $title, $p);
     return $result;

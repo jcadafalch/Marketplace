@@ -13,8 +13,14 @@ class LandingPageController extends Controller
     {
         // Paginator::defaultView('default');
         $productsFilter = Product::landingPageFilter();
+        if (count($productsFilter[0]) > 0) {
+            # code...
+        
         //  dd($productsFilter);
         return view('landingPage', ['titles' => $productsFilter[0],'products' => $productsFilter[1]], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        }
+
+        return redirect()->route('home.index');
     }
 
     public function showAll($id)
