@@ -25,8 +25,8 @@ use App\Http\Controllers\ShoppingCartController;
 Route::get('/logout', [UserController::class, 'logout'])->name('auth.logout');
 
 // landing & home
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/landingPage', [LandingPageController::class, 'index'])->name('landingPage');
+Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [LandingPageController::class, 'index'])->name('landingPage');
 Route::get('/landingPage/{id}', [LandingPageController::class, 'showAll'])->name('landingPage.showAll');
 
 // login & registro
