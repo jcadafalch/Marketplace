@@ -1,6 +1,5 @@
 @mixin userForm () {
 
-
     .userForm {
         display: grid;
         padding: 1.5rem;
@@ -28,13 +27,16 @@
             gap: 1.6rem;
             height: fit-content;
 
-            &-label {
+            &-title {
                 font-weight: bold;
                 font-size: 2.4rem;
             }
 
             &-item {
-                p {
+                display: flex;
+                flex-direction: column;
+                
+                label {
                     margin-left: 1rem;
                     font-size: 1.6rem;
                     font-weight: bold;
@@ -60,7 +62,7 @@
                 justify-content: space-between;
 
                 &-text {
-                    p {
+                    label {
                         font-size: 1.6rem;
                         font-weight: bold;
                     }
@@ -96,7 +98,7 @@
                 align-items: end;
                 justify-content: space-between;
 
-                p {
+                label {
                     font-size: 1.3rem;
                     text-align: left;
                     font-weight: bold;
