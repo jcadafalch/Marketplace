@@ -1,23 +1,14 @@
 .header {
     background-color: $primaryColor;
-    //padding-left: 1rem;
-    // padding-right: 2rem;
-    // grid-area: header;
     display: grid;
-    //grid-template-columns: 1fr 2fr 1fr;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 2rem;
-    //grid-auto-flow: column;
     align-items: center;
     border-bottom: 1px solid #ccc;
     padding: 1rem;
     justify-items: center;
 
     &-logoHeader {
-        // justify-self: center;
-
-        // grid-column: 1 / 2;
-
         img {
             width: 100%;
             height: auto;
@@ -25,66 +16,30 @@
     }
 
     &-buscador-form-container {
-        //grid-column: 2 / 3;
         background-color: white;
         border-radius: 3.5rem;
         padding: 1rem;
-        // margin: 2rem 0rem 2rem 0rem;
-        // display: inline;
         display: flex;
         justify-content: space-around;
 
-        // justify-self: center;
-        // align-items: center;
-        //width: 100%;
-        /*&:focus-within {
-        width: 100%;
-        border-style: none;
-      }*/
-        //   border: 1px solid red;
         &-selectCategories {
-            // padding: 0.5rem;
             border-style: none;
-            // border-radius: 3.5rem;
-            // margin-right: 1rem;
-            // background-color: white;
-            //width: 100%;
-            // width: fit-content;
-            //min-width: none;
         }
 
         &-search {
-            // padding: 0.5rem;
             border-style: none;
-            // margin-right: 1rem;
-            //width: 100%;
-            // width: fit-content;
-            // min-width: 12rem;
-            // text-align: center;
         }
 
         &-button {
-            // display: flex;
-            //padding-right: 15rem;
-            // align-self: flex-end;
-            // align-items: center;
             background-color: white;
             border: none;
-            // border-radius: 3.5rem;
-            // position: sticky;
             cursor: pointer;
-
-            span {
-                // font-size: 3rem;
-            }
         }
     }
 
     &-cartAndProfile {
         display: flex;
-        // justify-content: end;
         align-items: center;
-        // justify-content: space-around;
 
         &-displayIcon {
             a {
@@ -95,20 +50,12 @@
                 text-decoration: none;
                 color: black;
             }
-
-            &-shoppingCart {
-                // font-size: 3rem;
-            }
         }
 
         &-login {
             margin-left: 2rem;
 
             a {
-
-                // display: inline-block;
-                // text-decoration: none;
-                // color: black;
                 button {
                     background-color: transparent;
                     padding: 1.5rem 1rem 1.5rem 1rem;
