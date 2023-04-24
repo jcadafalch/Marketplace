@@ -10,22 +10,22 @@
     <form class="userForm-form" method="">
         @csrf
         <div class="userForm-form-label">
-            <label>Registro</label>
+            <h3>Registro</h3>
         </div>
         <div class="userForm-form-item">
-            <p>Nombre de usuario</p>            
+            <label>Nombre de usuario</label>            
             <input type="text" name="mail">
         </div>
         <div class="userForm-form-item">
-            <p>E-Mail</p>            
+            <label>E-Mail</label>            
             <input type="email" name="mail">
         </div>
         <div class="userForm-form-item">
-            <p>Contraseña</p>            
+            <label>Contraseña</label>            
             <input type="password" name="mail">
         </div>
         <div class="userForm-form-item">
-            <p>Confirma tu contraseña</p>            
+            <label>Confirma tu contraseña</label>            
             <input type="password" name="mail">
         </div>
         <div class="userForm-form-button">

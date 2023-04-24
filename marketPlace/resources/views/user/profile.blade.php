@@ -6,7 +6,7 @@
  <div class="userForm">
         <div class="userForm-title">
             <div class="userForm-form-label">
-                <label>Perfil publico</label>
+                <h3>Perfil publico</h3>
             </div>
         </div>
         <form class="userForm-form" action="{{ route('user.changeProfile') }}" method="post" enctype="multipart/form-data">
@@ -17,7 +17,7 @@
             </div >
             <div class="userForm-form-uploadPhoto">
                 <div class ="userForm-form-uploadPhoto-text">
-                    <p>Foto de perfil</p>      
+                    <label>Foto de perfil</label>      
                 </div>
                 <div class="userForm-form-uploadPhoto-button">
                     <input type="file" name="profilePhoto" accept="image/*" value="{{ old('profilePhoto') }}">
@@ -25,14 +25,14 @@
             </div>
             <div class="userForm-form-userInfo">
                 <div class="userForm-form-userInfo-name">
-                    <p>Nombre</p>
+                    <label>Nombre</label>
                 </div>
                 <div class="userForm-form-userInfo-userName">
                      <input type="text" name="userName" value="{{ old('userName') }}" placeholder="{{Auth::user()->name}}">
                 </div>
             </div>
             <div class="userForm-form-item">
-                <p>Cambiar contraseña</p>
+                <label>Cambiar contraseña</label>
                 <input type="password" name="password" value="{{ old('password') }}" placeholder="Contraseña actual">
             </div>
             <div class="userForm-form-item">
