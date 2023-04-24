@@ -14,7 +14,7 @@
     @foreach ($producte as $key => $productec)
     <div style="display: none"> {{$total += $productec->price}}</div>
         <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal">
-            <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}" alt="">
+            <img class="shoppingcart-main-article-productImage" src="{{  asset('storage/img/' . $productec->url) }}" alt="">
             <h3 class="shoppingcart-main-article-productName">{{ $productec->name }}</h3>
             <p class="shoppingcart-main-article-productDescription">
                 {{ $productec->description }}
@@ -35,6 +35,7 @@
         <hr>
         <p>Total (impuestos includidos)</p>
         <p class="shoppingcart-aside-preufinal">{{$total}}€</p>
+        <button class="button-addToCart">Realizar pedido</button>
     </aside>
 
 @endsection
