@@ -53,13 +53,13 @@ button.forEach((element) => {
             counter++;
             contador.innerHTML = parseInt(counter);
 
+            element.setAttribute("disabled", true);
+
             addProductToShoppingCart(parseInt(element.id)).then((res) => {
-                console.log(res);
                 if (res !== true) {
                     return;
                 }
 
-                element.setAttribute("disabled", true);
                 return;
             });
         }
