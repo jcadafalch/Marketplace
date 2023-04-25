@@ -335,6 +335,17 @@ body {
   background-color: #576DA5;
   color: white;
 }
+.button-error {
+  background-color: #7097fa;
+  border: none;
+  border-radius: 3rem;
+  padding: 2rem;
+  min-width: 3rem;
+}
+.button-error:hover:enabled {
+  background-color: #576DA5;
+  color: white;
+}
 
 .LogInContent {
   display: grid;
@@ -664,6 +675,23 @@ body {
 }
 .product-storeName {
   line-height: 5rem;
+}
+
+.error {
+  display: grid;
+  padding: 5rem;
+  font-size: 2rem;
+  justify-items: center;
+}
+.error-image img {
+  height: auto;
+  width: 100%;
+}
+.error-message {
+  margin-bottom: 2.5rem;
+}
+.error-message p {
+  color: red;
 }
 
 /*# sourceMappingURL=style.css.map */

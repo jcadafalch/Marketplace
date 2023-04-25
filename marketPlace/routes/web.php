@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\LogInController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ManageShopController;
@@ -56,7 +57,14 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 
 // carrito
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
-Route::get('/shoppingCart/addProduct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
+Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
+
+// errors 
+Route::get('/productoNoEncontrado', [ErrorController::class, 'productNotFoundError'])->name('error.productNotFoundError');
+Route::get('/tiendaNoEcontrada', [ErrorController::class, 'shopNotFoundError'])->name('error.shopNotFoundError');
+Route::get('/Error', [ErrorController::class, 'genericError'])->name('error.genericError');
+
+
 
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
