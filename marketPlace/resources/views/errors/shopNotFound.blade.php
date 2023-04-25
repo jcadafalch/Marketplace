@@ -5,5 +5,5 @@
 
 
 @section('content')
-<p>Tienda no econtrada</p>
+<p>Tienda n&#128565; econtrada!</p>
 @endsection

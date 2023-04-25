@@ -5,5 +5,5 @@
 
 
 @section('content')
-<p>Error 404</p>
+<p>Error 404!&#128548;</p>
 @endsection
