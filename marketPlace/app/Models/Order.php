@@ -52,7 +52,6 @@ class Order extends Model
         $userOrder = Order::all()->where("user_id", $userId)->first();
         if ($userOrder != null) {
             $idArray = explode(".", $ids);
-            //Log::alert($ids);
             foreach ($idArray as $key => $char) {
                 if ($char != "") {
                     if (OrderLine::all()->where("product_id", $char)->where("order_id", $userOrder->id)->first() == null) {

@@ -42,7 +42,6 @@ class ShoppingCartController extends Controller
             if(Auth::check()){
                 Order::addIds($id, Auth::id());
             }
-            Log::alert($_COOKIE["shoppingCartProductsId"]);
             return true;
         }
     }
