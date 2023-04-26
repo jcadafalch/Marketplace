@@ -57,7 +57,7 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 
 // carrito
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
-Route::get('/shoppingCart/addProdct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
+Route::get('/shoppingCart/addProduct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 
 // errors 
 Route::get('/productoNoEncontrado', [ErrorController::class, 'productNotFoundError'])->name('error.productNotFoundError');

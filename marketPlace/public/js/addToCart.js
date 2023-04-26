@@ -4,7 +4,6 @@ const contador = document.querySelector("#numberOfProducts");
 const addProductToShoppingCart = async (productId) => {
     try {
         const response = await fetch(`/shoppingCart/addProduct/${productId}`);
-        console.log(response);
         if (response.ok) {
             const data = await response.json();
             return data;
@@ -12,7 +11,6 @@ const addProductToShoppingCart = async (productId) => {
             return null;
         }
     } catch (error) {
-        console.log(error);
         return null;
     }
 };
