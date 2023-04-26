@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,14 @@ class Product extends Model
   public function categories()
   {
     return $this->belongsToMany(Category::class)->withTimeStamps();
+  }
+
+  public function images(){
+    return $this->hasMany(ProductImage::class)->withTimeStamps();
+  }
+
+  public function getMainImage(){
+    return $this->images()->where('isMain', true)->first()->image()->url;
   }
 
   /**

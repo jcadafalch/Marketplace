@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Shop;
+use App\Models\ProductOderLine;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OrderLine extends Model
 {
@@ -17,6 +19,14 @@ class OrderLine extends Model
 
     public function orders(){
         return $this->belongsToOne(Order::class)->withTimeStamps();
+    }
+
+    public function products(){
+        return $this->hasMany(ProductOderLine::class)->withTimeStamps();
+    }
+
+    public function shop(){
+        return $this->hasOne(Shop::class)->withTimeStamps();
     }
 
     public static function getOrderFromId($id){

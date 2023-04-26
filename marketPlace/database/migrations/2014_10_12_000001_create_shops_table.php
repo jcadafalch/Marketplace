@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name')->nullable(false);
-            $table->string('shop_name')->unique()->nullable(false);
+            $table->string('ownerName')->nullable(false);
+            $table->string('name')->unique()->nullable(false);
             $table->string('nif')->unique()->nullable(false);
-            
-            $table->unsignedBigInteger('user_id')->index();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->string('description')->nullable();
+
+
+        
+            $table->unsignedBigInteger('logo_id')->index();
+            $table->unsignedBigInteger('banner_id')->index();
+            $table->foreign('logo_id')->references('id')->on('images')->cascadeOnDelete();
+            $table->foreign('banner_id')->nullable()->references('id')->on('images')->cascadeOnDelete();
         });
     }
 

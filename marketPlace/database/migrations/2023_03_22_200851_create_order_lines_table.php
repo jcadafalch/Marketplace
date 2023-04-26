@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->unsignedBigInteger("order_id")->nullable();
+            $table->unsignedBigInteger("order_id")->nullable();           
+            $table->unsignedBigInteger('shop_id')->index()->nullable();
+            $table->timestamp('paid_at')->nullable();
+            $table->timestamp('send_at')->nullable();
+
+           
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
-
-            $table->unsignedBigInteger('product_id')->index()->nullable();
-
-            $table->decimal('price', 5, 2)->nullable();
-
-
+            $table->foreign('shop_id')->references('id')->on('shops')->cascadeOnDelete();
         });
     }
 

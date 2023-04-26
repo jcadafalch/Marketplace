@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\OrderLine;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Log;
 
 class Order extends Model
 {
@@ -17,6 +18,15 @@ class Order extends Model
         'user_id',
         'in_process',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class)->withTimeStamps();
+    }
+    
+    public function lines(){
+        return $this-> hasMany(OrderLine::class)->withTimeStamps();
+    }
+   
 
     public static function getOrderFromOrderId($id)
     {
