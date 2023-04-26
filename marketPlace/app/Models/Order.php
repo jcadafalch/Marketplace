@@ -26,7 +26,11 @@ class Order extends Model
     public static function getIdsFromUserId($id)
     {
         $orderId = Order::all()->where("user_id", $id)->first();
-        return OrderLine::getOrderlineFromOrderId($orderId->id)->pluck('product_id');
+        if ($orderId != null) {
+            return OrderLine::getOrderlineFromOrderId($orderId->id)->pluck('product_id');
+        } else {
+            return null;
+        }
     }
 
     public static function checkForShoppingCart($userId)
@@ -48,6 +52,7 @@ class Order extends Model
         $userOrder = Order::all()->where("user_id", $userId)->first();
         if ($userOrder != null) {
             $idArray = explode(".", $ids);
+            //Log::alert($ids);
             foreach ($idArray as $key => $char) {
                 if ($char != "") {
                     if (OrderLine::all()->where("product_id", $char)->where("order_id", $userOrder->id)->first() == null) {
@@ -85,7 +90,7 @@ class Order extends Model
     {
         $userOrder = Order::all()->where("user_id", Auth::id())->first();
         if ($userOrder != null) {
-           $deleteOrderLine = OrderLine::all()->where("product_id", $id)->where("order_id", $userOrder->id)->first();
+            $deleteOrderLine = OrderLine::all()->where("product_id", $id)->where("order_id", $userOrder->id)->first();
             $deleteOrderLine->delete();
         }
     }

@@ -38,10 +38,11 @@ class ShoppingCartController extends Controller
             }
             return true;
         } else {
-            if(Auth::check()){
-                Order::addIds($_COOKIE["shoppingCartProductsId"], Auth::id());
-            }
             setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
+            if(Auth::check()){
+                Order::addIds($id, Auth::id());
+            }
+            Log::alert($_COOKIE["shoppingCartProductsId"]);
             return true;
         }
     }
@@ -51,7 +52,7 @@ class ShoppingCartController extends Controller
         if (isset($_COOKIE["shoppingCartProductsId"])) {
             setcookie("shoppingCartProductsId", str_replace("$id.", "", $_COOKIE["shoppingCartProductsId"]), ["Path" => "/", "SameSite" => "Lax"]);
             if(Auth::check()){
-                Order::addIds("$id.", Auth::id());
+                Order::delIds($id);
             }
             return true;
         }

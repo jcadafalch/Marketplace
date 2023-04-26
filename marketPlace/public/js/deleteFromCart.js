@@ -5,7 +5,11 @@ let deleteButtons = document.querySelectorAll(
 const delProductFromShoppingCart = async (productId) => {
     try {
         const response = await fetch(`/shoppingCart/delProduct/${productId}`);
-        console.log(response);
+        let cartItems = getShoppingCartProductsIdCookie();
+        const arrayProducts = cartItems === null ? [] : cartItems;
+
+        let counter = arrayProducts.length;
+        contador.innerHTML = parseInt(counter);
         if (response.ok) {
             const data = await response.json();
             return data;
@@ -13,13 +17,12 @@ const delProductFromShoppingCart = async (productId) => {
             return null;
         }
     } catch (error) {
-        console.log(error);
         return null;
     }
 };
 
 if (deleteButtons != null) {
-    
+
     for (const delButton of deleteButtons) {
         delButton.addEventListener("mouseover", (event) => {
             event.target.style.color = "black";
@@ -48,10 +51,7 @@ if (deleteButtons != null) {
                 ".shoppingcart-main-article-productDelete-span"
             );
 
-            console.log("event " + event.id());
-
-            delProductFromShoppingCart(parseInt());
-            
+            delProductFromShoppingCart(parseInt(event.target.parentElement.parentElement.id));
         });
     }
 }

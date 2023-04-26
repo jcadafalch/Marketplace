@@ -13,7 +13,7 @@
     @else
     @foreach ($producte as $key => $productec)
     <div style="display: none"> {{$total += $productec->price}}</div>
-        <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal">
+        <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal" id="{{$productec->id}}">
             <img class="shoppingcart-main-article-productImage" src="{{ asset('/images/LogoFooter.png') }}" alt="">
             <h3 class="shoppingcart-main-article-productName">{{ $productec->name }}</h3>
             <p class="shoppingcart-main-article-productDescription">
