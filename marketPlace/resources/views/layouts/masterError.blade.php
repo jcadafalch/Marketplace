@@ -1,6 +1,3 @@
-<!doctype html>
-<html lang="es">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,18 +12,15 @@
 </head>
 
 <body>
-    @include('partials.header')
-    <div class="content--section">
-        @yield('content')
-        @if (session('status'))
-            <div class="products-section">
-                <p>{{ session('status') }} </p>
-            </div>
-        @endif
+@include('partials.header')
+    <div class="error"> 
+        <div class="error-image"><img src="{{ asset('/images/Error.png') }}" alt="Logo"/></div>
+        <div class="error-message">
+            @yield('content')
+        </div>
+         <a href="{{ route('home.index') }}"><button class="button-error">Página de inicio</button></a>
     </div>
-    @include('partials.footer')
-    <script src="{{ asset('js/DeleteFromCart.js')}}"></script>
-    <script src="{{ asset('js/addToCart.js') }}"></script>
+@include('partials.footer')
 </body>
 
 </html>

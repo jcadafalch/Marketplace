@@ -73,4 +73,16 @@
             color: white;
         }
     }
+    
+    &-error{
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 3rem;
+        padding: 2rem;
+        min-width: 3rem;
+        &:hover:enabled {
+            background-color: #576DA5;
+            color: white;
+        } 
+    }
 }

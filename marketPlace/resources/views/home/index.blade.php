@@ -37,5 +37,5 @@
     </ul>
 
     {{ $products->links('vendor.pagination.default') }}
-
+    <script src="{{ asset('js/orderBy.js') }}"></script>
 @endsection

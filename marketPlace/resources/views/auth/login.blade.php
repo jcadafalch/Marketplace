@@ -3,11 +3,17 @@
 @section('title', 'Login')
 
 @section('content')
+
     <div class="userForm">
         <div class="userForm-title">
             <a href="{{ route('home.index') }}"><img class='userForm-logo' src="{{ asset('/images/logo.png') }}"
                     alt="Logo" /></a>
         </div>
+        @if (Session::has('message'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('message') }}
+            </div>
+        @endif
         <form class="userForm-form" method="post">
             @csrf
             <div class="userForm-form-title">

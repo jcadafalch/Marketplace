@@ -1,14 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\LogInController;
-use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ShoppingCartController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +35,15 @@ Route::get('/landingPage/{id}', [LandingPageController::class, 'showAll'])->name
 // login & registro
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
 Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin'); 
-Route::get('/register', [RegisterController::class, 'index'])->name('auth.register');
+Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
+Route::post('/register', [RegisterController::class, 'store'])->name('auth.store'); 
+
+// NO TOCAR, si se cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+  $request->fulfill();
+
+  return redirect('/login');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 // contaseña
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
@@ -48,6 +59,13 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
 Route::get('/shoppingCart/addProduct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 Route::get('/shoppingCart/delProduct/{id}', [ShoppingCartController::class, 'delProduct'])->name('shoppingCart.delProduct');
+
+
+// errors 
+Route::get('/productoNoEncontrado', [ErrorController::class, 'productNotFoundError'])->name('error.productNotFoundError');
+Route::get('/tiendaNoEcontrada', [ErrorController::class, 'shopNotFoundError'])->name('error.shopNotFoundError');
+Route::get('/Error', [ErrorController::class, 'genericError'])->name('error.genericError');
+
 
 
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
