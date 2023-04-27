@@ -28,6 +28,7 @@
             </div>
             <div class="userForm-form-item" role="alert">
                 <p class="userForm-form-error">{{ Session::get('message') }}</p>
+                <p>{{Session::get('emailMessage')}}</p>
             </div>
         </form>
         <div class="userForm-form-help already-account">
