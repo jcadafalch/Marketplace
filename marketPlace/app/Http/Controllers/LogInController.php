@@ -112,7 +112,7 @@ class LogInController extends Controller
         del usuario no está verificado y que debe comprobar su correo electrónico y verificar su registro. */
         if(!isset(Auth::user()->email_verified_at)){
             Log::info("Usuari no verificat");
-            return redirect()->route('auth.login')->with('message', 'Usuario no verificado, revisa el correo y verifica el regitro');
+            return redirect()->route('auth.login')->with('message', 'Usuario no verificado, revisa el correo y verifica el registro');
         }
 
         $request->session()->regenerate();
