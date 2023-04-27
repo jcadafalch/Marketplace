@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header-logoHeader">
-        <a href="{{ route('home.index') }}"><img src="{{ asset('/images/logo.png') }}" alt="Logo"/></a>
+        <a href="{{ route('landingPage') }}"><img src="{{ asset('/images/logo.png') }}" alt="Logo" /></a>
     </div>
 
     <form class="header-buscador-form-container buscador" action="{{ route('home.searchProduct') }}" method="get">
@@ -14,8 +14,8 @@
                 @endif
             @endforeach
         </select>
-        <input type="search" name="search" class="header-buscador-form-container-search"
-            placeholder="¿Que buscas?" value="{{ session('search') }}" />
+        <input type="search" name="search" class="header-buscador-form-container-search" placeholder="¿Que buscas?"
+            value="{{ session('search') }}" />
         <button class="header-buscador-form-container-button" type="submit">
             <span class="material-symbols-rounded" id="headerButtonSearch">search</span>
         </button>
@@ -38,10 +38,9 @@
                     </button>
                 </a>
             </div>
-
         @else
             <div class="header-cartAndProfile-displayIcon header-cartAndProfile-user">
-                <a href="{{route('user.userProfile')}}">
+                <a href="{{ route('user.userProfile') }}">
                     <span class="material-symbols-outlined"> person </span>
                     <p>{{ Auth::user()->name }}</p>
                 </a>
