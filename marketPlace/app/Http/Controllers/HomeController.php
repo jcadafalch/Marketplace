@@ -14,8 +14,6 @@ class HomeController extends Controller
     public function index()
     {
         Paginator::defaultView('default');
-        // Eliminar variables de session 
-        session()->forget(['category', 'search']);  
 
         return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))],['categories' => Category::all()->where('parent_id', '=', null)]);
     }
