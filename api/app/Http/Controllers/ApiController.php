@@ -135,15 +135,15 @@ class ApiController extends Controller
         /*$request->validate([
             'image' => 'required|image|mimes:png,jpg,gif,svg|max:2048',
         ]);*/
-
+        $urlServer = "http://" . $_SERVER['HTTP_HOST'] . "/";
         try {
             Log::error("Imagen subida");
-            $RandomNameImage = uniqid() . "." . $request["imagen"]->extension();
-        
-            //$request["imagen"]->store('img');
+            
+            $RandomNameImage = uniqid() . "." . $request["imagen"]->extension();        
+            $path = $this->urlImage . $RandomNameImage;
             Storage::disk('img')->put($RandomNameImage ,$request["imagen"]->get());
             Log::error("Imatge pujada al servidor at:");
-            self::generateResponse("Subo una imagen", 200, $RandomNameImage);
+            self::generateResponse("Subo una imagen", 200,  $urlServer .  $path);
         } catch (\Throwable $th) {
             self::generateResponse("Fallo al subir la imagen", 200, "Suba otra vez la imagen");
         }

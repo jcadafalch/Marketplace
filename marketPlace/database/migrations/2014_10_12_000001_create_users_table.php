@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->unsignedBigInteger('shop_id')->index();
-            $table->foreign('shop_id')->references('id')->on('shops')->cascadeOnDelete();
         });
     }
 

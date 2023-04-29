@@ -22,9 +22,11 @@ return new class extends Migration
 
         
             $table->unsignedBigInteger('logo_id')->index();
-            $table->unsignedBigInteger('banner_id')->index();
+            $table->unsignedBigInteger('banner_id')->index()->nullable();
+            $table->unsignedBigInteger('user_id')->index();
             $table->foreign('logo_id')->references('id')->on('images')->cascadeOnDelete();
-            $table->foreign('banner_id')->nullable()->references('id')->on('images')->cascadeOnDelete();
+            $table->foreign('banner_id')->references('id')->on('images')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 

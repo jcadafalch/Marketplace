@@ -16,6 +16,6 @@ class ProductImage extends Model
     }
 
   public function image(){
-      return $this->hasOne(Image::class)->withTimeStamps();
+      return $this->belongsTo(Image::class)->withTimeStamps();
   }
 }

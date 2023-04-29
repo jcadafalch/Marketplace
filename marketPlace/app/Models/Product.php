@@ -25,13 +25,26 @@ class Product extends Model
   {
     return $this->belongsToMany(Category::class)->withTimeStamps();
   }
-
-  public function images(){
-    return $this->hasMany(ProductImage::class)->withTimeStamps();
+  /**
+   * Obtiene el listado del modelo ProductImages
+   */
+  public function productImages()
+  {
+    return $this->hasMany(ProductImage::class);
   }
-
+  /**
+   * Obtiene un listado de las imagenes del producto 
+   */
+  public function getImages()
+  {
+    return $this->productImages()->with('image')->get()->pluck('image');
+  }
+  /**
+  * Devueolve la imagen por defecto del producto; Si no existe devuelve null 
+  */
   public function getMainImage(){
-    return $this->images()->where('isMain', true)->first()->image()->url;
+    $defaultImage = $this->productImages()->where('isMain', true)->with('image')->first()->image;
+    return $defaultImage ? $defaultImage->url : null; 
   }
 
   /**
