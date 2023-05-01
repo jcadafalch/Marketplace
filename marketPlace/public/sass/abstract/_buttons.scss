@@ -8,7 +8,7 @@
         margin: 1rem;
 
         &:hover:enabled {
-            background-color: #576DA5;
+            background-color: $hoverColor;
             color: white;
         }
     }
@@ -20,7 +20,7 @@
         padding: 1rem;
 
         &:hover:enabled {
-            background-color: #576DA5;
+            background-color: $hoverColor;
             color: white;
         }
     }
@@ -32,7 +32,7 @@
         width: 29rem;
 
         &:hover:enabled {
-            background-color: #576DA5;
+            background-color: $hoverColor;
             color: white;
         }
     }
@@ -45,7 +45,7 @@
         margin-bottom: 1rem;
 
         &:hover:enabled {
-            background-color: #576DA5;
+            background-color: $hoverColor;
             color: white;
         }
     }
@@ -57,20 +57,21 @@
         padding: 0.5rem;
 
         &:hover:enabled {
-            background-color: #576DA5;
+            background-color: $hoverColor;
             color: white;
         }
     }
 
     &-landing {
-        background-color: $primaryColor;
-        border: none;
+        background-color: transparent;
+        border: 1px solid black;
         border-radius: 2rem;
-        padding: 1.2rem;
+        padding:  1.2rem 5rem 1.2rem 5rem;
 
         &:hover:enabled {
-            background-color: #576DA5;
+            background-color: $hoverColor;
             color: white;
+            border: none;
         }
     }
     
@@ -81,7 +82,7 @@
         padding: 2rem;
         min-width: 3rem;
         &:hover:enabled {
-            background-color: #576DA5;
+            background-color: $hoverColor;
             color: white;
         } 
     }

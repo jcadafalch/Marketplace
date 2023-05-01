@@ -4,26 +4,26 @@
 
 @section('content')
 
-        <div class='landing'>
-            <div>
-
-                @for ($i = 0; $i < count($titles); $i++)
-                    <ul class="landing-card">
-                        <div class="landing-info">
-                            <h3 class="landing-title">{{ $titles[$i] }}</h3>
-                            <a id="{{ $i }}" href="{{ route('landingPage.showAll', ['id' => $i]) }}"><button
-                                    class="button-landing"> Ver todo </button></a>
-                        </div>
-                        @foreach ($products[$i] as $item)
-                            @if ($i < 4)
+    <section class='landing'>
+        @for ($i = 0; $i < count($titles); $i++)
+            <article class="landing-card">
+                <h2 class="landing-title">{{ $titles[$i] }}</h2>
+                <ul class="landing-products">
+                    @foreach ($products[$i] as $item)
+                        @if ($i < 8)
+                            <li>
                                 <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image"
                                         src="{{ asset('storage/img/' . $item->url) }}" /></a>
-                            @endif
-                        @endforeach
-                    </ul>
-                @endfor
-
-            </div>
-        </div>
+                                <p>{{ $item->name }}</p>
+                                <p>{{ $item->price }}</p></a>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+                <a id="{{ $i }}" href="{{ route('landingPage.showAll', ['id' => $i]) }}"><button
+                        class="button-landing"> Ver todo </button></a>
+            </article>
+        @endfor
+    </section>
 
 @endsection
