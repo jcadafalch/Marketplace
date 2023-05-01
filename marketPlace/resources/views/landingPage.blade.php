@@ -13,7 +13,7 @@
                         @if ($i < 8)
                             <li>
                                 <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image"
-                                        src="{{ asset('storage/img/' . $item->url) }}" /></a>
+                                        src="{{ asset('storage/img/' . $item->url) }}" />
                                 <p>{{ $item->name }}</p>
                                 <p>{{ $item->price }}</p></a>
                             </li>
