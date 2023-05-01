@@ -15,14 +15,17 @@
     }
 
     &-info {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        display: flex;
+        justify-content: space-between;
+        // display: grid;
+        // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 
         &-detail {
             &-shop {
                 display: flex;
                 align-items: center;
                 gap: 1rem;
+
                 &-img {
                     width: 15rem;
                     height: 15rem;
@@ -40,6 +43,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-end;
+
                 &-img {
                     width: 9rem;
                     height: 9rem;
@@ -60,7 +64,59 @@
         margin: 5rem 0 5rem 0;
         display: grid;
         grid-template-columns: 20% 80%;
-        gap: 3rem;
+
+        &-button {
+            grid-column-start: 2;
+        }
+
+        input {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        p {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        input:focus~label {
+            outline: -webkit-focus-ring-color auto 5px;
+        }
+
+        input:checked+p {
+            -webkit-line-clamp: unset;
+        }
+
+        input:checked~label {
+            display: none;
+        }
+
+        label {
+            display: inline-block;
+            width: 140px;
+            height: 50px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        label::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            content: attr(data-more);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: underline double $primaryColor;
+        }
+
+        input[name="expanded"]:checked ~ .shop-description-button label::before {
+            content: attr(data-less);
+        }
     }
 
 }
