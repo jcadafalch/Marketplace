@@ -6,7 +6,7 @@
     <div class="profile">
         <div class="user-content">
             <div class="user-img">
-                <img src="{{ asset('storage/img/profile/profileImg' . Auth::user()->id . '.jpg') }}" onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
+                <img src="{{ asset('storage/img/profile/' . Auth::user()->path) }}" onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
             </div>
 
             <div class="user-info">
