@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
+    public function index(){
+        return view('shop.index',['categories' => Category::all()->where('parent_id', '=', null)]);
+    }
+
     /**
      * Funció que et retorna la vista de crear nova shop. 
      */

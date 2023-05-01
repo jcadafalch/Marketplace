@@ -82,4 +82,7 @@ Route::patch('/cambiarPerfil', [UserController::class, 'editProfile'])->name('us
 Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
 Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop'); 
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
+
+
 }));
+Route::get('/tienda', [ShopController::class, 'index'])->name('index.show');
