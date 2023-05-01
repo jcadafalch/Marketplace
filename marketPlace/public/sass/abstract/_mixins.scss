@@ -35,7 +35,7 @@
             &-item {
                 display: flex;
                 flex-direction: column;
-                
+
                 label {
                     margin-left: 1rem;
                     font-size: 1.6rem;
@@ -50,6 +50,12 @@
                 input {
                     padding: 1rem;
                     border: 1px solid $textColor;
+                    border-radius: 3rem;
+                    min-width: 29rem;
+                }
+
+                textarea {
+                    resize: none;
                     border-radius: 3rem;
                     min-width: 29rem;
                 }
