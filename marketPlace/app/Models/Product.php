@@ -57,7 +57,7 @@ class Product extends Model
    */
   public function getImages()
   {
-    return $this->productImages()->with('image')->get()->pluck('image');
+    return dd($this->productImages()->with('images')->get()->pluck('Image'));
   }
 
   /**
@@ -80,16 +80,56 @@ class Product extends Model
     ]);
   }
  
- /**
-  * This PHP function retrieves the URL of the main image of a product.
-  * 
-  * @return The `getMainImage()` function returns the URL of the main image of a product, or `null` if
-  * there is no main image.
-  */
+  /**
+   * This PHP function retrieves the URL of the main image of a product.
+   * 
+   * @return The `getMainImage()` function returns the URL of the main image of a product, or `null` if
+   * there is no main image.
+   */
   public function getMainImage(){
-    $defaultImage = $this->productImages()->where('isMain', true)->with('image')->first()->image;
-    return $defaultImage ? $defaultImage->url : null; 
+
+      try {
+        $productImage = 
+          ProductImage::all()
+          ->where('isMain', true)
+          ->where('product_id', $this->id)->first();
+       
+        $mainImage = DB::table('images')
+          ->where('images.id', '=',$productImage->image_id)->first();
+        
+        return strval($mainImage->url);
+        
+      } catch (\Throwable $th) {
+        Log::error('entro');
+        $productImage = 
+          ProductImage::all()
+          ->where('isMain', false)
+          ->where('product_id', $this->id)->first();
+
+        $alternativeImage = DB::table('images')
+          ->where('images.id', '=',$productImage->image_id)->first();
+  
+        return $alternativeImage == null || $alternativeImage->url == null ? null : strval($alternativeImage->url);
+      }
   }
+
+  // public function getAlternativeImages(){
+  //   Log::error('entro');
+  //   $productImage = 
+  //     ProductImage::all()
+  //     ->where('isMain', false)
+  //     ->where('product_id', $this->id)->get();
+  //     $images = [];
+  //     foreach ( $productImage as $proImg) {
+  //       array_push($images,
+  //       $alternativeImage = DB::table('images')
+  //       ->where('images.id', '=',$proImg->image_id)->first());
+  //     }
+  //   $alternativeImage = DB::table('images')
+  //     ->where('images.id', '=',$productImage->image_id)->get();
+  //   dd($$images);
+  //   return $alternativeImage == null || $alternativeImage->url == null ? null : $alternativeImage->url;
+  // }
 
   /**
    * This PHP function searches for products by name and returns them in a paginated format, with an
@@ -102,6 +142,7 @@ class Product extends Model
    * operator to match the `` parameter with the `name` column of the `products` table. The
    * function also eager loads the `categories` relationship for each product.
    */
+  
   public static function searchByName($request)
   {
     $fieldSearch = $request['search'];

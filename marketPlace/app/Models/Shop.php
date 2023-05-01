@@ -27,7 +27,7 @@ class Shop extends Model
     public static function getShopNameByProductId($selectedId){
 
         $result = DB::table('shops')
-        ->select('shops.shop_name', 'shops.id')
+        ->select('shops.name', 'shops.id')
         ->join('products', 'products.shop_id', '=', 'shops.id')
         ->where('products.id', '=', $selectedId)
         ->get();

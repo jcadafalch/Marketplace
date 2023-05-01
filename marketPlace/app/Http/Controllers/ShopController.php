@@ -29,8 +29,8 @@ class ShopController extends Controller
         $userId = Auth::id();
 
         $shop = new Shop();
-        $shop->name = $request['name'];;
-        $shop->shop_name = $request['shopName'];
+        $shop->ownerName = $request['name'];;
+        $shop->name = $request['shopName'];
         $shop->nif = $request['nif'];
         $shop->user_id = $userId;  
         $shop->save();  

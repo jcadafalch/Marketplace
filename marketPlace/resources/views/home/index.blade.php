@@ -21,7 +21,11 @@
             <li class="product" id="{{ $product->id }}">
                 <div class="product-image">
                     <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                        <img src="{{ asset('storage/img/' . $product->url) }}" />
+                    @if($product->getMainImage() != null)    
+                        <img src="{{ asset('storage/img/' . $product->getMainImage()) }}"/>
+                    @else
+                    <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}"/>
+                    @endif
                     </a>
                 </div>
                 <div class="product-details">
@@ -30,7 +34,6 @@
                         <p class="product-price"> {{ $product->price }}€ </p>
                     </a>
                 </div>
-
                 <input class="button-addToCart" type="button" value="Añadir" id="{{ $product->id }}">
             </li>
         @endforeach
