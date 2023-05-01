@@ -1,3 +1,7 @@
+.home-section {
+    padding: 3vh 10vw 3vh 10vw;
+}
+
 .products-section {
     display: grid;
 
@@ -24,6 +28,7 @@
     &-image {
         margin: 1rem;
     }
+
     img {
         width: 100%;
         height: auto;
@@ -37,7 +42,7 @@
         }
     }
 
-    &:hover{
+    &:hover {
         box-shadow: 0 3px 5px 0 black;
     }
 }

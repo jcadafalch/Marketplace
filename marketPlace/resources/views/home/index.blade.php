@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-
+<section class="home-section">
     <h1> Todos los productos </h1>
 
     <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
@@ -37,5 +37,6 @@
     </ul>
 
     {{ $products->links('vendor.pagination.default') }}
+</section>
     <script src="{{ asset('js/orderBy.js') }}"></script>
 @endsection

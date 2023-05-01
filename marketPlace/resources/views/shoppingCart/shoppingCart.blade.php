@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Carrito Compra')
 @section('content')
+<section class="shoppingCart-section">
     <section>
         <h1>Mi cesta</h1>
         <h5>{{count($producte)}} artículos</h5>
@@ -37,5 +38,5 @@
         <p class="shoppingcart-aside-preufinal">{{$total}}€</p>
         <button class="button-addToCart">Realizar pedido</button>
     </aside>
-
+</section>
 @endsection
