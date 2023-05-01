@@ -43,6 +43,12 @@ class ShopController extends Controller
         return redirect()->route('home.index');
     }
 
+    public function newProduct()
+    {
+        return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -82,4 +88,5 @@ class ShopController extends Controller
     {
         //
     }
+
 }
