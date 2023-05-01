@@ -16,14 +16,14 @@
 
 <body>
     @include('partials.header')
-    <section class="content--section">
+    <main class="content--section">
         @yield('content')
         @if (session('status'))
             <article class="products-section">
                 <p>{{ session('status') }} </p>
             </article>
         @endif
-    </section>
+    </main>
     @include('partials.footer')
     <script src="{{ asset('js/DeleteFromCart.js')}}"></script>
     <script src="{{ asset('js/addToCart.js') }}"></script>

@@ -13,9 +13,9 @@
 </head>
 
 <body>
-    <section class="content--section--auth">
+    <main class="content--section--auth">
         @yield('content')
-    </section>
+    </main>
 </body>
 
 </html>
