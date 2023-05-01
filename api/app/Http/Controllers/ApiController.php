@@ -99,8 +99,6 @@ class ApiController extends Controller
             self::generateResponse("No tienes acceso a este recurso", 401, "Unauthorized");
         }
 
-
-
         return response()->json($this->response);
     }
 
@@ -210,7 +208,6 @@ class ApiController extends Controller
      */
     public function generateColors($image)
     {
-
         $color1 = random_int(0, 255);
         $color2 = random_int(0, 255);
         $color3 = random_int(0, 255);
