@@ -1,0 +1,66 @@
+.shop {
+    &-banner {
+        height: 18rem;
+        display: flex;
+
+        img {
+            object-fit: cover;
+            height: -webkit-fill-available;
+            width: -webkit-fill-available;
+        }
+    }
+
+    &-body {
+        padding: 3vh 10vw 3vh 10vw;
+    }
+
+    &-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+
+        &-detail {
+            &-shop {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                &-img {
+                    width: 15rem;
+                    height: 15rem;
+                    overflow: hidden;
+
+                    img {
+                        width: auto;
+                        height: 100%;
+                        // margin-left: -50px;
+                    }
+                }
+            }
+
+            &-seller {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                &-img {
+                    width: 9rem;
+                    height: 9rem;
+                    overflow: hidden;
+                    border-radius: 50%;
+
+                    img {
+                        width: auto;
+                        height: 100%;
+                        // margin-left: -50px;
+                    }
+                }
+            }
+        }
+    }
+
+    &-description {
+        margin: 5rem 0 5rem 0;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        gap: 3rem;
+    }
+
+}
