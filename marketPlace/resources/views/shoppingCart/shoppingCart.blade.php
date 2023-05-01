@@ -36,7 +36,7 @@
         <hr>
         <p>Total (impuestos includidos)</p>
         <p class="shoppingcart-aside-preufinal">{{$total}}€</p>
-        <button class="button-addToCart">Realizar pedido</button>
+        <button class="button-newShop">Realizar pedido</button>
     </aside>
 </section>
 @endsection

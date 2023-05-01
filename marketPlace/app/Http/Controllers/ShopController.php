@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopCreate;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class ShopController extends Controller
 {
     public function index(){
-        return view('shop.index',['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('shop.index',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**
