@@ -3,7 +3,7 @@
 @section('title', 'Craft Made')
 
 @section('content')
-
+{{-- añadir parte superior de pag --}}
     <section class='landing'>
         @for ($i = 0; $i < count($titles); $i++)
             <article class="landing-card">

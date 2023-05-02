@@ -8,6 +8,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -25,7 +26,7 @@
         @endif
     </main>
     @include('partials.footer')
-    <script src="{{ asset('js/DeleteFromCart.js')}}"></script>
+    <script src="{{ asset('js/DeleteFromCart.js') }}"></script>
     <script src="{{ asset('js/addToCart.js') }}"></script>
 </body>
 
