@@ -113,23 +113,22 @@ class Product extends Model
       }
   }
 
-  // public function getAlternativeImages(){
-  //   Log::error('entro');
-  //   $productImage = 
-  //     ProductImage::all()
-  //     ->where('isMain', false)
-  //     ->where('product_id', $this->id)->get();
-  //     $images = [];
-  //     foreach ( $productImage as $proImg) {
-  //       array_push($images,
-  //       $alternativeImage = DB::table('images')
-  //       ->where('images.id', '=',$proImg->image_id)->first());
-  //     }
-  //   $alternativeImage = DB::table('images')
-  //     ->where('images.id', '=',$productImage->image_id)->get();
-  //   dd($$images);
-  //   return $alternativeImage == null || $alternativeImage->url == null ? null : $alternativeImage->url;
-  // }
+  public function getAlternativeImages(){
+    Log::error('entro');
+    $productImage = ProductImage::all()
+      ->where('isMain', false)
+      ->where('product_id', $this->id)->all();
+
+      $images = [];
+
+      foreach ( $productImage as $proImg) {
+        $i = DB::table('images') ->where('images.id', '=',$proImg->image_id)->first();
+        array_push($images, $i->url);
+      }
+
+    return $images;
+
+  }
 
   /**
    * This PHP function searches for products by name and returns them in a paginated format, with an
@@ -274,9 +273,11 @@ class Product extends Model
         array_push(
           $p,
           DB::table('products')
-            ->select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.url', 'products.selled_at', 'products.shop_id')
+            ->select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.selled_at', 'products.shop_id', 'images.url')
             ->join('category_product', 'products.id', '=', 'category_product.id')
             ->join('categories', 'category_product.category_id', '=', 'categories.id')
+            ->join('product_images', 'products.id', '=', 'product_images.product_id')
+            ->join('images', 'product_images.image_id', '=', 'images.id')
             ->where('categories.name', 'LIKE', $landingPageConfig['categorys'][$i]['categoryName'])
             ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
         );
