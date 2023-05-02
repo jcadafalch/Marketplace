@@ -5,9 +5,15 @@
 @section('content')
     <section class="profile">
         <article class="user-content">
-            <div class="user-img">
+            {{-- <div class="user-img">
                 <img src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
                     onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
+            </div> --}}
+            <div class="user-img">
+                <div class="user-img-imagePreview"
+                    style="
+                    background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }}), url({{ asset('storage/img/profile/defaultProfileImage.jpg') }});">
+                </div>
             </div>
             <div class="user-info">
                 <p class="user-name">{{ Auth::user()->name }}</p>
@@ -17,5 +23,4 @@
             </div>
         </article>
     </section>
-
 @endsection
