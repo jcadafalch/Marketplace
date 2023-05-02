@@ -89,3 +89,4 @@ Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->na
 //new
 Route::get('/tienda', [ShopController::class, 'index'])->name('shop.show');
 Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+Route::get('/tienda/editar', [ShopController::class, 'edit'])->name('shop.edit');
