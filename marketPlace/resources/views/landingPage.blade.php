@@ -15,7 +15,7 @@
                                 <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image"
                                         src="{{ asset('storage/img/' . $item->url) }}" />
                                 <p>{{ $item->name }}</p>
-                                <p>{{ $item->price }}</p></a>
+                                <p>{{ $item->price }}€</p></a>
                             </li>
                         @endif
                     @endforeach
