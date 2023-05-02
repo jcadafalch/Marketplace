@@ -63,5 +63,6 @@
                 @endforeach
             </ul>
         </article>
+        {{ $products->links('vendor.pagination.default') }}
     </section>
 @endsection
