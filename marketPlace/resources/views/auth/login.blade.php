@@ -9,11 +9,6 @@
             <a href="{{ route('landingPage') }}"><img class='userForm-logo' src="{{ asset('/images/logo.png') }}"
                     alt="Logo" /></a>
         </div>
-        @if (Session::has('message'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message') }}
-            </div>
-        @endif
         <form class="userForm-form" method="post">
             @csrf
             <div class="userForm-form-title">
@@ -30,6 +25,10 @@
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Iniciar sesión</button>
+            </div>
+            <div class="userForm-form-item" role="alert">
+                <p class="userForm-form-error">{{ Session::get('message') }}</p>
+                <p>{{Session::get('emailMessage')}}</p>
             </div>
         </form>
         <div class="userForm-form-help already-account">
