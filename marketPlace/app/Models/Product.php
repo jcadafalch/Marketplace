@@ -149,10 +149,13 @@ class Product extends Model
     $order = empty($request['order']) ? 'ASC' : $request['order'];
 
     return $productsFilter = Product::with('categories')->where('name', 'LIKE', '%' . $fieldSearch . '%')
+      ->where('isVisible', '=', 1)
+      ->where('isDeleted','=',0)
+      ->where('selled_at','=',NULL)
       ->orderBy('name', $order)
       ->paginate(env('PAGINATE', 10));
   }
-
+  
   /**
    * The function takes an ID string, splits it into individual characters, and returns an array of
    * Product objects that match each character.
@@ -239,7 +242,11 @@ class Product extends Model
       // Busquem els productes per l'id i els guardem amb una collection
       for ($j = 0; $j < count($diferenIdProducts); $j++) {
         $result->add(
-          Product::where('products.id', '=', $diferenIdProducts[0])->first()
+          Product::where('products.id', '=', $diferenIdProducts[0])
+          ->orWhere('isVisible', '=', 1)
+          ->orWhere('isDeleted','=',0)
+          ->orWhere('selled_at','=',null)
+          ->first()
         );
       }
     }
@@ -275,13 +282,19 @@ class Product extends Model
             ->join('categories', 'category_product.category_id', '=', 'categories.id')
             ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->join('images', 'product_images.image_id', '=', 'images.id')
-            ->where('categories.name', 'LIKE', $landingPageConfig['categorys'][$i]['categoryName'])
+            ->where('categories.name', '=', $landingPageConfig['categorys'][$i]['categoryName'])
+            ->where('product_images.isMain','=', 1)
+            ->where('isVisible', '=', 1)
+            ->where('isDeleted','=',0)
+            ->where('selled_at','=',NULL)
             ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
         );
         array_push($title, $landingPageConfig['categorys'][$i]['title']);
       }
     }
     array_push($result, $title, $p);
+
+    //dd($result);
     return $result;
   }
 }
