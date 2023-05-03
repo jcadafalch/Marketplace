@@ -7,23 +7,23 @@ const closeButton = document.querySelector('.close-button');
 const fileName = document.querySelector('.file-name');
 
 // Add event listener to the drop area to handle when a file is being dragged over it
-dropArea.addEventListener('dragover', (event) => {
-    event.preventDefault(); // Prevent default behavior of browser
-    dropArea.classList.add('active'); // Add "active" class to the drop area
-});
+// dropArea.addEventListener('dragover', (event) => {
+//     event.preventDefault(); // Prevent default behavior of browser
+//     dropArea.classList.add('active'); // Add "active" class to the drop area
+// });
 
 // Add event listener to the drop area to handle when a file is no longer being dragged over it
-dropArea.addEventListener('dragleave', () => {
-    dropArea.classList.remove('active'); // Remove "active" class from the drop area
-});
+// dropArea.addEventListener('dragleave', () => {
+//     dropArea.classList.remove('active'); // Remove "active" class from the drop area
+// });
 
-// Add event listener to the drop area to handle when a file is dropped onto it
-dropArea.addEventListener('drop', (event) => {
-    event.preventDefault(); // Prevent default behavior of browser
-    const file = event.dataTransfer.files[0]; // Get the file that was dropped
-    showPreview(file); // Show a preview of the file
-    showFileName(file); // Show the name of the file
-});
+// // Add event listener to the drop area to handle when a file is dropped onto it
+// dropArea.addEventListener('drop', (event) => {
+//     event.preventDefault(); // Prevent default behavior of browser
+//     const file = event.dataTransfer.files[0]; // Get the file that was dropped
+//     showPreview(file); // Show a preview of the file
+//     showFileName(file); // Show the name of the file
+// });
 
 // Add event listener to the file input element to handle when a file is selected
 fileInput.addEventListener('change', () => {
@@ -65,3 +65,69 @@ function showPreview(file) {
 //     fileName.textContent = file.name; // Set the text content of the file name element to the name of the file
 //     fileName.style.display = 'block'; // Show the file name element
 // }
+
+jQuery(document).ready(function () {
+    ImgUpload();
+});
+
+function ImgUpload() {
+    var imgWrap = "";
+    var imgArray = [];
+
+    $('.upload__inputfile').each(function () {
+        $(this).on('change', function (e) {
+            imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+            var maxLength = $(this).attr('data-max_length');
+
+            var files = e.target.files;
+            var filesArr = Array.prototype.slice.call(files);
+            var iterator = 0;
+            filesArr.forEach(function (f, index) {
+
+                if (!f.type.match('image.*')) {
+                    return;
+                }
+
+                if (imgArray.length > maxLength) {
+                    return false
+                } else {
+                    var len = 0;
+                    for (var i = 0; i < imgArray.length; i++) {
+                        if (imgArray[i] !== undefined) {
+                            len++;
+                        }
+                    }
+                    if (len > maxLength) {
+                        return false;
+                    } else {
+                        imgArray.push(f);
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            var html =
+                                "<div class='upload__img-box'><div style='background-image: url(" +
+                                e.target.result + ")' data-number='" + $(
+                                    ".upload__img-close").length + "' data-file='" + f
+                                    .name +
+                                "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                            imgWrap.append(html);
+                            iterator++;
+                        }
+                        reader.readAsDataURL(f);
+                    }
+                }
+            });
+        });
+    });
+
+    $('body').on('click', ".upload__img-close", function (e) {
+        var file = $(this).parent().data("file");
+        for (var i = 0; i < imgArray.length; i++) {
+            if (imgArray[i].name === file) {
+                imgArray.splice(i, 1);
+                break;
+            }
+        }
+        $(this).parent().parent().remove();
+    });
+}
