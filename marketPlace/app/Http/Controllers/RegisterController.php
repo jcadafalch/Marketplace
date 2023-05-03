@@ -49,6 +49,6 @@ class RegisterController extends Controller
         auth()->login($user);
         Log::info("Nuevo usuario registrado: ", ['nuevo usuario' => $user]);
 
-        return redirect()->route('auth.login')->with('message', 'Se ha enviado un correo para verificar el registro.');
+        return redirect()->route('auth.login')->with('emailMessage', 'Se ha enviado un correo para verificar el registro.');
     }
 }
