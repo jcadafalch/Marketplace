@@ -52,6 +52,7 @@ class UserController extends Controller
     {
         Auth::logout();
 
+        setcookie("shoppingCartProductsId", "", time()-3600);
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
