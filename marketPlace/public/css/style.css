@@ -301,6 +301,16 @@ body {
   color: white;
 }
 
+.shoppingcart-main-article a{
+  grid-row: 1 / 3;
+  display: flex;
+}
+
+.shoppingcart-main-article div a{
+  text-decoration: none;
+  color: inherit;
+}
+
 .button-addToCart {
   background-color: #FFD0AF;
   border: none;

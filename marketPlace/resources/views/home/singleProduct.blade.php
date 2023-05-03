@@ -8,17 +8,19 @@
             <div class="slider">
                 <div class="slide_viewer">
                     <div class="slide_group">
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
+                        <div class="slide">
+                            @if ($product->getMainImage() != null)
+                                <img class="product-images-main"
+                                    src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
+                            @else
+                                <img class="product-images-main"
+                                    src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
+                            @endif
                         </div>
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
-                        </div>
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
-                        </div>
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
+                        <div class="slide">
+                            @foreach ($product->getAlternativeImages() as $key => $imgUrl)
+                                <img class="product-images-sec" src="{{ asset('storage/img/' . $imgUrl) }}" />
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -65,7 +67,7 @@
             <p>
                 Tienda:
                 <a class="product-storeName" href="{{ route('home.index') }}" target="_blank">
-                    <em>{{ $shop[0]->shop_name }}</em> </a>
+                    <em>{{ $shop[0]->name }}</em> </a>
             </p>
             <input class="button-addToCart" type="button" value="Añadir" width="100%" id="{{ $product->id }}">
         </article>

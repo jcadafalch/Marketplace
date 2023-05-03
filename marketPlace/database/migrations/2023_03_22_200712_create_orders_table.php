@@ -16,8 +16,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger("user_id")->nullable();
+            $table->boolean("in_process")->nullable()->default(false);
         
-            $table->boolean("in_process")->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
