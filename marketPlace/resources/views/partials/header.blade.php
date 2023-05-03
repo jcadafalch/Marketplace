@@ -47,9 +47,12 @@
             </div>
             <div class="header-cartAndProfile-login">
                 <a href="{{ route('auth.logout') }}">
-                    <button>
+                    {{-- <button>
                         Logout
-                    </button>
+                    </button> --}}
+                    <span class="material-symbols-outlined">
+                        logout
+                    </span>
                 </a>
             </div>
         @endguest

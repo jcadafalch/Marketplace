@@ -2,6 +2,28 @@ let deleteButtons = document.querySelectorAll(
     ".shoppingcart-main-article-productDelete-span"
 );
 
+const delTotal = (button) => {
+    let itemPrice = button.parentElement.parentElement.querySelector(".shoppingcart-main-article-productPrice");
+    let preSubtotal = document.querySelector(".shoppingcart-aside-preusubtotal");
+    let total = document.querySelector(".shoppingcart-aside-preufinal");
+    const section = document.querySelector("section");
+
+
+    if (parseFloat(preSubtotal.innerHTML).toFixed(2) - parseFloat(itemPrice.innerHTML).toFixed(2) <= 0) {
+        preSubtotal.innerHTML = "0€";
+        total.innerHTML = "0€";
+
+        let h2 = document.createElement("h2");
+        h2.innerHTML = "No hay productos en el carrito";
+        section.append(h2);
+        section.querySelector("h5").innerHTML = (parseInt(section.querySelector("h5").innerHTML.charAt(0)) - 1) + " artículos"; 
+    } else {
+        preSubtotal.innerHTML = parseFloat(preSubtotal.innerHTML).toFixed(2) - parseFloat(itemPrice.innerHTML).toFixed(2) + "€";
+        total.innerHTML = parseFloat(total.innerHTML).toFixed(2) - parseFloat(itemPrice.innerHTML).toFixed(2) + "€";
+        section.querySelector("h5").innerHTML = (parseInt(section.querySelector("h5").innerHTML.charAt(0)) - 1) + " artículos"; 
+    }
+}
+
 const delProductFromShoppingCart = async (productId) => {
     try {
         const response = await fetch(`/shoppingCart/delProduct/${productId}`);
@@ -52,6 +74,8 @@ if (deleteButtons != null) {
             );
 
             delProductFromShoppingCart(parseInt(event.target.parentElement.parentElement.id));
+
+            delTotal(delButton);
         });
     }
 }
