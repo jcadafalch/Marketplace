@@ -21,7 +21,6 @@
             <li class="product" id="{{ $product->id }}">
                 <div class="product-image">
                     <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                        {{ dd($product) }}
                         @if ($product->getMainImage() != null)
                             <img src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
                         @else

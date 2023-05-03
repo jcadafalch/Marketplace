@@ -57,7 +57,7 @@ class Product extends Model
    */
   public function getImages()
   {
-    return dd($this->productImages()->with('images')->get()->pluck('Image'));
+    return $this->productImages()->with('images')->get()->pluck('Image');
   }
 
   /**
@@ -225,8 +225,7 @@ class Product extends Model
   {
     $result = new Collection();
     for ($i = 0; $i < count($fieldCamps); $i++) {
-      $p = DB::table('products')
-        ->join('category_product', 'products.id', '=', 'category_product.id')
+      $p = Product::join('category_product', 'products.id', '=', 'category_product.id')
         ->where('category_product.category_id', 'LIKE', '%' . $category . '%')
         ->where('products.name', 'LIKE', '%' . $fieldCamps[$i] . '%')->paginate(env('PAGINATE', 10));
 
@@ -240,13 +239,11 @@ class Product extends Model
       // Busquem els productes per l'id i els guardem amb una collection
       for ($j = 0; $j < count($diferenIdProducts); $j++) {
         $result->add(
-          DB::table('products')
-            ->where('products.id', '=', $diferenIdProducts[0])->first()
+          Product::where('products.id', '=', $diferenIdProducts[0])->first()
         );
       }
     }
     $resultOrder = $order == 'ASC' ?  $result->sortBy('name') : $result->sortByDesc('name');
-
     // Instanciem  un objecte Paginator, amb els paràmetres de la collection
     return new LengthAwarePaginator($resultOrder, $result->total(), $result->perPage());
   }

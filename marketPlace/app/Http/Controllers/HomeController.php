@@ -46,6 +46,7 @@ class HomeController extends Controller
         if($productsFilter->count() == 0){
            return redirect()->route('error.productNotFoundError');
         }
+        //dd($productsFilter);
         return view('home.index', ['products' => $productsFilter->appends(['category' => $category,'search' => $fieldSearch, 'order' => $order])], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 }
