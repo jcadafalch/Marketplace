@@ -48,8 +48,7 @@ class RegisterController extends Controller
         // $user = User::where('email','like',$request->email);
         event(new Registered($user));
         auth()->login($user);
-        Log::info("Nuevo usuario registrado: ");
-        Log::info($request);
+        Log::info("Nuevo usuario registrado: ", ['nuevo usuario' => $newOrderLine]);
 
         return redirect()->route('auth.login')->with('message', 'Se ha enviado un correo para verificar el registro.');
     }
