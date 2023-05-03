@@ -286,7 +286,7 @@ class Product extends Model
             ->where('product_images.isMain','=', 1)
             ->where('isVisible', '=', 1)
             ->where('isDeleted','=',0)
-            ->where('selled_at','=',NULL)
+            ->where('selled_at','=', NULL)
             ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
         );
         array_push($title, $landingPageConfig['categorys'][$i]['title']);
