@@ -13,6 +13,10 @@ class LandingPageController extends Controller
     {
         // Paginator::defaultView('default');
         $productsFilter = Product::landingPageFilter();
+
+        // Eliminar variables de session 
+        session()->forget(['category', 'search']);
+
         if (count($productsFilter[0]) > 0) {
             # code...
         

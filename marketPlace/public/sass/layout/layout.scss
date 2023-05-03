@@ -1,5 +1,5 @@
-$primaryColor: #7097fa;
-$hoverColor: #576da5;
+$primaryColor: #FFD0AF;
+$hoverColor: #f5a166;
 $textColor: #000000;
 html {
     font-size: 62.5%;
@@ -23,7 +23,7 @@ body {
 }
 
 .content--section {
-    margin: 3vh 10vw 0vh 10vw;
+    // margin: 3vh 10vw 0vh 10vw;
     font-size: 1.6rem;
 }
 
@@ -41,4 +41,5 @@ body {
 @import "landingPage";
 @import "singleProduct";
 @import "error";
+@import "shop";
 

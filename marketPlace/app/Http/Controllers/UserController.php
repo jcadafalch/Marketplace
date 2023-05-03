@@ -24,13 +24,15 @@ class UserController extends Controller
 
     public function editProfile(Request $request)
     {
-
+        
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
 
         if ($request->file('profilePhoto') !== null) {
-            $path = $request->file('profilePhoto')->storeAs('public/img/profile', 'profileImg' . Auth::user()->id . '.jpg');
-            $user->path = $path;
+            $extension = $request->file('profilePhoto')->getClientOriginalExtension();
+            $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
+            $request->file('profilePhoto')->storeAs('public/img/profile', $img);
+            $user->path = $img;
         }
 
         if ($request->string('userName') !== null && $request->string('userName')->length() > 0) {

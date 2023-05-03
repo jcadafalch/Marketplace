@@ -1,30 +1,44 @@
 .landing {
     &-card {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+        padding: 3vh 10vw 3vh 10vw;
+        text-align: center;
 
-        align-items: center;
-        justify-items: center;
+        margin-bottom: 2rem;
 
-        gap: 2rem;
-        margin: 2rem;
-        padding: 2rem;
+        &:nth-child(even) {
+            background: $primaryColor;
+        }
 
-        border-radius: 3rem;
-        box-shadow: 0 3px 5px 0 black;
+        &:nth-child(odd) {
+            background: white;
+        }
     }
 
-    &-info {
-        padding: 2rem;
+    &-products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+        gap: 3rem;
+        margin: 2rem;
+
+        li {
+            list-style: none;
+            text-align: center;
+
+            a {
+                text-decoration: none;
+            }
+        }
     }
 
     &-title {
-        font-size: 24px;
-        margin-bottom: 2rem;
+        font-size: 40px;
+        padding: 2rem;
+        font-weight: 400;
     }
 
     &-image {
-        width: 15rem;
+        width: 100%;
+        height: auto;
         border-radius: 3rem;
     }
 }

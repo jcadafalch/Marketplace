@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopCreate;
@@ -10,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
+    public function index(){
+        return view('shop.index',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
+    }
+
     /**
      * Funció que et retorna la vista de crear nova shop. 
      */
@@ -38,6 +43,12 @@ class ShopController extends Controller
         return redirect()->route('home.index');
     }
 
+    public function newProduct()
+    {
+        return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -57,9 +68,9 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(/*string $id*/)
     {
-        //
+        return view('shop.edit',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**
@@ -77,4 +88,5 @@ class ShopController extends Controller
     {
         //
     }
+
 }

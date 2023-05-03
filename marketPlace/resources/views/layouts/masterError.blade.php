@@ -13,13 +13,13 @@
 
 <body>
 @include('partials.header')
-    <div class="error"> 
+    <main class="error"> 
         <div class="error-image"><img src="{{ asset('/images/Error.png') }}" alt="Logo"/></div>
-        <div class="error-message">
+        <article class="error-message">
             @yield('content')
-        </div>
+        </article>
          <a href="{{ route('home.index') }}"><button class="button-error">Página de inicio</button></a>
-    </div>
+    </main>
 @include('partials.footer')
 </body>
 

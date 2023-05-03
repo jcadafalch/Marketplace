@@ -9,8 +9,20 @@
                 <h3>Dar de alta tu tienda</h3>
             </div>
         </div>
-        <form class="userForm-form" action="{{ route('register.createNewShop') }}" method="post">
+        <form class="userForm-form" action="{{ route('register.createNewShop') }}" method="post" enctype="multipart/form-data">
             @csrf
+            <div class="container">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' name="profilePhoto" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label for="imageUpload"></label>
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview" style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path ) }});">
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="userForm-form-item">
                 <label>Nombre de la tienda</label>
                 <input type="text" name="shopName" value="{{ old('shopName') }}">
@@ -37,4 +49,6 @@
             @endif
         </form>
     </div>
+
+    <script src="{{ asset('js/profileImgPreview.js') }}"></script>
 @endsection
