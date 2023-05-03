@@ -40,11 +40,10 @@ class OrderLine extends Model
     }
 
     /**
-     * This function adds a product to an order by creating a new order line or adding to an existing
-     * one.
+     * Esta función añade un producto a un pedido creando una nueva línea de pedido o añadiéndolo a una ya existente.
      * 
-     * @param product The product that needs to be added to the order line.
-     * @param orderId The ID of the order to which the product is being added.
+     * @param product El producto que debe añadirse a la línea de pedido.
+     * @param orderId ID del pedido al que se añade el producto.
      */
     public static function addProduct($product, $orderId){
         $orderLine = OrderLine::where('order_id', $orderId)->where('shop_id', $product->shop_id)->first();

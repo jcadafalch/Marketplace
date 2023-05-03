@@ -22,10 +22,10 @@ class ProductOderLine extends Model
     }
 
     /**
-     * This function adds a new product to an existing order line if the product doesn't exist in those order line.
+     * Esta función añade un nuevo producto a una línea de pedido existente si dicho producto no existe en esa línea de pedido.
      * 
-     * @param product The product object that needs to be added to the order line.
-     * @param orderLineId The ID of the order line to which the product is being added.
+     * @param product El objeto producto que debe añadirse a la línea de pedido.
+     * @param orderLineId ID de la línea de pedido a la que se añade el producto.
      */
     public static function AddProduct($product, $orderLineId){
         $productOrderLine = ProductOderLine::where("orderLine_id", $orderLineId)->where("product_id", $product->id)->first();

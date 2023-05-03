@@ -55,12 +55,10 @@ class Order extends Model
     }
 
     /**
-     * This function adds product IDs to a user's order or creates a new order if the user does not
-     * have an existing order in process.
+     * Esta función añade IDs de productos al pedido de un usuario o crea un nuevo pedido si el usuario no tiene un pedido en curso.
      * 
-     * @param ids The parameter "ids" is a string containing a list of product IDs separated by dots
-     * (".") that need to be added to the user's order.
-     * @param userId The ID of the user for whom the order is being created or updated.
+     * @param ids El parámetro "ids" es una cadena que contiene una lista de ID de productos separados por puntos (".") que deben añadirse al pedido del usuario.
+     * @param userId El ID del usuario para el que se está creando o actualizando la orden.
      */
     public static function addIds($ids, $userId)
     {
