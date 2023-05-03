@@ -13,18 +13,24 @@
     @else
         @foreach ($producte as $key => $productec)
             <div style="display: none"> {{ $total += $productec->price }}</div>
-            <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal">
-                @if ($productec->getMainImage() != null)
-                    <img class="shoppingcart-main-article-productImage"
-                        src="{{ asset('storage/img/' . $productec->getMainImage()) }}" />
-                @else
-                    <img class="shoppingcart-main-article-productImage"
-                        src="{{ asset('/images/imagesNotFound.webp' . $productec->getMainImage()) }}" />
-                @endif
-                <h3 class="shoppingcart-main-article-productName">{{ $productec->name }}</h3>
-                <p class="shoppingcart-main-article-productDescription">
-                    {{ $productec->description }}
-                </p>
+            <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal" id="{{ $productec->id }}">
+                <a href="{{ route('product.show', ['id' => $productec->id]) }}">
+                    @if ($productec->getMainImage() != null)
+                        <img class="shoppingcart-main-article-productImage"
+                            src="{{ asset('storage/img/' . $productec->getMainImage()) }}" />
+                    @else
+                        <img class="shoppingcart-main-article-productImage"
+                            src="{{ asset('/images/imagesNotFound.webp' . $productec->getMainImage()) }}" />
+                    @endif
+                </a>
+                <div>
+                    <a href="{{ route('product.show', ['id' => $productec->id]) }}">
+                        <h3 class="shoppingcart-main-article-productName">{{ $productec->name }}</h3>
+                    </a>
+                    <p class="shoppingcart-main-article-productDescription">
+                        {{ $productec->description }}
+                    </p>
+                </div>
                 <button class="shoppingcart-main-article-productDelete" title="Eliminar producto de la lista">
                     <span class="material-symbols-outlined shoppingcart-main-article-productDelete-span">
                         delete

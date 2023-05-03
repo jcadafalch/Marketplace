@@ -5,7 +5,7 @@
 @section('content')
     <div class="userForm">
         <div class="userForm-title">
-            <a href="{{ route('home.index') }}"><img class='userForm-logo' src="{{ asset('/images/logo.png') }}"
+            <a href="{{ route('landingPage') }}"><img class='userForm-logo' src="{{ asset('/images/logo.png') }}"
                     alt="Logo" /></a>
         </div>
 

@@ -41,7 +41,9 @@ arrayProducts.forEach((product) => {
     let item = document.getElementById(product);
     if (item) {
         let productButton = item.getElementsByClassName("button-addToCart");
-        productButton[0].setAttribute("disabled", true);
+        if (productButton[0] != undefined) {
+            productButton[0].setAttribute("disabled", true);
+        }
     }
 });
 
