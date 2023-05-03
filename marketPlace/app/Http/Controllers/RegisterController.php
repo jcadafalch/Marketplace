@@ -45,10 +45,9 @@ class RegisterController extends Controller
              'remember_token' => Str::random(10),
         ]);
 
-        // $user = User::where('email','like',$request->email);
         event(new Registered($user));
         auth()->login($user);
-        Log::info("Nuevo usuario registrado: ", ['nuevo usuario' => $newOrderLine]);
+        Log::info("Nuevo usuario registrado: ", ['nuevo usuario' => $user]);
 
         return redirect()->route('auth.login')->with('message', 'Se ha enviado un correo para verificar el registro.');
     }
