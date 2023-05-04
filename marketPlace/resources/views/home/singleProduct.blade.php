@@ -10,18 +10,18 @@
                     <div class="slide_group">
                         <div class="slide">
                             @if ($product->getMainImage() != null)
-                                <img class="product-images-main"
+                                <img class="product-images-img"
                                     src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
                             @else
-                                <img class="product-images-main"
+                                <img class="product-images-img"
                                     src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
                             @endif
                         </div>
-                        <div class="slide">
-                            @foreach ($product->getAlternativeImages() as $key => $imgUrl)
-                                <img class="product-images-sec" src="{{ asset('storage/img/' . $imgUrl) }}" />
-                            @endforeach
-                        </div>
+                        @foreach ($product->getAlternativeImages() as $key => $imgUrl)
+                            <div class="slide">
+                                <img class="product-images-img" src="{{ asset('storage/img/' . $imgUrl) }}" />
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div><!-- End // .slider -->
