@@ -961,6 +961,8 @@ a.slide_btn {
 .shop-banner {
   height: 18rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .shop-banner img {
   object-fit: cover;
