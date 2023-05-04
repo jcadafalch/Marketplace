@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
-use App\Models\Product;
+use App\Models\User;
 use App\Models\Image;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopCreate;
@@ -14,6 +15,14 @@ use Illuminate\Foundation\Http\FormRequest;
 class ShopController extends Controller
 {
     public function index(){
+        $userId = Auth::id();
+        
+        if($userId != null){
+            $shop = Shop::where('user_id', $userId)->first();
+            $productsShop = $shop->getShopProducts();
+        }else{
+            return redirect()->route('error.shopNotFound');
+        }
         return view('shop.index',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 

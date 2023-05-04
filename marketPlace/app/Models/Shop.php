@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Image;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,11 @@ class Shop extends Model
 
     public function products(){
         return $this->hasMany(Product::class)->withTimeStamps();
+    }
+
+    public function getShopProducts(){
+
+        return Product::all()->where('shop_id', $this->id);
     }
     
     public function logo(){

@@ -38,7 +38,7 @@ Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin')
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('auth.store'); 
 
-// NO TOCAR, si se cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
+// NO TOCAR, si se toca cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
   $request->fulfill();
 
