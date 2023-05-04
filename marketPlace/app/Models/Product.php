@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -271,7 +272,7 @@ class Product extends Model
     $landingPageConfigRute = base_path() . env('LANDING_PAGE_CONFIG');
     $landingPageConfig = json_decode(file_get_contents($landingPageConfigRute), true);
 
-    
+
     if (isset($landingPageConfig['categorys'])) {
       for ($i = 0; $i < count($landingPageConfig['categorys']); $i++) {
         array_push(
@@ -297,4 +298,30 @@ class Product extends Model
     //dd($result);
     return $result;
   }
+
+  public static function addProduct($request)
+    {
+        $shopId = Shop::all()->where("user_id", Auth::id())->first()->id;
+
+        $request->validate([
+            'name' => 'required|min:20',
+           'price' => 'required|min:20',
+           'details' => 'required|min:50',
+           'file' => 'required'
+        ]);
+
+        $product = new Product();
+        $product->name = $request['name'];
+        $product->description = $request['detail'];
+        $product->price = $request['price'];
+        $product->isVisible = true;
+        $product->isDeleted = false;
+        $product->order = 1;
+        $product->shop_id = $shopId;
+
+        $product->save();
+
+        return redirect()->route('shop.show');
+    }
+
 }

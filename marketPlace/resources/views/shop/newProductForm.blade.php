@@ -12,7 +12,7 @@
                 {{ Session::get('message') }}
             </div>
         @endif
-        <form class="userForm-form" method="post">
+        <form class="userForm-form" method="post" enctype="multipart/form-data">
             @csrf
             <div class="userForm-form-item">
                 <label>Nombre</label>
@@ -28,14 +28,6 @@
                 <label>Detalle</label>
                 <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail"></textarea>
             </div>
-            {{-- <div class="userForm-form-uploadPhoto">
-                <div class ="userForm-form-uploadPhoto-text">
-                    <label>Imagen destacada</label>      
-                </div>
-                <div class="userForm-form-uploadPhoto-button">
-                    <input type="file" name="productMainImage" accept="image/*">
-                </div>
-            </div> --}}
             <div class="upload-container">
                 <div class="drop-area">
                     <label for="file-input"> Imagen destacada </label>
@@ -48,16 +40,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- <div class="userForm-form-uploadPhoto">
-                <div class ="userForm-form-uploadPhoto-text">
-                    <label>Otras Imagenes</label>      
-                </div>
-                <div class="userForm-form-uploadPhoto-button">
-                    <input type="file" name="productImages" accept="image/*" multiple>
-                </div>
-            </div> --}}
-
             <div class="upload__box drop-area">
                 <div class="upload__btn-box">
                     <label class="upload__btn">

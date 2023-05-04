@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductCreate;
 use App\Models\Shop;
 use App\Models\Product;
 use App\Models\Image;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ShopCreate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Log;
 
 class ShopController extends Controller
 {
@@ -59,6 +61,11 @@ class ShopController extends Controller
     {
         return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
 
+    }
+
+    public function addProduct(Request $request)
+    {
+        Product::addProduct($request);
     }
 
     /**
