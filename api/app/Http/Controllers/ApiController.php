@@ -21,7 +21,7 @@ class ApiController extends Controller
     public function getImage(Request $request)
     {
         if ($request->bearerToken() == env('API_TOKEN')) {
-            Log::error("agafar un imatge");
+            Log::info("agafar un imatge");
             try {
 
                 $allFiles =  Storage::disk('img')->allFiles();
@@ -52,7 +52,7 @@ class ApiController extends Controller
     {
 
         if ($request->bearerToken() == env('API_TOKEN')) {
-            Log::error("Agafar totes les imatges");
+            Log::info("Agafar totes les imatges");
             try {
                 $allFiles =  Storage::disk('img')->allFiles();
 
@@ -75,7 +75,7 @@ class ApiController extends Controller
     {
 
         if ($request->bearerToken() == env('API_TOKEN')) {
-            Log::error("Imagen creada");
+            Log::info("Imagen creada");
             try {
                 $fileName =  $request->ContextName;
                 $image = imagecreate(500, 300);
@@ -106,7 +106,7 @@ class ApiController extends Controller
     {
 
         if ($request->bearerToken() == env('API_TOKEN')) {
-            Log::error("imagen borrada" . $request->name);
+            Log::info("imagen borrada" . $request->name);
             try {
                 Storage::disk('img')->delete($request->name);
                 //Log::error(Storage::disk('img')->exists($request->name));
@@ -126,7 +126,7 @@ class ApiController extends Controller
     {
 
         if ($request->bearerToken() == env('API_TOKEN')) {
-            Log::error("Imagenes de un producto borradas");
+            Log::info("Imagenes de un producto borradas");
             try {
                 $allImages = $request->all();
 
@@ -150,7 +150,7 @@ class ApiController extends Controller
     {
 
         if ($request->bearerToken() == env('API_TOKEN')) {
-            Log::error("Se han borrado todas las imagenes");
+            Log::info("Se han borrado todas las imagenes");
             try {
                 $allFiles =  Storage::disk('img')->allFiles();
                 for ($i = 0; $i < count($allFiles); $i++) {
@@ -175,12 +175,12 @@ class ApiController extends Controller
         ]);*/
         if ($request->bearerToken() == env('API_TOKEN')) {
             try {
-                Log::error("Imagen subida");
+                Log::info("Imagen subida");
                 $urlServer = "http://" . $_SERVER['HTTP_HOST'] . "/";
                 $RandomNameImage = uniqid() . "." . $request["imagen"]->extension();
 
                 Storage::disk('img')->put($RandomNameImage, $request["imagen"]->get());
-                Log::error("Imatge pujada al servidor at:");
+                
                 self::generateResponse("Subo una imagen", 200,$urlServer . $this->urlImage . $RandomNameImage);
             } catch (\Throwable $th) {
                 self::generateResponse("Fallo al subir la imagen", 200, "Suba otra vez la imagen");
