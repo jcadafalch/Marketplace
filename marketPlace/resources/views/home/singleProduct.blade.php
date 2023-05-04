@@ -8,18 +8,20 @@
             <div class="slider">
                 <div class="slide_viewer">
                     <div class="slide_group">
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
+                        <div class="slide">
+                            @if ($product->getMainImage() != null)
+                                <img class="product-images-img"
+                                    src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
+                            @else
+                                <img class="product-images-img"
+                                    src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
+                            @endif
                         </div>
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
-                        </div>
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
-                        </div>
-                        <div class="slide"><img class="product-images-main"
-                                src="{{ asset('storage/img/' . $product->url) }}" />
-                        </div>
+                        @foreach ($product->getAlternativeImages() as $key => $imgUrl)
+                            <div class="slide">
+                                <img class="product-images-img" src="{{ asset('storage/img/' . $imgUrl) }}" />
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div><!-- End // .slider -->
@@ -64,8 +66,8 @@
             <p class="product-description">{{ $product->description }}</p>
             <p>
                 Tienda:
-                <a class="product-storeName" href="{{ route('home.index') }}" target="_blank">
-                    <em>{{ $shop[0]->shop_name }}</em> </a>
+                <a class="product-storeName" href="{{ route('shop.show') }}" target="_blank">
+                    <em>{{ $shop[0]->name }}</em> </a>
             </p>
             <input class="button-addToCart" type="button" value="Añadir" width="100%" id="{{ $product->id }}">
         </article>

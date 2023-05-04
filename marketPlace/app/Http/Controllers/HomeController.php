@@ -14,6 +14,10 @@ class HomeController extends Controller
     public function index()
     {
         Paginator::defaultView('default');
+        // Eliminar variables de session 
+        $test = Product::all();
+        //dd($test[0]->getMainImage());
+        session()->forget(['category', 'search']);  
 
         return view('home.index' , ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))],['categories' => Category::all()->where('parent_id', '=', null)]);
     }
@@ -42,6 +46,7 @@ class HomeController extends Controller
         if($productsFilter->count() == 0){
            return redirect()->route('error.productNotFoundError');
         }
+        //dd($productsFilter);
         return view('home.index', ['products' => $productsFilter->appends(['category' => $category,'search' => $fieldSearch, 'order' => $order])], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 }

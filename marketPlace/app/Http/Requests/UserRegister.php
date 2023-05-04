@@ -24,7 +24,7 @@ class UserRegister extends FormRequest
         return [
             'nombreUsuario' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'contraseña' => 'required|string|min:8',
+            'contraseña' => ['required', 'string', 'min:8', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[!@#$%^&*(),.?":{}|<>]/'],
             'confirmaContraseña' => 'required|string|min:8|same:contraseña'
         ];
     }
@@ -35,6 +35,7 @@ class UserRegister extends FormRequest
             'required' => 'El campo :attribute no puede estar vacio',
             'same' => 'La contraseñas no conciden',
             'unique' => 'Este correo ya está registrado',
+            'regex' => 'La contraseña tiene que tener: mínimo 8 caracteres, 1 carácter en mayúsculas y al menos 1 carácter especial',
             'min' => ['string' => 'El campo :attribute tiene que tener como minimo :min caracteres']
             
         ];

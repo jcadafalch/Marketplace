@@ -16,8 +16,13 @@
             <div style="display: none"> {{ $total += $productec->price }}</div>
             <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal" id="{{ $productec->id }}">
                 <a href="{{ route('product.show', ['id' => $productec->id]) }}">
-                    <img class="shoppingcart-main-article-productImage" src="{{ asset('storage/img/' . $productec->url) }}"
-                        alt="">
+                    @if ($productec->getMainImage() != null)
+                        <img class="shoppingcart-main-article-productImage"
+                            src="{{ asset('storage/img/' . $productec->getMainImage()) }}" />
+                    @else
+                        <img class="shoppingcart-main-article-productImage"
+                            src="{{ asset('/images/imagesNotFound.webp' . $productec->getMainImage()) }}" />
+                    @endif
                 </a>
                 <div>
                     <a href="{{ route('product.show', ['id' => $productec->id]) }}">

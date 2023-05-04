@@ -28,7 +28,7 @@
                 <input type="text" name="shopName" value="{{ old('shopName') }}">
             </div>
             <div class="userForm-form-item">
-                <label>Nombre completo</label>
+                <label>Nombre del Propietario</label>
                 <input type="text" name="name" value="{{ old('name') }}">
             </div>
             <div class="userForm-form-item">
@@ -49,6 +49,5 @@
             @endif
         </form>
     </div>
-
     <script src="{{ asset('js/profileImgPreview.js') }}"></script>
 @endsection

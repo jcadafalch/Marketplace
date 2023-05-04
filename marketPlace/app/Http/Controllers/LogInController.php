@@ -105,14 +105,14 @@ class LogInController extends Controller
             return redirect()->route('auth.login')->with('message', 'El nombre de usuario o correo electrónico o contraseña son incorrectos.');  
         }
 
-        Log::info(Auth::user());
+        Log::info("Un usuario ha iniciado sessión: ",['usuario' => Auth::user()]);
         
         /* Si la dirección de correo electrónico no está verificada, redirige al usuario a la 
         página de inicio de sesión con un mensaje de error que indica que el correo electrónico
         del usuario no está verificado y que debe comprobar su correo electrónico y verificar su registro. */
         if(!isset(Auth::user()->email_verified_at)){
             Log::info("Usuari no verificat");
-            return redirect()->route('auth.login')->with('message', 'Usuario no verificado, revisa el correo y verifica el regitro');
+            return redirect()->route('auth.login')->with('message', 'Usuario no verificado, revisa el correo y verifica el registro');
         }
 
         $request->session()->regenerate();

@@ -16,9 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name')->unique()->nullable(false);
             $table->string('description')->nullable(false);
-            $table->decimal('price', 5, 2);
-            $table->string('url');
+            $table->integer('price');
             $table->timestamp('selled_at')->nullable();
+            $table->boolean('isVisible')->default(true);
+            $table->boolean('isDeleted')->default(false);
+            $table->integer('order');
 
             $table->unsignedBigInteger('shop_id')->index();
             $table->foreign('shop_id')->references('id')->on('shops')->cascadeOnDelete();
