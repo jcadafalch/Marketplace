@@ -19,7 +19,12 @@ class Shop extends Model
 
     public function getShopProducts(){
 
-        return Product::all()->where('shop_id', $this->id);
+      
+    }
+
+    public function getAllShopProducts(){
+        return Product::where('shop_id', $this->id)
+        ->paginate(env('PAGINATE', 10));
     }
     
     public function logo(){
