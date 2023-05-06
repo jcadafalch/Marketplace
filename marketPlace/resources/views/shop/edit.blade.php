@@ -3,7 +3,7 @@
 @section('title', 'Editar tienda')
 
 @section('content')
-    <form action="" method="post" enctype="multipart/form-data">
+    <form  action="{{ route('shop.editConfiguration') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <section class="shop-banner">
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>Nombre de Tienda</p>
+                    <p>Nombre de Tienda<br> {{$shop->name}}</p>
                 </div>
                 <div class="shop-info-detail-seller">
                     {{-- <div class="shop-info-detail-seller-img">
@@ -55,15 +55,16 @@
                         background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }}), url({{ asset('storage/img/profile/defaultProfileImage.jpg') }});">
                         </div>
                     </div>
-                    <p>Nombre Usuario</p>
+                    <p>Nombre Usuario<br>{{Auth::user()->name}}</p>
+                    <p></p>
                 </div>
             </article>
 
             <article class="shop-description-edit" style="margin: 5rem 0 5rem 0;">
                 <label for="shop-description">Mensaje de la Tienda:</label>
-                <input type="text" name="shop-description">
+                <input type="text" name="shopDescription">
             </article>
-            <input type="button" value="Guardar Cambios" class="button-changeProfile">
+            <button class="button-changeProfile" type="submit">Guardar Cambios</button>
     </form>
     <article class="shop-products">
         <h4>Todos los productos</h4>
