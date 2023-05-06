@@ -15,17 +15,19 @@ use Illuminate\Support\Facades\Log;
 
 class ShopController extends Controller
 {
-    public function index(){
-        return view('shop.index',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
+    public function index()
+    {
+        return view('shop.index', ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**
      * Funció que et retorna la vista de crear nova shop. 
      */
-    public function createNewShop(){
-        return view('shop.createNewShop',['categories' => Category::all()->where('parent_id', '=', null)]);
+    public function createNewShop()
+    {
+        return view('shop.createNewShop', ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
-    
+
     /**
      * Funció per crear una nova shop. 
      */
@@ -33,10 +35,10 @@ class ShopController extends Controller
     {
         // Validacions
         $validated = $request->validated();
-        
+
         //Obtenir l'id de l'usuari que està connectat
         $userId = Auth::id();
-    
+
         $extension = $request->file('profilePhoto')->getClientOriginalExtension();
         $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
         $request->file('profilePhoto')->storeAs('public/img/shopProfile', $img);
@@ -50,9 +52,9 @@ class ShopController extends Controller
         $shop->ownerName = $request['name'];;
         $shop->name = $request['shopName'];
         $shop->nif = $request['nif'];
-        $shop->user_id = $userId; 
+        $shop->user_id = $userId;
         $shop->logo_id = $image->id;
-        $shop->save();  
+        $shop->save();
 
         return redirect()->route('shop.show');
     }
@@ -60,12 +62,25 @@ class ShopController extends Controller
     public function newProduct()
     {
         return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
-
     }
 
     public function addProduct(Request $request)
     {
-        Product::addProduct($request);
+        $return = Product::addProduct($request);
+
+        if (!$return) {
+            return redirect()->route('shop.newProduct')->withInput()->with([
+                "error" => "El nombre de este producto ya está registrado, prueba con otro nombre"
+            ]);
+        }else if($return === "img"){
+            return redirect()->route('shop.newProduct')->withInput()->with([
+                "error" => "Por favor, escoge una imagen destacada"
+            ]);
+        } else {
+            return redirect()->route('shop.newProduct')->with([
+                "message" => "Producto añadido!"
+            ]);
+        }
     }
 
     /**
@@ -89,7 +104,7 @@ class ShopController extends Controller
      */
     public function edit(/*string $id*/)
     {
-        return view('shop.edit',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('shop.edit', ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**
@@ -107,5 +122,4 @@ class ShopController extends Controller
     {
         //
     }
-
 }
