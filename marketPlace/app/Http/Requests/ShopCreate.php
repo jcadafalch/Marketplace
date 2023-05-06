@@ -23,7 +23,7 @@ class ShopCreate extends FormRequest
     {
         return [
            'shopName' => 'required|min:5',
-           'name' => 'required|max:20',
+           'name' => 'required|max:30',
            'nif' =>  ['required', 'regex:/^\d{8,8}[a-zA-Z]$/'],
            'profilePhoto' => 'required|image|mimes:png,jpg,jpeg'
         ];
