@@ -10,6 +10,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopCreate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ShopController extends Controller
@@ -43,10 +44,8 @@ class ShopController extends Controller
         
         //Obtenir l'id de l'usuari que està connectat
         $userId = Auth::id();
-    
-        $extension = $request->file('profilePhoto')->getClientOriginalExtension();
-        $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
-        $request->file('profilePhoto')->storeAs('public/img/shopProfile', $img);
+        //dd($request->file());
+        $img = self::saveImage($userId, $request, true);
 
         $image = new Image();
         $image->name = $request['shopName'];
@@ -89,9 +88,40 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(/*string $id*/)
-    {
-        return view('shop.edit',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
+    public function showEdit()
+    {   
+        $userId = Auth::id();
+        $shop = Shop::where('user_id', $userId)->first();
+        
+        if($userId != null){
+            $productsShop = $shop->getAllShopProducts();
+        }else{
+            return redirect()->route('error.shopNotFound');
+        }
+
+        return view('shop.edit',['products' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
+    }
+
+    public function editShop(Request $request){
+        $userId = Auth::id();
+        $shop = Shop::where('user_id', '=' , $userId)->first();
+        
+
+        if($request->shopDescription != null){  
+            $shop->description = $request->shopDescription;
+            $shop->save();
+        }if($request->shopBanner != null){
+            if($shop->banner_id != null){
+           
+                self::deleteOldImage($shop);
+            }  
+            $img = self::saveImage($userId, $request,false);
+            $image = Image::createImageModel($shop->nif, $img);
+
+            $shop->banner_id = $image->id;
+            $shop->save();
+        }
+        return redirect()->route('shop.edit');
     }
 
     /**
@@ -108,6 +138,30 @@ class ShopController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function saveImage($userId, $request, $isLogo){
+        $requestFile =  $request->file();
+        $file = reset($requestFile);
+        $extension = $file->getClientOriginalExtension();
+
+        if($isLogo){
+            $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
+            $file->storeAs('public/img/shopProfile', $img);
+        }else{
+            $img = 'profileBanner' . Auth::user()->id . '.' .  $extension;
+            $file->storeAs('public/img/shopProfileBanner', $img);
+        }
+        return $img; 
+    }
+
+
+    public function deleteOldImage($shop){
+        $image = Image::where('name',$shop->nif)->first();
+        
+        $disc = Storage::disk('img');
+        $disc->delete('shopProfileBanner/' . $image->url);
+        //$image->delete();
     }
 
 }
