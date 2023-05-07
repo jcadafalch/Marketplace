@@ -125,7 +125,7 @@
             text-decoration: underline double $primaryColor;
         }
 
-        input[name="expanded"]:checked ~ .shop-description-button label::before {
+        input[name="expanded"]:checked~.shop-description-button label::before {
             content: attr(data-less);
         }
     }
@@ -327,4 +327,113 @@
     position: relative;
     padding-bottom: 100%;
     border-radius: 0.375rem;
+}
+
+.edit {
+    position: relative;
+    max-width: 205px;
+
+    &-list {
+        position: absolute;
+        right: 12px;
+        z-index: 1;
+        top: 10px;
+
+        &-ableDissable {
+            display: none;
+        }
+
+        .dissable {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #FFFFFF;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background: #f1f1f1;
+                border-color: #d6d6d6;
+            }
+
+            &:after {
+                content: "\e5cd";
+                font-family: 'Material Icons';
+                color: #757575;
+                position: relative;
+                top: 7px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+            }
+        }
+
+        .able {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #FFFFFF;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background: #f1f1f1;
+                border-color: #d6d6d6;
+            }
+
+            &:after {
+                content: "\e876";
+                font-family: 'Material Icons';
+                color: #757575;
+                position: relative;
+                top: 7px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+            }
+        }
+
+        .delete {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #FFFFFF;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background: #f1f1f1;
+                border-color: #d6d6d6;
+            }
+
+            &:after {
+                content: "\e15b";
+                font-family: 'Material Icons';
+                color: #757575;
+                position: relative;
+                top: 7px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+            }
+        }
+    }
 }

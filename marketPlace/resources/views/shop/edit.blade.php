@@ -77,14 +77,14 @@
                     <a href="{{ route('shop.newProduct') }}">Añadir Producto</a>
                 </li>
                 @foreach ($products as $key => $product)
-                    <li class="product button-edit" id="{{ $product->id }}">
-                        <div class="button-edit-list">
-                            <input type="button" class="button-ableDissable" name="deshabilitar">
-                            <label for="deshabilitar"></label>
-                            <input type="button" class="button-ableDissable" name="habilitar">
-                            <label for="habilitar"></label>
-                            <input type="button" class="button-ableDissable" name="eliminar">
-                            <label for="eliminar"></label>
+                    <li class="product edit" id="{{ $product->id }}">
+                        <div class="edit-list">
+                            <input type="button" class="edit-list-ableDissable" name="deshabilitar">
+                            <label title="Deshabilitar" class='dissable' for="deshabilitar"></label>
+                            <input type="button" class="edit-list-ableDissable" name="habilitar">
+                            <label title="Habilitar" class='able' for="habilitar"></label>
+                            <input type="button" class="edit-list-ableDissable" name="eliminar">
+                            <label title="Eliminar" class='delete' for="eliminar"></label>
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
