@@ -44,22 +44,11 @@ class ShopController extends Controller
         
         //Obtenir l'id de l'usuari que està connectat
         $userId = Auth::id();
-        //dd($request->file());
+    
         $img = self::saveImage($userId, $request, true);
-
-        $image = new Image();
-        $image->name = $request['shopName'];
-        $image->url = $img;
-        $image->save();
-
-        $shop = new Shop();
-        $shop->ownerName = $request['name'];;
-        $shop->name = $request['shopName'];
-        $shop->nif = $request['nif'];
-        $shop->user_id = $userId; 
-        $shop->logo_id = $image->id;
-        $shop->save();  
-
+        $image = Image::createImageObject($request['shopName'], $img);
+        $shop = Shop::createShopObject($request['name'], $request['shopName'], $request['nif'], $userId, $image->id);
+       
         return redirect()->route('shop.show');
     }
 
@@ -106,7 +95,7 @@ class ShopController extends Controller
         $userId = Auth::id();
         $shop = Shop::where('user_id', '=' , $userId)->first();
         
-
+        //dd($request);
         if($request->shopDescription != null){  
             $shop->description = $request->shopDescription;
             $shop->save();
@@ -116,7 +105,7 @@ class ShopController extends Controller
                 self::deleteOldImage($shop);
             }  
             $img = self::saveImage($userId, $request,false);
-            $image = Image::createImageModel($shop->nif, $img);
+            $image = Image::createImageObject($shop->nif, $img);
 
             $shop->banner_id = $image->id;
             $shop->save();
