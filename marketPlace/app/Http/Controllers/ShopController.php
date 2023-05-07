@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\ShopEdit;
 use App\Http\Requests\ShopCreate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -40,12 +41,12 @@ class ShopController extends Controller
     public function registerShop(ShopCreate $request)
     {
         // Validacions
-        $validated = $request->validated();
+        $request->validated();
         
         //Obtenir l'id de l'usuari que està connectat
         $userId = Auth::id();
     
-        $img = self::saveImage($userId, $request, true);
+        $img = self::saveImage($userId, $request);
         $image = Image::createImageObject($request['shopName'], $img);
         $shop = Shop::createShopObject($request['name'], $request['shopName'], $request['nif'], $userId, $image->id);
        
@@ -91,24 +92,31 @@ class ShopController extends Controller
         return view('shop.edit',['products' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
-    public function editShop(Request $request){
+    public function editShop(ShopEdit $request){
+
+        $request->validated();
+
         $userId = Auth::id();
         $shop = Shop::where('user_id', '=' , $userId)->first();
         
         //dd($request);
-        if($request->shopDescription != null){  
+        if($request->shopDescription != null){ 
             $shop->description = $request->shopDescription;
             $shop->save();
         }if($request->shopBanner != null){
             if($shop->banner_id != null){
-           
-                self::deleteOldImage($shop);
+                self::deleteOldImage($shop, $request);
             }  
-            $img = self::saveImage($userId, $request,false);
+            $img = self::saveImage($userId, $request);
             $image = Image::createImageObject($shop->nif, $img);
 
             $shop->banner_id = $image->id;
             $shop->save();
+        }if($request->profileImg != null){
+            self::deleteOldImage($shop, $request);
+            $img = self::saveImage($userId, $request); 
+            self::saveImage($userId, $request, $isLogo);
+
         }
         return redirect()->route('shop.edit');
     }
@@ -116,9 +124,47 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateProduct(Request $request)
     {
-        //
+        //dd($request->query('action'));
+        $response = [
+            "status" => "",
+            "msg" => "",
+            "action" => ""
+        ];
+        $executed = false;
+        try {
+            $product = Product::findOrFail($request->query('id'));
+            switch ($request->query('action')) {
+                case "able":
+                    $product->isVisible = true;
+                    $executed = true;
+                    $response['action'] =  "able";
+                    break;
+                case "dissable":
+                    $product->isVisible = false;
+                    $executed = true;
+                    $response['action'] =  "dissable";
+                    break;
+                case "delete":
+                    $product->isDeleted = true;
+                    $executed = true;
+                    $response['action'] =  "delete";
+                    break;    
+                default:
+                    break;
+            }
+            if($executed){
+                $product->save();
+                $response['status'] = $executed;
+                $response['msg'] =  $product->name;
+            }
+         } catch (\Throwable $th) {
+            $response['status'] = $executed;
+            $response['msg'] = 'Error';
+        }
+       
+        return response()->json($response);
     }
 
     /**
@@ -129,28 +175,37 @@ class ShopController extends Controller
         //
     }
 
-    public function saveImage($userId, $request, $isLogo){
-        $requestFile =  $request->file();
-        $file = reset($requestFile);
-        $extension = $file->getClientOriginalExtension();
+    public function saveImage($userId, $request){
 
-        if($isLogo){
+        if($request->profileImg != null){
+            $file = $request->file('profileImg');
+            $extension = $file->getClientOriginalExtension();
+
             $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfile', $img);
-        }else{
+        }if($request->shopBanner != null){
+            $file = $request->file('shopBanner');
+           
+            $extension = $file->getClientOriginalExtension();
             $img = 'profileBanner' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfileBanner', $img);
         }
         return $img; 
     }
 
+    public function deleteOldImage($shop, $request){
 
-    public function deleteOldImage($shop){
-        $image = Image::where('name',$shop->nif)->first();
+        if($request->shopBanner != null){
+            $image = Image::where('name',$shop->nif)->first();
         
-        $disc = Storage::disk('img');
-        $disc->delete('shopProfileBanner/' . $image->url);
-        //$image->delete();
+            $disc = Storage::disk('img');
+            $disc->delete('shopProfileBanner/' . $image->url);
+            //$image->delete();
+        }if($request->profileImg != null){
+            $image = Image::where('name',$shop->name)->first();
+            $disc = Storage::disk('img');
+            $disc->delete('shopProfile/' . $image->url);
+        }   
     }
 
 }
