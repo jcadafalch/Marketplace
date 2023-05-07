@@ -39,7 +39,8 @@
                             {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }});" --}}
                             <div id="imagePreview" class="shop-info-detail-shop-img">
                                 <img id="shopLogo" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
-                                    alt="Imagen de perfil">
+                                    onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'"
+                                    alt="Logo de la tienda">
                             </div>
                         </div>
                     </div>

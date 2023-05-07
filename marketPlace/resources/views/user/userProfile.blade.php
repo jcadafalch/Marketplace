@@ -10,9 +10,9 @@
                     onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
             </div> --}}
             <div class="user-img">
-                <div class="user-img-imagePreview"
-                    style="
-                    background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }}), url({{ asset('storage/img/profile/defaultProfileImage.jpg') }});">
+                <div class="user-img-imagePreview">
+                    <img src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
+                        onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
                 </div>
             </div>
             <div class="user-info">
