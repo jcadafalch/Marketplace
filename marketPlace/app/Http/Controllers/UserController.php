@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shop;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UserController extends Controller
 {
@@ -19,7 +20,8 @@ class UserController extends Controller
 
     public function userProfile()
     {
-        return view('user.userProfile', ['categories' => Category::all()->where('parent_id', '=', null)]);
+        $user_id = Auth::user()->id;
+        return view('user.userProfile',['shop'=> Shop::all()->where('user_id', '=', $user_id)], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function editProfile(Request $request)

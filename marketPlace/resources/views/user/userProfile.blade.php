@@ -19,7 +19,12 @@
                 <p class="user-name">{{ Auth::user()->name }}</p>
 
                 <a href={{ route('user.profile') }}><button class="button-changeProfile">Modificar perfil</button></a>
-                <a href={{ route('shop.createNewShop') }}><button class="button-newShop">Mi tienda</button></a>
+                @if (!$shop->isEmpty())
+                    <a href={{ route('shop.show') }}><button class="button-newShop">Mi tienda</button></a>
+                    <a href={{ route('shop.edit') }}><button class="button-newShop">Editar mi tienda</button></a>
+                @else
+                    <a href={{ route('shop.createNewShop') }}><button class="button-newShop">Mi tienda</button></a>
+                @endif
             </div>
         </article>
     </section>

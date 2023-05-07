@@ -299,7 +299,8 @@ body {
   background-color: #FFD0AF;
   border: none;
   border-radius: 2rem;
-  padding: 0.5rem; }
+  padding: 0.5rem;
+  margin-bottom: 1rem; }
   .button-newShop:hover:enabled {
     background-color: #f5a166;
     color: white; }
