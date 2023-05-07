@@ -26,19 +26,14 @@
         </article>
         <article class="shop-description">
             <h4>Mensaje de la Tienda:</h4>
-            <input type="checkbox" id="expanded" name="expanded">
+            {{-- <input type="checkbox" id="expanded" name="expanded"> --}}
             <p>Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
                 Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
-                Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
-                Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
-                Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
-                Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
-                Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
                 Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda </p>
             {{-- <label for="expanded" role="button">Leer más</label> --}}
-            <div class="shop-description-button">
+            {{-- <div class="shop-description-button">
                 <label for="expanded" role="button" data-more="Leer más..." data-less="Leer menos..."></label>
-            </div>
+            </div> --}}
         </article>
         <article class="shop-products">
             <h4>Todos los productos</h4>

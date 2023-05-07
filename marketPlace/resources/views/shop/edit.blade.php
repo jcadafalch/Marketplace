@@ -63,7 +63,7 @@
 
             <article class="shop-description-edit" style="margin: 5rem 0 5rem 0;">
                 <label for="shop-description">Mensaje de la Tienda:</label>
-                <input type="text" name="shop-description">
+                <textarea type="text" name="shop-description" maxlength="250"></textarea>
             </article>
             <input type="button" value="Guardar Cambios" class="button-changeProfile">
     </form>
