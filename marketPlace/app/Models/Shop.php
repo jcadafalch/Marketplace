@@ -35,6 +35,19 @@ class Shop extends Model
         return $this->hasMany(Image::class)->withTimeStamps();
     }
 
+    public static function createShopObject($ownerName, $name, $nif, $user_id, $logo_id){
+        
+        $shop = new Shop();
+        $shop->ownerName = $ownerName;
+        $shop->name = $name;
+        $shop->nif = $nif;
+        $shop->user_id = $user_id; 
+        $shop->logo_id = $logo_id;
+        $shop->save();
+
+        return $shop;  
+    }
+
     public static function getShopNameByProductId($selectedId){
 
         $result = DB::table('shops')
