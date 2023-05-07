@@ -53,10 +53,16 @@ class LogInController extends Controller
 
     public function showResetPasswordForm($token)
     {
-        if (DB::table('password_reset_tokens')->where(['expires_at', '>', Carbon::now()])) {
-            return redirect()->route('auth.recoveryPasswordSender')->with('message', 'El enlace que ha seguido ha expirado');
-        } else {
+
+        $updatePassword = DB::table('password_reset_tokens')
+            ->where([
+                ['expires_at', '>', Carbon::now()]
+            ])->get('expires_at');
+
+        if (count($updatePassword) > 0) {
             return view('auth.forgetPasswordLink', ['token' => $token]);
+        } else {
+            return redirect()->route('auth.recoveryPasswordSender')->with('message', 'El enlace que ha seguido ha expirado');
         }
     }
 
