@@ -11,7 +11,7 @@
         <form class="userForm-form" action="{{ route('auth.store') }}" method="post">
             @csrf
             <div class="userForm-form-label">
-                <label>Registro</label>
+                <h3>Registro</h3>
             </div>
             <div class="userForm-form-item">
                 <label for="nombreUsuario">Nombre de usuario</label>
