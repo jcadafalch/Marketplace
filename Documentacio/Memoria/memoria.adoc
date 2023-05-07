@@ -158,7 +158,7 @@ Nuestro error ha sido que hemos creído que ciertas tareas que se harían más r
 Esta semana hemos contado con un día menos debido a que el miércoles no ha habido clase. + 
 Al inicio de la semana, mientras documentábamos la semana anterior, nos hemos dado cuenta de que perdemos mucho tiempo organizándonos y planificándonos, principalmente por dejarlo para última hora.
 
-==== Semana 6 (12/04/2023 - 13/03/2023).
+==== Semana 6 (12/04/2023 - 13/04/2023).
 *Planificación de la semana* 
 
 * [*] Cambiar orden de las migraciones por término de la estructura de la creación  - 1h
@@ -190,3 +190,88 @@ La valoración global es que ha sido una semana corta, donde se ha avanzado bast
 *Desviaciones*
 
 Dado que ha sido semana santa y que esta semana solo hemos 2 días, ha sido una semana irregular, cosa que haces imposible calcular una desviación que se acerque a la realidad.
+
+==== Semana 7 (17/04/2023 - 20/04/2023).
+*Planificación de la semana* 
+
+* [*] Refactor categorias - 12h
+* [*] Documentar semana 6 - 4h
+* [*] Crear proyecto Laravel para API - 1h
+* [*] Landing page FrontEnd - 4h
+
+
+Total horas calculadas: *21 horas*
+
+
+
+*Valoracion*
+
+Esta semana estuvimos haciendo refactor de categorias que estaba planeado para menos tiempo, pensabamos que sería más facil y rapido de hacer pero resultó más complejo de lo esperado.
+
+*Desviaciones*
+
+Esta semana la planificación que hicimos fue de menos horas en las tareas y a la hora de realizarlas resultarón ser más complejas y tardamos más tiempo de lo esperado.
+
+
+==== Semana 8 (22/04/2023 - 25/04/2023).
+*Planificación de la semana* 
+
+* [*] API EndPoint subir y obtener imagen - 4h
+* [*] API EndPoint eliminar imagenes - 2h
+* [*] API EndPoint generar y obtener imagen de prueba - 8h
+* [*] Crear usuaros de prueba - 1h
+* [*] Arreglad bug: se puede acceder a cualquier pagina sin iniciar sesión - 1h
+* [*] Refactor Landing page - 2h
+* [*] Refactor de formularios HTML y CSS - 4h
+* [*] Carrito de compra en servidor - 2h
+* [*] Solucionar error JS addToCart - 1h
+* [*] Refactor diseño carrito de la compra - 4h
+* [*] Refactor responsive de header - 4h
+* [*] Pagina registro backend - 6h
+* [*] Paginas de error personalizadas - 4h
+* [*] Cambiar redirección de logos de la web a LandingPage - 1h
+* [*] Refactor carrito compra, eliminar productos - 3h 
+
+
+Total horas calculadas: *47 horas*
+
+
+
+*Valoracion*
+
+Realizar el carrito de la compra en servidor nos llevó más tiempo de lo esperado porque tiene mucha complejidad de la forma que lo planteamos.
+
+
+==== Semana 9 (1/05/2023 - 4/05/2023).
+*Planificación de la semana* 
+
+* [*] Refactor frontend registro y login -2h 
+* [*] Aplicar seguridad a la API - 4h
+* [*] Añadido redirección a detalle de producto desde Home pulsando sobre su imagen o nombre - 1h
+* [*] Diseño pagina Administrar tienda - 2h
+* [*] Diseño pagina Vista de tienda - 1h
+* [*] Diseño pagina Mensajeria interna - 1h
+* [*] Diseño pagina Historico de comandos - 2h
+* [*] Diseño pagina Detalle de producto - 2h
+* [*] Diseño pagina Añadir/Editar producto - 2h
+* [*] Refactor landing page - 2h
+* [*] FrontEnd vista de la tienda - 3h
+* [*] FrontEnd añadir nuevo producto - 2h
+* [*] Refactor base de datos - 72h
+* [*] Refactor registro, contraseña segura - 1h
+* [*] BackEnd refactor detalle producto - 2h
+* [*] FrontEnd refactor detalle producto - 2h
+* [*] Documentar seguimiento semanal - 6h 
+
+
+Total horas calculadas: *101 horas*
+
+
+
+*Valoracion*
+
+Esta semana la tarea principal y la más importante fue realizar el refactor de la base de datos, adaptandola a los ultimos requerimientos. Tambien se ha hecho la mayoría de los diseños pendientes y se han hecho algunos frontEnd de las paginas, a finales de semana se ha empezado a hacer algunos de los backEnds.
+
+*Desviaciones*
+
+La base de datos estaba planificada para 24h pero finalmente se ha tardado aproximadamente 72h ya que se ha tenido que adaptar los backend a la nueva estructura de base de datos.
