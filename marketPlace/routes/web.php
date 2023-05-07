@@ -86,3 +86,6 @@ Route::get('/tienda', [ShopController::class, 'index'])->name('shop.show');
 Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
+Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
+
+}));
