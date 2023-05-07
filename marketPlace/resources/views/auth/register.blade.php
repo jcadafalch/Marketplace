@@ -35,9 +35,9 @@
             </div>
             @if ($errors->any())
                 <div class="userForm-form-item">
-                    <ul>
+                    <ul class="userForm-form-error">
                         @foreach ($errors->all() as $error)
-                            <li class="userForm-form-error">{{ $error }}</li>
+                            <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
