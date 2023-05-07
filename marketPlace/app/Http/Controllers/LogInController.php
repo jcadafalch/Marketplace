@@ -53,7 +53,11 @@ class LogInController extends Controller
 
     public function showResetPasswordForm($token)
     {
-        return view('auth.forgetPasswordLink', ['token' => $token]);
+        if (DB::table('password_reset_tokens')->where(['expires_at', '>', Carbon::now()])) {
+            return redirect()->route('auth.recoveryPasswordSender')->with('message', 'El enlace que ha seguido ha expirado');
+        } else {
+            return view('auth.forgetPasswordLink', ['token' => $token]);
+        }
     }
 
     public function submitResetPasswordForm(Request $request)
@@ -80,7 +84,7 @@ class LogInController extends Controller
             ->update(['password' => Hash::make($request->password)]);
 
         //DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
-        
+
         return redirect()->route('auth.login')->with('message', 'La contraseña se ha cambiado correctamente!');
     }
 
@@ -98,19 +102,19 @@ class LogInController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        
+
         /* Si la autenticación falla, redirige al usuario a la página de inicio de sesión con un 
         mensaje de error que indica que el correo electrónico o la contraseña son incorrectos. */
         if (!Auth::attempt($credentials)) {
-            return redirect()->route('auth.login')->with('message', 'El nombre de usuario o correo electrónico o contraseña son incorrectos.');  
+            return redirect()->route('auth.login')->with('message', 'El nombre de usuario o correo electrónico o contraseña son incorrectos.');
         }
 
-        Log::info("Un usuario ha iniciado sessión: ",['usuario' => Auth::user()]);
-        
+        Log::info("Un usuario ha iniciado sessión: ", ['usuario' => Auth::user()]);
+
         /* Si la dirección de correo electrónico no está verificada, redirige al usuario a la 
         página de inicio de sesión con un mensaje de error que indica que el correo electrónico
         del usuario no está verificado y que debe comprobar su correo electrónico y verificar su registro. */
-        if(!isset(Auth::user()->email_verified_at)){
+        if (!isset(Auth::user()->email_verified_at)) {
             Log::info("Usuari no verificat");
             return redirect()->route('auth.login')->with('message', 'Usuario no verificado, revisa el correo y verifica el registro');
         }

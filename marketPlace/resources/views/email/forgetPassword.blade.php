@@ -117,7 +117,7 @@ Puedes cambiar la contraseña siguiendo el siguiente enlace:
                                                     </table>
                                                     <p
                                                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
-                                                        Enviado desde<br>
+                                                        El enlace expira en 24h.<br>
                                                         CraftMade</p>
 
 
@@ -137,7 +137,7 @@ Puedes cambiar la contraseña siguiendo el siguiente enlace:
                                                                             style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; word-break: break-all;"><a
                                                                                 target="_blank"
                                                                                 rel="noopener noreferrer"
-                                                                                href="http://127.0.0.1:8000/reset-password/{{$token}}"
+                                                                                href="http://127.0.0.1:8000/reset-password/{{ $token }}"
                                                                                 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3869d4;">http://127.0.0.1:8000/email/verify/1000/ea97b75619f5cb2b9df9d184c4541aafe3b87484?expires=1683469979&amp;signature=4323b51aae3b0dcbe057876743a8651bbc22d9ba0d5015fd46c8599a95da77ce</a></span>
                                                                     </p>
 
@@ -164,7 +164,7 @@ Puedes cambiar la contraseña siguiendo el siguiente enlace:
                                                     style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
                                                     <p
                                                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; line-height: 1.5em; margin-top: 0; color: #b0adc5; font-size: 12px; text-align: center;">
-                                                        © 2023 Laravel. All rights reserved.</p>
+                                                        © 2023 CraftMade. Todos los derechos reservados.</p>
 
                                                 </td>
                                             </tr>
