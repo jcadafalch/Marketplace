@@ -5,7 +5,7 @@
 @section('content')
 
     <nav class="shop-banner">
-        <img src="{{ asset('storage/img/banner.jpg') }}" alt="">
+        <img class="shop-banner-image" src="{{ asset('storage/img/banner.jpg') }}" alt="">
     </nav>
     <section class="shop-body">
         <article class="shop-info">

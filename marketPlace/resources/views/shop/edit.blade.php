@@ -38,7 +38,7 @@
                         <div class="avatar-preview">
                             {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }});" --}}
                             <div id="imagePreview" class="shop-info-detail-shop-img">
-                                <img id="imagenPrueba" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
+                                <img id="shopLogo" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
                                     alt="Imagen de perfil">
                             </div>
                         </div>

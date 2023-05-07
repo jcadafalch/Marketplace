@@ -2,7 +2,7 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         let reader = new FileReader();
         reader.onload = function(e) {
-            document.querySelector('#imagenPrueba').style.display='none';
+            document.querySelector('#shopLogo').style.display='none';
             document.querySelector('#imagePreview').style.backgroundImage='url('+e.target.result +')';
             document.querySelector('#imagePreview').hide();
             document.querySelector('#imagePreview').fadeIn(650);

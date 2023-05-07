@@ -993,7 +993,7 @@ a.slide_btn {
   justify-content: center;
   align-items: center;
 }
-.shop-banner img {
+.shop-banner-image {
   object-fit: cover;
   height: -webkit-fill-available;
   width: -webkit-fill-available;
