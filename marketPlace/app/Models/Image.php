@@ -9,7 +9,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    public static function createImageModel($imageName, $imageUrl){
+    public static function createImageObject($imageName, $imageUrl){
         
         $image = new Image();
         $image->name = $imageName;
