@@ -28,11 +28,8 @@ const ShopEditProduct = async (id, action) => {
  * EventListener per el butó Habilitar
 */
 buttonAble.forEach((elementAction) => {
-   
     elementAction.addEventListener("click", function (e) {
-        console.log(elementAction.id); 
-        console.log(elementAction.className); 
-        ShopEditProduct(parseInt(elementAction.id), elementAction.className).then((res) => {
+        ShopEditProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
             if (res !== true) {
                 return;
             }
@@ -47,10 +44,7 @@ buttonAble.forEach((elementAction) => {
 buttonDelete.forEach((elementAction) => {
    
     elementAction.addEventListener("click", function (e) {
-        console.log('entro Delete');
-        console.log(elementAction.id); 
-        console.log(elementAction.className); 
-        ShopEditProduct(parseInt(elementAction.id, ), elementAction.className).then((res) => {
+        ShopEditProduct(parseInt(elementAction.id, ), elementAction.htmlFor).then((res) => {
             if (res !== true) {
                 return;
             }
@@ -64,10 +58,7 @@ buttonDelete.forEach((elementAction) => {
 */
 buttonDissable.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
-        console.log('entro Dissable');
-        console.log(elementAction.id); 
-        console.log(elementAction.className); 
-        ShopEditProduct(parseInt(elementAction.id), elementAction.className).then((res) => {
+        ShopEditProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
             if (res !== true) {
                 return;
             }
