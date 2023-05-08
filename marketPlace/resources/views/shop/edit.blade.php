@@ -3,7 +3,7 @@
 @section('title', 'Editar tienda')
 
 @section('content')
-    <form action="" method="post" enctype="multipart/form-data">
+    <form  action="{{ route('shop.editConfiguration') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <section class="shop-banner">
@@ -32,7 +32,7 @@
                 </div> --}}
                     <div class="avatar-upload">
                         <div class="avatar-edit">
-                            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                            <input type='file' id="imageUpload" name="profileImg" accept=".png, .jpg, .jpeg" />
                             <label for="imageUpload"></label>
                         </div>
                         <div class="avatar-preview">
@@ -44,9 +44,14 @@
                             </div>
                         </div>
                     </div>
-                    <p>Nombre de Tienda</p>
+                    <p>Nombre de Tienda<br> {{$shop->name}}</p>
                 </div>
                 <div class="shop-info-detail-seller">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="userForm-form-error" >{{ $error }}</li>
+                    @endforeach
+                    </ul>
                     {{-- <div class="shop-info-detail-seller-img">
                     <img src="{{ asset('storage/img/profile/' . Auth::user()->path ) }}"
                         onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'"
@@ -58,15 +63,16 @@
                         background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }}), url({{ asset('storage/img/profile/defaultProfileImage.jpg') }});">
                         </div>
                     </div>
-                    <p>Nombre Usuario</p>
+                    <p>Nombre Usuario<br>{{Auth::user()->name}}</p>
+                    <p></p>
                 </div>
             </article>
 
             <article class="shop-description-edit" style="margin: 5rem 0 5rem 0;">
                 <label for="shop-description">Mensaje de la Tienda:</label>
-                <textarea type="text" name="shop-description" maxlength="250"></textarea>
+                <textarea type="text" name="shopDescription" maxlength="250"></textarea>
             </article>
-            <input type="button" value="Guardar Cambios" class="button-changeProfile">
+            <button class="button-changeProfile" type="submit">Guardar Cambios</button>
     </form>
 
     <form action="" method="post">
@@ -80,16 +86,16 @@
                 @foreach ($products as $key => $product)
                     <li class="product edit" id="{{ $product->id }}">
                         <div class="edit-list">
-                            <input type="button" class="edit-list-ableDissable" name="deshabilitar">
-                            <label title="Deshabilitar" class='dissable' for="deshabilitar"></label>
-                            <input type="button" class="edit-list-ableDissable" name="habilitar">
-                            <label title="Habilitar" class='able' for="habilitar"></label>
+                            <input type="button" class="edit-list-ableDissable"  name="deshabilitar">
+                            <label title="Deshabilitar" class='dissable' id="{{ $product->id}}" for="deshabilitar"></label>
+                            <input type="button" class="edit-list-ableDissable"  name="habilitar">
+                            <label title="Habilitar" class='able' for="habilitar" id="{{ $product->id}}"></label>
                             <input type="button" class="edit-list-ableDissable" name="eliminar">
-                            <label title="Eliminar" class='delete' for="eliminar"></label>
+                            <label title="Eliminar" class='delete' for="eliminar" id="{{ $product->id}}"  ></label>
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ asset('storage/img/' . $product->url) }}" />
+                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
                             </a>
                         </div>
                         <div class="product-details">
@@ -106,4 +112,5 @@
     {{ $products->links('vendor.pagination.default') }}
     </section>
     <script src="{{ asset('js/profileImgPreview.js') }}"></script>
+    <script src="{{ asset('js/editProducts.js') }}"></script>
 @endsection

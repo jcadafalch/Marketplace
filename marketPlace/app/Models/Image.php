@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
+
+    public static function createImageObject($imageName, $imageUrl){
+        
+        $image = new Image();
+        $image->name = $imageName;
+        $image->url = $imageUrl;
+        $image->save();
+
+        return $image;
+    }
 }

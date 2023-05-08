@@ -38,7 +38,7 @@ Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin')
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('auth.store'); 
 
-// NO TOCAR, si se cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
+// NO TOCAR, si se toca cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
   $request->fulfill();
 
@@ -84,6 +84,8 @@ Route::post('/registrar', [ShopController::class, 'registerShop'])->name('regist
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 Route::get('/tienda', [ShopController::class, 'index'])->name('shop.show');
 Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
-Route::get('/tienda/editar', [ShopController::class, 'edit'])->name('shop.edit');
+Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
+Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
+Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 
 }));
