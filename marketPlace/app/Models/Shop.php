@@ -19,7 +19,11 @@ class Shop extends Model
 
     public function getShopProducts(){
 
-        return Product::all()->where('shop_id', $this->id);
+        return Product::where('shop_id', $this->id)->where('isVisible', '=', 1)
+        ->where('isDeleted','=',0)
+        ->whereNull('selled_at')
+        ->orderBy('order', 'asc')
+        ->paginate(env('PAGINATE', 10));
     }
     
     public function logo(){
@@ -28,6 +32,18 @@ class Shop extends Model
 
     public function banner(){
         return $this->hasMany(Image::class)->withTimeStamps();
+    }
+
+    public function getLogo(){
+        return Image::where('id', $this->logo_id)->first();
+    }
+
+    public function getBanner(){
+        return Image::where('id', $this->banner_id)->first();
+    }
+
+    public function getOwner(){
+        return User::where('id', $this->user_id)->first();
     }
 
     public static function getShopNameByProductId($selectedId){

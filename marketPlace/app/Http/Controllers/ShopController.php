@@ -17,13 +17,16 @@ class ShopController extends Controller
     public function index(){
         $userId = Auth::id();
         
-        if($userId != null){
-            $shop = Shop::where('user_id', $userId)->first();
-            $productsShop = $shop->getShopProducts();
-        }else{
+        if($userId == null){
             return redirect()->route('error.shopNotFound');
         }
-        return view('shop.index',['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
+
+        $shop = Shop::where('user_id', $userId)->first();
+        $productsShop = $shop->getShopProducts();
+
+        $shopOwner = $shop->getOwner();
+
+        return view('shop.index',['productsShop' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**
