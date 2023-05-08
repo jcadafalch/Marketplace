@@ -4,20 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreate;
 use App\Models\Shop;
-use App\Models\Product;
+use App\Models\User;
 use App\Models\Image;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopCreate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ShopController extends Controller
 {
-    public function index()
-    {
-        return view('shop.index', ['products' => Product::with('categories')->paginate(env('PAGINATE', 10))], ['categories' => Category::all()->where('parent_id', '=', null)]);
+    public function index(){
+        
     }
 
     /**
@@ -94,9 +95,34 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $shopName)
     {
-        //
+        Log::debug("Intentando acceder a la tienda: " . $shopName);
+
+        try {
+
+            $shop = Shop::where('name', '=', $shopName)->firstOrFail();
+            Log::debug("Dentro del trycatch");
+
+            if($shop == null){
+                throw new Exception('No se ha encontrado la tienda con nombre ' . $shopName);
+            }
+            
+            $productsShop = $shop->getShopProducts();
+            
+            $shopOwner = $shop->getOwner();
+
+            return view('shop.index',['productsShop' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        } catch(ModelNotFoundException $e){
+            Log::error("Error en intentar acceder a la tienda con nombre: " . $shopName);
+            Log::error($e->getMessage());
+            return redirect()->route('error.shopNotFoundError');
+        } catch (Exception $e) {
+            Log::error("Error en intentar acceder a la tienda con nombre: " . $shopName);
+            Log::error($e->getMessage());
+            return redirect()->route('error.shopNotFoundError');
+        }
+        
     }
 
     /**

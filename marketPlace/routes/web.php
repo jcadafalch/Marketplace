@@ -38,7 +38,7 @@ Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin')
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('auth.store');
 
-// NO TOCAR, si se cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
+// NO TOCAR, si se toca cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
   $request->fulfill();
 
@@ -65,8 +65,6 @@ Route::get('/shoppingCart/delProduct/{id}', [ShoppingCartController::class, 'del
 Route::get('/productoNoEncontrado', [ErrorController::class, 'productNotFoundError'])->name('error.productNotFoundError');
 Route::get('/tiendaNoEcontrada', [ErrorController::class, 'shopNotFoundError'])->name('error.shopNotFoundError');
 Route::get('/Error', [ErrorController::class, 'genericError'])->name('error.genericError');
-
-
 
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');

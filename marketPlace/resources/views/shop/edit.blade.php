@@ -8,9 +8,9 @@
         @method('patch')
         <section class="shop-banner">
             <div class="avatar-upload">
-            {{-- <img src="{{ asset('storage/img/banner.jpg') }}" alt=""> --}}
-            <input type="file" name="shopBanner">
-            <label for="shopBanner">Banner para mostrar tu marca y tus anuncios</label>
+                {{-- <img src="{{ asset('storage/img/banner.jpg') }}" alt=""> --}}
+                <input type="file" name="shopBanner">
+                <label for="shopBanner">Banner para mostrar tu marca y tus anuncios</label>
             </div>
             {{-- <div class="avatar-upload">
             <div class="avatar-edit">
@@ -36,8 +36,11 @@
                             <label for="imageUpload"></label>
                         </div>
                         <div class="avatar-preview">
-                            <div id="imagePreview"
-                                style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }});">
+                            {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }});" --}}
+                            <div id="imagePreview" class="shop-info-detail-shop-img">
+                                <img id="shopLogo" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
+                                    onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'"
+                                    alt="Logo de la tienda">
                             </div>
                         </div>
                     </div>
@@ -61,36 +64,45 @@
 
             <article class="shop-description-edit" style="margin: 5rem 0 5rem 0;">
                 <label for="shop-description">Mensaje de la Tienda:</label>
-                <input type="text" name="shop-description">
+                <textarea type="text" name="shop-description" maxlength="250"></textarea>
             </article>
             <input type="button" value="Guardar Cambios" class="button-changeProfile">
     </form>
-    <article class="shop-products">
-        <h4>Todos los productos</h4>
 
-        <ul class="products-section">
-            <li class="product">
-                <a href="{{ route('shop.newProduct') }}">Añadir Producto</a>
-            </li>
-            @foreach ($products as $key => $product)
-                <li class="product" id="{{ $product->id }}">
-                    <div class="product-image">
-                        <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                            <img src="{{ asset('storage/img/' . $product->url) }}" />
-                        </a>
-                    </div>
-                    <div class="product-details">
-                        <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                            <p class="product-name"> {{ $product->name }} </p>
-                            <p class="product-price"> {{ $product->price }}€ </p>
-                        </a>
-                    </div>
+    <form action="" method="post">
+        <article class="shop-products">
+            <h4>Todos los productos</h4>
 
-                    <input class="button-addToCart" type="button" value="Añadir" id="{{ $product->id }}">
+            <ul class="products-section">
+                <li class="product">
+                    <a href="{{ route('shop.newProduct') }}">Añadir Producto</a>
                 </li>
-            @endforeach
-        </ul>
-    </article>
+                @foreach ($products as $key => $product)
+                    <li class="product edit" id="{{ $product->id }}">
+                        <div class="edit-list">
+                            <input type="button" class="edit-list-ableDissable" name="deshabilitar">
+                            <label title="Deshabilitar" class='dissable' for="deshabilitar"></label>
+                            <input type="button" class="edit-list-ableDissable" name="habilitar">
+                            <label title="Habilitar" class='able' for="habilitar"></label>
+                            <input type="button" class="edit-list-ableDissable" name="eliminar">
+                            <label title="Eliminar" class='delete' for="eliminar"></label>
+                        </div>
+                        <div class="product-image">
+                            <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                                <img src="{{ asset('storage/img/' . $product->url) }}" />
+                            </a>
+                        </div>
+                        <div class="product-details">
+                            <a href="{{ route('product.show', ['id' => $product->id]) }}">
+                                <p class="product-name"> {{ $product->name }} </p>
+                                <p class="product-price"> {{ $product->price }}€ </p>
+                            </a>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </article>
+    </form>
     {{ $products->links('vendor.pagination.default') }}
     </section>
     <script src="{{ asset('js/profileImgPreview.js') }}"></script>
