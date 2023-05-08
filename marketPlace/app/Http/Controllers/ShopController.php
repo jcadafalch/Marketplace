@@ -136,17 +136,17 @@ class ShopController extends Controller
         try {
             $product = Product::findOrFail($request->query('id'));
             switch ($request->query('action')) {
-                case "able":
+                case "habilitar":
                     $product->isVisible = true;
                     $executed = true;
                     $response['action'] =  "able";
                     break;
-                case "dissable":
+                case "deshabilitar":
                     $product->isVisible = false;
                     $executed = true;
                     $response['action'] =  "dissable";
                     break;
-                case "delete":
+                case "eliminar":
                     $product->isDeleted = true;
                     $executed = true;
                     $response['action'] =  "delete";
