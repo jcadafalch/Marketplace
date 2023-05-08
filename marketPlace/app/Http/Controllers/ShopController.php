@@ -99,23 +99,31 @@ class ShopController extends Controller
         $userId = Auth::id();
         $shop = Shop::where('user_id', '=' , $userId)->first();
         
-        //dd($request);
         if($request->shopDescription != null){ 
             $shop->description = $request->shopDescription;
             $shop->save();
         }if($request->shopBanner != null){
             if($shop->banner_id != null){
+               
                 self::deleteOldImage($shop, $request);
+                $img = self::saveImage($userId, $request);
+                $image = Image::createImageObject($shop->nif, $img);
+    
+                $shop->banner_id = $image->id;
+                $shop->save();
+            }else{
+                $img = self::saveImage($userId, $request);
+                $image = Image::createImageObject($shop->nif, $img);
+    
+                $shop->banner_id = $image->id;
+                $shop->save();
             }  
-            $img = self::saveImage($userId, $request);
-            $image = Image::createImageObject($shop->nif, $img);
-
-            $shop->banner_id = $image->id;
-            $shop->save();
         }if($request->profileImg != null){
             self::deleteOldImage($shop, $request);
             $img = self::saveImage($userId, $request); 
-            self::saveImage($userId, $request, $isLogo);
+            $image = Image::createImageObject($shop->name, $img);
+            $shop->logo_id = $image->id;
+            $shop->save();
 
         }
         return redirect()->route('shop.edit');
@@ -126,7 +134,6 @@ class ShopController extends Controller
      */
     public function updateProduct(Request $request)
     {
-        //dd($request->query('action'));
         $response = [
             "status" => "",
             "msg" => "",
@@ -176,8 +183,14 @@ class ShopController extends Controller
     }
 
     public function saveImage($userId, $request){
+        
+        if($request->shopName != null){
+            $file = $request->file('profilePhoto');
+            $extension = $file->getClientOriginalExtension();
 
-        if($request->profileImg != null){
+            $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
+            $file->storeAs('public/img/shopProfile', $img);
+        }if($request->profileImg != null){
             $file = $request->file('profileImg');
             $extension = $file->getClientOriginalExtension();
 
@@ -194,17 +207,26 @@ class ShopController extends Controller
     }
 
     public function deleteOldImage($shop, $request){
-
+        
         if($request->shopBanner != null){
             $image = Image::where('name',$shop->nif)->first();
-        
+           
             $disc = Storage::disk('img');
             $disc->delete('shopProfileBanner/' . $image->url);
-            //$image->delete();
+           
+            $shop->banner_id = null;
+            $shop->save();
+            $image->delete();
+            
         }if($request->profileImg != null){
             $image = Image::where('name',$shop->name)->first();
+            
             $disc = Storage::disk('img');
             $disc->delete('shopProfile/' . $image->url);
+            
+            $shop->logo_id = null;
+            $shop->save();
+            $image->delete();
         }   
     }
 
