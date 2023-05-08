@@ -261,7 +261,8 @@ body {
   border: none;
   border-radius: 2rem;
   padding: 0.5rem;
-  margin: 1rem; }
+  margin: 1rem;
+  width: -webkit-fill-available; }
   .button-addToCart:hover:enabled {
     background-color: #f5a166;
     color: white; }
