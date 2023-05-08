@@ -44,10 +44,6 @@
                     <li class="product" id="{{ $product->id }}">
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}"
-                                    onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'"
-                                    alt="Imagen del producto" />
-
                                 @if ($product->getMainImage() != null)
                                     <img src="{{ asset('storage/img/' . $product->getMainImage()) }}"
                                         alt="Imagen del producto" />

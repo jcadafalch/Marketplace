@@ -66,7 +66,8 @@
             <p class="product-description">{{ $product->description }}</p>
             <p>
                 Tienda:
-                <a class="product-storeName" href="{{ route('shop.show') }}" target="_blank">
+                <a class="product-storeName" href="{{ route('shop.show', ['shopName' => $shop[0]->name]) }}"
+                    target="_blank">
                     <em>{{ $shop[0]->name }}</em> </a>
             </p>
             <input class="button-addToCart" type="button" value="Añadir" width="100%" id="{{ $product->id }}">
