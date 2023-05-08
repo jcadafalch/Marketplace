@@ -18,7 +18,10 @@
                         <label for="imageUpload"></label>
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path ) }});">
+                        <div id="imagePreview" class="avatar-preview-img">
+                            {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path ) }});" --}}
+                            <img id="shopImg" src="{{asset('storage/img/profile/' . Auth::user()->path) }}"
+                            onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
                         </div>
                     </div>
                 </div>
@@ -40,9 +43,9 @@
             </div>
              @if ($errors->any())
             <div class="userForm-form-item">
-                <ul>
+                <ul class="userForm-form-error">
                     @foreach ($errors->all() as $error)
-                        <li class="userForm-form-error" >{{ $error }}</li>
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>

@@ -85,7 +85,7 @@ class Order extends Model
             $order->user_id = $userId;
             $order->in_process = 1;
             $order->save();
-            Log::debug('Se ha creado un nuevo Order: ', ['Order' => $order]);
+            Log::info('Se ha creado un nuevo Order: ', ['Order' => $order]);
 
             $idArray = explode(".", $ids);
             foreach ($idArray as $char) {

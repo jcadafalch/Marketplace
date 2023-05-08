@@ -4,22 +4,25 @@
 
 @section('content')
 
-    <nav class="shop-banner">
-        <img class="shop-banner-image" src="{{ asset('storage/img/banner.jpg') }}" alt="">
-    </nav>
+    @if ($shop->getBanner() != null)
+        <nav class="shop-banner">
+            <img class="shop-banner-image" src="{{ asset('storage/img/' . $shop->getBanner()->url) }}"
+                onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Banner de la tienda">
+        </nav>
+    @endif
     <section class="shop-body">
         <article class="shop-info">
             <div class="shop-info-detail-shop">
                 <div class="shop-info-detail-shop-img">
-                    <img src="{{ asset('storage/img/profile/' . Auth::user()->path ) }}" alt="Imagen de perfil">
+                    <img src="{{ asset('storage/img/' . $shop->getLogo()->url) }}"
+                        onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Logo de la tienda">
                 </div>
-                <p>Nombre de Tienda</p>
+                <p> {{ $shop->name }} </p>
             </div>
             <div class="shop-info-detail-seller">
                 <div class="shop-info-detail-seller-img">
-                    <img src="{{ asset('storage/img/profile/' . Auth::user()->path ) }}"
-                        onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'"
-                        alt="Imagen de perfil">
+                    <img src="{{ asset('storage/img/' . strval($shop->getOwner()->path)) }}"
+                        onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Imagen de perfil del vendedor">
                 </div>
                 <p>Nombre Usuario</p>
             </div>
@@ -27,23 +30,38 @@
         <article class="shop-description">
             <h4>Mensaje de la Tienda:</h4>
             {{-- <input type="checkbox" id="expanded" name="expanded"> --}}
-            <p>Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
-                Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda
-                Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda Mensaje de la Tienda </p>
+            <p>{{ $shop->ownerName }}</p>
             {{-- <label for="expanded" role="button">Leer más</label> --}}
             {{-- <div class="shop-description-button">
                 <label for="expanded" role="button" data-more="Leer más..." data-less="Leer menos..."></label>
             </div> --}}
         </article>
+        @if ($shop->description != null)
+            <article class="shop-description">
+                <h4>Mensaje de la Tienda:</h4>
+                <input type="checkbox" id="expanded" name="expanded">
+                <p> {{ $shop->description }} </p>
+                {{-- <label for="expanded" role="button">Leer más</label> --}}
+                <div class="shop-description-button">
+                    <label for="expanded" role="button" data-more="Leer más..." data-less="Leer menos..."></label>
+                </div>
+            </article>
+        @endif
         <article class="shop-products">
             <h4>Todos los productos</h4>
 
             <ul class="products-section">
-                @foreach ($products as $key => $product)
+                @foreach ($productsShop as $key => $product)
                     <li class="product" id="{{ $product->id }}">
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ asset('storage/img/' . $product->url) }}" />
+                                @if ($product->getMainImage() != null)
+                                    <img src="{{ asset('storage/img/' . $product->getMainImage()) }}"
+                                        alt="Imagen del producto" />
+                                @else
+                                    <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}"
+                                        alt="Imagen del producto" />
+                                @endif
                             </a>
                         </div>
                         <div class="product-details">
@@ -58,6 +76,6 @@
                 @endforeach
             </ul>
         </article>
-        {{ $products->links('vendor.pagination.default') }}
+        {{ $productsShop->links('vendor.pagination.default') }}
     </section>
 @endsection

@@ -10,16 +10,21 @@
                     onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
             </div> --}}
             <div class="user-img">
-                <div class="user-img-imagePreview"
-                    style="
-                    background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }}), url({{ asset('storage/img/profile/defaultProfileImage.jpg') }});">
+                <div class="user-img-imagePreview">
+                    <img src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
+                        onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
                 </div>
             </div>
             <div class="user-info">
                 <p class="user-name">{{ Auth::user()->name }}</p>
 
                 <a href={{ route('user.profile') }}><button class="button-changeProfile">Modificar perfil</button></a>
-                <a href={{ route('shop.createNewShop') }}><button class="button-newShop">Mi tienda</button></a>
+                @if (!$shop->isEmpty())
+                    <a href={{ route('shop.show') }}><button class="button-newShop">Mi tienda</button></a>
+                    <a href={{ route('shop.edit') }}><button class="button-newShop">Editar mi tienda</button></a>
+                @else
+                    <a href={{ route('shop.createNewShop') }}><button class="button-newShop">Mi tienda</button></a>
+                @endif
             </div>
         </article>
     </section>

@@ -1,5 +1,23 @@
-.home-section {
-    padding: 3vh 10vw 3vh 10vw;
+.home {
+    &-section {
+        padding: 3vh 10vw 3vh 10vw;
+
+        &-title {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+            align-items: center;
+            margin-bottom: 2rem;
+
+            select {
+                border-radius: 3rem;
+                padding: 0.75rem;
+
+                option {
+                    border-radius: 10rem;
+                }
+            }
+        }
+    }
 }
 
 .products-section {
