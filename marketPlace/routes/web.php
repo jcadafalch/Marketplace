@@ -66,8 +66,6 @@ Route::get('/productoNoEncontrado', [ErrorController::class, 'productNotFoundErr
 Route::get('/tiendaNoEcontrada', [ErrorController::class, 'shopNotFoundError'])->name('error.shopNotFoundError');
 Route::get('/Error', [ErrorController::class, 'genericError'])->name('error.genericError');
 
-
-
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 
@@ -83,12 +81,11 @@ Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name(
 Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop'); 
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 
-
-}));
-
 //new
-Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
+
 Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
 Route::get('/tienda/editar', [ShopController::class, 'edit'])->name('shop.edit');
 
 }));
+
+Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');

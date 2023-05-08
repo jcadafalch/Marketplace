@@ -4,13 +4,12 @@
 
 @section('content')
 
-    <nav class="shop-banner">
-        <<<<<<< HEAD <img src="{{ asset('storage/img/' . $shop->getBanner()->url) }}"
-            onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Banner de la tienda">
-            =======
-            <img class="shop-banner-image" src="{{ asset('storage/img/banner.jpg') }}" alt="">
-            >>>>>>> Develop
-    </nav>
+    @if ($shop->getBanner() != null)
+        <nav class="shop-banner">
+            <img class="shop-banner-image" src="{{ asset('storage/img/' . $shop->getBanner()->url) }}"
+                onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Banner de la tienda">
+        </nav>
+    @endif
     <section class="shop-body">
         <article class="shop-info">
             <div class="shop-info-detail-shop">
