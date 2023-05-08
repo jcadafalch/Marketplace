@@ -11,7 +11,7 @@
         <form class="userForm-form" action="{{ route('auth.store') }}" method="post">
             @csrf
             <div class="userForm-form-label">
-                <label>Registro</label>
+                <h3>Registro</h3>
             </div>
             <div class="userForm-form-item">
                 <label for="nombreUsuario">Nombre de usuario</label>
@@ -35,9 +35,9 @@
             </div>
             @if ($errors->any())
                 <div class="userForm-form-item">
-                    <ul>
+                    <ul class="userForm-form-error">
                         @foreach ($errors->all() as $error)
-                            <li class="userForm-form-error">{{ $error }}</li>
+                            <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>

@@ -5,8 +5,11 @@
 @section('content')
 
     <nav class="shop-banner">
-        <img src="{{ asset('storage/img/' . $shop->getBanner()->url) }}"
+        <<<<<<< HEAD <img src="{{ asset('storage/img/' . $shop->getBanner()->url) }}"
             onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Banner de la tienda">
+            =======
+            <img class="shop-banner-image" src="{{ asset('storage/img/banner.jpg') }}" alt="">
+            >>>>>>> Develop
     </nav>
     <section class="shop-body">
         <article class="shop-info">
@@ -22,8 +25,17 @@
                     <img src="{{ asset('storage/img/' . strval($shop->getOwner()->path)) }}"
                         onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Imagen de perfil del vendedor">
                 </div>
-                <p> {{ $shop->ownerName }} </p>
+                <p>Nombre Usuario</p>
             </div>
+        </article>
+        <article class="shop-description">
+            <h4>Mensaje de la Tienda:</h4>
+            {{-- <input type="checkbox" id="expanded" name="expanded"> --}}
+            <p>{{ $shop->ownerName }}</p>
+            {{-- <label for="expanded" role="button">Leer más</label> --}}
+            {{-- <div class="shop-description-button">
+                <label for="expanded" role="button" data-more="Leer más..." data-less="Leer menos..."></label>
+            </div> --}}
         </article>
         @if ($shop->description != null)
             <article class="shop-description">

@@ -31,7 +31,10 @@
                         <label for="imageUpload"></label>
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path ) }});">
+                        <div id="imagePreview" class="avatar-preview-img">
+                            {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path ) }});" --}}
+                            <img id="profileImg" src="{{asset('storage/img/profile/' . Auth::user()->path) }}"
+                            onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
                         </div>
                     </div>
                 </div>

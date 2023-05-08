@@ -4,29 +4,28 @@
 
 @section('content')
     <section class="home-section">
-        <h1> Todos los productos </h1>
+        <article class="home-section-title">
+            <h1> Todos los productos </h1>
 
-        <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
-            <input type="hidden" name="category" id="category" />
-            <input type="hidden" name="search" id="search" />
-            <select name="order" id="order">
-                <option value="" disabled selected hiden>Ordenar por</option>
-                <option value="ASC">A-Z</option>
-                <option value="DESC">Z-A</option>
-            </select>
-        </form>
-
+            <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
+                <input type="hidden" name="category" id="category" />
+                <input type="hidden" name="search" id="search" />
+                <select name="order" id="order">
+                    <option value="" disabled selected hiden>Ordenar por</option>
+                    <option value="ASC">A-Z</option>
+                    <option value="DESC">Z-A</option>
+                </select>
+            </form>
+        </article>
         <ul class="products-section">
             @foreach ($products as $key => $product)
                 <li class="product" id="{{ $product->id }}">
                     <div class="product-image">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             @if ($product->getMainImage() != null)
-                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}"
-                                    alt="Imagen del producto" />
+                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
                             @else
-                                <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}"
-                                    alt="Imagen del producto" />
+                                <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
                             @endif
                         </a>
                     </div>
