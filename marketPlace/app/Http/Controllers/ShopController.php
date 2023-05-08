@@ -98,13 +98,15 @@ class ShopController extends Controller
 
         $userId = Auth::id();
         $shop = Shop::where('user_id', '=' , $userId)->first();
-        
+        //dd($request);
         if($request->shopDescription != null){ 
             $shop->description = $request->shopDescription;
             $shop->save();
-        }if($request->shopBanner != null){
+        }
+
+        if($request->shopBanner != null){
             if($shop->banner_id != null){
-               
+                
                 self::deleteOldImage($shop, $request);
                 $img = self::saveImage($userId, $request);
                 $image = Image::createImageObject($shop->nif, $img);
@@ -118,7 +120,9 @@ class ShopController extends Controller
                 $shop->banner_id = $image->id;
                 $shop->save();
             }  
-        }if($request->profileImg != null){
+        }
+        
+        if($request->profileImg != null){
             self::deleteOldImage($shop, $request);
             $img = self::saveImage($userId, $request); 
             $image = Image::createImageObject($shop->name, $img);
@@ -217,6 +221,7 @@ class ShopController extends Controller
             $shop->banner_id = null;
             $shop->save();
             $image->delete();
+            return;
             
         }if($request->profileImg != null){
             $image = Image::where('name',$shop->name)->first();
@@ -227,6 +232,7 @@ class ShopController extends Controller
             $shop->logo_id = null;
             $shop->save();
             $image->delete();
+            return;
         }   
     }
 
