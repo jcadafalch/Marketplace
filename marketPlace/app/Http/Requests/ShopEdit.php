@@ -22,7 +22,7 @@ class ShopEdit extends FormRequest
     public function rules(): array
     {
         return [
-            'shopDescription' => 'max:30',
+            'shopDescription' => 'max:250',
             'profileImg' => 'image|mimes:png,jpg,jpeg',
             'shopBanner' => 'image|mimes:png,jpg,jpeg'
          ];
@@ -32,6 +32,8 @@ class ShopEdit extends FormRequest
     {
         return [
             'min' => [ 'string' => 'El campo :attribute tiene que tener como minimo :min caracteres.',
+            ],
+            'max' => ['string' => 'La descripción de la tienda no puede superar :max caracteres'
             ],
             'image' => ':attribute, solo se pueden cargar imagenes .',
             'mimes' => 'Formatos admtidos: png, jpg, jpeg.',
