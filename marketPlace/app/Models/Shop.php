@@ -17,13 +17,17 @@ class Shop extends Model
         return $this->hasMany(Product::class)->withTimeStamps();
     }
 
-    public function getShopProducts(){
-
-      
-    }
-
     public function getAllShopProducts(){
         return Product::where('shop_id', $this->id)
+        ->paginate(env('PAGINATE', 10));
+    }
+    
+    public function getShopProducts(){
+
+        return Product::where('shop_id', $this->id)->where('isVisible', '=', 1)
+        ->where('isDeleted','=',0)
+        ->whereNull('selled_at')
+        ->orderBy('order', 'asc')
         ->paginate(env('PAGINATE', 10));
     }
     
@@ -46,6 +50,18 @@ class Shop extends Model
         $shop->save();
 
         return $shop;  
+    }
+
+    public function getLogo(){
+        return Image::where('id', $this->logo_id)->first();
+    }
+
+    public function getBanner(){
+        return Image::where('id', $this->banner_id)->first();
+    }
+
+    public function getOwner(){
+        return User::where('id', $this->user_id)->first();
     }
 
     public static function getShopNameByProductId($selectedId){

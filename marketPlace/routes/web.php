@@ -34,9 +34,9 @@ Route::get('/landingPage/{id}', [LandingPageController::class, 'showAll'])->name
 
 // login & registro
 Route::get('/login', [LogInController::class, 'index'])->name('auth.login');
-Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin'); 
+Route::post('/login', [LogInController::class, 'doLogin'])->name('auth.doLogin');
 Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
-Route::post('/register', [RegisterController::class, 'store'])->name('auth.store'); 
+Route::post('/register', [RegisterController::class, 'store'])->name('auth.store');
 
 // NO TOCAR, si se toca cualquier cosa deja de funcionar (debe estar así para que Laravel internamente verifique el usuario)
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
@@ -47,7 +47,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 // contaseña
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
-Route::post('/recuperarContrasenya', [LogInController::class, 'recoveryPasswordSender'])->name('auth.recoveryPasswordSender'); 
+Route::post('/recuperarContrasenya', [LogInController::class, 'recoveryPasswordSender'])->name('auth.recoveryPasswordSender');
 Route::get('reset-password/{token}', [LogInController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [LogInController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
@@ -66,12 +66,11 @@ Route::get('/productoNoEncontrado', [ErrorController::class, 'productNotFoundErr
 Route::get('/tiendaNoEcontrada', [ErrorController::class, 'shopNotFoundError'])->name('error.shopNotFoundError');
 Route::get('/Error', [ErrorController::class, 'genericError'])->name('error.genericError');
 
-
-
 Route::get('/recuperarContrasenya', [LogInController::class, 'recoveryPassword'])->name('auth.recoveryPassword');
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 
-Route::middleware('auth')->group((function() {
+Route::middleware('auth')->group((function () {
+
 
 // gestion usuario
 Route::get('/cambiarPerfil', [UserController::class, 'profile'])->name('user.profile');
@@ -82,10 +81,16 @@ Route::patch('/cambiarPerfil', [UserController::class, 'editProfile'])->name('us
 Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
 Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop'); 
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
-Route::get('/tienda', [ShopController::class, 'index'])->name('shop.show');
 Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
 Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 
 }));
+
+Route::group(['middleware' => ['web']], function () {
+  Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+  Route::post('/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
+});
+
+Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');

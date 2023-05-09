@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -35,7 +36,7 @@ class Product extends Model
   {
     return $this->belongsToMany(Category::class)->withTimeStamps();
   }
- 
+
   /**
    * This function defines a one-to-many relationship between a product and its images in a PHP class.
    * 
@@ -47,7 +48,7 @@ class Product extends Model
   {
     return $this->hasMany(ProductImage::class);
   }
-  
+
   /**
    * This PHP function returns a collection of images associated with a product.
    * 
@@ -70,64 +71,65 @@ class Product extends Model
    * added is the main image for the product or not. If it is set to true, it means that this image
    * will be displayed as the primary image for the product.
    */
-  public function addImage(Image $image, $isMain){
+  public function addImage(Image $image, $isMain)
+  {
     Image::factory()->create($image);
-    
+
     ProductImage::factory()->create([
       'isMain' => $isMain,
       'product_id' => $this->id,
       'image_id' => $image->id
     ]);
   }
- 
+
   /**
    * This PHP function retrieves the URL of the main image of a product.
    * 
    * @return The `getMainImage()` function returns the URL of the main image of a product, or `null` if
    * there is no main image.
    */
-  public function getMainImage(){
+  public function getMainImage()
+  {
 
-      try {
-        $productImage = 
-          ProductImage::all()
-          ->where('isMain', true)
-          ->where('product_id', $this->id)->first();
-       
-        $mainImage = DB::table('images')
-          ->where('images.id', '=',$productImage->image_id)->first();
-        
-        return strval($mainImage->url);
-        
-      } catch (\Throwable $th) {
-        Log::error('entro');
-        $productImage = 
-          ProductImage::all()
-          ->where('isMain', false)
-          ->where('product_id', $this->id)->first();
+    try {
+      $productImage =
+        ProductImage::all()
+        ->where('isMain', true)
+        ->where('product_id', $this->id)->first();
 
-        $alternativeImage = DB::table('images')
-          ->where('images.id', '=',$productImage->image_id)->first();
-  
-        return $alternativeImage == null || $alternativeImage->url == null ? null : strval($alternativeImage->url);
-      }
+      $mainImage = DB::table('images')
+        ->where('images.id', '=', $productImage->image_id)->first();
+
+      return strval($mainImage->url);
+    } catch (\Throwable $th) {
+      Log::error('entro');
+      $productImage =
+        ProductImage::all()
+        ->where('isMain', false)
+        ->where('product_id', $this->id)->first();
+
+      $alternativeImage = DB::table('images')
+        ->where('images.id', '=', $productImage->image_id)->first();
+
+      return $alternativeImage == null || $alternativeImage->url == null ? null : strval($alternativeImage->url);
+    }
   }
 
-  public function getAlternativeImages(){
+  public function getAlternativeImages()
+  {
     Log::error('entro');
     $productImage = ProductImage::all()
       ->where('isMain', false)
       ->where('product_id', $this->id)->all();
 
-      $images = [];
+    $images = [];
 
-      foreach ( $productImage as $proImg) {
-        $i = DB::table('images') ->where('images.id', '=',$proImg->image_id)->first();
-        array_push($images, $i->url);
-      }
+    foreach ($productImage as $proImg) {
+      $i = DB::table('images')->where('images.id', '=', $proImg->image_id)->first();
+      array_push($images, $i->url);
+    }
 
     return $images;
-
   }
 
   /**
@@ -141,7 +143,7 @@ class Product extends Model
    * operator to match the `` parameter with the `name` column of the `products` table. The
    * function also eager loads the `categories` relationship for each product.
    */
-  
+
   public static function searchByName($request)
   {
     $fieldSearch = $request['search'];
@@ -150,12 +152,12 @@ class Product extends Model
 
     return $productsFilter = Product::with('categories')->where('name', 'LIKE', '%' . $fieldSearch . '%')
       ->where('isVisible', '=', 1)
-      ->where('isDeleted','=',0)
-      ->where('selled_at','=',NULL)
+      ->where('isDeleted', '=', 0)
+      ->where('selled_at', '=', NULL)
       ->orderBy('name', $order)
       ->paginate(env('PAGINATE', 10));
   }
-  
+
   /**
    * The function takes an ID string, splits it into individual characters, and returns an array of
    * Product objects that match each character.
@@ -180,7 +182,7 @@ class Product extends Model
     return $products;
   }
 
-  
+
   /**
    * This function searches for products based on a given search term, category, and order, and returns
    * the results.
@@ -243,10 +245,10 @@ class Product extends Model
       for ($j = 0; $j < count($diferenIdProducts); $j++) {
         $result->add(
           Product::where('products.id', '=', $diferenIdProducts[0])
-          ->orWhere('isVisible', '=', 1)
-          ->orWhere('isDeleted','=',0)
-          ->orWhere('selled_at','=',null)
-          ->first()
+            ->orWhere('isVisible', '=', 1)
+            ->orWhere('isDeleted', '=', 0)
+            ->orWhere('selled_at', '=', null)
+            ->first()
         );
       }
     }
@@ -271,7 +273,7 @@ class Product extends Model
     $landingPageConfigRute = base_path() . env('LANDING_PAGE_CONFIG');
     $landingPageConfig = json_decode(file_get_contents($landingPageConfigRute), true);
 
-    
+
     if (isset($landingPageConfig['categorys'])) {
       for ($i = 0; $i < count($landingPageConfig['categorys']); $i++) {
         array_push(
@@ -283,10 +285,10 @@ class Product extends Model
             ->join('product_images', 'products.id', '=', 'product_images.product_id')
             ->join('images', 'product_images.image_id', '=', 'images.id')
             ->where('categories.name', '=', $landingPageConfig['categorys'][$i]['categoryName'])
-            ->where('product_images.isMain','=', 1)
+            ->where('product_images.isMain', '=', 1)
             ->where('isVisible', '=', 1)
-            ->where('isDeleted','=',0)
-            ->where('selled_at','=', NULL)
+            ->where('isDeleted', '=', 0)
+            ->where('selled_at', '=', NULL)
             ->orderBy('products.name', $landingPageConfig['categorys'][$i]['orderBy'])->paginate(env('PAGINATE', 10))
         );
         array_push($title, $landingPageConfig['categorys'][$i]['title']);
@@ -296,5 +298,87 @@ class Product extends Model
 
     //dd($result);
     return $result;
+  }
+
+  public static function addProduct($request)
+  {
+    if ($request->file("file") != null) {
+      $shopId = Shop::all()->where("user_id", Auth::id())->first()->id;
+
+      $productExists = Product::all()->where("name", $request['name'])->first();
+      
+      if ($productExists == null) {
+
+        $request->validate([
+          'name' => 'required|min:5',
+          'price' => 'required|min:1',
+          'detail' => 'required|min:5'
+        ]);
+
+        $requestAll = $request->all();
+
+        $product = new Product();
+        $product->name = $requestAll['name'];
+        $product->description = $requestAll['detail'];
+        $product->price = $requestAll['price'];
+        $product->isVisible = true;
+        $product->isDeleted = false;
+        $product->order = 1;
+        $product->shop_id = $shopId;
+
+        $product->save();
+
+
+        //dd($product);
+
+        $imageFile = $request->file("file");
+
+        $imageFile->store("/public/img");
+
+        $image = new Image();
+        $image->name = $requestAll['name'];
+        $image->url = $imageFile->hashName();
+        $image->save();
+
+        $productImage = new ProductImage();
+        $productImage->isMain = true;
+        $productImage->image_id = $image->id;
+        $productImage->product_id = $product->id;
+        $productImage->save();
+
+        $cont = 1;
+
+        Log::alert($requestAll);
+
+
+
+        if ($request->file('otrasImagenes') != null) {
+          foreach ($request->file('otrasImagenes') as $value) {
+            Log::alert("Entra");
+
+            $imageFile = $value;
+
+            $imageFile->store("/public/img");
+
+            $image = new Image();
+            $image->name = $requestAll['name'] . "-$cont";
+            $image->url = $imageFile->hashName();
+            $image->save();
+
+            $productImage = new ProductImage();
+            $productImage->isMain = false;
+            $productImage->image_id = $image->id;
+            $productImage->product_id = $product->id;
+            $productImage->save();
+
+            $cont++;
+          }
+        }
+        return true;
+      }
+    } else {
+      return "img";
+    }
+    return false;
   }
 }
