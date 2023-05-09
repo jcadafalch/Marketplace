@@ -21,7 +21,8 @@ class UserController extends Controller
     public function userProfile()
     {
         $user_id = Auth::user()->id;
-        return view('user.userProfile',['shop'=> Shop::all()->where('user_id', '=', $user_id)], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        $userShop = Shop::where('user_id', '=', $user_id)->first();
+        return view('user.userProfile',['shop'=> $userShop], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function editProfile(Request $request)
