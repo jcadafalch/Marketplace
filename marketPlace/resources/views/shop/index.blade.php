@@ -24,27 +24,27 @@
                     <img src="{{ asset('storage/img/' . strval($shop->getOwner()->path)) }}"
                         onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Imagen de perfil del vendedor">
                 </div>
-                <p>Nombre Usuario</p>
+                <p>{{ $shop->ownerName }}</p>
             </div>
         </article>
-        <article class="shop-description">
-            <h4>Mensaje de la Tienda:</h4>
+        {{-- <article class="shop-description">
+            <h4>Mensaje de la Tienda:</h4> --}}
             {{-- <input type="checkbox" id="expanded" name="expanded"> --}}
-            <p>{{ $shop->ownerName }}</p>
+            {{-- <p>{{ $shop->ownerName }}</p> --}}
             {{-- <label for="expanded" role="button">Leer más</label> --}}
             {{-- <div class="shop-description-button">
                 <label for="expanded" role="button" data-more="Leer más..." data-less="Leer menos..."></label>
             </div> --}}
-        </article>
+        {{-- </article> --}}
         @if ($shop->description != null)
             <article class="shop-description">
                 <h4>Mensaje de la Tienda:</h4>
-                <input type="checkbox" id="expanded" name="expanded">
+                {{-- <input type="checkbox" id="expanded" name="expanded"> --}}
                 <p> {{ $shop->description }} </p>
                 {{-- <label for="expanded" role="button">Leer más</label> --}}
-                <div class="shop-description-button">
+                {{-- <div class="shop-description-button">
                     <label for="expanded" role="button" data-more="Leer más..." data-less="Leer menos..."></label>
-                </div>
+                </div> --}}
             </article>
         @endif
         <article class="shop-products">
