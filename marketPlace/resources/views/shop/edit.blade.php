@@ -3,7 +3,7 @@
 @section('title', 'Editar tienda')
 
 @section('content')
-    <form  action="{{ route('shop.editConfiguration') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('shop.editConfiguration') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
         <section class="shop-banner">
@@ -39,18 +39,17 @@
                             {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }});" --}}
                             <div id="imagePreview" class="shop-info-detail-shop-img">
                                 <img id="shopLogo" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
-                                    onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'"
-                                    alt="Logo de la tienda">
+                                    onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Logo de la tienda">
                             </div>
                         </div>
                     </div>
-                    <p>Nombre de Tienda<br> {{$shop->name}}</p>
+                    <p>Nombre de Tienda<br> {{ $shop->name }}</p>
                 </div>
                 <div class="shop-info-detail-seller">
-                  <ul>
-                    @foreach ($errors->all() as $error)
-                        <li class="userForm-form-error" >{{ $error }}</li>
-                    @endforeach
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="userForm-form-error">{{ $error }}</li>
+                        @endforeach
                     </ul>
                     {{-- <div class="shop-info-detail-seller-img">
                     <img src="{{ asset('storage/img/profile/' . Auth::user()->path ) }}"
@@ -58,12 +57,14 @@
                         alt="Imagen de perfil">
                 </div> --}}
                     <div class="user-img">
-                        <div class="user-img-imagePreview"
-                            style="
-                        background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }}), url({{ asset('storage/img/profile/defaultProfileImage.jpg') }});">
+                        <div class="user-img-imagePreview">
+                            {{-- style="
+                        background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }}), url({{ asset('storage/img/profile/defaultProfileImage.jpg') }});"> --}}
+                            <img src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
+                                onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Logo de la tienda">
                         </div>
                     </div>
-                    <p>Nombre Usuario<br>{{Auth::user()->name}}</p>
+                    <p>Nombre Usuario<br>{{ Auth::user()->name }}</p>
                     <p></p>
                 </div>
             </article>
@@ -86,12 +87,13 @@
                 @foreach ($products as $key => $product)
                     <li class="product edit" id="{{ $product->id }}">
                         <div class="edit-list">
-                            <input type="button" class="edit-list-ableDissable"  name="deshabilitar">
-                            <label title="Deshabilitar" class='dissable' id="{{ $product->id}}" for="deshabilitar"></label>
-                            <input type="button" class="edit-list-ableDissable"  name="habilitar">
-                            <label title="Habilitar" class='able' for="habilitar" id="{{ $product->id}}"></label>
+                            <input type="button" class="edit-list-ableDissable" name="deshabilitar">
+                            <label title="Deshabilitar" class='dissable' id="{{ $product->id }}"
+                                for="deshabilitar"></label>
+                            <input type="button" class="edit-list-ableDissable" name="habilitar">
+                            <label title="Habilitar" class='able' for="habilitar" id="{{ $product->id }}"></label>
                             <input type="button" class="edit-list-ableDissable" name="eliminar">
-                            <label title="Eliminar" class='delete' for="eliminar" id="{{ $product->id}}"  ></label>
+                            <label title="Eliminar" class='delete' for="eliminar" id="{{ $product->id }}"></label>
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
