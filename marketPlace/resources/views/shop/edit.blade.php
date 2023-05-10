@@ -22,9 +22,17 @@
                 </div>
                 <div class="shopedit-banner-preview">
                     <div class="shopedit-banner-imagePreview" id="bannerPreview">
+                        @if($shop->getBanner() != null)
                         <img class="shop-banner-image"
                             src="{{ asset('storage/img/shopProfileBanner/' . $shop->getBanner()->url) }}"
-                            onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Banner de la tienda">
+                             alt="Banner de la tienda">
+         
+                            
+                        @else
+                        <img class="shop-banner-image"
+                        src="{{ asset('/images/imagesNotFound.webp')}}" alt="Banner de la tienda">
+                       
+                        @endif
                     </div>
                 </div>
             </div>
