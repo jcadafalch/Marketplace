@@ -6,6 +6,7 @@
         border-radius: 2rem;
         padding: 0.5rem;
         margin: 1rem;
+        width: -webkit-fill-available;
 
         &:hover:enabled {
             background-color: $hoverColor;
@@ -42,7 +43,7 @@
         background-color: $primaryColor;
         border: none;
         border-radius: 2rem;
-        padding: 0.5rem;
+        padding: 1rem;
         margin-bottom: 1rem;
 
         &:hover:enabled {
@@ -55,8 +56,22 @@
         background-color: $primaryColor;
         border: none;
         border-radius: 2rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+
+        &:hover:enabled {
+            background-color: $hoverColor;
+            color: white;
+        }
+    }
+
+    &-UserProfile {
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 2rem;
         padding: 0.5rem;
         margin-bottom: 1rem;
+        min-width: 16rem;
 
         &:hover:enabled {
             background-color: $hoverColor;

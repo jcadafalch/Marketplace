@@ -20,7 +20,7 @@
         &-article {
             margin-top: 2rem;
             display: grid;
-            grid-template-columns: 2fr 6fr 1fr;
+            grid-template-columns: 2fr 6fr 2fr;
             grid-template-rows: auto 1fr;
             grid-template-areas:
                 "shoppingcart-main-article-productImage shoppingcart-main-article-productName shoppingcart-main-article-productDelete"
@@ -33,6 +33,7 @@
 
             &-boxshadowDelete {
                 box-shadow: 0 3px 5px 0 rgba(255, 0, 0, 1);
+                padding: 1rem;
             }
 
             &-boxshadowNormal {
