@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Api extends Model
@@ -40,7 +42,7 @@ class Api extends Model
     {
 
         $url = env('API_URL') . $this->endpointDeleteImage;
-        
+
         $response = Http::withToken(env('API_TOKEN'))
             ->delete($url, ['name' => $ImageName]);
 
@@ -57,11 +59,25 @@ class Api extends Model
 
         $url = env('API_URL') . $this->endpointPushImage;
 
+        $file = reset($imageContent);
+        //dd($file->getClientOriginalName());
+        $extension = $file->getClientOriginalExtension();
+        //dd($extension);
+        $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
+        //dd($img);
+        $file->storeAs('public/img/temporarlImage', $img);
+       
+        $url = Storage::url('public/img/temporarlImage/' .$img );
+        dd($url);
+
+
+
+
         $response = Http::withToken(env('API_TOKEN'))
             ->withHeaders([
                 'Content-Type' => 'image/png',
             ])
-            ->attach('imagen', $imageContent, 'image')
+            ->attach('imagen',  $url , 'image')
             ->post($url);
 
 
