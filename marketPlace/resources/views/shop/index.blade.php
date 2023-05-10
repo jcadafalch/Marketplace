@@ -11,6 +11,11 @@
         </nav>
     @endif
     <section class="shop-body">
+        @if (Session::has('error'))
+            <div class="error error-message" role="alert">
+                {{ Session::get('error') }}
+            </div>
+        @endif
         <article class="shop-info">
             <div class="shop-info-detail-shop">
                 <div class="shop-info-detail-shop-img">

@@ -102,7 +102,6 @@ class Product extends Model
 
       return strval($mainImage->url);
     } catch (\Throwable $th) {
-      Log::error('entro');
       $productImage =
         ProductImage::all()
         ->where('isMain', false)
@@ -117,7 +116,6 @@ class Product extends Model
 
   public function getAlternativeImages()
   {
-    Log::error('entro');
     $productImage = ProductImage::all()
       ->where('isMain', false)
       ->where('product_id', $this->id)->all();
@@ -306,7 +304,7 @@ class Product extends Model
       $shopId = Shop::all()->where("user_id", Auth::id())->first()->id;
 
       $productExists = Product::all()->where("name", $request['name'])->first();
-      
+
       if ($productExists == null) {
 
         $request->validate([
@@ -378,6 +376,78 @@ class Product extends Model
       }
     } else {
       return "img";
+    }
+    return false;
+  }
+
+  public static function updateProduct($request, $id)
+  {
+    $productExsists = Product::where("id", $id)->first();
+
+    if ($productExsists != null) {
+
+      $request->validate([
+        'name' => 'required|min:5',
+        'price' => 'required|min:1',
+        'detail' => 'required|min:5'
+      ]);
+
+      $requestAll = $request->all();
+
+      $product = $productExsists;
+
+      if ($requestAll['name'] != null && $requestAll['name'] != $productExsists->name) {
+        $product->name = $requestAll['name'];
+      } else if ($requestAll['detail'] != null && $requestAll['detail'] != $productExsists->description) {
+        $product->description = $requestAll['detail'];
+      } else if ($requestAll['price'] != null && $requestAll['price'] != $productExsists->price) {
+        $product->price = $requestAll['price'];
+      }
+
+      $product->save();
+
+      if ($request->file("file") != null) {
+        $imageFile = $request->file("file");
+
+        $imageFile->store("/public/img");
+
+        $image = new Image();
+        $image->name = $requestAll['name'];
+        $image->url = $imageFile->hashName();
+        $image->save();
+
+        $productImage = new ProductImage();
+        $productImage->isMain = true;
+        $productImage->image_id = $image->id;
+        $productImage->product_id = $product->id;
+        $productImage->save();
+      }
+
+      if ($request->file('otrasImagenes') != null) {
+        $cont = 1;
+
+        foreach ($request->file('otrasImagenes') as $value) {
+          Log::alert("Entra");
+
+          $imageFile = $value;
+
+          $imageFile->store("/public/img");
+
+          $image = new Image();
+          $image->name = $requestAll['name'] . "-$cont";
+          $image->url = $imageFile->hashName();
+          $image->save();
+
+          $productImage = new ProductImage();
+          $productImage->isMain = false;
+          $productImage->image_id = $image->id;
+          $productImage->product_id = $product->id;
+          $productImage->save();
+
+          $cont++;
+        }
+        return true;
+      }
     }
     return false;
   }

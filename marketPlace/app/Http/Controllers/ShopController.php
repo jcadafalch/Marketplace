@@ -173,50 +173,35 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateProduct(Request $request)
+    public function updateProduct(Request $request, $id)
     {
-        $response = [
-            "status" => "",
-            "msg" => "",
-            "action" => ""
-        ];
-        $executed = false;
-        try {
-            $product = Product::findOrFail($request->query('id'));
-            switch ($request->query('action')) {
-                case "habilitar":
-                    $product->isVisible = true;
-                    $executed = true;
-                    $response['action'] =  "able";
-                    break;
-                case "deshabilitar":
-                    $product->isVisible = false;
-                    $executed = true;
-                    $response['action'] =  "dissable";
-                    break;
-                case "eliminar":
-                    $product->isDeleted = true;
-                    $executed = true;
-                    $response['action'] =  "delete";
-                    break;
-                default:
-                    break;
-            }
-            if ($executed) {
-                $product->save();
-                $response['status'] = $executed;
-                $response['msg'] =  $product->name;
-            }
-        } catch (\Throwable $th) {
-            $response['status'] = $executed;
-            $response['msg'] = 'Error';
-        }
+        $return = Product::updateProduct($request, $id);
 
-        return response()->json($response);
+        $userId = Auth::id();
+
+        if (!$return) {
+            return redirect()->route('shop.showEditProduct', $id)->withInput()->with([
+                "error" => "Producto actualizado!"
+            ]);
+        } else {
+            return redirect()->route('shop.showEditProduct', $id)->with([
+                "message" => "ERROR!"
+            ]);
+        }
     }
 
     public function showUpdateProduct($id)
     {
+        $userId = Auth::id();
+        $productsShop = Product::where('id', $id)->first()->shop_id;
+        $userProductShop = Shop::where("id", $productsShop)->where("user_id", $userId)->first();
+
+        if($userProductShop == null){
+            return redirect()->route('shop.show', [Shop::where("user_id", $userId)->first()->name])->withInput()->with([
+                "error" => "No tienes acceso a este producto"
+            ]);
+        }
+
         return view('shop.editProductForm', ['product' => Product::all()->where('id', '=', $id)->first()], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
