@@ -44,7 +44,7 @@
                     <label>Nombre</label>
                 </div>
                 <div class="userForm-form-userInfo-userName">
-                    <input type="text" name="userName" value="{{ old('userName') }} {{ Auth::user()->name }}"
+                    <input maxlength="25" type="text" name="userName" {{-- value="{{ old('userName') }} {{ Auth::user()->name }} --}}"
                         placeholder="{{ Auth::user()->name }}">
                 </div>
             </div>
@@ -69,6 +69,12 @@
                         @endforeach
                     </ul>
                 </div>
+            @endif
+            @if (Session::get('error') && Session::get('error') != null)
+                <div class="userForm-form-error">{{ Session::get('error') }}</div>
+                @php
+                    Session::put('error', null);
+                @endphp
             @endif
         </form>
     </section>

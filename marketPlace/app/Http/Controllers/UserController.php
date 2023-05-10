@@ -46,12 +46,15 @@ class UserController extends Controller
 
         if ($request->string('password') !== null && $request->string('password')->length() > 0) {
             // en proceso de terminar
-            $credentials = $request->only('password');
-            if (!Auth::attempt($credentials)) {
-                return redirect()->route('user.profile')->with('message', 'La contraseña introducida es incorrecta.');
-            } elseif (Hash::check($request->password, $user->password) == true) {
-                $user->password = Hash::make($request->string('password'));
+            if (!Hash::check($request->get('password'), $user->password)) {
+                return back()->with('error', "La contraseña actual no es valida");
+            } else {
+                $user->password = Hash::make($request->string('newPassword'));
             }
+            // $credentials = $request->only('password');
+            // if (!Auth::attempt($credentials)) {
+            //     return redirect()->route('home.index')->with('message', 'La contraseña introducida es incorrecta.');
+            // } else
         }
 
         $user->save();
