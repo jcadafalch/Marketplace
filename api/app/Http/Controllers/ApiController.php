@@ -131,7 +131,7 @@ class ApiController extends Controller
             Log::info("Imagenes de un producto borradas");
             try {
                 $allImages = $request->all();
-
+                Log::debug($allImages);
                 for ($i = 0; $i < count($allImages); $i++) {
                     Log::error("imagen eliminada:" . $allImages[$i]);
                     Storage::disk('img')->delete($allImages[$i]);

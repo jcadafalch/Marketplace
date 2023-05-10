@@ -89,8 +89,8 @@ Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])-
 }));
 
 Route::group(['middleware' => ['web']], function () {
-  Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
-  Route::post('/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
+Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+Route::post('/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
 });
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
