@@ -11,8 +11,6 @@ class Api extends Model
 {
     use HasFactory;
 
-    public  $ApiUrl = "http://127.0.0.1:8000/api/";
-
     private $endpointCreateImage = "createImage";
     private $endpointDeleteImage = "deleteImage";
     private $endpointPushImage = "pushImage";
@@ -23,7 +21,7 @@ class Api extends Model
     public function createImage($ImageName)
     {
        
-        $url = $this->ApiUrl . $this->endpointCreateImage;
+        $url = env('API_URL') . $this->endpointCreateImage;
 
         $response = Http::withToken(env('API_TOKEN'))
         ->get($url, ['ContextName' => $ImageName]);
@@ -41,7 +39,8 @@ class Api extends Model
     public function deleteImage($ImageName)
     {
 
-        $url = $this->ApiUrl . $this->endpointDeleteImage;
+        $url = env('API_URL') . $this->endpointDeleteImage;
+        
         $response = Http::withToken(env('API_TOKEN'))
             ->delete($url, ['name' => $ImageName]);
 
@@ -56,7 +55,7 @@ class Api extends Model
     public function pushImage($imageContent)
     {
 
-        $url = $this->ApiUrl . $this->endpointPushImage;
+        $url = env('API_URL') . $this->endpointPushImage;
 
         $response = Http::withToken(env('API_TOKEN'))
             ->withHeaders([
@@ -77,7 +76,7 @@ class Api extends Model
     // Funciona
     public function deleteAllImagesProduct($productsID)
     {
-        $url = $this->ApiUrl . $this->endpointDeleteAllImageProduct;
+        $url = env('API_URL') . $this->endpointDeleteAllImageProduct;
 
         $products =[
             0 => "645a7c4de3bd8.png",
@@ -106,7 +105,7 @@ class Api extends Model
     public function deleteAllImages()
     {
 
-        $url = $this->ApiUrl . $this->endpointDeleteAllImageApi;
+        $url = env('API_URL') . $this->endpointDeleteAllImageApi;
 
         $response = Http::withToken(env('API_TOKEN'))->delete($url);
 
