@@ -23,13 +23,13 @@ class UserController extends Controller
     {
         $user_id = Auth::user()->id;
         $userShop = Shop::where('user_id', '=', $user_id)->first();
-        return view('user.userProfile',['shop'=> $userShop], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('user.userProfile', ['shop' => $userShop], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function editProfile(UserEdit $request)
     {
         $request->validated();
-        
+
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
 
@@ -45,7 +45,11 @@ class UserController extends Controller
         }
 
         if ($request->string('password') !== null && $request->string('password')->length() > 0) {
-            if (Hash::check($request->password, $user->password) == true) {
+            // en proceso de terminar
+            $credentials = $request->only('password');
+            if (!Auth::attempt($credentials)) {
+                return redirect()->route('user.profile')->with('message', 'La contraseña introducida es incorrecta.');
+            } elseif (Hash::check($request->password, $user->password) == true) {
                 $user->password = Hash::make($request->string('password'));
             }
         }
@@ -59,7 +63,7 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        setcookie("shoppingCartProductsId", "", time()-3600);
+        setcookie("shoppingCartProductsId", "", time() - 3600);
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

@@ -50,14 +50,13 @@
             </div>
             <div class="userForm-form-item">
                 <label>Cambiar contraseña</label>
-                <input type="password" name="password" value="{{ old('password') }} " placeholder="Contraseña actual">
+                <input type="password" name="password" placeholder="Contraseña actual">
             </div>
             <div class="userForm-form-item">
-                <input type="password" name="newPassword" value="{{ old('newPassword') }}" placeholder="Nueva Contraseña">
+                <input type="password" name="newPassword" placeholder="Nueva Contraseña">
             </div>
             <div class="userForm-form-item">
-                <input type="password" name="repeatNewPassword" value="{{ old('repeatNewPassword') }}"
-                    placeholder="Repita nueva Contraseña">
+                <input type="password" name="repeatNewPassword" placeholder="Repita nueva Contraseña">
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit" id="imageUpload">Guardar Cambios</button>
