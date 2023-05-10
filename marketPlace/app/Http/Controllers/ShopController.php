@@ -51,7 +51,7 @@ class ShopController extends Controller
 
     public function newProduct()
     {
-        return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)], ['subcategories' => Category::all()]);
     }
 
     public function addProduct(Request $request)
