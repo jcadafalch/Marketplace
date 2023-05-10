@@ -110,7 +110,12 @@ class Order extends Model
 
             Log::debug("Se ha encontrado la order de donde vamos a eliminar un producto. :orderId", ['orderId' => $userOrder->id]);
 
-            OrderLine::deleteProduct($product, $userOrder->id);
+            $product = Product::where('id', '=', $id)->first();
+
+            if($product != null){
+                Log::debug("Se ha encontrado el producto que vamos a eliminar. :product", ['product' => $product]);
+                OrderLine::deleteProduct($product, $userOrder->id);
+            }
             /*$deleteOrderLine = OrderLine::all()->where("product_id", $id)->where("order_id", $userOrder->id)->first();
             $deleteOrderLine->delete();*/
         }
