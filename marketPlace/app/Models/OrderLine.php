@@ -60,4 +60,15 @@ class OrderLine extends Model
             ProductOderLine::addProduct($product, $newOrderLine->id);
         }
     }
+
+    public static function deleteProduct($product, $orderId){
+
+        $orderLine = OrderLine::where('order_id', $orderId)->where('shop_id', $product->shop_id)->first();
+
+        Log::debug("OrderLine de orderLineId :orderId, orderLine :orderLine", ['orderId' => $orderId, 'orderLine' => $orderLine]);
+        if($orderLine != null){
+            Log::debug("Se ha encontrado la orderLine de donde vamos a eliminar un producto");
+            ProductOderLine::deleteProduct($product, $orderLine->id);
+        }
+    }
 }

@@ -102,10 +102,17 @@ class Order extends Model
 
     public static function delIds($id)
     {
-        $userOrder = Order::all()->where("user_id", Auth::id())->first();
+        $userOrder = Order::where("user_id", Auth::user()->id)->where('in_process', 1)->first();
+       // dd($userOrder);
+
+       Log::debug("UserOrder = " . $userOrder);
         if ($userOrder != null) {
-            $deleteOrderLine = OrderLine::all()->where("product_id", $id)->where("order_id", $userOrder->id)->first();
-            $deleteOrderLine->delete();
+
+            Log::debug("Se ha encontrado la order de donde vamos a eliminar un producto. :orderId", ['orderId' => $userOrder->id]);
+
+            OrderLine::deleteProduct($product, $userOrder->id);
+            /*$deleteOrderLine = OrderLine::all()->where("product_id", $id)->where("order_id", $userOrder->id)->first();
+            $deleteOrderLine->delete();*/
         }
     }
 }

@@ -40,4 +40,28 @@ class ProductOderLine extends Model
             Log::info("Se ha creado un nuevo productOrderLine: ", ['ProductOrderLine' => $newProductOrderLine]);
         }
     }
+
+    public static function DeleteProduct($product, $orderLineId){
+        $productOrderLine = ProductOderLine::where("orderLine_id", $orderLineId)->where("product_id", $product->id)->first();
+
+        Log::debug("ProductOrderLine de productOrderLineId :productOrderLineId, product order line :productOrderLine", ['productOrderLineId' => $orderId, 'productOrderLine' => $productOrderLine]);
+        if($productOrderLine != null){
+            $productOrderLine->delete();
+            Log::info("Se ha eliminado el producto :productName (:productId) con productOrderLine id: :productOrderLineId, de la orderLine con id :orderLineId", 
+            ['productName' => $product->name, 'productId' => $product->id, 'productOrderLineId' => $productOrderLine->id, 'orderLineId' => $orderLineId]);
+
+            $orderLineProducts = ProductOderLine::all()->where("orderLine_id", $orderLineId);
+
+            // Comrpobamos si la OrderLine tiene mas productos
+            if($orderLineProducts->isEmpty() ){
+                $orderLine = OrderLine::find($orderLineId);
+
+                // Si no tiene más productos, eliminamos la orderLine
+                if($orderLine != null){
+                    Log::info("Se ha eliminado la orderLine con id :orderLineId ya que no tenia productos asignados", ['orderLineId' => $orderLine->id]);
+                    $orderLine->delete();
+                }
+            }
+        }
+    }
 }
