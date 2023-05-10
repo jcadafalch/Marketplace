@@ -56,4 +56,9 @@ class ShoppingCartController extends Controller
             return true;
         }
     }
+
+    public function placeOrder()
+    {
+        
+    }
 }
