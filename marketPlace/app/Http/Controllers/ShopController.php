@@ -45,8 +45,8 @@ class ShopController extends Controller
         $img = self::saveImage($userId, $request);
         $image = Image::createImageObject($request['shopName'], $img);
         $shop = Shop::createShopObject($request['name'], $request['shopName'], $request['nif'], $userId, $image->id);
-       
-        return redirect()->route('shop.show');
+
+        return redirect()->route("shop.show", ['shopName' => $request['shopName']]);
     }
 
     public function newProduct()

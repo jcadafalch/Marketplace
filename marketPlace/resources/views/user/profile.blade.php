@@ -33,8 +33,8 @@
                     <div class="avatar-preview">
                         <div id="imagePreview" class="avatar-preview-img">
                             {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path ) }});" --}}
-                            <img id="profileImg" src="{{asset('storage/img/profile/' . Auth::user()->path) }}"
-                            onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
+                            <img id="profileImg" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
+                                onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
                         </div>
                     </div>
                 </div>
@@ -44,13 +44,13 @@
                     <label>Nombre</label>
                 </div>
                 <div class="userForm-form-userInfo-userName">
-                    <input type="text" name="userName" value="{{ old('userName') }}"
+                    <input type="text" name="userName" value="{{ old('userName') }} {{ Auth::user()->name }}"
                         placeholder="{{ Auth::user()->name }}">
                 </div>
             </div>
             <div class="userForm-form-item">
                 <label>Cambiar contraseña</label>
-                <input type="password" name="password" value="{{ old('password') }}" placeholder="Contraseña actual">
+                <input type="password" name="password" value="{{ old('password') }} " placeholder="Contraseña actual">
             </div>
             <div class="userForm-form-item">
                 <input type="password" name="newPassword" value="{{ old('newPassword') }}" placeholder="Nueva Contraseña">
@@ -73,6 +73,6 @@
             @endif
         </form>
     </section>
-    
+
     <script src="{{ asset('js/profileImgPreview.js') }}"></script>
 @endsection

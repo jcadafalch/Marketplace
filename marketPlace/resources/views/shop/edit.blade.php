@@ -22,16 +22,13 @@
                 </div>
                 <div class="shopedit-banner-preview">
                     <div class="shopedit-banner-imagePreview" id="bannerPreview">
-                        @if($shop->getBanner() != null)
-                        <img class="shop-banner-image"
-                            src="{{ asset('storage/img/shopProfileBanner/' . $shop->getBanner()->url) }}"
-                             alt="Banner de la tienda">
-         
-                            
+                        @if ($shop->getBanner() != null)
+                            <img class="shop-banner-image"
+                                src="{{ asset('storage/img/shopProfileBanner/' . $shop->getBanner()->url) }}"
+                                alt="Banner de la tienda">
                         @else
-                        <img class="shop-banner-image"
-                        src="{{ asset('/images/imagesNotFound.webp')}}" alt="Banner de la tienda">
-                       
+                            <img class="shop-banner-image" src="{{ asset('/images/imagesNotFound.webp') }}"
+                                alt="Banner de la tienda">
                         @endif
                     </div>
                 </div>
@@ -98,7 +95,8 @@
 
                 <article class="shop-description-edit">
                     <label for="shop-description">Mensaje de la Tienda:</label>
-                    <textarea type="text" name="shopDescription" maxlength="250" placeholder="{{ $shop->description }}"  onkeyup="countChars(this);"></textarea>
+                    <textarea type="text" name="shopDescription" maxlength="250" placeholder="Descripción de la tienda"
+                        onkeyup="countChars(this);">{{ $shop->description }}</textarea>
                     <p id="char_counter"></p>
                 </article>
                 <div class="userForm-form-item">
@@ -116,7 +114,8 @@
             <h4>Todos los productos</h4>
 
             <ul class="products-section">
-                <li class="product" style="
+                <li class="product"
+                    style="
                 width: 21rem;
                 height: 28rem;
                 display: flex;
