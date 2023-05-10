@@ -6,7 +6,7 @@
 
     @if ($shop->getBanner() != null)
         <nav class="shop-banner">
-            <img class="shop-banner-image" src="{{ asset('storage/img/' . $shop->getBanner()->url) }}"
+            <img class="shop-banner-image" src="{{ asset('storage/img/shopProfileBanner/' . $shop->getBanner()->url) }}"
                 onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Banner de la tienda">
         </nav>
     @endif
@@ -14,14 +14,14 @@
         <article class="shop-info">
             <div class="shop-info-detail-shop">
                 <div class="shop-info-detail-shop-img">
-                    <img src="{{ asset('storage/img/' . $shop->getLogo()->url) }}"
+                    <img src="{{ asset('storage/img/shopProfile/' . $shop->getLogo()->url) }}"
                         onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Logo de la tienda">
                 </div>
                 <p> {{ $shop->name }} </p>
             </div>
             <div class="shop-info-detail-seller">
                 <div class="shop-info-detail-seller-img">
-                    <img src="{{ asset('storage/img/' . strval($shop->getOwner()->path)) }}"
+                    <img src="{{ asset('storage/img/profile/' . strval($shop->getOwner()->path)) }}"
                         onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Imagen de perfil del vendedor">
                 </div>
                 <p>{{ $shop->ownerName }}</p>
