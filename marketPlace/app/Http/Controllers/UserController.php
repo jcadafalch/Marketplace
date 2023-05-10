@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserEdit;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -25,8 +26,9 @@ class UserController extends Controller
         return view('user.userProfile',['shop'=> $userShop], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
-    public function editProfile(Request $request)
+    public function editProfile(UserEdit $request)
     {
+        $request->validated();
         
         $id = Auth::user()->id;
         $user = User::findOrFail($id);
