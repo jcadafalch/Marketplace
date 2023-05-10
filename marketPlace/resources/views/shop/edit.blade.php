@@ -108,7 +108,14 @@
             <h4>Todos los productos</h4>
 
             <ul class="products-section">
-                <li class="product">
+                <li class="product" style="
+                width: 21rem;
+                height: 28rem;
+                display: flex;
+                justify-content: center;
+                font-size: 3rem;
+                box-shadow: 3px 5px 0px 0px gray;
+            ">
                     <a href="{{ route('shop.newProduct') }}">Añadir Producto</a>
                 </li>
                 @foreach ($products as $key => $product)
