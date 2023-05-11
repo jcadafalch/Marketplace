@@ -320,7 +320,7 @@ class Product extends Model
         $product = new Product();
         $product->name = $requestAll['name'];
         $product->description = $requestAll['detail'];
-        $product->price = $requestAll['price'];
+        $product->price = $requestAll['price']*100;
         $product->isVisible = true;
         $product->isDeleted = false;
         $product->order = 1;
