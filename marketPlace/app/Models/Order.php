@@ -103,7 +103,6 @@ class Order extends Model
     public static function delIds($id)
     {
         $userOrder = Order::where("user_id", Auth::user()->id)->where('in_process', 1)->first();
-       // dd($userOrder);
 
        Log::debug("UserOrder = " . $userOrder);
         if ($userOrder != null) {
@@ -116,8 +115,36 @@ class Order extends Model
                 Log::debug("Se ha encontrado el producto que vamos a eliminar. :product", ['product' => $product]);
                 OrderLine::deleteProduct($product, $userOrder->id);
             }
-            /*$deleteOrderLine = OrderLine::all()->where("product_id", $id)->where("order_id", $userOrder->id)->first();
-            $deleteOrderLine->delete();*/
         }
+    }
+
+    /**
+     * Esta función recupera los productos asociados a un pedido dado.
+     * 
+     * @param orderId El parámetro orderId es un número entero que representa el ID de un pedido. La
+     * función `getOrderProducts` recupera los productos asociados con el pedido especificado por
+     * .
+     * 
+     * @return los productos asociados con el pedido identificado por el parámetro . Si no se
+     * encuentra el pedido, devuelve nulo.
+     */
+    public static function getOrderProducts($orderId)
+    {
+        $order = Order::find($orderId);
+        if($order == null){
+            return null;
+        }
+
+        return OrderLine::getOrderLineProducts($orderId);
+    }
+
+    public static function closeOrder($orderId)
+    {
+        $order = Order::find($orderId);
+        if($order == null){
+            return null;
+        }
+
+        // TODO: marcar order com acabada
     }
 }

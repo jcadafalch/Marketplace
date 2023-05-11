@@ -48,11 +48,14 @@
             <p class="shoppingcart-aside-preufinal">{{ $total }}€</p>
             <hr>
             <ul class="userForm-form-error">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                @foreach ($errors as $error)
+                    <li>{{!! $error !!}}</li>
                 @endforeach
             </ul>
-            <button class="button-newShop">Realizar pedido</button>
+            <a class="button-newShop" href={{ route('shoppingCart.confirmOrder') }}>
+                Realizar pedido
+                {{-- <button class="button-newShop">Realizar pedido</button> --}}
+            </a>
         </aside>
     </section>
 @endsection

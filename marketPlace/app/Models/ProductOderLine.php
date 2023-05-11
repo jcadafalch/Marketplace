@@ -18,7 +18,7 @@ class ProductOderLine extends Model
     }
 
     public function product(){
-        return $this->hasOne(Psroduct::class)->withTimeStamps();
+        return $this->hasOne(Product::class)->withTimeStamps();
     }
 
     /**
@@ -63,5 +63,47 @@ class ProductOderLine extends Model
                 }
             }
         }
+    }
+
+    public static function getProductOfOrderLine($orderLineId)
+    {
+        $productOrderLine = ProductOderLine::where('orderLine_id', '=', $orderLineId)->get();
+
+        Log::debug("productOrderLine: ", ['productOrderLine' => $productOrderLine]);
+        
+        if($productOrderLine == null){
+            return null;
+        }
+
+        $productsIds = $productOrderLine->pluck('product_id');
+        $productsIdsArray = $productsIds->toArray();
+
+        $products = Product::whereIn('id', $productsIdsArray)->get();
+
+        Log::debug('ProductOrderLine -> products = ', ['products' => $products]);
+
+        return $products;
+
+    }
+
+    public static function setProductOfOrderLineAsSelled($orderLinesId)
+    {
+        $productOrderLine = ProductOderLine::whereIn('orderLine_id', '=', $orderLinesId)->get();
+
+        if($productOrderLine == null)
+        {
+            return null;
+        }
+
+        $productsIds = $productOrderLine->pluck('product_id');
+        $productsIdsArray = $productsIds->toArray();
+
+        Product::whereIn('id', $productsIdsArray)->update([
+            'isVisible' => 0,
+            'selled_at' => time(),
+        ]);
+
+        return true;
+            
     }
 }
