@@ -131,3 +131,28 @@ function ImgUpload() {
         $(this).parent().parent().remove();
     });
 }
+
+//dropdown de checkboxes
+let expanded = false;
+
+function showCheckboxes() {
+    const checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+        checkboxes.style.display = "block";
+        expanded = true;
+    } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
+}
+
+//devuelve el id de los checkbox seleccionados
+const checkboxes = document.querySelectorAll("input[type=checkbox][name=category]");
+let enabledSettings = []
+
+checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+        enabledSettings = Array.from(checkboxes).filter(i => i.checked).map(i => i.id);
+        console.log(enabledSettings);
+    })
+});

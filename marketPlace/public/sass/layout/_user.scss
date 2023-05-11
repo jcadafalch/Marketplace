@@ -4,7 +4,7 @@
     .user {
         &-content {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
             justify-items: center;
             align-items: center;
         }
@@ -36,7 +36,9 @@
             }
         }
 
-        &-info {}
+        &-info {
+            text-align: center;
+        }
 
         &-name {
             margin-bottom: 1rem;
