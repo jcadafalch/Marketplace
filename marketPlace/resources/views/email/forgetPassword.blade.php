@@ -1,12 +1,7 @@
-{{-- <h1>Correo para cambiar contraseña</h1>
-   
-Puedes cambiar la contraseña siguiendo el siguiente enlace:
-<a href="{{ route('reset.password.get', $token) }}">Cambiar contraseña</a> --}}
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Laravel</title>
+    <title>MarketPlace</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="color-scheme" content="light">
@@ -48,7 +43,7 @@ Puedes cambiar la contraseña siguiendo el siguiente enlace:
                                     <a target="_blank" rel="noopener noreferrer" href="http://localhost"
                                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 19px; font-weight: bold; text-decoration: none; display: inline-block;">
                                         <img src="http://127.0.0.1:8000/images/logo.png" class="logo"
-                                            alt="Laravel Logo"
+                                            alt="Logo"
                                             style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; ">
                                     </a>
                                 </td>

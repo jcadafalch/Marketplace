@@ -12,18 +12,6 @@
         <form class="userForm-form" action="{{ route('user.changeProfile') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('patch')
-            {{-- <div class="userForm-form-avatar">
-                <img src="{{ asset('storage/img/profile/profileImg' . Auth::user()->id . '.jpg') }}"
-                    onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
-            </div>
-            <div class="userForm-form-uploadPhoto">
-                <div class="userForm-form-uploadPhoto-text">
-                    <label>Foto de perfil</label>
-                </div>
-                <div class="userForm-form-uploadPhoto-button">
-                    <input type="file" name="profilePhoto" accept="image/*" value="{{ old('profilePhoto') }}">
-                </div>
-            </div> --}}
             <div class="container">
                 <div class="avatar-upload">
                     <div class="avatar-edit">
@@ -32,9 +20,8 @@
                     </div>
                     <div class="avatar-preview">
                         <div id="imagePreview" class="avatar-preview-img">
-                            {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path ) }});" --}}
                             <img id="profileImg" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
-                                onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
+                                onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Error">
                         </div>
                     </div>
                 </div>
@@ -44,7 +31,7 @@
                     <label>Nombre</label>
                 </div>
                 <div class="userForm-form-userInfo-userName">
-                    <input maxlength="25" type="text" name="userName" {{-- value="{{ old('userName') }} {{ Auth::user()->name }} --}}"
+                    <input maxlength="25" type="text" name="userName" value="{{ Auth::user()->name }}"
                         placeholder="{{ Auth::user()->name }}">
                 </div>
             </div>

@@ -31,14 +31,14 @@
 
             <div class="userForm-form-item">
                 <label>Detalle</label>
-                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail"  required>{{ old('detail') }}</textarea>
+                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail" required>{{ old('detail') }}</textarea>
             </div>
             <div class="upload-container">
                 <div class="drop-area">
                     <label for="file-input"> Imagen destacada </label>
                     <input name="file" type="file" id="file-input" accept="image/*" value="{{ old('file') }}"
                         hidden />
-                    <!-- Image upload input -->
+
                     <div class="preview-container hidden">
                         <div class="preview-image"></div>
                         <span class="file-name"></span>
@@ -68,7 +68,8 @@
                     <div id="checkboxes">
                         @foreach ($categories as $item)
                             <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category" id="{{ $item->name }}" />{{ $item->name }}</label>
+                                <input type="checkbox" name="category"
+                                    id="{{ $item->name }}" />{{ $item->name }}</label>
                         @endforeach
                     </div>
                 </div>
@@ -80,10 +81,10 @@
                         <div class="overSelect"></div>
                     </div>
                     <div id="checkboxes">
-                            
+
                     </div>
                 </div>
-                
+
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar</button>
@@ -91,6 +92,5 @@
         </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="{{ asset('js/imgPreviw.js') }}"></script>
 @endsection
