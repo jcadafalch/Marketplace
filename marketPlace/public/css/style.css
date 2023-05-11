@@ -189,6 +189,7 @@ body {
 .product img {
   width: 100%;
   height: auto;
+  border-radius: 1.6rem;
 }
 .product-name {
   color: black;
@@ -1173,9 +1174,9 @@ a.slide_btn {
 }
 .edit-list {
   position: absolute;
-  right: 12px;
+  right: 21px;
   z-index: 1;
-  top: 10px;
+  top: 17px;
 }
 .edit-list-ableDissable {
   display: none;
@@ -1487,6 +1488,36 @@ a.slide_btn {
 
 #checkboxes label:hover {
   background-color: #FFD0AF;
+}
+
+.order-title {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+.order-section {
+  padding: 3vh 20vw 3vh 20vw;
+}
+.order-product {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  align-items: center;
+  margin: 2rem;
+}
+.order-product-image {
+  width: 15rem;
+  border-radius: 1.6rem;
+}
+.order-product-price {
+  text-align: end;
+}
+.order-total {
+  margin-top: 2rem;
+  text-align: end;
+}
+
+.material-symbols-outlined {
+  text-align: end;
+  font-size: 3rem;
 }
 
 /*# sourceMappingURL=style.css.map */

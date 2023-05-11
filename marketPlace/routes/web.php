@@ -10,6 +10,7 @@ use App\Http\Controllers\LogInController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -94,3 +95,6 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
+
+
+Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');
