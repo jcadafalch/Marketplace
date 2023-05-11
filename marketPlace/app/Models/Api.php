@@ -19,7 +19,7 @@ class Api extends Model
     private $endpointDeleteAllImageProduct = "deleteImageByProductName";
     private $endpointDeleteAllImageApi = "deleteAllImages";
 
-    // Funciona
+   
     public function createImage($ImageName)
     {
        
@@ -37,7 +37,7 @@ class Api extends Model
         }
     }
 
-     // Funciona
+
     public function deleteImage($ImageName)
     {
 
@@ -58,38 +58,24 @@ class Api extends Model
     {
 
         $url = env('API_URL') . $this->endpointPushImage;
-
-        $file = reset($imageContent);
-        //dd($file->getClientOriginalName());
-        $extension = $file->getClientOriginalExtension();
-        //dd($extension);
-        $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
-        //dd($img);
-        $file->storeAs('public/img/temporarlImage', $img);
        
-        $url = Storage::url('public/img/temporarlImage/' .$img );
-        dd($url);
+        $file = reset($imageContent);
+        
+        $extension = $file->getClientOriginalExtension();
+      
+        $img = 'temporarlImage' . Auth::user()->id . '.' .  $extension;
+       
+        $file->storeAs('public/img/', $img);
 
-
-
-
-        $response = Http::withToken(env('API_TOKEN'))
-            ->withHeaders([
-                'Content-Type' => 'image/png',
-            ])
-            ->attach('imagen',  $url , 'image')
-            ->post($url);
-
-
-        if ($response->ok()) {
-
-            return $response->json();
-        } else {
-            return $response->json();;
-        }
+        $photo_path = 'storage/img/'. $img;
+    
+        $response = Http::withToken(env('API_TOKEN'))->attach('imagen', file_get_contents($photo_path), basename($photo_path))->post($url);
+        Storage::disk('img')->delete($img);
+        $urlPhoto = $response->json();
+        
+        return $response['filename'];
     }
 
-    // Funciona
     public function deleteAllImagesProduct($productsID)
     {
         $url = env('API_URL') . $this->endpointDeleteAllImageProduct;
@@ -117,7 +103,6 @@ class Api extends Model
         }
     }
 
-     // Funciona
     public function deleteAllImages()
     {
 
