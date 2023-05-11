@@ -23,7 +23,7 @@
                     <div class="product-image">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             @if ($product->getMainImage() != null)
-                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
+                                <img src="{{ $product->getMainImage() }}" />
                             @else
                                 <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
                             @endif
