@@ -18,12 +18,7 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $num = uniqid();
-        $url = fake()->imageUrl(640, 480, 'animals', true);
-        $contents = file_get_contents($url);
-        $name = "imgN" . $num .".jpg";
-        Storage::disk('img')->put($name, $contents);
-
+     
         $allShopId = Shop::count();
         $shopId = rand(2, $allShopId);
         return [
