@@ -26,7 +26,7 @@
 
             <div class="userForm-form-item">
                 <label>Precio</label>
-                <input type="number" step="any" name="price" value="{{ old('price') }}" required>
+                <input type="number" step="0.10" min="0.00" name="price" value="{{ old('price') }}" required>
             </div>
 
             <div class="userForm-form-item">
