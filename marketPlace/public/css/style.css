@@ -1199,7 +1199,7 @@ a.slide_btn {
   border-color: #d6d6d6;
 }
 .edit-list .dissable:after {
-  content: "\e5cd";
+  content: "\e8f5";
   font-family: "Material Icons";
   color: #757575;
   position: relative;
@@ -1227,7 +1227,7 @@ a.slide_btn {
   border-color: #d6d6d6;
 }
 .edit-list .able:after {
-  content: "\e876";
+  content: "\e8f4";
   font-family: "Material Icons";
   color: #757575;
   position: relative;
@@ -1256,6 +1256,62 @@ a.slide_btn {
 }
 .edit-list .delete:after {
   content: "\e15b";
+  font-family: "Material Icons";
+  color: #757575;
+  position: relative;
+  top: 7px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.edit-list .up {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.edit-list .up:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.edit-list .up:after {
+  content: "\e5ce";
+  font-family: "Material Icons";
+  color: #757575;
+  position: relative;
+  top: 7px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.edit-list .down {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.edit-list .down:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.edit-list .down:after {
+  content: "\e5cf";
   font-family: "Material Icons";
   color: #757575;
   position: relative;
