@@ -31,8 +31,7 @@
 
             <div class="userForm-form-item">
                 <label>Detalle</label>
-                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail" value="{{ old('detail') }}"
-                    required></textarea>
+                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail"  required>{{ old('detail') }}</textarea>
             </div>
             <div class="upload-container">
                 <div class="drop-area">
