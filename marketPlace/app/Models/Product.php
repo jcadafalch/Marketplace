@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Image;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
@@ -278,8 +279,7 @@ class Product extends Model
       for ($i = 0; $i < count($landingPageConfig['categorys']); $i++) {
         array_push(
           $p,
-          DB::table('products')
-            ->select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.selled_at', 'products.shop_id', 'images.url')
+          Product::select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.selled_at', 'products.shop_id', 'images.url')
             ->join('category_product', 'products.id', '=', 'category_product.id')
             ->join('categories', 'category_product.category_id', '=', 'categories.id')
             ->join('product_images', 'products.id', '=', 'product_images.product_id')
