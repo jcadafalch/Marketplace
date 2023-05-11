@@ -223,7 +223,7 @@ class ApiController extends Controller
 
     public function generateText($image, $fileName)
     {
-        $font = dirname(__FILE__) . '/arial.ttf';
+        $font = 'arial.ttf';
         $black = imagecolorallocate($image, 0, 0, 0);
         imagettftext($image, 20, 0, 200, 170, $black, $font, $fileName);
     }
