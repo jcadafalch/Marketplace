@@ -72,18 +72,15 @@
                         @endforeach
                     </div>
                 </div>
-                <div id="multiselect" class="multiselect" hidden>
+                <div id="multiselect2" class="multiselect" hidden>
                     <div class="selectBox" onclick="showCheckboxes()">
                         <select>
-                            <option>Selecciona categorias</option>
+                            <option>Selecciona subcategorias</option>
                         </select>
                         <div class="overSelect"></div>
                     </div>
                     <div id="checkboxes">
-                        @foreach ($categories as $item)
-                            <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category" id="{{ $item->name }}" />{{ $item->name }}</label>
-                        @endforeach
+                            
                     </div>
                 </div>
                 
