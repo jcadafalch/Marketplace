@@ -29,7 +29,7 @@ const fileName = document.querySelector('.file-name');
 fileInput.addEventListener('change', () => {
     const file = fileInput.files[0]; // Get the file that was selected
     showPreview(file); // Show a preview of the file
-    showFileName(file); // Show the name of the file
+    // showFileName(file); // Show the name of the file
 });
 
 // Add event listener to the close button to handle when it is clicked
@@ -66,22 +66,23 @@ function showPreview(file) {
 //     fileName.style.display = 'block'; // Show the file name element
 // }
 
-jQuery(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
     ImgUpload();
 });
 
 function ImgUpload() {
-    var imgWrap = "";
-    var imgArray = [];
+    let imgWrap = "";
+    let imgArray = [];
 
-    $('.upload__inputfile').each(function () {
-        $(this).on('change', function (e) {
-            imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
-            var maxLength = $(this).attr('data-max_length');
+    let uploadInputs = document.querySelectorAll('.upload__inputfile');
+    uploadInputs.forEach(function (input) {
+        input.addEventListener('change', function (e) {
+            imgWrap = input.closest('.upload__box').querySelector('.upload__img-wrap');
+            let maxLength = input.getAttribute('data-max_length');
 
-            var files = e.target.files;
-            var filesArr = Array.prototype.slice.call(files);
-            var iterator = 0;
+            let files = e.target.files;
+            let filesArr = Array.prototype.slice.call(files);
+            let iterator = 0;
             filesArr.forEach(function (f, index) {
 
                 if (!f.type.match('image.*')) {
@@ -89,10 +90,10 @@ function ImgUpload() {
                 }
 
                 if (imgArray.length > maxLength) {
-                    return false
+                    return false;
                 } else {
-                    var len = 0;
-                    for (var i = 0; i < imgArray.length; i++) {
+                    let len = 0;
+                    for (let i = 0; i < imgArray.length; i++) {
                         if (imgArray[i] !== undefined) {
                             len++;
                         }
@@ -102,15 +103,15 @@ function ImgUpload() {
                     } else {
                         imgArray.push(f);
 
-                        var reader = new FileReader();
+                        let reader = new FileReader();
                         reader.onload = function (e) {
-                            var html =
+                            let html =
                                 "<div class='upload__img-box'><div style='background-image: url(" +
-                                e.target.result + ")' data-number='" + $(
+                                e.target.result + ")' data-number='" + document.querySelectorAll(
                                     ".upload__img-close").length + "' data-file='" + f
                                     .name +
                                 "' class='img-bg'><div class='upload__img-close'></div></div></div>";
-                            imgWrap.append(html);
+                            imgWrap.insertAdjacentHTML('beforeend', html);
                             iterator++;
                         }
                         reader.readAsDataURL(f);
@@ -120,17 +121,20 @@ function ImgUpload() {
         });
     });
 
-    $('body').on('click', ".upload__img-close", function (e) {
-        var file = $(this).parent().data("file");
-        for (var i = 0; i < imgArray.length; i++) {
-            if (imgArray[i].name === file) {
-                imgArray.splice(i, 1);
-                break;
+    document.querySelector('body').addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('upload__img-close')) {
+            let file = e.target.parentNode.getAttribute('data-file');
+            for (let i = 0; i < imgArray.length; i++) {
+                if (imgArray[i].name === file) {
+                    imgArray.splice(i, 1);
+                    break;
+                }
             }
+            e.target.parentNode.parentNode.remove();
         }
-        $(this).parent().parent().remove();
     });
 }
+
 
 //dropdown de checkboxes
 let expanded = false;
@@ -151,8 +155,13 @@ const checkboxes = document.querySelectorAll("input[type=checkbox][name=category
 let enabledSettings = []
 
 checkboxes.forEach(function (checkbox) {
-    checkbox.addEventListener('change', function () {
+    checkbox.addEventListener('change', async function () {
         enabledSettings = Array.from(checkboxes).filter(i => i.checked).map(i => i.id);
-        console.log(enabledSettings);
+        fetch('/tienda/añadirProducto/cat?categories=' + enabledSettings.join(','))
+            .then(async data => {
+                const subcategories = await data.json();
+                //todo for
+            })
+            .catch(error => console.log(error))
     })
 });
