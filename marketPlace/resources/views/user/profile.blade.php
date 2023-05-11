@@ -44,20 +44,19 @@
                     <label>Nombre</label>
                 </div>
                 <div class="userForm-form-userInfo-userName">
-                    <input type="text" name="userName" value="{{ old('userName') }} {{ Auth::user()->name }}"
+                    <input maxlength="25" type="text" name="userName" {{-- value="{{ old('userName') }} {{ Auth::user()->name }} --}}"
                         placeholder="{{ Auth::user()->name }}">
                 </div>
             </div>
             <div class="userForm-form-item">
                 <label>Cambiar contraseña</label>
-                <input type="password" name="password" value="{{ old('password') }} " placeholder="Contraseña actual">
+                <input type="password" name="password" placeholder="Contraseña actual">
             </div>
             <div class="userForm-form-item">
-                <input type="password" name="newPassword" value="{{ old('newPassword') }}" placeholder="Nueva Contraseña">
+                <input type="password" name="newPassword" placeholder="Nueva Contraseña">
             </div>
             <div class="userForm-form-item">
-                <input type="password" name="repeatNewPassword" value="{{ old('repeatNewPassword') }}"
-                    placeholder="Repita nueva Contraseña">
+                <input type="password" name="repeatNewPassword" placeholder="Repita nueva Contraseña">
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit" id="imageUpload">Guardar Cambios</button>
@@ -70,6 +69,12 @@
                         @endforeach
                     </ul>
                 </div>
+            @endif
+            @if (Session::get('error') && Session::get('error') != null)
+                <div class="userForm-form-error">{{ Session::get('error') }}</div>
+                @php
+                    Session::put('error', null);
+                @endphp
             @endif
         </form>
     </section>

@@ -92,9 +92,9 @@
 
     &-list {
         position: absolute;
-        right: 12px;
+        right: 21px;
         z-index: 1;
-        top: 10px;
+        top: 17px;
 
         &-ableDissable {
             display: none;
@@ -119,7 +119,7 @@
             }
 
             &:after {
-                content: "\e5cd";
+                content: "\e8f5";
                 font-family: 'Material Icons';
                 color: #757575;
                 position: relative;
@@ -150,7 +150,7 @@
             }
 
             &:after {
-                content: "\e876";
+                content: "\e8f4";
                 font-family: 'Material Icons';
                 color: #757575;
                 position: relative;
@@ -182,6 +182,68 @@
 
             &:after {
                 content: "\e15b";
+                font-family: 'Material Icons';
+                color: #757575;
+                position: relative;
+                top: 7px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+            }
+        }
+
+        .up {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #FFFFFF;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background: #f1f1f1;
+                border-color: #d6d6d6;
+            }
+
+            &:after {
+                content: "\e5ce";
+                font-family: 'Material Icons';
+                color: #757575;
+                position: relative;
+                top: 7px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                margin: auto;
+            }
+        }
+
+        .down {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #FFFFFF;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background: #f1f1f1;
+                border-color: #d6d6d6;
+            }
+
+            &:after {
+                content: "\e5cf";
                 font-family: 'Material Icons';
                 color: #757575;
                 position: relative;
@@ -361,7 +423,6 @@
     &-banner {
         // height: 18rem;
         // position: relative;
-        position: relative;
         height: auto;
         overflow: hidden;
 
