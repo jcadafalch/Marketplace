@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ShopController extends Controller
 {
@@ -49,6 +50,14 @@ class ShopController extends Controller
         return redirect()->route("shop.show", ['shopName' => $request['shopName']]);
     }
 
+    public function getSubcategories(Request $request)
+    {
+        $categories = $request->get('categories');
+        $categories_ids = Category::whereIn('name', explode(",", $categories))->pluck('id');
+        $subcategories = Category::whereIn('parent_id', $categories_ids)->pluck('name');
+        return new JsonResponse($subcategories);
+    }
+    
     public function newProduct()
     {
         return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)], ['subcategories' => Category::all()]);

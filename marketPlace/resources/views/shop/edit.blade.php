@@ -17,17 +17,17 @@
             </div> --}}
             <div class="shopedit-banner-upload">
                 <div class="shopedit-banner-edit">
-                    <input type='file' id="bannerUpload" name="shopBanner" accept=".png, .jpg, .jpeg" />
+                    <input type='file' id="bannerUpload" class="imageUpload" name="shopBanner" accept=".png, .jpg, .jpeg" />
                     <label for="bannerUpload"></label><span>Banner para mostrar tu marca y tus anuncios</span>
                 </div>
                 <div class="shopedit-banner-preview">
-                    <div class="shopedit-banner-imagePreview" id="bannerPreview">
+                    <div class="shopedit-banner-imagePreview imagePreview">
                         @if ($shop->getBanner() != null)
-                            <img class="shop-banner-image"
+                            <img class="shop-banner-image imageUploaded"
                                 src="{{ asset('storage/img/shopProfileBanner/' . $shop->getBanner()->url) }}"
                                 alt="Banner de la tienda">
                         @else
-                            <img class="shop-banner-image" src="{{ asset('/images/imagesNotFound.webp') }}"
+                            <img class="shop-banner-image imageUploaded" src="{{ asset('/images/imagesNotFound.webp') }}"
                                 alt="Banner de la tienda">
                         @endif
                     </div>
@@ -60,13 +60,15 @@
                 </div> --}}
                         <div class="avatar-upload">
                             <div class="avatar-edit">
-                                <input type='file' id="imageUpload" name="profileImg" accept=".png, .jpg, .jpeg" />
-                                <label for="imageUpload"></label>
+                                <input type='file' id="shopLogoUpload" class="imageUpload" name="profileImg"
+                                    accept=".png, .jpg, .jpeg" />
+                                <label for="shopLogoUpload"></label>
                             </div>
                             <div class="avatar-preview">
                                 {{-- style="background-image: url({{ asset('storage/img/profile/' . Auth::user()->path) }});" --}}
-                                <div id="imagePreview" class="shop-info-detail-shop-img">
-                                    <img id="shopLogo"
+                                <div class="shop-info-detail-shop-img imagePreview">
+                                    <img id="shopLogo" 
+                                    class="imageUploaded"
                                         src="{{ asset('storage/img/shopProfile/' . $shop->getLogo()->url) }}"
                                         onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'"
                                         alt="Logo de la tienda">

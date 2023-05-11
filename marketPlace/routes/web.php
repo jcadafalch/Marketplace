@@ -93,6 +93,7 @@ Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdatePro
 
 Route::group(['middleware' => ['web']], function () {
   Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+  Route::get('/tienda/añadirProducto/cat', [ShopController::class, 'getSubcategories']);
   Route::post('/tienda/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
 });
 
