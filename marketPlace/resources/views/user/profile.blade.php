@@ -15,12 +15,12 @@
             <div class="container">
                 <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file' name="profilePhoto" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <input type='file' name="profilePhoto" id="imageUpload" class="imageUpload" accept=".png, .jpg, .jpeg" />
                         <label for="imageUpload"></label>
                     </div>
                     <div class="avatar-preview">
-                        <div id="imagePreview" class="avatar-preview-img">
-                            <img id="profileImg" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
+                        <div class="avatar-preview-img imagePreview">
+                            <img class="imageUploaded" src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
                                 onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Error">
                         </div>
                     </div>

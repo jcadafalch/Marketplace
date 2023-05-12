@@ -57,7 +57,7 @@ class ShopController extends Controller
         $subcategories = Category::whereIn('parent_id', $categories_ids)->pluck('name');
         return new JsonResponse($subcategories);
     }
-    
+
     public function newProduct()
     {
         return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)], ['subcategories' => Category::all()]);

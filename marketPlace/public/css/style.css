@@ -1248,7 +1248,7 @@ a.slide_btn {
   .shopedit-banner-edit {
     position: absolute;
     color: white;
-    top: 10%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
     .shopedit-banner-edit input {
@@ -1274,7 +1274,8 @@ a.slide_btn {
         top: 8px;
         left: 9px; }
   .shopedit-banner-upload {
-    height: 18rem; }
+    height: 18rem;
+    position: relative; }
   .shopedit-banner-preview {
     height: 18rem; }
   .shopedit-banner-imagePreview {
