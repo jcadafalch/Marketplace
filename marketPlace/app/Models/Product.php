@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Api;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
@@ -294,7 +295,6 @@ class Product extends Model
     }
     array_push($result, $title, $p);
 
-    //dd($result);
     return $result;
   }
 
@@ -327,15 +327,15 @@ class Product extends Model
         $product->save();
 
 
-        //dd($product);
 
         $imageFile = $request->file("file");
 
-        $imageFile->store("/public/img");
-
+        $api = new Api();
+        $urlImage = $api->pushImage($imageFile);
+        
         $image = new Image();
         $image->name = $requestAll['name'];
-        $image->url = $imageFile->hashName();
+        $image->url =  $urlImage;
         $image->save();
 
         $productImage = new ProductImage();
@@ -349,18 +349,18 @@ class Product extends Model
         Log::alert($requestAll);
 
 
-
         if ($request->file('otrasImagenes') != null) {
           foreach ($request->file('otrasImagenes') as $value) {
             Log::alert("Entra");
 
             $imageFile = $value;
 
-            $imageFile->store("/public/img");
+            $api = new Api();
+            $urlImage = $api->pushImage($imageFile);
 
             $image = new Image();
             $image->name = $requestAll['name'] . "-$cont";
-            $image->url = $imageFile->hashName();
+            $image->url =  $urlImage;
             $image->save();
 
             $productImage = new ProductImage();

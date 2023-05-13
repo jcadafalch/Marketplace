@@ -58,8 +58,8 @@ class Api extends Model
     {
 
         $url = env('API_URL') . $this->endpointPushImage;
-       
-        $file = reset($imageContent);
+
+        $file = $imageContent;
         
         $extension = $file->getClientOriginalExtension();
       
