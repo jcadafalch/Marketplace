@@ -13,7 +13,7 @@
             </article>
         @else
             @foreach ($producte as $key => $productec)
-                <div style="display: none"> {{ $total += $productec->price }}</div>
+                <div style="display: none"> {{ $total += round($productec->price/100, 2) }}</div>
                 <article class="shoppingcart-main-article shoppingcart-main-article-boxshadowNormal"
                     id="{{ $productec->id }}">
                     <a href="{{ route('product.show', ['id' => $productec->id]) }}">
@@ -38,7 +38,7 @@
                             delete
                         </span>
                     </button>
-                    <h3 class="shoppingcart-main-article-productPrice"> {{ $productec->price }} €</h3>
+                    <h3 class="shoppingcart-main-article-productPrice"> {{ round($productec->price/100, 2) }} €</h3>
                 </article>
             @endforeach
         @endif

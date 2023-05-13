@@ -42,6 +42,7 @@ class ProductOderLine extends Model
     }
 
     public static function DeleteProduct($product, $orderLineId){
+        Log::alert("llega");
         $productOrderLine = ProductOderLine::where("orderLine_id", $orderLineId)->where("product_id", $product->id)->first();
 
         Log::debug("ProductOrderLine de productOrderLineId :productOrderLineId, product order line :productOrderLine", ['productOrderLineId' => $orderLineId, 'productOrderLine' => $productOrderLine]);

@@ -26,13 +26,12 @@
 
             <div class="userForm-form-item">
                 <label>Precio</label>
-                <input type="number" name="price" value="{{ old('price') }}" required>
+                <input type="number" step="0.10" min="0.00" name="price" value="{{ old('price') }}" required>
             </div>
 
             <div class="userForm-form-item">
                 <label>Detalle</label>
-                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail" value="{{ old('detail') }}"
-                    required></textarea>
+                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail"  required>{{ old('detail') }}</textarea>
             </div>
             <div class="upload-container">
                 <div class="drop-area">

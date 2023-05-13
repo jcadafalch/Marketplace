@@ -24,7 +24,7 @@ class UserEdit extends FormRequest
         return [
             'userName' => 'max:25|nullable',
             'profileImg' => 'image|mimes:png,jpg,jpeg|nullable',
-            'password' => 'min:8|nullable',
+            // 'password' => 'min:8|nullable',
             'newPassword' => ['regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[!@#$%^&*(),.?":{}|<>]/', 'nullable'],
             'repeatNewPassword' => 'same:newPassword|nullable' 
          ];

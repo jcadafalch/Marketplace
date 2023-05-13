@@ -23,7 +23,7 @@
                     <div class="product-image">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             @if ($product->getMainImage() != null)
-                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
+                                <img src="{{ $product->getMainImage() }}" />
                             @else
                                 <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
                             @endif
@@ -32,7 +32,7 @@
                     <div class="product-details">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             <p class="product-name"> {{ $product->name }} </p>
-                            <p class="product-price"> {{ $product->price }}€ </p>
+                            <p class="product-price"> {{ round($product->price/100, 2) }}€ </p>
                         </a>
                     </div>
                     <input class="button-addToCart" type="button" value="Añadir" id="{{ $product->id }}">

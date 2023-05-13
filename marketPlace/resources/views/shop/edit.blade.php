@@ -135,10 +135,15 @@
                             <label title="Habilitar" class='able' for="habilitar" id="{{ $product->id }}"></label>
                             <input type="button" class="edit-list-ableDissable" name="eliminar">
                             <label title="Eliminar" class='delete' for="eliminar" id="{{ $product->id }}"></label>
+                            <br>
+                            <input type="button" class="edit-list-ableDissable" name="up">
+                            <label title="Mover" class='up' for="up" id="{{ $product->id }}"></label>
+                            <input type="button" class="edit-list-ableDissable" name="down">
+                            <label title="Mover" class='down' for="down" id="{{ $product->id }}"></label>
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
+                                <img src="{{  $product->getMainImage() }}" />
                             </a>
                         </div>
                         <div class="product-details">

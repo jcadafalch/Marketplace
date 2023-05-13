@@ -8,6 +8,7 @@ use App\Models\ProductOderLine;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Order;
 
 class OrderLine extends Model
 {
@@ -68,7 +69,7 @@ class OrderLine extends Model
         Log::debug("OrderLine de orderLineId :orderId, orderLine :orderLine", ['orderId' => $orderId, 'orderLine' => $orderLine]);
         if($orderLine != null){
             Log::debug("Se ha encontrado la orderLine de donde vamos a eliminar un producto");
-            ProductOderLine::deleteProduct($product, $orderLine->id);
+            ProductOderLine::DeleteProduct($product, $orderLine->id);
         }
     }
 

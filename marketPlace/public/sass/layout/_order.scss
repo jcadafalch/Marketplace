@@ -1,0 +1,36 @@
+.order {
+    &-title {
+        // padding-bottom: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+    &-section {
+        padding: 3vh 20vw 3vh 20vw;
+    }
+
+    &-product {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        align-items: center;
+
+        margin: 2rem;
+        &-image {
+            width: 15rem;
+            border-radius: 1.6rem;
+        }
+
+        &-price {
+            text-align: end;
+        }
+    }
+
+    &-total {
+        margin-top: 2rem;
+        text-align: end;
+    }
+}
+
+.material-symbols-outlined {
+    text-align: end;
+    font-size: 3rem;
+}
