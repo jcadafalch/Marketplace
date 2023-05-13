@@ -4,7 +4,9 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderLine;
+use App\Models\ProductOderLine;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -20,14 +22,16 @@ class Order extends Model
         'in_process',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class)->withTimeStamps();
     }
-    
-    public function lines(){
-        return $this-> hasMany(OrderLine::class)->withTimeStamps();
+
+    public function lines()
+    {
+        return $this->hasMany(OrderLine::class)->withTimeStamps();
     }
-   
+
 
     public static function getOrderFromOrderId($id)
     {
@@ -38,7 +42,7 @@ class Order extends Model
     {
         $orderId = Order::all()->where("user_id", $id)->first();
         if ($orderId != null) {
-            return OrderLine::getOrderlineFromOrderId($orderId->id)->pluck('product_id');
+            return OrderLine::getOrderlineFromOrderId($orderId->id)->pluck('id');
         } else {
             return null;
         }
@@ -48,13 +52,19 @@ class Order extends Model
     {
         $orderIds = Order::getIdsFromUserId($userId);
         if ($orderIds != []) {
-            unset($_COOKIE["shoppingCartProductsId"]);
-            $cookieValue = null;
+            $productsId = [];
             foreach ($orderIds as $key => $value) {
-                Log::alert($value);
-                $cookieValue = $cookieValue . $value . ".";
+                array_push($productsId, ProductOderLine::all()->where("orderLine_id", $value)->first()->product_id);
             }
-            setcookie("shoppingCartProductsId", "$cookieValue", ["Path" => "/", "SameSite" => "Lax"]);
+
+            if ($productsId != []) {
+                unset($_COOKIE["shoppingCartProductsId"]);
+                $cookieValue = null;
+                foreach ($productsId as $key => $value) {
+                    $cookieValue = $cookieValue . $value . ".";
+                }
+                setcookie("shoppingCartProductsId", "$cookieValue", ["Path" => "/", "SameSite" => "Lax"]);
+            }
         }
     }
 
@@ -72,12 +82,11 @@ class Order extends Model
             $idArray = explode(".", $ids);
             foreach ($idArray as $key => $char) {
                 if ($char != "") {
-                    
+
                     $product = Product::where("id", $char)->first();
                     if ($product != null) {
                         OrderLine::addProduct($product, $userOrder->id);
                     }
-
                 }
             }
         } else {
@@ -104,14 +113,14 @@ class Order extends Model
     {
         $userOrder = Order::where("user_id", Auth::user()->id)->where('in_process', 1)->first();
 
-       Log::debug("UserOrder = " . $userOrder);
+        Log::debug("UserOrder = " . $userOrder);
         if ($userOrder != null) {
 
             Log::debug("Se ha encontrado la order de donde vamos a eliminar un producto. :orderId", ['orderId' => $userOrder->id]);
 
             $product = Product::where('id', '=', $id)->first();
 
-            if($product != null){
+            if ($product != null) {
                 Log::debug("Se ha encontrado el producto que vamos a eliminar. :product", ['product' => $product]);
                 OrderLine::deleteProduct($product, $userOrder->id);
             }
@@ -131,7 +140,7 @@ class Order extends Model
     public static function getOrderProducts($orderId)
     {
         $order = Order::find($orderId);
-        if($order == null){
+        if ($order == null) {
             return null;
         }
 
@@ -141,7 +150,7 @@ class Order extends Model
     public static function closeOrder($orderId)
     {
         $order = Order::find($orderId);
-        if($order == null){
+        if ($order == null) {
             return null;
         }
 
