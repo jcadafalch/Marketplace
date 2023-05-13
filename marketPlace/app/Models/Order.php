@@ -145,6 +145,11 @@ class Order extends Model
             return null;
         }
 
-        // TODO: marcar order com acabada
+        $statusOrderLine = OrderLine::setOrderLinePendingToPay($orderId);
+
+        if($statusOrderLine == null){
+
+        }
+        // TODO: FER TRANSACCIÓ (FER TOTS ELS UPDATES I EN CAS QUE UN PETI, FACI UN ROLLBACK)
     }
 }
