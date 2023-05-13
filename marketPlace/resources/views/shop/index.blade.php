@@ -3,7 +3,7 @@
 @section('title', 'Tu tienda')
 
 @section('content')
-
+    
     @if ($shop->getBanner() != null)
         <nav class="shop-banner">
             <img class="shop-banner-image" src="{{ asset('storage/img/shopProfileBanner/' . $shop->getBanner()->url) }}"
@@ -47,10 +47,10 @@
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
                                 @if ($product->getMainImage() != null)
-                                    <img src="{{ asset('storage/img/' . $product->getMainImage()) }}"
+                                    <img src="{{ $product->getMainImage()}}"
                                         alt="Imagen del producto" />
                                 @else
-                                    <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}"
+                                    <img src="{{ asset('/images/imagesNotFound.webp') }}"
                                         alt="Imagen del producto" />
                                 @endif
                             </a>

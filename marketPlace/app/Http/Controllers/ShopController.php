@@ -11,6 +11,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopEdit;
 use App\Http\Requests\ShopCreate;
+use App\Models\CategoryProduct;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -74,6 +75,10 @@ class ShopController extends Controller
         } else if ($return === "img") {
             return redirect()->route('shop.newProduct')->withInput()->with([
                 "error" => "Por favor, escoge una imagen destacada"
+            ]);
+        } else if ($return === "cat") {
+            return redirect()->route('shop.newProduct')->withInput()->with([
+                "error" => "Por favor, escoge al menos una categoría"
             ]);
         } else {
             return redirect()->route('shop.newProduct')->with([
@@ -188,7 +193,7 @@ class ShopController extends Controller
 
         $userId = Auth::id();
 
-        if (!$return) {
+        if ($return) {
             return redirect()->route('shop.showEditProduct', $id)->withInput()->with([
                 "error" => "Producto actualizado!"
             ]);
@@ -205,13 +210,20 @@ class ShopController extends Controller
         $productsShop = Product::where('id', $id)->first()->shop_id;
         $userProductShop = Shop::where("id", $productsShop)->where("user_id", $userId)->first();
 
-        if($userProductShop == null){
+        if ($userProductShop == null) {
             return redirect()->route('shop.show', [Shop::where("user_id", $userId)->first()->name])->withInput()->with([
                 "error" => "No tienes acceso a este producto"
             ]);
         }
 
-        return view('shop.editProductForm', ['product' => Product::all()->where('id', '=', $id)->first()], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        $categoriesId = CategoryProduct::where('product_id', $id)->pluck("category_id")->toArray();
+
+        $categoriesName = [];
+        foreach ($categoriesId as $key => $value) {
+            array_push($categoriesName, Category::where("id", $value)->first()->name);
+        }
+
+        return view('shop.editProductForm', ['product' => Product::all()->where('id', '=', $id)->first(), 'productCategories' => $categoriesName], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**

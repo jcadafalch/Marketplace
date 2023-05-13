@@ -68,8 +68,8 @@
                     <div id="checkboxes">
                         @foreach ($categories as $item)
                             <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category"
-                                    id="{{ $item->name }}" />{{ $item->name }}</label>
+                                <input type="checkbox" name="category[]" id="{{ $item->name }}"
+                                    value="{{ $item->name }}" />{{ $item->name }}</label>
                         @endforeach
                     </div>
                 </div>
@@ -81,7 +81,12 @@
                         <div class="overSelect"></div>
                     </div>
                     <div id="checkboxes">
-
+                        <<<<<<< HEAD=======@foreach ($categories as $item)
+                            <label for="{{ $item->name }}">
+                                <input type="checkbox" name="category"
+                                    id="{{ $item->name }}"" />{{ $item->name }}</label>
+                            @endforeach
+                            >>>>>>> Develop
                     </div>
                 </div>
 

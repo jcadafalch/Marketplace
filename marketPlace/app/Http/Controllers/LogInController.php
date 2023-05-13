@@ -125,6 +125,12 @@ class LogInController extends Controller
             return redirect()->route('auth.login')->with('message', 'Usuario no verificado, revisa el correo y verifica el registro');
         }
 
+        Order::checkForShoppingCart(Auth::id());
+
+        if(isset($_COOKIE["shoppingCartProductsId"]) && Order::where("user_id", Auth::id())->first() != null ){
+            Order::addIds($_COOKIE["shoppingCartProductsId"], Auth::id());
+        }
+
         $request->session()->regenerate();
         return redirect()->intended(route('home.index'));
     }

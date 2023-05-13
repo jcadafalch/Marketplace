@@ -8,6 +8,7 @@ use App\Models\ProductOderLine;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Order;
 
 class OrderLine extends Model
 {
@@ -59,5 +60,65 @@ class OrderLine extends Model
 
             ProductOderLine::addProduct($product, $newOrderLine->id);
         }
+    }
+
+    public static function deleteProduct($product, $orderId){
+
+        $orderLine = OrderLine::where('order_id', $orderId)->where('shop_id', $product->shop_id)->first();
+
+        Log::debug("OrderLine de orderLineId :orderId, orderLine :orderLine", ['orderId' => $orderId, 'orderLine' => $orderLine]);
+        if($orderLine != null){
+            Log::debug("Se ha encontrado la orderLine de donde vamos a eliminar un producto");
+            ProductOderLine::DeleteProduct($product, $orderLine->id);
+        }
+    }
+
+    public static function getOrderLineProducts($orderId){
+        $orderLines = OrderLine::where('order_id', '=', $orderId)->get();
+    
+        Log::debug('OrderLines = ', ['orderLines' => $orderLines]);
+
+        if($orderLines == null)
+        {
+            return null;
+        }
+
+        $orderLineProducts = collect();
+
+        foreach ($orderLines as $orderLine) {
+            $products = ProductOderLine::getProductOfOrderLine($orderLine->id);
+
+            Log::debug('OrderLinesProducts = ', ['products' => $products]);
+
+            if($products != null){
+                $orderLineProducts = $orderLineProducts->merge($products);
+            }
+        }
+
+        if($orderLineProducts->isEmpty()){
+            Log::debug("OrderLineProduct is emtpy");
+            return null;
+        }
+
+        return $orderLineProducts;
+    }
+
+    public static function setOrderLinePendingToPay($orderId){
+
+        $orderLines = OrderLine::where('order_id', '=', $orderId)->get();
+
+        if($orderLines == null){
+            return null;
+        }
+
+        $productOrderLine = ProductOrderLine::setProductOfOrderLineAsSelled($orderLines->pluck('id')->toArray());
+
+        if($productOrderLine == null){
+            return null;
+        }
+
+        OrderLine::query()->where('order_id ', $orderId)->update(['pendingToPay' => true]);
+
+        return true;
     }
 }

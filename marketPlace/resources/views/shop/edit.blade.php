@@ -99,7 +99,7 @@
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ asset('storage/img/' . $product->getMainImage()) }}" />
+                                <img src="{{  $product->getMainImage() }}" />
                             </a>
                         </div>
                         <div class="product-details">

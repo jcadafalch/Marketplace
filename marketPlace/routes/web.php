@@ -58,6 +58,7 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 
 // carrito
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
+Route::get('/shoppingCart/confirmOrder', [ShoppingCartController::class, 'confirmOrder'])->name('shoppingCart.confirmOrder');
 Route::get('/shoppingCart/addProduct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 Route::get('/shoppingCart/delProduct/{id}', [ShoppingCartController::class, 'delProduct'])->name('shoppingCart.delProduct');
 
@@ -82,7 +83,6 @@ Route::patch('/cambiarPerfil', [UserController::class, 'editProfile'])->name('us
 Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
 Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop'); 
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
-Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
 Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProduct'])->name('shop.editProduct');

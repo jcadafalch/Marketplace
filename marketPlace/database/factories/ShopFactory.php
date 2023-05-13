@@ -26,12 +26,6 @@ class ShopFactory extends Factory
         $allImageId = Image::count();
         $imageId = rand(1, $allImageId);
 
-        $num = uniqid();
-        $url = fake()->imageUrl(640, 480, 'animals', true);
-        $contents = file_get_contents($url);
-        $name = "imgN" . $num .".jpg";
-        Storage::disk('img')->put($name, $contents);
-        $id = rand(1, 300);
         
         return [
             'ownerName'=>fake()->unique()->name($gender = 'female'),

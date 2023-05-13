@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger("order_id")->nullable();           
             $table->unsignedBigInteger('shop_id')->index()->nullable();
             $table->timestamp('paid_at')->nullable();
+            $table->boolean("pendingToPay")->nullable()->default(false);
             $table->timestamp('send_at')->nullable();
+            $table->timestamp('recieved_at')->nullable();
 
            
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();

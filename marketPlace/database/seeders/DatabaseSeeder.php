@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Api;
 use App\Models\Shop;
 use App\Models\User;
 use App\Models\Image;
@@ -148,11 +149,8 @@ class DatabaseSeeder extends Seeder
     }
     
     private static function clearImages(){   
-        $images = Image::all();
-        
-        foreach ($images as $i) {
-            Storage::disk('img')->delete($i->url);
-        }
+        $api = new Api();
+        $api->deleteAllImages();
     }
     
     /**

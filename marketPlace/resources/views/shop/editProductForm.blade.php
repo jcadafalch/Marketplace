@@ -31,12 +31,13 @@
 
             <div class="userForm-form-item">
                 <label>Detalle</label>
-                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail"  required>{{ $product->description }}</textarea>
+                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail" required>{{ $product->description }}</textarea>
             </div>
             <div class="upload-container">
                 <div class="drop-area">
                     <label for="file-input"> Imagen destacada </label>
-                    <input name="file" type="file" id="file-input" accept="image/*" value="{{ old('file') }}" hidden />
+                    <input name="file" type="file" id="file-input" accept="image/*" value="{{ old('file') }}"
+                        hidden />
                     <!-- Image upload input -->
                     <div class="preview-container hidden">
                         <div class="preview-image"></div>
@@ -49,12 +50,35 @@
                 <div class="upload__btn-box">
                     <label class="upload__btn">
                         <p>Otras Imagenes</p>
-                        <input name="otrasImagenes[]" type="file" multiple data-max_length="3" class="upload__inputfile" value="{{ old('otrasImagenes[]') }}">
+                        <input name="otrasImagenes[]" type="file" multiple data-max_length="3" class="upload__inputfile"
+                            value="{{ old('otrasImagenes[]') }}">
                     </label>
                 </div>
                 <div class="upload__img-wrap"></div>
             </div>
-
+            <div class="userForm-form-item">
+                <div id="multiselect" class="multiselect">
+                    <div class="selectBox" onclick="showCheckboxes()">
+                        <select>
+                            <option>Selecciona categorias</option>
+                        </select>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes">
+                        @foreach ($categories as $item)
+                            <label for="{{ $item->name }}">
+                                <input type="checkbox" name="category[]" id="{{ $item->name }}"
+                                    value="{{ $item->name }}" 
+                                    @foreach ($productCategories as $productCategory)
+                                        @if ($productCategory === $item->name)
+                                            checked
+                                        @endif
+                                    @endforeach 
+                                    />{{ $item->name }}</label>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar</button>
             </div>

@@ -16,8 +16,7 @@ class ApiController extends Controller
     ];
 
     private $urlImage = "storage/img/";
-
-
+    
     public function getImage(Request $request)
     {
         if ($request->bearerToken() == env('API_TOKEN')) {
@@ -50,7 +49,9 @@ class ApiController extends Controller
 
     public function getAllImage(Request $request)
     {
-
+        $path = Storage::path('img');
+        $disc = Storage::disk('img');
+        //dd(url('/'));
         if ($request->bearerToken() == env('API_TOKEN')) {
             Log::info("Agafar totes les imatges");
             try {
@@ -79,6 +80,7 @@ class ApiController extends Controller
             try {
                 $fileName =  $request->ContextName;
                 $image = imagecreate(500, 300);
+
                 // Set the background color of image
                 $background_color = self::generateColors($image);
 
@@ -129,7 +131,7 @@ class ApiController extends Controller
             Log::info("Imagenes de un producto borradas");
             try {
                 $allImages = $request->all();
-
+                Log::debug($allImages);
                 for ($i = 0; $i < count($allImages); $i++) {
                     Log::error("imagen eliminada:" . $allImages[$i]);
                     Storage::disk('img')->delete($allImages[$i]);
@@ -148,7 +150,10 @@ class ApiController extends Controller
 
     public function deleteAllImages(Request $request)
     {
-
+        $disc = Storage::disk('img');
+        $path = Storage::path('img');
+        //Log::info($disc);
+        //Log::debug($url);
         if ($request->bearerToken() == env('API_TOKEN')) {
             Log::info("Se han borrado todas las imagenes");
             try {
@@ -176,7 +181,7 @@ class ApiController extends Controller
         if ($request->bearerToken() == env('API_TOKEN')) {
             try {
                 Log::info("Imagen subida");
-                $urlServer = "http://" . $_SERVER['HTTP_HOST'] . "/";
+                $urlServer =  url('/') . '/';
                 $RandomNameImage = uniqid() . "." . $request["imagen"]->extension();
 
                 Storage::disk('img')->put($RandomNameImage, $request["imagen"]->get());
@@ -239,13 +244,14 @@ class ApiController extends Controller
 
     public function saveImageToStorage($image)
     {
-        $urlServer = "http://" . $_SERVER['HTTP_HOST'] . "/";
+        $urlServer =  url('/') . '/';
         $RandomNameImage = uniqid() . ".png";
         $path = $this->urlImage . $RandomNameImage;
+        //$path = Storage::path('img') . '/'.$RandomNameImage;
 
         imagepng($image, $path);
 
-        return $urlServer . $this->urlImage .  $RandomNameImage;
+        return $urlServer  . $this->urlImage .  $RandomNameImage;
     }
 
     public function generateResponse($mensaje, $status, $filename)

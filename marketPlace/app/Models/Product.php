@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Image;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
@@ -276,8 +277,7 @@ class Product extends Model
       for ($i = 0; $i < count($landingPageConfig['categorys']); $i++) {
         array_push(
           $p,
-          DB::table('products')
-            ->select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.selled_at', 'products.shop_id', 'images.url')
+          Product::select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.selled_at', 'products.shop_id', 'images.url')
             ->join('category_product', 'products.id', '=', 'category_product.id')
             ->join('categories', 'category_product.category_id', '=', 'categories.id')
             ->join('product_images', 'products.id', '=', 'product_images.product_id')
@@ -315,10 +315,11 @@ class Product extends Model
 
         $requestAll = $request->all();
 
+        //Guardar Producte
         $product = new Product();
         $product->name = $requestAll['name'];
         $product->description = $requestAll['detail'];
-        $product->price = $requestAll['price'];
+        $product->price = $requestAll['price'] * 100;
         $product->isVisible = true;
         $product->isDeleted = false;
         $product->order = 1;
@@ -326,9 +327,7 @@ class Product extends Model
 
         $product->save();
 
-
-        //dd($product);
-
+        //Guardar Imatges
         $imageFile = $request->file("file");
 
         $imageFile->store("/public/img");
@@ -345,10 +344,6 @@ class Product extends Model
         $productImage->save();
 
         $cont = 1;
-
-        Log::alert($requestAll);
-
-
 
         if ($request->file('otrasImagenes') != null) {
           foreach ($request->file('otrasImagenes') as $value) {
@@ -372,6 +367,13 @@ class Product extends Model
             $cont++;
           }
         }
+        //Guardar categories
+        if ($request->input('category') != []) {
+          CategoryProduct::addCategoryToProduct($request->input('category'), $product->id);
+        } else {
+          return "cat";
+        }
+
         return true;
       }
     } else {
@@ -446,8 +448,10 @@ class Product extends Model
 
           $cont++;
         }
-        return true;
       }
+
+      CategoryProduct::updateCategoryProduct($request->input('category'), $id);
+      return true;
     }
     return false;
   }
