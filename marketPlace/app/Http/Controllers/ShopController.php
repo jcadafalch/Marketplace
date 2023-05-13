@@ -211,7 +211,7 @@ class ShopController extends Controller
         //
     }
 
-    public function saveImage($userId, $request)
+    public function saveImage($request)
     {
 
         if ($request->shopName != null) {
