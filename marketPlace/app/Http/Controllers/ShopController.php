@@ -133,9 +133,10 @@ class ShopController extends Controller
 
     public function editShop(ShopEdit $request){
         $request->validated();
-        //dd($request->shopBanner);
+
         $userId = Auth::id();
         $shop = Shop::where('user_id', '=' , $userId)->first();
+
         if($request->shopDescription != null){ 
             $shop->description = $request->shopDescription;
             $shop->save();
@@ -248,9 +249,9 @@ class ShopController extends Controller
             $extension = $file->getClientOriginalExtension();
             $img = 'profileBanner' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfileBanner', $img);
+            return $img; 
         }
-        return $img; 
-
+        return redirect()->route('error.genericError');
     }
 
     public function deleteOldShopImage($shop, $request){
@@ -264,7 +265,6 @@ class ShopController extends Controller
             $shop->logo_id = null;
             $shop->save();
             $image->delete();
-            return;
         }   
     }
 
