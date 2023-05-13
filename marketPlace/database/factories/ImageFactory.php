@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Api;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,15 +18,11 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
-        $num = uniqid();
-        $url = fake()->imageUrl(640, 480, 'animals', true);
-        $contents = file_get_contents($url);
-        $name = "imgN" . $num .".jpg";
-        Storage::disk('img')->put($name, $contents);
-
+        $api = New Api(); 
+        
         return [
             'name'=> fake()->unique()->city(),
-            'url'=>  $name,
+            'url'=>  $api->createImage(fake()->unique()->name()),
         ];
     }
 }

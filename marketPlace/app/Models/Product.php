@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Image;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
@@ -102,7 +103,6 @@ class Product extends Model
 
       return strval($mainImage->url);
     } catch (\Throwable $th) {
-      Log::error('entro');
       $productImage =
         ProductImage::all()
         ->where('isMain', false)
@@ -117,7 +117,6 @@ class Product extends Model
 
   public function getAlternativeImages()
   {
-    Log::error('entro');
     $productImage = ProductImage::all()
       ->where('isMain', false)
       ->where('product_id', $this->id)->all();
@@ -278,8 +277,7 @@ class Product extends Model
       for ($i = 0; $i < count($landingPageConfig['categorys']); $i++) {
         array_push(
           $p,
-          DB::table('products')
-            ->select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.selled_at', 'products.shop_id', 'images.url')
+          Product::select('products.id', 'products.created_at', 'products.updated_at', 'products.name', 'products.description', 'products.price', 'products.selled_at', 'products.shop_id', 'images.url')
             ->join('category_product', 'products.id', '=', 'category_product.id')
             ->join('categories', 'category_product.category_id', '=', 'categories.id')
             ->join('product_images', 'products.id', '=', 'product_images.product_id')
@@ -306,7 +304,7 @@ class Product extends Model
       $shopId = Shop::all()->where("user_id", Auth::id())->first()->id;
 
       $productExists = Product::all()->where("name", $request['name'])->first();
-      
+
       if ($productExists == null) {
 
         $request->validate([
@@ -320,7 +318,7 @@ class Product extends Model
         $product = new Product();
         $product->name = $requestAll['name'];
         $product->description = $requestAll['detail'];
-        $product->price = $requestAll['price'];
+        $product->price = $requestAll['price']*100;
         $product->isVisible = true;
         $product->isDeleted = false;
         $product->order = 1;
@@ -378,6 +376,78 @@ class Product extends Model
       }
     } else {
       return "img";
+    }
+    return false;
+  }
+
+  public static function updateProduct($request, $id)
+  {
+    $productExsists = Product::where("id", $id)->first();
+
+    if ($productExsists != null) {
+
+      $request->validate([
+        'name' => 'required|min:5',
+        'price' => 'required|min:1',
+        'detail' => 'required|min:5'
+      ]);
+
+      $requestAll = $request->all();
+
+      $product = $productExsists;
+
+      if ($requestAll['name'] != null && $requestAll['name'] != $productExsists->name) {
+        $product->name = $requestAll['name'];
+      } else if ($requestAll['detail'] != null && $requestAll['detail'] != $productExsists->description) {
+        $product->description = $requestAll['detail'];
+      } else if ($requestAll['price'] != null && $requestAll['price'] != $productExsists->price) {
+        $product->price = $requestAll['price'];
+      }
+
+      $product->save();
+
+      if ($request->file("file") != null) {
+        $imageFile = $request->file("file");
+
+        $imageFile->store("/public/img");
+
+        $image = new Image();
+        $image->name = $requestAll['name'];
+        $image->url = $imageFile->hashName();
+        $image->save();
+
+        $productImage = new ProductImage();
+        $productImage->isMain = true;
+        $productImage->image_id = $image->id;
+        $productImage->product_id = $product->id;
+        $productImage->save();
+      }
+
+      if ($request->file('otrasImagenes') != null) {
+        $cont = 1;
+
+        foreach ($request->file('otrasImagenes') as $value) {
+          Log::alert("Entra");
+
+          $imageFile = $value;
+
+          $imageFile->store("/public/img");
+
+          $image = new Image();
+          $image->name = $requestAll['name'] . "-$cont";
+          $image->url = $imageFile->hashName();
+          $image->save();
+
+          $productImage = new ProductImage();
+          $productImage->isMain = false;
+          $productImage->image_id = $image->id;
+          $productImage->product_id = $product->id;
+          $productImage->save();
+
+          $cont++;
+        }
+        return true;
+      }
     }
     return false;
   }
