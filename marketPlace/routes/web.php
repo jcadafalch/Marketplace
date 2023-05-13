@@ -10,6 +10,7 @@ use App\Http\Controllers\LogInController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ManageShopController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -57,6 +58,7 @@ Route::get('/producte/{id}', [HomeController::class, 'show'])->name('product.sho
 
 // carrito
 Route::get('/shoppingCart', [ShoppingCartController::class, 'index'])->name('shoppingCart.index');
+Route::get('/shoppingCart/confirmOrder', [ShoppingCartController::class, 'confirmOrder'])->name('shoppingCart.confirmOrder');
 Route::get('/shoppingCart/addProduct/{id}', [ShoppingCartController::class, 'addProduct'])->name('shoppingCart.addProduct');
 Route::get('/shoppingCart/delProduct/{id}', [ShoppingCartController::class, 'delProduct'])->name('shoppingCart.delProduct');
 
@@ -84,13 +86,18 @@ Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->na
 Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
-Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
+Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
+Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdateProduct'])->name('shop.showEditProduct');
+
 
 }));
 
 Route::group(['middleware' => ['web']], function () {
-Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
-Route::post('/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
+  Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+  Route::post('/tienda/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
 });
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
+
+
+Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');

@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ShopController extends Controller
 {
-    public function index(){
-        
+    public function index()
+    {
     }
 
     /**
@@ -38,7 +38,7 @@ class ShopController extends Controller
     {
         // Validacions
         $request->validated();
-        
+
         //Obtenir l'id de l'usuari que està connectat
         $userId = Auth::id();
     
@@ -62,7 +62,7 @@ class ShopController extends Controller
             return redirect()->route('shop.newProduct')->withInput()->with([
                 "error" => "El nombre de este producto ya está registrado, prueba con otro nombre"
             ]);
-        }else if($return === "img"){
+        } else if ($return === "img") {
             return redirect()->route('shop.newProduct')->withInput()->with([
                 "error" => "Por favor, escoge una imagen destacada"
             ]);
@@ -93,16 +93,16 @@ class ShopController extends Controller
             $shop = Shop::where('name', '=', $shopName)->firstOrFail();
             Log::debug("Dentro del trycatch");
 
-            if($shop == null){
+            if ($shop == null) {
                 throw new Exception('No se ha encontrado la tienda con nombre ' . $shopName);
             }
-            
+
             $productsShop = $shop->getShopProducts();
-            
+
             $shopOwner = $shop->getOwner();
 
-            return view('shop.index',['productsShop' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
-        } catch(ModelNotFoundException $e){
+            return view('shop.index', ['productsShop' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        } catch (ModelNotFoundException $e) {
             Log::error("Error en intentar acceder a la tienda con nombre: " . $shopName);
             Log::error($e->getMessage());
             return redirect()->route('error.shopNotFoundError');
@@ -111,24 +111,23 @@ class ShopController extends Controller
             Log::error($e->getMessage());
             return redirect()->route('error.shopNotFoundError');
         }
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function showEdit()
-    {   
+    {
         $userId = Auth::id();
         $shop = Shop::where('user_id', $userId)->first();
-        
-        if($userId != null){
+
+        if ($userId != null) {
             $productsShop = $shop->getAllShopProducts();
-        }else{
+        } else {
             return redirect()->route('error.shopNotFound');
         }
 
-        return view('shop.edit',['products' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('shop.edit', ['products' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function editShop(ShopEdit $request){
@@ -147,16 +146,16 @@ class ShopController extends Controller
                 self::deleteOldShopBanner($shop, $request);
                 $img = self::saveBannerImage($request);
                 $image = Image::createImageObject($shop->nif, $img);
-    
+
                 $shop->banner_id = $image->id;
                 $shop->save();
             }else{
                 $img = self::saveBannerImage($request);
                 $image = Image::createImageObject($shop->nif, $img);
-    
+
                 $shop->banner_id = $image->id;
                 $shop->save();
-            }  
+            }
         }
         
         if($request->profileImg != null){
@@ -165,7 +164,6 @@ class ShopController extends Controller
             $image = Image::createImageObject($shop->name, $img);
             $shop->logo_id = $image->id;
             $shop->save();
-
         }
         return redirect()->route('shop.edit');
     }
@@ -173,46 +171,36 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateProduct(Request $request)
+    public function updateProduct(Request $request, $id)
     {
-        $response = [
-            "status" => "",
-            "msg" => "",
-            "action" => ""
-        ];
-        $executed = false;
-        try {
-            $product = Product::findOrFail($request->query('id'));
-            switch ($request->query('action')) {
-                case "habilitar":
-                    $product->isVisible = true;
-                    $executed = true;
-                    $response['action'] =  "able";
-                    break;
-                case "deshabilitar":
-                    $product->isVisible = false;
-                    $executed = true;
-                    $response['action'] =  "dissable";
-                    break;
-                case "eliminar":
-                    $product->isDeleted = true;
-                    $executed = true;
-                    $response['action'] =  "delete";
-                    break;    
-                default:
-                    break;
-            }
-            if($executed){
-                $product->save();
-                $response['status'] = $executed;
-                $response['msg'] =  $product->name;
-            }
-         } catch (\Throwable $th) {
-            $response['status'] = $executed;
-            $response['msg'] = 'Error';
+        $return = Product::updateProduct($request, $id);
+
+        $userId = Auth::id();
+
+        if (!$return) {
+            return redirect()->route('shop.showEditProduct', $id)->withInput()->with([
+                "error" => "Producto actualizado!"
+            ]);
+        } else {
+            return redirect()->route('shop.showEditProduct', $id)->with([
+                "message" => "ERROR!"
+            ]);
         }
-       
-        return response()->json($response);
+    }
+
+    public function showUpdateProduct($id)
+    {
+        $userId = Auth::id();
+        $productsShop = Product::where('id', $id)->first()->shop_id;
+        $userProductShop = Shop::where("id", $productsShop)->where("user_id", $userId)->first();
+
+        if($userProductShop == null){
+            return redirect()->route('shop.show', [Shop::where("user_id", $userId)->first()->name])->withInput()->with([
+                "error" => "No tienes acceso a este producto"
+            ]);
+        }
+
+        return view('shop.editProductForm', ['product' => Product::all()->where('id', '=', $id)->first()], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**
@@ -223,15 +211,17 @@ class ShopController extends Controller
         //
     }
 
-    public function saveImage($request){
-        
-        if($request->shopName != null){
+    public function saveImage($userId, $request)
+    {
+
+        if ($request->shopName != null) {
             $file = $request->file('profilePhoto');
             $extension = $file->getClientOriginalExtension();
 
             $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfile', $img);
-        }if($request->profileImg != null){
+        }
+        if ($request->profileImg != null) {
             $file = $request->file('profileImg');
             $extension = $file->getClientOriginalExtension();
 
@@ -245,7 +235,7 @@ class ShopController extends Controller
 
         if($request->shopBanner != null){
             $file = $request->file('shopBanner');
-           
+
             $extension = $file->getClientOriginalExtension();
             $img = 'profileBanner' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfileBanner', $img);
@@ -261,7 +251,7 @@ class ShopController extends Controller
             
             $disc = Storage::disk('img');
             $disc->delete('shopProfile/' . $image->url);
-            
+
             $shop->logo_id = null;
             $shop->save();
             $image->delete();
