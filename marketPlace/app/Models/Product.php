@@ -132,6 +132,32 @@ class Product extends Model
     return $images;
   }
 
+  public function updateMainImage(){
+    $productImage =
+        ProductImage::all()
+        ->where('isMain', true)
+        ->where('product_id', $this->id)->first();
+
+      $mainImage = Image::where('images.id', '=', $productImage->image_id)->first();
+
+      return $mainImage;
+  }
+
+  public function updateAlternativeImages(){
+    $productImage = ProductImage::all()
+    ->where('isMain', false)
+    ->where('product_id', $this->id)->all();
+
+    $images = [];
+
+  foreach ($productImage as $proImg) {
+    $i = Image::where('images.id', '=', $proImg->image_id)->first();
+    array_push($images, $i);
+  }
+
+    return $images;
+  }
+
   /**
    * This PHP function searches for products by name and returns them in a paginated format, with an
    * optional sorting order.
@@ -413,15 +439,18 @@ class Product extends Model
       }
 
       $product->save();
-
+    
       if ($request->file("file") != null) {
+        self::deleteMainImage($product);
+
         $imageFile = $request->file("file");
 
-        $imageFile->store("/public/img");
+        $api = new Api();
+        $urlImage = $api->pushImage($imageFile);
 
         $image = new Image();
         $image->name = $requestAll['name'];
-        $image->url = $imageFile->hashName();
+        $image->url = $urlImage;
         $image->save();
 
         $productImage = new ProductImage();
@@ -433,17 +462,24 @@ class Product extends Model
 
       if ($request->file('otrasImagenes') != null) {
         $cont = 1;
+        $nImages = count($request->file('otrasImagenes'));
+
+        // Numero d'imatges a eliminar.
+        self::deleteNumAlternativeImages($product, $nImages);
+
 
         foreach ($request->file('otrasImagenes') as $value) {
           Log::alert("Entra");
-
+         
           $imageFile = $value;
 
-          $imageFile->store("/public/img");
+          $api = new Api();
+          $urlImage = $api->pushImage($imageFile);
+  
 
           $image = new Image();
           $image->name = $requestAll['name'] . "-$cont";
-          $image->url = $imageFile->hashName();
+          $image->url = $urlImage;
           $image->save();
 
           $productImage = new ProductImage();
@@ -461,4 +497,27 @@ class Product extends Model
     }
     return false;
   }
+
+  public static function deleteMainImage($product){
+    $api = new Api();
+    $MainImage = $product->updateMainImage();
+    $ImageName = basename($MainImage->url);
+    $api->deleteImage($ImageName);
+    $MainImage->delete();
+
+  }
+
+  public static function deleteNumAlternativeImages($product, $nImages){
+    $api = new Api();
+    $allAlternativeImages = [];
+    $allAlternativeImages = $product->updateAlternativeImages();
+    $AlternativeImagesToDelete = [];
+    for ($i=0; $i < $nImages; $i++) { 
+      $deleteImage = $allAlternativeImages[$i];
+      array_push($AlternativeImagesToDelete, basename($allAlternativeImages[$i]->url));
+      $deleteImage->delete();
+    }
+    $api->deleteAllImagesProduct($AlternativeImagesToDelete);
+  }
+
 }
