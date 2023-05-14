@@ -15,7 +15,6 @@ class HomeController extends Controller
     {
         Paginator::defaultView('default');
         // Eliminar variables de session 
-        $test = Product::all();
         //dd($test[0]->getMainImage());
         session()->forget(['category', 'search']);  
 
