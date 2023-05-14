@@ -24,6 +24,14 @@ body {
   font-size: 1.6rem;
 }
 
+a {
+  text-decoration: none;
+  color: #000000;
+}
+a:hover {
+  color: #f5a166;
+}
+
 .header {
   background-color: #FFD0AF;
   display: grid;
@@ -182,6 +190,7 @@ body {
 }
 .product a {
   text-decoration: none;
+  color: black;
 }
 .product-image {
   margin: 1rem;
@@ -1531,10 +1540,6 @@ a.slide_btn {
   border-radius: 1.6rem;
   flex-direction: column;
   text-align: center;
-}
-.product-edit-link a {
-  text-decoration: none;
-  color: black;
 }
 
 .multiselect {
