@@ -302,12 +302,6 @@ class Product extends Model
   {
     $shopId = Shop::where("user_id", Auth::id())->first()->id;
 
-    $request->validate([
-      'name' => 'required|min:5',
-      'price' => 'required|min:1',
-      'detail' => 'required|min:5'
-    ]);
-
     $requestAll = $request->all();
 
     //Guardar Producte
@@ -322,14 +316,14 @@ class Product extends Model
 
     $product->save();
 
-    //Guardar Imatges
     $imageFile = $request->file("file");
 
-    $imageFile->store("/public/img");
+    $api = new Api();
+    $urlImage = $api->pushImage($imageFile);
 
     $image = new Image();
     $image->name = $requestAll['name'];
-    $image->url = $imageFile->hashName();
+    $image->url =  $urlImage;
     $image->save();
 
     $productImage = new ProductImage();
@@ -340,25 +334,31 @@ class Product extends Model
 
     $cont = 1;
 
-    foreach ($request->file('otrasImagenes') as $value) {
-      Log::alert("Entra");
+    Log::alert($requestAll);
 
-      $imageFile = $value;
 
-      $imageFile->store("/public/img");
+    if ($request->file('otrasImagenes') != null) {
+      foreach ($request->file('otrasImagenes') as $value) {
+        Log::alert("Entra");
 
-      $image = new Image();
-      $image->name = $requestAll['name'] . "-$cont";
-      $image->url = $imageFile->hashName();
-      $image->save();
+        $imageFile = $value;
 
-      $productImage = new ProductImage();
-      $productImage->isMain = false;
-      $productImage->image_id = $image->id;
-      $productImage->product_id = $product->id;
-      $productImage->save();
+        $api = new Api();
+        $urlImage = $api->pushImage($imageFile);
 
-      $cont++;
+        $image = new Image();
+        $image->name = $requestAll['name'] . "-$cont";
+        $image->url =  $urlImage;
+        $image->save();
+
+        $productImage = new ProductImage();
+        $productImage->isMain = false;
+        $productImage->image_id = $image->id;
+        $productImage->product_id = $product->id;
+        $productImage->save();
+
+        $cont++;
+      }
     }
 
     //Guardar categories
