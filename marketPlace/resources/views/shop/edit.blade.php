@@ -11,7 +11,11 @@
             <div class="shopedit-banner-upload">
                 <div class="shopedit-banner-edit">
                     <input type='file' id="bannerUpload" class="imageUpload" name="shopBanner" accept=".png, .jpg, .jpeg" />
-                    <label for="bannerUpload"></label><span>Banner para mostrar tu marca y tus anuncios</span>
+                    <label for="bannerUpload"></label><span>Añadir banner</span>
+                    @if ($shop->getBanner() != null)
+                    <input type='button' id="bannerDelete" name="shopBannerDelete"  />
+                    <label for="bannerDelete"></label><span>Eliminar banner</span>
+                    @endif
                 </div>
                 <div class="shopedit-banner-preview">
                     <div class="shopedit-banner-imagePreview imagePreview">

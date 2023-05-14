@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserEdit;
@@ -23,7 +24,9 @@ class UserController extends Controller
     {
         $user_id = Auth::user()->id;
         $userShop = Shop::where('user_id', '=', $user_id)->first();
-        return view('user.userProfile', ['shop' => $userShop], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        $shops = Shop::all();
+        $categories = Category::all()->where('parent_id', '=', null);
+        return view('user.userProfile', ['shops' => $shops, 'categories' =>  $categories],['shop' => $userShop]);
     }
 
     public function editProfile(UserEdit $request)

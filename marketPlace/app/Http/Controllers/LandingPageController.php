@@ -18,9 +18,6 @@ class LandingPageController extends Controller
         session()->forget(['category', 'search']);
 
         if (count($productsFilter[0]) > 0) {
-            # code...
-        
-        //  dd($productsFilter);
         return view('landingPage', ['titles' => $productsFilter[0],'products' => $productsFilter[1]], ['categories' => Category::all()->where('parent_id', '=', null)]);
         }
 
@@ -29,9 +26,7 @@ class LandingPageController extends Controller
 
     public function showAll($id)
     {
-        // Paginator::defaultView('default');
         $productsFilter = Product::landingPageFilter();
-        // dd($productsFilter[1]);
         return view('home.index', ['titles' => $productsFilter[0],'products' => $productsFilter[1][$id]], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 }

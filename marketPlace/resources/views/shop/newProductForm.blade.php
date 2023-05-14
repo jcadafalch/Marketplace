@@ -81,9 +81,10 @@
                                 <input type="checkbox" name="category"
                                     id="{{ $item->name }}"" />{{ $item->name }}</label>
                         @endforeach
+                    <div id="checkboxes2">
+                        
                     </div>
                 </div>
-
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar</button>
