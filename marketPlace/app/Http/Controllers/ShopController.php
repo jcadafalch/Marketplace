@@ -151,10 +151,10 @@ class ShopController extends Controller
 
         $userId = Auth::id();
         $shop = Shop::where('user_id', '=', $userId)->first();
-        if ($request->shopDescription != null) {
+        // if ($request->shopDescription != null) {
             $shop->description = $request->shopDescription;
             $shop->save();
-        }
+        // }
 
         if ($request->shopBanner != null) {
             if ($shop->banner_id != null) {
