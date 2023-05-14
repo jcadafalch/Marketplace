@@ -80,13 +80,8 @@
                         </select>
                         <div class="overSelect"></div>
                     </div>
-                    <div id="checkboxes">
-                        <<<<<<< HEAD=======@foreach ($categories as $item)
-                            <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category"
-                                    id="{{ $item->name }}"" />{{ $item->name }}</label>
-                            @endforeach
-                            >>>>>>> Develop
+                    <div id="checkboxes2">
+                        
                     </div>
                 </div>
 

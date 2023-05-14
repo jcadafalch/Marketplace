@@ -6,31 +6,31 @@ const closeButton = document.querySelector('.close-button');
 const fileName = document.querySelector('.file-name');
 
 fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0]; 
-    showPreview(file); 
+    const file = fileInput.files[0];
+    showPreview(file);
 });
 
 closeButton.addEventListener('click', (event) => {
-    event.preventDefault(); 
-    fileInput.value = ''; 
+    event.preventDefault();
+    fileInput.value = '';
     previewImage.style.backgroundImage = '';
     // fileName.textContent = ''; 
     previewImage.classList.add('hidden');
-    previewContainer.classList.add('hidden'); 
+    previewContainer.classList.add('hidden');
     previewContainer.classList.remove('flex');
-    previewImage.classList.remove('flex'); 
+    previewImage.classList.remove('flex');
 });
 
 function showPreview(file) {
-    if (file.type.startsWith('image/')) { 
-        const reader = new FileReader(); 
-        reader.readAsDataURL(file); 
-        reader.onload = () => { 
-            previewImage.style.backgroundImage = `url(${reader.result})`; 
-            previewImage.classList.remove('hidden'); 
-            dropArea.classList.remove('active'); 
-            previewContainer.classList.remove('hidden'); 
-            previewContainer.classList.add('flex'); 
+    if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            previewImage.style.backgroundImage = `url(${reader.result})`;
+            previewImage.classList.remove('hidden');
+            dropArea.classList.remove('active');
+            previewContainer.classList.remove('hidden');
+            previewContainer.classList.add('flex');
         };
     }
 }
@@ -128,7 +128,15 @@ checkboxes.forEach(function (checkbox) {
         fetch('/tienda/añadirProducto/cat?categories=' + enabledSettings.join(','))
             .then(async data => {
                 const subcategories = await data.json();
-                //todo for
+                console.log(subcategories);
+                // const multiselect = document.querySelector('#multiselect2');
+                // const checkbox = document.querySelector('#checkboxes2');
+                // const label = document.createElement('label');
+                // const input = document.createElement('input');
+                // multiselect.removeAttribute('hidden');
+                // input.type= 'checkbox';
+                // input.innerHTML = subcategories;
+                // checkbox.insertAdjacentElement("afterend", 'input');
             })
             .catch(error => console.log(error))
     })
