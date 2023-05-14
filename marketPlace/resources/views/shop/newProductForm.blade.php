@@ -81,15 +81,13 @@
                         <div class="overSelect"></div>
                     </div>
                     <div id="checkboxes">
-                        <<<<<<< HEAD=======@foreach ($categories as $item)
+                        @foreach ($categories as $item)
                             <label for="{{ $item->name }}">
                                 <input type="checkbox" name="category"
                                     id="{{ $item->name }}"" />{{ $item->name }}</label>
-                            @endforeach
-                            >>>>>>> Develop
+                        @endforeach
                     </div>
                 </div>
-
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar</button>
