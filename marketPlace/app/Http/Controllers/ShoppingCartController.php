@@ -57,6 +57,13 @@ class ShoppingCartController extends Controller
         }
     }
 
+    /**
+     * La función confirma un pedido al verificar si el usuario tiene un carrito, si los productos en
+     * el carrito aún están disponibles y luego cierra el pedido.
+     * 
+     * @return view sea una redirección a la página del tablero o una vista del carrito de compras con
+     * errores, si los hay.
+     */
     public function confirmOrder()
     {
         Log::debug("Confirmar pedido");
@@ -92,7 +99,8 @@ class ShoppingCartController extends Controller
             return $this->showShoppingCartWithErrors($errors);
         }
 
-        return redirect('home/dashboard');
+        $orderId = $order->id;
+        return redirect()->route('order.summary', ['id' => $order->id]);
     }
 
     

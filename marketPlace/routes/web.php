@@ -89,6 +89,9 @@ Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name(
 Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdateProduct'])->name('shop.showEditProduct');
 
+// Pedidos
+Route::get('/resumen-pedido/{id}', [OrderController::class, 'show'])->name('order.summary');
+
 
 }));
 
@@ -99,5 +102,4 @@ Route::group(['middleware' => ['web']], function () {
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
 
-
-Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');
+//Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');

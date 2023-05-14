@@ -15,17 +15,36 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function show($id)
     {
-        if (!isset($_COOKIE["shoppingCartProductsId"])) {
-            $producte = [];
-        } else {
-            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        $order = Order::find($id);
+
+        if($order == null)
+        {
+            return redirect()->route('error.genericError');
         }
-        $categories = Category::all();
-        return view('order.orderSummary', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all()]);
+
+        if(Auth::id() != $order->user_id){
+            return redirect()->route('error.genericError');
+        }
+
+        $products = $order->getOrderProducts($order->id);
+
+        if($products == null){
+            return redirect()->route('error.genericError');
+        }
+
+        $products = $products->sortBy('shop_id');
+
+        $shops = Shop::whereIn('id', function($query) use ($order) {
+            $query->select('shop_id')
+            ->from('order_lines')
+            ->where('order_id', '=', $order->id);
+        })->get();
+
+        $orderDate = date('d-m-Y', strtotime($order->closed_at));
+
+        return view('order.orderSummary', ['categories' => Category::all()], ['producte' => $products, 'shops' => $shops, 'orderDate' => $orderDate]);
     }
 }

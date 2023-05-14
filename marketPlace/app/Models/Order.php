@@ -172,6 +172,7 @@ class Order extends Model
         }
 
         $order->in_process = 0;
+        $order->closed_at = now();
         $order->save();
 
         $orderLines = OrderLine::where('order_id', '=', $order->id)->get();
@@ -207,6 +208,12 @@ class Order extends Model
 
         // Confirmamos la transacción
         DB::commit();
+
+        Log::info("La order $orderId se ha realizo correctamente.");
+
+        // Eliminamos la cookie para indicar que el carrito esta vacio
+        setcookie('shoppingCartProductsId', '', time() - 3600, '/', '', false, true);
+
 
         return "true";
     }
