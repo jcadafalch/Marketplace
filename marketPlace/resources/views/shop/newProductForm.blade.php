@@ -12,11 +12,6 @@
                 {{ Session::get('message') }}
             </div>
         @endif
-        @if (Session::has('error'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('error') }}
-            </div>
-        @endif
         <form class="userForm-form" method="post" enctype="multipart/form-data">
             @csrf
             <div class="userForm-form-item">
@@ -31,7 +26,7 @@
 
             <div class="userForm-form-item">
                 <label>Detalle</label>
-                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail"  required>{{ old('detail') }}</textarea>
+                <textarea rows="5" cols="40" maxlength='200' minlength='10' name="detail" required>{{ old('detail') }}</textarea>
             </div>
             <div class="upload-container">
                 <div class="drop-area">
@@ -68,7 +63,8 @@
                     <div id="checkboxes">
                         @foreach ($categories as $item)
                             <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category[]" id="{{ $item->name }}" value="{{ $item->name }}"/>{{ $item->name }}</label>
+                                <input type="checkbox" name="category[]" id="{{ $item->name }}"
+                                    value="{{ $item->name }}" />{{ $item->name }}</label>
                         @endforeach
                     </div>
                 </div>
@@ -82,15 +78,25 @@
                     <div id="checkboxes">
                         @foreach ($categories as $item)
                             <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category" id="{{ $item->name }}"" />{{ $item->name }}</label>
+                                <input type="checkbox" name="category"
+                                    id="{{ $item->name }}"" />{{ $item->name }}</label>
                         @endforeach
                     </div>
                 </div>
-                
+
             </div>
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar</button>
             </div>
+            @if ($errors->any())
+                <div class="error-list">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
     </div>
 

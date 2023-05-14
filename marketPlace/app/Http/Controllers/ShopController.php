@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductCreate;
 use App\Models\Shop;
 use App\Models\User;
 use App\Models\Image;
@@ -10,9 +9,11 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopEdit;
-use App\Http\Requests\ShopCreate;
 use App\Models\CategoryProduct;
+use App\Http\Requests\ShopCreate;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\ProductCreate;
+use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Http\FormRequest;
@@ -55,8 +56,10 @@ class ShopController extends Controller
         return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)], ['subcategories' => Category::all()]);
     }
 
-    public function addProduct(Request $request)
+    public function addProduct(ProductCreate $request)
     {
+        $request->validated();
+
         $return = Product::addProduct($request);
 
         if (!$return) {
@@ -178,11 +181,9 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateProduct(Request $request, $id)
+    public function updateProduct(ProductUpdate $request, $id)
     {
         $return = Product::updateProduct($request, $id);
-
-        $userId = Auth::id();
 
         if ($return) {
             return redirect()->route('shop.showEditProduct', $id)->withInput()->with([

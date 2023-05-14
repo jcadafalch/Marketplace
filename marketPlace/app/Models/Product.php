@@ -300,86 +300,69 @@ class Product extends Model
 
   public static function addProduct($request)
   {
-    if ($request->file("file") != null) {
-      $shopId = Shop::all()->where("user_id", Auth::id())->first()->id;
+    $shopId = Shop::where("user_id", Auth::id())->first()->id;
 
-      $productExists = Product::all()->where("name", $request['name'])->first();
+    $request->validate([
+      'name' => 'required|min:5',
+      'price' => 'required|min:1',
+      'detail' => 'required|min:5'
+    ]);
 
-      if ($productExists == null) {
+    $requestAll = $request->all();
 
-        $request->validate([
-          'name' => 'required|min:5',
-          'price' => 'required|min:1',
-          'detail' => 'required|min:5'
-        ]);
+    //Guardar Producte
+    $product = new Product();
+    $product->name = $requestAll['name'];
+    $product->description = $requestAll['detail'];
+    $product->price = $requestAll['price'] * 100;
+    $product->isVisible = true;
+    $product->isDeleted = false;
+    $product->order = 1;
+    $product->shop_id = $shopId;
 
-        $requestAll = $request->all();
+    $product->save();
 
-        //Guardar Producte
-        $product = new Product();
-        $product->name = $requestAll['name'];
-        $product->description = $requestAll['detail'];
-        $product->price = $requestAll['price'] * 100;
-        $product->isVisible = true;
-        $product->isDeleted = false;
-        $product->order = 1;
-        $product->shop_id = $shopId;
+    //Guardar Imatges
+    $imageFile = $request->file("file");
 
-        $product->save();
+    $imageFile->store("/public/img");
 
-        //Guardar Imatges
-        $imageFile = $request->file("file");
+    $image = new Image();
+    $image->name = $requestAll['name'];
+    $image->url = $imageFile->hashName();
+    $image->save();
 
-        $imageFile->store("/public/img");
+    $productImage = new ProductImage();
+    $productImage->isMain = true;
+    $productImage->image_id = $image->id;
+    $productImage->product_id = $product->id;
+    $productImage->save();
 
-        $image = new Image();
-        $image->name = $requestAll['name'];
-        $image->url = $imageFile->hashName();
-        $image->save();
+    $cont = 1;
 
-        $productImage = new ProductImage();
-        $productImage->isMain = true;
-        $productImage->image_id = $image->id;
-        $productImage->product_id = $product->id;
-        $productImage->save();
+    foreach ($request->file('otrasImagenes') as $value) {
+      Log::alert("Entra");
 
-        $cont = 1;
+      $imageFile = $value;
 
-        if ($request->file('otrasImagenes') != null) {
-          foreach ($request->file('otrasImagenes') as $value) {
-            Log::alert("Entra");
+      $imageFile->store("/public/img");
 
-            $imageFile = $value;
+      $image = new Image();
+      $image->name = $requestAll['name'] . "-$cont";
+      $image->url = $imageFile->hashName();
+      $image->save();
 
-            $imageFile->store("/public/img");
+      $productImage = new ProductImage();
+      $productImage->isMain = false;
+      $productImage->image_id = $image->id;
+      $productImage->product_id = $product->id;
+      $productImage->save();
 
-            $image = new Image();
-            $image->name = $requestAll['name'] . "-$cont";
-            $image->url = $imageFile->hashName();
-            $image->save();
-
-            $productImage = new ProductImage();
-            $productImage->isMain = false;
-            $productImage->image_id = $image->id;
-            $productImage->product_id = $product->id;
-            $productImage->save();
-
-            $cont++;
-          }
-        }
-        //Guardar categories
-        if ($request->input('category') != []) {
-          CategoryProduct::addCategoryToProduct($request->input('category'), $product->id);
-        } else {
-          return "cat";
-        }
-
-        return true;
-      }
-    } else {
-      return "img";
+      $cont++;
     }
-    return false;
+
+    //Guardar categories
+    CategoryProduct::addCategoryToProduct($request->input('category'), $product->id);
   }
 
   public static function updateProduct($request, $id)

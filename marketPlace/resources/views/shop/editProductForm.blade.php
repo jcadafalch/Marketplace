@@ -68,13 +68,11 @@
                         @foreach ($categories as $item)
                             <label for="{{ $item->name }}">
                                 <input type="checkbox" name="category[]" id="{{ $item->name }}"
-                                    value="{{ $item->name }}" 
+                                    value="{{ $item->name }}"
                                     @foreach ($productCategories as $productCategory)
                                         @if ($productCategory === $item->name)
                                             checked
-                                        @endif
-                                    @endforeach 
-                                    />{{ $item->name }}</label>
+                                        @endif @endforeach />{{ $item->name }}</label>
                         @endforeach
                     </div>
                 </div>
@@ -82,6 +80,15 @@
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar</button>
             </div>
+            @if ($errors->any())
+                <div class="error-list">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
     </div>
 
