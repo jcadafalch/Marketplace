@@ -45,7 +45,7 @@
                 <div class="upload__btn-box">
                     <label class="upload__btn">
                         <p>Otras Imagenes</p>
-                        <input name="otrasImagenes[]" type="file" multiple data-max_length="3" class="upload__inputfile"
+                        <input name="otrasImagenes[]" type="file" multiple data-max_length="5" accept="image/*" class="upload__inputfile"
                             value="{{ old('otrasImagenes[]') }}">
                     </label>
                 </div>

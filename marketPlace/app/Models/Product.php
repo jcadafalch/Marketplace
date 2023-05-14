@@ -412,8 +412,6 @@ class Product extends Model
         $cont = 1;
 
         foreach ($request->file('otrasImagenes') as $value) {
-          Log::alert("Entra");
-
           $imageFile = $value;
 
           $imageFile->store("/public/img");

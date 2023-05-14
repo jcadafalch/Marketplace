@@ -25,7 +25,15 @@ class ProductUpdate extends FormRequest
             'name' => ['required', 'min:5', 'regex:/^[A-Za-z0-9\s]+$/'],
             'price' => 'required|min:1',
             'detail' => 'required|min:10',
-            'category' => 'required'
+            'category' => 'required',
+            'otrasImagenes' => [
+                function ($attribute, $value, $fail) {
+                    if (count($value) > 5) {
+                        $fail('Solo se permiten subir hasta 5 imágenes en Otras imágenes');
+                    }
+                },
+            ],
+            'otrasImagenes.*' => 'image|mimes:png,jpg,jpeg'
         ];
     }
 

@@ -27,7 +27,15 @@ class ProductCreate extends FormRequest
             'detail' => 'required|min:10',
             'category' => 'required',
             'file' => 'required|image|mimes:png,jpg,jpeg',
-            'otrasImagenes[]' => 'max:5|image|mimes:png,jpg,jpeg'
+            'otrasImagenes' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (count($value) > 5) {
+                        $fail('Solo se permiten subir hasta 5 imágenes en Otras imágenes');
+                    }
+                },
+            ],
+            'otrasImagenes.*' => 'image|mimes:png,jpg,jpeg'
         ];
     }
 
