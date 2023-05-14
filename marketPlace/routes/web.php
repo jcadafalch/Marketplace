@@ -83,7 +83,6 @@ Route::patch('/cambiarPerfil', [UserController::class, 'editProfile'])->name('us
 Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
 Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop'); 
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
-Route::get('/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
 Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
@@ -98,9 +97,11 @@ Route::get('/resumen-pedido/{id}/pdf', [OrderController::class, 'pdf'])->name('o
 
 Route::group(['middleware' => ['web']], function () {
   Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+  Route::get('/tienda/añadirProducto/cat', [ShopController::class, 'getSubcategories']);
   Route::post('/tienda/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
 });
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
 
-//Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');
+Route::get('/pedido', [OrderController::class, 'show'])->name('order.show');
+Route::get('/venta', [OrderController::class, 'selled'])->name('order.selled');

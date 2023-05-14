@@ -78,4 +78,24 @@ class OrderController extends Controller
         // Descargue el archivo PDF generado automáticamente
         //$dompdf->stream("pedido.pdf", array("Attachment" => true, 'Content-Type' => 'application/pdf')); // Descarga el pdf directamente
     }
+
+    public function show(/*$id*/) {
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        }
+        $categories = Category::all();
+    return view('order.order', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/]);
+    }
+
+    public function selled(/*$id*/) {
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        }
+        $categories = Category::all();
+    return view('order.selled', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/]);
+    }
 }

@@ -30,9 +30,15 @@ class LogInController extends Controller
 
     public function recoveryPasswordSender(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users',
-        ]);
+        $request->validate(
+            [
+                'email' => 'required|email|exists:users',
+            ],
+            [
+                'required'    => 'El campo no puede estar vacio',
+                'exists' => 'El mail introducido no está registrado'
+            ]
+        );
 
         $token = Str::random(64);
 
@@ -68,11 +74,19 @@ class LogInController extends Controller
 
     public function submitResetPasswordForm(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:users',
-            'password' => 'required', 'string', 'min:8', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[!@#$%^&*(),.?":{}|<>]/',
-            'password_confirmation' => 'required'
-        ]);
+        $request->validate(
+            [
+                'email' => 'required|email|exists:users',
+                'password' => 'required', 'string', 'min:8', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[!@#$%^&*(),.?":{}|<>]/',
+                'password_confirmation' => 'required|same:password'
+            ],
+            [
+                'required'    => 'El campo no puede estar vacio',
+                'exists' => 'El mail introducido no está registrado',
+                'regex' => 'La contraseña tiene que tener: mínimo 8 caracteres, 1 carácter en mayúsculas y al menos 1 carácter especial',
+                'same' => 'Las contraseñas no conciden'
+            ]
+        );
 
         $updatePassword = DB::table('password_reset_tokens')
             ->where([
@@ -127,7 +141,7 @@ class LogInController extends Controller
 
         Order::checkForShoppingCart(Auth::id());
 
-        if(isset($_COOKIE["shoppingCartProductsId"]) && Order::where("user_id", Auth::id())->first() != null ){
+        if (isset($_COOKIE["shoppingCartProductsId"]) && Order::where("user_id", Auth::id())->first() != null) {
             Order::addIds($_COOKIE["shoppingCartProductsId"], Auth::id());
         }
 

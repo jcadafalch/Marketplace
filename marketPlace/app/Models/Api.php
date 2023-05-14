@@ -58,8 +58,8 @@ class Api extends Model
     {
 
         $url = env('API_URL') . $this->endpointPushImage;
-       
-        $file = reset($imageContent);
+
+        $file = $imageContent;
         
         $extension = $file->getClientOriginalExtension();
       
@@ -80,12 +80,13 @@ class Api extends Model
     {
         $url = env('API_URL') . $this->endpointDeleteAllImageProduct;
 
-        $products =[
+        // Ejemplo
+      /*  $products =[     
             0 => "645a7c4de3bd8.png",
             1 => "645a7c4ed6328.png",
             2 => "645a7c8780996.png",
             3 => "645a78d4cb2fc.png"
-        ];
+        ];*/
 
 
 
@@ -93,7 +94,7 @@ class Api extends Model
             ->withHeaders([
                 'Content-Type' => 'application/json',
             ])
-            ->withBody(json_encode($products), 'application/json')
+            ->withBody(json_encode($productsID), 'application/json')
             ->delete($url);
 
         if ($response->ok()) {

@@ -11,11 +11,13 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopEdit;
 use App\Http\Requests\ShopCreate;
+use App\Models\CategoryProduct;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ShopController extends Controller
 {
@@ -49,9 +51,17 @@ class ShopController extends Controller
         return redirect()->route("shop.show", ['shopName' => $request['shopName']]);
     }
 
+    public function getSubcategories(Request $request)
+    {
+        $categories = $request->get('categories');
+        $categories_ids = Category::whereIn('name', explode(",", $categories))->pluck('id');
+        $subcategories = Category::whereIn('parent_id', $categories_ids)->pluck('name');
+        return new JsonResponse($subcategories);
+    }
+
     public function newProduct()
     {
-        return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)], ['subcategories' => Category::all()]);
+        return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function addProduct(Request $request)
@@ -65,6 +75,10 @@ class ShopController extends Controller
         } else if ($return === "img") {
             return redirect()->route('shop.newProduct')->withInput()->with([
                 "error" => "Por favor, escoge una imagen destacada"
+            ]);
+        } else if ($return === "cat") {
+            return redirect()->route('shop.newProduct')->withInput()->with([
+                "error" => "Por favor, escoge al menos una categoría"
             ]);
         } else {
             return redirect()->route('shop.newProduct')->with([
@@ -134,12 +148,13 @@ class ShopController extends Controller
         $request->validated();
 
         $userId = Auth::id();
-        $shop = Shop::where('user_id', '=' , $userId)->first();
 
-        if($request->shopDescription != null){ 
+        $shop = Shop::where('user_id', '=', $userId)->first();
+        // if ($request->shopDescription != null) {
+
             $shop->description = $request->shopDescription;
             $shop->save();
-        }
+        // }
 
         if($request->shopBanner != null){
             if($shop->banner_id != null){
@@ -177,7 +192,7 @@ class ShopController extends Controller
 
         $userId = Auth::id();
 
-        if (!$return) {
+        if ($return) {
             return redirect()->route('shop.showEditProduct', $id)->withInput()->with([
                 "error" => "Producto actualizado!"
             ]);
@@ -194,13 +209,20 @@ class ShopController extends Controller
         $productsShop = Product::where('id', $id)->first()->shop_id;
         $userProductShop = Shop::where("id", $productsShop)->where("user_id", $userId)->first();
 
-        if($userProductShop == null){
+        if ($userProductShop == null) {
             return redirect()->route('shop.show', [Shop::where("user_id", $userId)->first()->name])->withInput()->with([
                 "error" => "No tienes acceso a este producto"
             ]);
         }
 
-        return view('shop.editProductForm', ['product' => Product::all()->where('id', '=', $id)->first()], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        $categoriesId = CategoryProduct::where('product_id', $id)->pluck("category_id")->toArray();
+
+        $categoriesName = [];
+        foreach ($categoriesId as $key => $value) {
+            array_push($categoriesName, Category::where("id", $value)->first()->name);
+        }
+
+        return view('shop.editProductForm', ['product' => Product::all()->where('id', '=', $id)->first(), 'productCategories' => $categoriesName], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     /**

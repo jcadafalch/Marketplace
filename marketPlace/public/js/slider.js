@@ -1,76 +1,81 @@
+const sliders = document.querySelectorAll('.slider');
 
-$('.slider').each(function() {
-    var $this = $(this);
-    var $group = $this.find('.slide_group');
-    var $slides = $this.find('.slide');
-    var bulletArray = [];
-    var currentIndex = 0;
-    var timeout;
-    
-    function move(newIndex) {
-      var animateLeft, slideLeft;
-      
-      if ($group.is(':animated') || currentIndex === newIndex) {
-        return;
-      }
-      
-      bulletArray[currentIndex].removeClass('active');
-      bulletArray[newIndex].addClass('active');
-      
-      if (newIndex > currentIndex) {
-        slideLeft = '100%';
-        animateLeft = '-100%';
-      } else {
-        slideLeft = '-100%';
-        animateLeft = '100%';
-      }
-      
-      $slides.eq(newIndex).css({
-        display: 'block',
-        left: slideLeft
-      });
-      $group.animate({
-        left: animateLeft
-      }, function() {
-        $slides.eq(currentIndex).css({
-          display: 'none'
-        });
-        $slides.eq(newIndex).css({
-          left: 0
-        });
-        $group.css({
-          left: 0
-        });
-        currentIndex = newIndex;
-      });
+sliders.forEach(function(slider) {
+  const group = slider.querySelector('.slide_group');
+  const slides = slider.querySelectorAll('.slide');
+  const bulletArray = [];
+  let currentIndex = 0;
+  let timeout;
+
+  function move(newIndex) {
+    let animateLeft, slideLeft;
+
+    if (group.classList.contains('animated') || currentIndex === newIndex) {
+      return;
     }
-    
-    $('.next_btn').on('click', function() {
-      if (currentIndex < ($slides.length - 1)) {
+
+    bulletArray[currentIndex].classList.remove('active');
+    bulletArray[newIndex].classList.add('active');
+
+    if (newIndex > currentIndex) {
+      slideLeft = '100%';
+      animateLeft = '-100%';
+    } else {
+      slideLeft = '-100%';
+      animateLeft = '100%';
+    }
+
+    slides[newIndex].style.display = 'block';
+    slides[newIndex].style.left = slideLeft;
+
+    group.classList.add('animated');
+    group.style.left = animateLeft;
+
+    setTimeout(function() {
+      slides[currentIndex].style.display = 'none';
+      slides[newIndex].style.left = 0;
+      group.style.left = 0;
+      group.classList.remove('animated');
+      currentIndex = newIndex;
+    }, 500);
+  }
+
+  slider.querySelectorAll('.next_btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+      if (currentIndex < (slides.length - 1)) {
         move(currentIndex + 1);
       } else {
         move(0);
       }
     });
-    
-    $('.previous_btn').on('click', function() {
+  });
+
+  slider.querySelectorAll('.previous_btn').forEach(function(button) {
+    button.addEventListener('click', function() {
       if (currentIndex !== 0) {
         move(currentIndex - 1);
       } else {
-        move(3);
+        move(slides.length - 1);
       }
     });
-    
-    $.each($slides, function(index) {
-      var $button = $('<a class="slide_btn">&bull;</a>');
-      
-      if (index === currentIndex) {
-        $button.addClass('active');
-      }
-      $button.on('click', function() {
-        move(index);
-      }).appendTo('.slide_buttons');
-      bulletArray.push($button);
-    });
-    
   });
+
+  slides.forEach(function(slide, index) {
+    const button = document.createElement('a');
+    button.classList.add('slide_btn');
+    button.textContent = '•';
+
+    if (index === currentIndex) {
+      button.classList.add('active');
+    }
+
+    button.addEventListener('click', function() {
+      move(index);
+    });
+
+    slider.parentElement.querySelectorAll('.slide_buttons').forEach(function(slideButton) {
+      slideButton.appendChild(button);
+    })
+    bulletArray.push(button);
+  });
+});
