@@ -92,6 +92,7 @@ Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdatePro
 // Pedidos
 Route::get('/resumen-pedido/{id}', [OrderController::class, 'show'])->name('order.summary');
 
+Route::get('/resumen-pedido/{id}/pdf', [OrderController::class, 'pdf'])->name('order.orderSummaryPdf');
 
 }));
 

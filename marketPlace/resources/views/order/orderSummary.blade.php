@@ -8,9 +8,11 @@
             <h1>Resumen de tu pedido</h1>
             <h5>{{ count($producte) }} artículos</h5>
         </section> --}}
-            <span class="material-symbols-outlined">
-                download
-            </span>
+            <a href="{{ route('order.orderSummaryPdf', ['id' => $order->id]) }}">
+                <span class="material-symbols-outlined">
+                    download
+                </span>
+            </a>
         </article>
         <p>Pedido realizado el: {{ $orderDate }}</p>
         <div style="display: none">{{ $total = 0 }}</div>
@@ -19,7 +21,7 @@
             <article class="order-product" id="{{ $productec->id }}">
                 <a href="{{ route('product.show', ['id' => $productec->id]) }}">
                     @if ($productec->getMainImage() != null)
-                        <img class="order-product-image" src="{{ asset('storage/img/' . $productec->getMainImage()) }}" />
+                        <img class="order-product-image" src="{{ $productec->getMainImage() }}" />
                     @else
                         <img class="order-product-image"
                             src="{{ asset('/images/imagesNotFound.webp' . $productec->getMainImage()) }}" />
