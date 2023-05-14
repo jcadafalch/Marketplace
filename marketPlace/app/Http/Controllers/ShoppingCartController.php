@@ -84,7 +84,13 @@ class ShoppingCartController extends Controller
             return $this->showShoppingCartWithErrors($errors);
         }
 
-        
+        $result = Order::closeOrder($order->id);
+
+        if($result != "true"){
+
+            $errors = [$result];
+            return $this->showShoppingCartWithErrors($errors);
+        }
 
         return redirect('home/dashboard');
     }

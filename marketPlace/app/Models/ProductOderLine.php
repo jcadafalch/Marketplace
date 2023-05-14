@@ -86,25 +86,4 @@ class ProductOderLine extends Model
         return $products;
 
     }
-
-    public static function setProductOfOrderLineAsSelled($orderLinesId)
-    {
-        $productOrderLine = ProductOderLine::whereIn('orderLine_id', '=', $orderLinesId)->get();
-
-        if($productOrderLine == null)
-        {
-            return null;
-        }
-
-        $productsIds = $productOrderLine->pluck('product_id');
-        $productsIdsArray = $productsIds->toArray();
-
-        Product::whereIn('id', $productsIdsArray)->update([
-            'isVisible' => 0,
-            'selled_at' => time(),
-        ]);
-
-        return true;
-            
-    }
 }
