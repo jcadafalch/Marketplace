@@ -66,7 +66,7 @@ class OrderController extends Controller
             ->where('order_id', '=', $order->id);
         })->get();
 
-        $data = ['orderDate' => $orderDate, 'producte' => $products, 'shops' => $shops,]; // optional data array to pass to the vie
+        $data = ['orderDate' => $orderDate, 'producte' => $products, 'shops' => $shops, 'order' => $order,]; // optional data array to pass to the vie
         $html = view('order.orderSummaryPdf', $data)->render();
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
@@ -77,16 +77,6 @@ class OrderController extends Controller
         
         // Descargue el archivo PDF generado automáticamente
         //$dompdf->stream("pedido.pdf", array("Attachment" => true, 'Content-Type' => 'application/pdf')); // Descarga el pdf directamente
-    }
-
-    public function show(/*$id*/) {
-        if (!isset($_COOKIE["shoppingCartProductsId"])) {
-            $producte = [];
-        } else {
-            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
-        }
-        $categories = Category::all();
-    return view('order.order', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/]);
     }
 
     public function selled(/*$id*/) {
