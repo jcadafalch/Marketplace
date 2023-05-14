@@ -45,5 +45,18 @@
             font-weight: 700;
             font-size: 24px;
         }
+
+        &-order {
+            margin-top: 3rem;
+            &-history {
+                &-title {
+                    background-color: $primaryColor;
+                    padding: 1rem;
+                }
+                &-list {
+                    list-style: none;
+                }
+            }
+        }
     }
 }

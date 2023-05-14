@@ -870,6 +870,16 @@ a:hover {
   font-weight: 700;
   font-size: 24px;
 }
+.profile .user-order {
+  margin-top: 3rem;
+}
+.profile .user-order-history-title {
+  background-color: #FFD0AF;
+  padding: 1rem;
+}
+.profile .user-order-history-list {
+  list-style: none;
+}
 
 .landing-card {
   padding: 3vh 10vw 3vh 10vw;
