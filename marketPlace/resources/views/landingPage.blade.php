@@ -3,7 +3,6 @@
 @section('title', 'Craft Made')
 
 @section('content')
-{{-- añadir parte superior de pag --}}
     <section class='landing'>
         @for ($i = 0; $i < count($titles); $i++)
             <article class="landing-card">
@@ -14,8 +13,9 @@
                             <li>
                                 <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image"
                                         src="{{ $item->url }}" />
-                                <p>{{ $item->name }}</p>
-                                <p>{{ $item->price }}€</p></a>
+                                    <p>{{ $item->name }}</p>
+                                    <p>{{ $item->price }}€</p>
+                                </a>
                             </li>
                         @endif
                     @endforeach

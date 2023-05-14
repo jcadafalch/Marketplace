@@ -33,7 +33,7 @@
                     <label for="file-input"> Imagen destacada </label>
                     <input name="file" type="file" id="file-input" accept="image/*" value="{{ old('file') }}"
                         hidden />
-                    <!-- Image upload input -->
+
                     <div class="preview-container hidden">
                         <div class="preview-image"></div>
                         <span class="file-name"></span>
@@ -68,10 +68,10 @@
                         @endforeach
                     </div>
                 </div>
-                <div id="multiselect" class="multiselect" hidden>
+                <div id="multiselect2" class="multiselect" hidden>
                     <div class="selectBox" onclick="showCheckboxes()">
                         <select>
-                            <option>Selecciona categorias</option>
+                            <option>Selecciona subcategorias</option>
                         </select>
                         <div class="overSelect"></div>
                     </div>
@@ -100,6 +100,5 @@
         </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="{{ asset('js/imgPreviw.js') }}"></script>
 @endsection

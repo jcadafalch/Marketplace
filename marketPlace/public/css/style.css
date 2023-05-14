@@ -1249,46 +1249,80 @@ a.slide_btn {
 
 .shopedit-banner {
   height: auto;
-  overflow: hidden; }
-  .shopedit-banner-edit {
-    position: absolute;
-    color: white;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-    .shopedit-banner-edit input {
-      display: none; }
-    .shopedit-banner-edit label {
-      display: inline-block;
-      width: 34px;
-      height: 34px;
-      margin-bottom: 0;
-      border-radius: 100%;
-      background: #FFFFFF;
-      border: 1px solid transparent;
-      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-      cursor: pointer;
-      font-weight: normal;
-      transition: all 0.2s ease-in-out;
-      margin-right: 2rem; }
-      .shopedit-banner-edit label:after {
-        content: "\e145";
-        font-family: "Material Icons";
-        color: #757575;
-        position: absolute;
-        top: 8px;
-        left: 9px; }
-  .shopedit-banner-upload {
-    height: 18rem; }
-  .shopedit-banner-preview {
-    height: 18rem; }
-  .shopedit-banner-imagePreview {
-    height: 18rem; }
-    .shopedit-banner-imagePreview img {
-      object-fit: cover;
-      height: -webkit-fill-available;
-      width: -webkit-fill-available;
-      position: inherit; }
+  overflow: hidden;
+}
+.shopedit-banner-edit {
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.shopedit-banner-edit input {
+  display: none;
+}
+.shopedit-banner-edit label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+  margin-right: 2rem;
+}
+.shopedit-banner-edit label:after {
+  content: "\e145";
+  font-family: "Material Icons";
+  color: #757575;
+  position: absolute;
+  top: 8px;
+  left: 9px;
+}
+.shopedit-banner-upload {
+  height: 18rem;
+  position: relative;
+}
+.shopedit-banner-preview {
+  height: 18rem;
+}
+.shopedit-banner-imagePreview {
+  height: 18rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.shopedit-banner-imagePreview img {
+  object-fit: cover;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  position: inherit;
+}
+
+.product-edit-link {
+  width: 21rem;
+  height: 28rem;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  box-shadow: 3px 5px 0px 0px gray;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  list-style: none;
+  border-radius: 1.6rem;
+  flex-direction: column;
+  text-align: center;
+}
+.product-edit-link a {
+  text-decoration: none;
+  color: black;
+}
 
 .multiselect {
   width: 200px; }

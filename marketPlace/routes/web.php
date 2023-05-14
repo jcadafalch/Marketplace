@@ -94,7 +94,6 @@ Route::middleware('auth')->group((function () {
   });
 }));
 
-
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
 
 
