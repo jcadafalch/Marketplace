@@ -315,10 +315,11 @@ class Product extends Model
 
         $requestAll = $request->all();
 
+        //Guardar Producte
         $product = new Product();
         $product->name = $requestAll['name'];
         $product->description = $requestAll['detail'];
-        $product->price = $requestAll['price']*100;
+        $product->price = $requestAll['price'] * 100;
         $product->isVisible = true;
         $product->isDeleted = false;
         $product->order = 1;
@@ -372,6 +373,13 @@ class Product extends Model
             $cont++;
           }
         }
+        //Guardar categories
+        if ($request->input('category') != []) {
+          CategoryProduct::addCategoryToProduct($request->input('category'), $product->id);
+        } else {
+          return "cat";
+        }
+
         return true;
       }
     } else {
@@ -446,8 +454,10 @@ class Product extends Model
 
           $cont++;
         }
-        return true;
       }
+
+      CategoryProduct::updateCategoryProduct($request->input('category'), $id);
+      return true;
     }
     return false;
   }

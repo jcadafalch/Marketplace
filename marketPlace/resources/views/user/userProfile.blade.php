@@ -5,10 +5,6 @@
 @section('content')
     <section class="profile">
         <article class="user-content">
-            {{-- <div class="user-img">
-                <img src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"
-                    onerror="this.src='{{ asset('storage/img/profile/defaultProfileImage.jpg') }}'" alt="Imagen de perfil">
-            </div> --}}
             <div class="user-img">
                 <div class="user-img-imagePreview">
                     <img src="{{ asset('storage/img/profile/' . Auth::user()->path) }}"

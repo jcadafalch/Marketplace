@@ -1467,7 +1467,7 @@ a.slide_btn {
 .shopedit-banner-edit {
   position: absolute;
   color: white;
-  top: 10%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -1498,18 +1498,43 @@ a.slide_btn {
 }
 .shopedit-banner-upload {
   height: 18rem;
+  position: relative;
 }
 .shopedit-banner-preview {
   height: 18rem;
 }
 .shopedit-banner-imagePreview {
   height: 18rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .shopedit-banner-imagePreview img {
   object-fit: cover;
   height: -webkit-fill-available;
   width: -webkit-fill-available;
   position: inherit;
+}
+
+.product-edit-link {
+  width: 21rem;
+  height: 28rem;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  box-shadow: 3px 5px 0px 0px gray;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  list-style: none;
+  border-radius: 1.6rem;
+  flex-direction: column;
+  text-align: center;
+}
+.product-edit-link a {
+  text-decoration: none;
+  color: black;
 }
 
 .multiselect {

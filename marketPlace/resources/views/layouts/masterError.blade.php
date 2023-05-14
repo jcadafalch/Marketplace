@@ -14,7 +14,7 @@
 <body>
 @include('partials.header')
     <main class="error"> 
-        <div class="error-image"><img src="{{ asset('/images/Error.png') }}" alt="Logo"/></div>
+        <div class="error-image"><img src="{{ asset('/images/Error.png') }}" alt="Error"/></div>
         <article class="error-message">
             @yield('content')
         </article>
