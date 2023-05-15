@@ -892,6 +892,11 @@ a.slide_btn {
     margin-bottom: 2.5rem; }
     .error-message p {
       color: red; }
+  .error-list ul {
+    background-color: #f7d7da;
+    list-style: none; }
+  .error-list li {
+    padding: 5px; }
 
 .shop-banner {
   height: 18rem;
