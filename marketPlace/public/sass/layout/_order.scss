@@ -4,6 +4,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     }
+
     &-section {
         padding: 3vh 20vw 3vh 20vw;
     }
@@ -13,7 +14,12 @@
         grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
         align-items: center;
 
-        margin: 2rem;
+        padding: 2rem 0rem 2rem 0rem;
+
+        &-name {
+            margin-bottom: 1rem;
+        }
+
         &-image {
             width: 15rem;
             border-radius: 1.6rem;
@@ -21,6 +27,18 @@
 
         &-price {
             text-align: end;
+
+            p {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        &-list {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
         }
     }
 

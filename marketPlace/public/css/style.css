@@ -749,6 +749,11 @@ a:hover {
   background-color: #FFD0AF;
   padding: 1rem;
 }
+.profile .user-order-history-download {
+  padding: 2rem 0 2rem 0;
+  display: flex;
+  justify-content: space-between;
+}
 .profile .user-order-history-list {
   list-style: none;
 }
@@ -1432,13 +1437,28 @@ a.slide_btn {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   align-items: center;
-  margin: 2rem; }
-  .order-product-image {
-    width: 15rem;
-    border-radius: 1.6rem; }
-  .order-product-price {
-    text-align: end; }
-
+  padding: 2rem 0rem 2rem 0rem;
+}
+.order-product-name {
+  margin-bottom: 1rem;
+}
+.order-product-image {
+  width: 15rem;
+  border-radius: 1.6rem;
+}
+.order-product-price {
+  text-align: end;
+}
+.order-product-price p {
+  margin-bottom: 0.5rem;
+}
+.order-product-list {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 .order-total {
   margin-top: 2rem;
   text-align: end; }

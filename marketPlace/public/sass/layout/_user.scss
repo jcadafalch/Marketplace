@@ -48,11 +48,19 @@
 
         &-order {
             margin-top: 3rem;
+
             &-history {
                 &-title {
                     background-color: $primaryColor;
                     padding: 1rem;
                 }
+
+                &-download {
+                    padding: 2rem 0 2rem 0;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
                 &-list {
                     list-style: none;
                 }

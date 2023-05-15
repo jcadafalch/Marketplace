@@ -101,6 +101,9 @@ Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.sh
 
 
 Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');
-Route::get('/pedido', [OrderController::class, 'show'])->name('order.show');
+Route::get('/pedido', [OrderController::class, 'order'])->name('order.show');
 Route::get('/venta', [OrderController::class, 'selled'])->name('order.selled');
 // /{id}
+
+Route::get('/lista-pedidos', [OrderController::class, 'orderList'])->name('order.orderList');
+Route::get('/lista-vendidos', [OrderController::class, 'selledList'])->name('order.selledList');
