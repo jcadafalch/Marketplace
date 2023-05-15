@@ -50,8 +50,8 @@
                 <div class="upload__btn-box">
                     <label class="upload__btn">
                         <p>Otras Imagenes</p>
-                        <input name="otrasImagenes[]" type="file" multiple data-max_length="3" class="upload__inputfile"
-                            value="{{ old('otrasImagenes[]') }}">
+                        <input name="otrasImagenes[]" type="file" multiple data-max_length="5" accept="image/*"
+                            class="upload__inputfile" value="{{ old('otrasImagenes[]') }}">
                     </label>
                 </div>
                 <div class="upload__img-wrap"></div>
@@ -95,6 +95,15 @@
             <div class="userForm-form-button">
                 <button class="button-form" type="submit">Guardar</button>
             </div>
+            @if ($errors->any())
+                <div class="error-list">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
     </div>
 

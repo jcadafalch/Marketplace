@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductCreate extends FormRequest
+class ProductUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,7 @@ class ProductCreate extends FormRequest
             'price' => 'required|min:1',
             'detail' => 'required|min:10',
             'category' => 'required',
-            'file' => 'required|image|mimes:png,jpg,jpeg',
             'otrasImagenes' => [
-                'required',
                 function ($attribute, $value, $fail) {
                     if (count($value) > 5) {
                         $fail('Solo se permiten subir hasta 5 imágenes en Otras imágenes');
@@ -61,9 +59,7 @@ class ProductCreate extends FormRequest
             'name' => 'nombre',
             'price' => 'precio',
             'detail' => 'detalles',
-            'category' => 'categoria',
-            'file' => 'imágen destacada',
-            'otrasImagenes' => 'otras imágenes'
+            'category' => 'categoria'
         ];
     }
 }

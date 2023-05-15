@@ -91,13 +91,11 @@ Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdatePro
 Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 
 
+  Route::group(['middleware' => ['web']], function () {
+    Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+    Route::post('/tienda/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
+  });
 }));
-
-Route::group(['middleware' => ['web']], function () {
-  Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
-  Route::get('/tienda/añadirProducto/cat', [ShopController::class, 'getSubcategories']);
-  Route::post('/tienda/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
-});
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
 

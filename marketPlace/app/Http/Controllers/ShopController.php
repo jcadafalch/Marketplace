@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductCreate;
 use App\Models\Shop;
 use App\Models\User;
 use App\Models\Image;
@@ -10,9 +9,11 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopEdit;
-use App\Http\Requests\ShopCreate;
 use App\Models\CategoryProduct;
+use App\Http\Requests\ShopCreate;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\ProductCreate;
+use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Http\FormRequest;
@@ -66,21 +67,15 @@ class ShopController extends Controller
         return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
-    public function addProduct(Request $request)
+    public function addProduct(ProductCreate $request)
     {
+        $request->validated();
+
         $return = Product::addProduct($request);
 
         if (!$return) {
             return redirect()->route('shop.newProduct')->withInput()->with([
                 "error" => "El nombre de este producto ya está registrado, prueba con otro nombre"
-            ]);
-        } else if ($return === "img") {
-            return redirect()->route('shop.newProduct')->withInput()->with([
-                "error" => "Por favor, escoge una imagen destacada"
-            ]);
-        } else if ($return === "cat") {
-            return redirect()->route('shop.newProduct')->withInput()->with([
-                "error" => "Por favor, escoge al menos una categoría"
             ]);
         } else {
             return redirect()->route('shop.newProduct')->with([
@@ -200,8 +195,6 @@ class ShopController extends Controller
     {
         $return = Product::updateProduct($request, $id);
 
-        $userId = Auth::id();
-
         if ($return) {
             return redirect()->route('shop.showEditProduct', $id)->withInput()->with([
                 "error" => "Producto actualizado!"
@@ -320,7 +313,9 @@ class ShopController extends Controller
             $img = 'profileBanner' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfileBanner', $img);
             return $img;
+
             Log::info("Cambiado imagen de banner de tienda:" . $img);
+
         }
         return redirect()->route('error.genericError');
     }
@@ -337,7 +332,9 @@ class ShopController extends Controller
             $shop->logo_id = null;
             $shop->save();
             $image->delete();
+
             Log::info("Eliminado imagen de perfil de tienda Storage:" . $image);
+
         }
     }
 
