@@ -17,7 +17,7 @@ use App\Http\Controllers\ApiController;
 
 Route::get('/getImage', [ApiController::class, 'getImage']);
 Route::get('/getImages', [ApiController::class, 'getAllImage']);
-Route::get('/createImage', [ApiController::class, 'createImage']);
+Route::get('/createImage', [ApiController::class, 'createImage'])->withoutMiddleware("throttle:api");
 
 
 Route::post('/pushImage', [ApiController::class, 'pushImage']);
