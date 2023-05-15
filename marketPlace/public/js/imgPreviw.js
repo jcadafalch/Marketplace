@@ -119,9 +119,20 @@ function showCheckboxes() {
     }
 }
 
-const checkboxes = document.querySelectorAll("input[type=checkbox][name=category]");
-let enabledSettings = []
+let expanded2 = false;
+function showCheckboxes2() {
+    const checkboxes2 = document.getElementById("checkboxes2");
+    if (!expanded2) {
+        checkboxes2.style.display = "block";
+        expanded2 = true;
+    } else {
+        checkboxes2.style.display = "none";
+        expanded2 = false;
+    }
+}
 
+const checkboxes = document.querySelectorAll("input.checkbox");
+let enabledSettings = []
 checkboxes.forEach(function (checkbox) {
     checkbox.addEventListener('change', async function () {
         enabledSettings = Array.from(checkboxes).filter(i => i.checked).map(i => i.id);
@@ -129,14 +140,19 @@ checkboxes.forEach(function (checkbox) {
             .then(async data => {
                 const subcategories = await data.json();
                 console.log(subcategories);
-                // const multiselect = document.querySelector('#multiselect2');
-                // const checkbox = document.querySelector('#checkboxes2');
-                // const label = document.createElement('label');
-                // const input = document.createElement('input');
-                // multiselect.removeAttribute('hidden');
-                // input.type= 'checkbox';
-                // input.innerHTML = subcategories;
-                // checkbox.insertAdjacentElement("afterend", 'input');
+                const multiselect = document.querySelector('#multiselect2');
+                const checkbox = document.querySelector('#checkboxes2');
+
+                multiselect.removeAttribute('hidden');
+                subcategories.forEach(element => {
+                    const label = document.createElement('label');
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.innerHTML = element;
+                    label.innerHTML = element;
+                    checkbox.insertAdjacentElement("afterend", label);
+                    checkbox.insertAdjacentElement("afterend", input);
+                });
             })
             .catch(error => console.log(error))
     })
