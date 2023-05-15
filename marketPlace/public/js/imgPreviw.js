@@ -104,33 +104,7 @@ function ImgUpload() {
     });
 }
 
-
-//dropdown de checkboxes
-let expanded = false;
-
-function showCheckboxes() {
-    const checkboxes = document.getElementById("checkboxes");
-    if (!expanded) {
-        checkboxes.style.display = "block";
-        expanded = true;
-    } else {
-        checkboxes.style.display = "none";
-        expanded = false;
-    }
-}
-
-let expanded2 = false;
-function showCheckboxes2() {
-    const checkboxes2 = document.getElementById("checkboxes2");
-    if (!expanded2) {
-        checkboxes2.style.display = "block";
-        expanded2 = true;
-    } else {
-        checkboxes2.style.display = "none";
-        expanded2 = false;
-    }
-}
-
+// añadir subcategorias al seleccionar categoria
 const checkboxes = document.querySelectorAll("input.checkbox");
 let enabledSettings = []
 checkboxes.forEach(function (checkbox) {
@@ -141,7 +115,7 @@ checkboxes.forEach(function (checkbox) {
                 const subcategories = await data.json();
                 console.log(subcategories);
                 const multiselect = document.querySelector('#multiselect2');
-                const checkbox = document.querySelector('#checkboxes2');
+                const checkbox = document.querySelector('.check');
 
                 multiselect.removeAttribute('hidden');
                 subcategories.forEach(element => {
@@ -150,10 +124,39 @@ checkboxes.forEach(function (checkbox) {
                     input.type = 'checkbox';
                     input.innerHTML = element;
                     label.innerHTML = element;
-                    checkbox.insertAdjacentElement("afterend", label);
-                    checkbox.insertAdjacentElement("afterend", input);
+                    label.insertAdjacentElement("beforeend", input)
+                    checkbox.insertAdjacentElement("beforeend", label);
+                    // checkbox.insertAdjacentElement("beforeend", input);
                 });
             })
             .catch(error => console.log(error))
     })
 });
+
+
+// checkbox dropdown
+function toggleDropdown(dropdown, dropdownUL) {
+    dropdown.classList.toggle("is-active");
+}
+
+function stopPropagation(event) {
+    event.stopPropagation();
+}
+
+function setupDropdownListeners(dropdown, dropdownUL) {
+    dropdown.addEventListener("click", function () {
+        toggleDropdown(dropdown, dropdownUL);
+    });
+
+    dropdownUL.addEventListener("click", stopPropagation);
+}
+
+// Usage example
+const checkboxDropdown1 = document.querySelector(".checkbox-dropdown");
+const dropdownUL1 = document.querySelector(".checkbox-dropdown ul");
+setupDropdownListeners(checkboxDropdown1, dropdownUL1);
+
+const checkboxDropdown2 = document.querySelector("#multiselect2");
+const dropdownUL2 = document.querySelector("#checkboxes2");
+setupDropdownListeners(checkboxDropdown2, dropdownUL2);
+

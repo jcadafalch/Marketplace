@@ -56,33 +56,40 @@
                 </div>
                 <div class="upload__img-wrap"></div>
             </div>
-            <div class="userForm-form-item">
+            <div class="checkbox-container">
 
-                <div id="multiselect" class="multiselect">
-                    <div class="selectBox" onclick="showCheckboxes()">
+                <div id="multiselect" class="multiselect checkbox-dropdown">
+                    <p>Categorias</p>
+                    {{-- <div class="selectBox" onclick="showCheckboxes()">
                         <select>
                             <option>Selecciona categorias</option>
                         </select>
                         <div class="overSelect"></div>
-                    </div>
-                    <div id="checkboxes">
+                    </div> --}}
+                    <ul id="checkboxes" class="checkbox-dropdown-list">
                         @foreach ($categories as $item)
-                            <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category[]" class="checkbox" id="{{ $item->name }}"
-                                    value="{{ $item->name }}" />{{ $item->name }}</label>
+                            <li>
+                                <label for="{{ $item->name }}">
+                                    <input type="checkbox" name="category[]" class="checkbox" id="{{ $item->name }}"
+                                        value="{{ $item->name }}" />{{ $item->name }}</label>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
                 </div>
-                <div id="multiselect2" class="multiselect" hidden>
-                    <div class="selectBox" onclick="showCheckboxes2()">
+
+                <div id="multiselect2" class="multiselect checkbox-dropdown" hidden>
+                    <p>Subcategorias</p>
+                    {{-- <div class="selectBox" onclick="showCheckboxes2()">
                         <select>
                             <option>Selecciona subcategorias</option>
                         </select>
                         <div class="overSelect"></div>
-                    </div>
-                    <div id="checkboxes2">
-                        
-                    </div>
+                    </div> --}}
+                    <ul id="checkboxes2" class="checkbox-dropdown-list">
+                        <li class="check">
+
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="userForm-form-button">
