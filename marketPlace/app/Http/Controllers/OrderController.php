@@ -73,10 +73,10 @@ class OrderController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
 
-        $dompdf->stream("document.pdf", array("Attachment" => false)); // muestra el pdf en la pagina
+        $dompdf->stream("pedido".$order->id.".pdf", array("Attachment" => false)); // muestra el pdf en la pagina
         
         // Descargue el archivo PDF generado automáticamente
-        //$dompdf->stream("pedido.pdf", array("Attachment" => true, 'Content-Type' => 'application/pdf')); // Descarga el pdf directamente
+        //$dompdf->stream("pedido".$order->id.".pdf", array("Attachment" => true, 'Content-Type' => 'application/pdf')); // Descarga el pdf directamente
     }
 
     public function selled(/*$id*/) {

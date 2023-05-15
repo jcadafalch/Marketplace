@@ -9,7 +9,7 @@
     <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
 
 
-    <title>Resumen pedido pdf</title>
+    <title>Resumen pedido {{ $order->id }}</title>
 
     <style>
         .pedido-info {
@@ -66,7 +66,7 @@
 
 
 <body>
-    <img src="{{ public_path('imgagen/Logo.png') }}" alt="Logo de la tienda">
+    <img src={{ public_path('images/Logo.png') }} alt="Logo de la tienda">
     <h1>Detalle de Pedido</h1>
     <div style="margin-bottom: 50px;">
         <span style="float: left;">Número de pedido: {{ $order->id }}</span>
