@@ -26,6 +26,9 @@ class OrderController extends Controller
             $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
         }
         $categories = Category::all();
+
+        Log::info("Se ha realizado un pedido: " /* añadir usuario */);
+
         return view('order.orderSummary', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all()]);
     }
 
@@ -63,17 +66,17 @@ class OrderController extends Controller
     }
 
     public function selledList(/*$id*/)
-        {
-            $user_id = Auth::user()->id;
+    {
+        $user_id = Auth::user()->id;
         $userShop = Shop::where('user_id', '=', $user_id)->first();
         $shops = Shop::all();
         $categories = Category::all()->where('parent_id', '=', null);
-            if (!isset($_COOKIE["shoppingCartProductsId"])) {
-                $producte = [];
-            } else {
-                $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
-            }
-            $categories = Category::all();
-            return view('order.selledList', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/'shop' => $userShop]);
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
         }
+        $categories = Category::all();
+        return view('order.selledList', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/ 'shop' => $userShop]);
+    }
 }
