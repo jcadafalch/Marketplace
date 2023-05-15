@@ -29,7 +29,7 @@
                 <summary class="user-order-history-title">Pedidos realizados</summary>
                 <ul class="user-order-history-list">
                     @foreach ($completedOrderLines as $completedOrderLine)
-                        <a href="{{ route('order.show' /*, ['shopName' => $shop->name]*/) }}">
+                        <a href="{{ route('order.summary', ['id' => $completedOrderLine->orderId]) }}">
                             <li class="order-product" id="1">
                                 <img class="order-product-image"
                                     src="{{ asset('storage/img/shopProfile/' . $completedOrderLine->shopLogoUrl) }}"
@@ -55,7 +55,7 @@
                     <summary class="user-order-history-title">Ventas realizadas</summary>
                     <ul class="user-order-history-list">
                         @foreach ($completedShopOrderLines as $completedShopOrderLine)
-                            <a href="{{ route('order.selled' /*, ['id' => ]*/) }}">
+                            <a href="{{ route('order.selled', ['id' => $completedShopOrderLine->orderLineId]) }}">
                                 <li class="order-product" id="1">
                                     <div>
                                         <h3 class="order-product-name">{{ $completedShopOrderLine->shopName }}</h3>

@@ -114,6 +114,7 @@ class UserController extends Controller
                 $completeOrderLine = new CompleteOrderLine();
                 $completeOrderLine->orderDate = $orderDate = strval(date('d-m-Y', strtotime($order->closed_at)));
                 $completeOrderLine->orderId = $order->id;
+                $completeOrderLine->orderLineId = $orderLine->id;
                 $completeOrderLine->orderLineStatus = $this->getOrderLineStatus($orderLine);
                 $completeOrderLine->shopName = $shop->name;
                 $completeOrderLine->shopLogoUrl = $shop->getLogo()->url;
@@ -151,6 +152,7 @@ class UserController extends Controller
                 $completeOrderLine = new CompleteOrderLine();
                 $completeOrderLine->orderDate = $orderDate = strval(date('d-m-Y', strtotime($order->closed_at)));
                 $completeOrderLine->orderId = $order->id;
+                $completeOrderLine->orderLineId = $orderLine->id;
                 $completeOrderLine->orderLineStatus = $this->getOrderLineStatus($orderLine);
                 $completeOrderLine->shopName = $shop->name;
                 $completeOrderLine->shopLogoUrl = $shop->getLogo()->url;

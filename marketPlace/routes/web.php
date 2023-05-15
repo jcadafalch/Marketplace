@@ -90,8 +90,13 @@ Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdatePro
 
 // Pedidos
 Route::get('/resumen-pedido/{id}', [OrderController::class, 'show'])->name('order.summary');
+Route::get('/resumen-pedido/{id}/pdf', [OrderController::class, 'orderPdf'])->name('order.orderSummaryPdf');
 
-Route::get('/resumen-pedido/{id}/pdf', [OrderController::class, 'pdf'])->name('order.orderSummaryPdf');
+Route::get('/venta/{id}', [OrderController::class, 'selled'])->name('order.selled');
+Route::get('/venta/{id}/pdf', [OrderController::class, 'selledPdf'])->name('order.selledPdf');
+
+Route::get('/venta/paid/{id}', [OrderController::class, 'setPaid'])->name('order.paid');
+Route::get('/venta/sent/{id}', [OrderController::class, 'setSent'])->name('order.sent');
 
 }));
 
@@ -104,4 +109,4 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
 
 Route::get('/pedido', [OrderController::class, 'show'])->name('order.show');
-Route::get('/venta', [OrderController::class, 'selled'])->name('order.selled');
+

@@ -18,6 +18,7 @@ class CompleteOrderLine extends Model
     protected $attributes = [
         'orderDate' => '',
         'orderId' => '',
+        'orderLineId' => '',
         'orderLineStatus' => '',
         'shopName' => '',
         'shopLogoUrl' => '',
