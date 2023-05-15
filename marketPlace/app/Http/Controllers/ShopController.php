@@ -137,6 +137,7 @@ class ShopController extends Controller
 
         if ($userId != null) {
             $productsShop = $shop->getAllShopProducts();
+            //dd($productsShop);
         } else {
             return redirect()->route('error.shopNotFound');
         }
@@ -186,7 +187,7 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateProduct(Request $request, $id)
+    public function updateProductPendent(Request $request, $id)
     {
         $return = Product::updateProduct($request, $id);
 
@@ -203,6 +204,51 @@ class ShopController extends Controller
         }
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateProduct(Request $request)
+    {
+        $response = [
+            "status" => "",
+            "msg" => "",
+            "action" => ""
+        ];
+        $executed = false;
+        try {
+            $product = Product::findOrFail($request->query('id'));
+            switch ($request->query('action')) {
+                case "habilitar":
+                    $product->isVisible = true;
+                    $executed = true;
+                    $response['action'] =  "able";
+                    break;
+                case "deshabilitar":
+                    $product->isVisible = false;
+                    $executed = true;
+                    $response['action'] =  "dissable";
+                    break;
+                case "eliminar":
+                    $product->isDeleted = true;
+                    $executed = true;
+                    $response['action'] =  "delete";
+                    break;    
+                default:
+                    break;
+            }
+            if($executed){
+                $product->save();
+                $response['status'] = $executed;
+                $response['msg'] =  $product->name;
+            }
+         } catch (\Throwable $th) {
+            $response['status'] = $executed;
+            $response['msg'] = 'Error';
+        }
+       
+        return response()->json($response);
+    }
+    
     public function showUpdateProduct($id)
     {
         $userId = Auth::id();
