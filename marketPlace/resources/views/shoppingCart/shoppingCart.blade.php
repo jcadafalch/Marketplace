@@ -52,7 +52,7 @@
                     <li>{{!! $error !!}}</li>
                 @endforeach
             </ul>
-            <a class="button-newShop" href={{ route('shoppingCart.confirmOrder') }}>
+            <a class="button-order" href={{ route('shoppingCart.confirmOrder') }}>
                 Realizar pedido
                 {{-- <button class="button-newShop">Realizar pedido</button> --}}
             </a>

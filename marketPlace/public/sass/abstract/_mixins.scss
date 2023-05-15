@@ -130,12 +130,9 @@
             }
 
             &-error {
-                // color: #FF6169;
-                // font-size: 1.5rem;
-                //list-style: none;
                 color: black;
                 font-size: 1.5rem;
-                background-color: #f7d7da;
+                background-color: rgba($primaryColor, 0.4);
                 max-width: 29rem;
                 margin-bottom: 1rem;
 
