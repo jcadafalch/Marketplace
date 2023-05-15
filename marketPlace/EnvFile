@@ -65,3 +65,5 @@ LANDING_PAGE_CONFIG =  \config\landingPageConfig.json
 API_TOKEN= "9ab84c04-e834-11ed-a05b-0242ac120003"
 
 API_URL= "http://127.0.0.1:8000/api/"
+
+API_URL_IMAGES= "http://127.0.0.1:8000/"
