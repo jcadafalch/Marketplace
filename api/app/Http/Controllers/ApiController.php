@@ -186,7 +186,7 @@ class ApiController extends Controller
 
                 Storage::disk('img')->put($RandomNameImage, $request["imagen"]->get());
                 
-                self::generateResponse("Subo una imagen", 200,$urlServer . $this->urlImage . $RandomNameImage);
+                self::generateResponse("Subo una imagen", 200,$this->urlImage . $RandomNameImage);
             } catch (\Throwable $th) {
                 self::generateResponse("Fallo al subir la imagen", 200, "Suba otra vez la imagen");
             }
@@ -251,7 +251,7 @@ class ApiController extends Controller
 
         imagepng($image, $path);
 
-        return $urlServer  . $this->urlImage .  $RandomNameImage;
+        return $this->urlImage .  $RandomNameImage;
     }
 
     public function generateResponse($mensaje, $status, $filename)

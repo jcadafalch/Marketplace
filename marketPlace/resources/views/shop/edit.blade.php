@@ -103,7 +103,7 @@
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{  $product->getMainImage() }}" />
+                                <img src="{{ env('API_URL_IMAGES') . $product->getMainImage() }}" />
                             </a>
                         </div>
                         <div class="product-details">
