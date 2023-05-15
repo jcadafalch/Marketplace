@@ -541,6 +541,7 @@ a {
       color: black;
       font-size: 1.5rem;
       background-color: rgba(255, 208, 175, 0.4);
+      max-width: 29rem;
       margin-bottom: 1rem; }
       .userForm-form-error li {
         list-style: none;
@@ -698,6 +699,7 @@ a {
       color: black;
       font-size: 1.5rem;
       background-color: rgba(255, 208, 175, 0.4);
+      max-width: 29rem;
       margin-bottom: 1rem; }
       .userForm-form-error li {
         list-style: none;
