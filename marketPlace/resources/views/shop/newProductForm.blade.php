@@ -12,6 +12,11 @@
                 {{ Session::get('message') }}
             </div>
         @endif
+        @if (Session::has('error'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('error') }}
+            </div>
+        @endif
         <form class="userForm-form" method="post" enctype="multipart/form-data">
             @csrf
             <div class="userForm-form-item">
@@ -45,8 +50,8 @@
                 <div class="upload__btn-box">
                     <label class="upload__btn">
                         <p>Otras Imagenes</p>
-                        <input name="otrasImagenes[]" type="file" multiple data-max_length="5" accept="image/*" class="upload__inputfile"
-                            value="{{ old('otrasImagenes[]') }}">
+                        <input name="otrasImagenes[]" type="file" multiple data-max_length="5" accept="image/*"
+                            class="upload__inputfile" value="{{ old('otrasImagenes[]') }}">
                     </label>
                 </div>
                 <div class="upload__img-wrap"></div>
