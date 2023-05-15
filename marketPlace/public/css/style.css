@@ -19,6 +19,14 @@ body {
 .content--section {
   font-size: 1.6rem; }
 
+a {
+  text-decoration: none;
+  color: #000000;
+}
+a:hover {
+  color: #f5a166;
+}
+
 .header {
   background-color: #FFD0AF;
   display: grid;
@@ -147,21 +155,29 @@ body {
   border-radius: 1.6rem;
   display: flex;
   flex-direction: column;
-  text-align: center; }
-  .product a {
-    text-decoration: none; }
-  .product-image {
-    margin: 1rem; }
-  .product img {
-    width: 100%;
-    height: auto;
-    border-radius: 1.6rem; }
-  .product-name {
-    color: black; }
-    .product-name::first-letter {
-      text-transform: uppercase; }
-  .product:hover {
-    box-shadow: 0 3px 5px 0 black; }
+  text-align: center;
+}
+.product a {
+  text-decoration: none;
+  color: black;
+}
+.product-image {
+  margin: 1rem;
+}
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 1.6rem;
+}
+.product-name {
+  color: black;
+}
+.product-name::first-letter {
+  text-transform: uppercase;
+}
+.product:hover {
+  box-shadow: 0 3px 5px 0 black;
+}
 
 .pagination {
   display: flex;
@@ -691,34 +707,51 @@ body {
   margin: 10px 0 20px 0; }
 
 .profile {
-  padding: 3vh 10vw 3vh 10vw; }
-  .profile .user-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    justify-items: center;
-    align-items: center; }
-  .profile .user-img {
-    display: inline-block;
-    position: relative;
-    width: 15rem;
-    height: 15rem;
-    overflow: hidden;
-    border-radius: 50%; }
-    .profile .user-img-imagePreview {
-      width: 15rem;
-      height: 15rem;
-      overflow: hidden; }
-      .profile .user-img-imagePreview img {
-        width: 15rem;
-        height: 15rem;
-        object-fit: cover;
-        text-align: center; }
-  .profile .user-info {
-    text-align: center; }
-  .profile .user-name {
-    margin-bottom: 1rem;
-    font-weight: 700;
-    font-size: 24px; }
+  padding: 3vh 10vw 3vh 10vw;
+}
+.profile .user-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  justify-items: center;
+  align-items: center;
+}
+.profile .user-img {
+  display: inline-block;
+  position: relative;
+  width: 15rem;
+  height: 15rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.profile .user-img-imagePreview {
+  width: 15rem;
+  height: 15rem;
+  overflow: hidden;
+}
+.profile .user-img-imagePreview img {
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+  text-align: center;
+}
+.profile .user-info {
+  text-align: center;
+}
+.profile .user-name {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 24px;
+}
+.profile .user-order {
+  margin-top: 3rem;
+}
+.profile .user-order-history-title {
+  background-color: #FFD0AF;
+  padding: 1rem;
+}
+.profile .user-order-history-list {
+  list-style: none;
+}
 
 .landing-card {
   padding: 3vh 10vw 3vh 10vw;
@@ -1319,10 +1352,6 @@ a.slide_btn {
   flex-direction: column;
   text-align: center;
 }
-.product-edit-link a {
-  text-decoration: none;
-  color: black;
-}
 
 .multiselect {
   width: 200px; }
@@ -1350,6 +1379,73 @@ a.slide_btn {
 
 #checkboxes label:hover {
   background-color: #FFD0AF; }
+.checkbox-container {
+  display: flex;
+}
+.checkbox-dropdown {
+  min-width: 14.5rem;
+  border: 1px solid black;
+  padding: 5px;
+  position: relative;
+  margin: 0 auto;
+  user-select: none;
+  border-radius: 3rem;
+  margin-bottom: 1rem;
+}
+.checkbox-dropdown p {
+  margin-left: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.checkbox-dropdown:after {
+  content: "";
+  height: 0;
+  position: absolute;
+  width: 0;
+  border: 6px solid transparent;
+  border-top-color: #000;
+  top: 50%;
+  right: 10px;
+  margin-top: -3px;
+}
+.checkbox-dropdown.is-active:after {
+  border-bottom-color: #000;
+  border-top-color: #fff;
+  margin-top: -9px;
+}
+.checkbox-dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  border: inherit;
+  border-top: none;
+  left: -1px;
+  right: -1px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  height: 100px;
+  overflow: scroll;
+  overflow-x: hidden;
+  pointer-events: none;
+}
+.is-active .checkbox-dropdown-list {
+  opacity: 1;
+  pointer-events: auto;
+}
+.checkbox-dropdown-list li label {
+  display: block;
+  border-bottom: 1px solid silver;
+  padding: 10px;
+  transition: all 0.2s ease-out;
+  background-color: white;
+  font-size: 16px;
+}
+.checkbox-dropdown-list li label:hover {
+  background-color: #f5a166;
+  color: white;
+}
 
 .order-title {
   display: grid;

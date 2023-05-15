@@ -6,16 +6,17 @@
     <section class="home-section">
         <article class="home-section-title">
             <h1> Todos los productos </h1>
-
-            <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
-                <input type="hidden" name="category" id="category" />
-                <input type="hidden" name="search" id="search" />
-                <select name="order" id="order">
-                    <option value="" disabled selected hiden>Ordenar por</option>
-                    <option value="ASC">A-Z</option>
-                    <option value="DESC">Z-A</option>
-                </select>
-            </form>
+            @if (!Route::is('landingPage.showAll'))
+                <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
+                    <input type="hidden" name="category" id="category" />
+                    <input type="hidden" name="search" id="search" />
+                    <select name="order" id="order">
+                        <option value="" disabled selected hiden>Ordenar por</option>
+                        <option value="ASC">A-Z</option>
+                        <option value="DESC">Z-A</option>
+                    </select>
+                </form>
+            @endif
         </article>
         <ul class="products-section">
             @foreach ($products as $key => $product)
@@ -23,16 +24,16 @@
                     <div class="product-image">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             @if ($product->getMainImage() != null)
-                                <img src="{{ $product->getMainImage() }}" />
+                                <img src="{{ env('API_URL_IMAGES') . $product->getMainImage() }}" />
                             @else
-                                <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
+                                <img src="{{ asset('/images/imagesNotFound.webp') }}" />
                             @endif
                         </a>
                     </div>
                     <div class="product-details">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             <p class="product-name"> {{ $product->name }} </p>
-                            <p class="product-price"> {{ round($product->price/100, 2) }}€ </p>
+                            <p class="product-price"> {{ round($product->price / 100, 2) }}€ </p>
                         </a>
                     </div>
                     <input class="button-addToCart" type="button" value="Añadir" id="{{ $product->id }}">

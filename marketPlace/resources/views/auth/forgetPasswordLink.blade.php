@@ -15,25 +15,16 @@
             <div class="userForm-form-item">
                 <label>Correo electronico</label>
                 <input type="text" name="email" required>
-                @if ($errors->has('email'))
-                    </br><span class="text-danger">{{ $errors->first('email') }}</span>
-                @endif
             </div>
 
             <div class="userForm-form-item">
                 <label>Contraseña</label>
                 <input type="password" name="password" required>
-                @if ($errors->has('password'))
-                    </br><span class="text-danger">{{ $errors->first('password') }}</span>
-                @endif
             </div>
 
             <div class="userForm-form-item">
                 <label>Confirma la contraseña</label>
                 <input type="password" name="password_confirmation" required>
-                @if ($errors->has('password_confirmation'))
-                    </br><span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
-                @endif
             </div>
 
             <div class="userForm-form-button">
@@ -41,6 +32,15 @@
                     Confirmar
                 </button>
             </div>
+            @if ($errors->any())
+                <div class="userForm-form-item">
+                    <ul class="userForm-form-error">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </form>
     </div>
 @endsection

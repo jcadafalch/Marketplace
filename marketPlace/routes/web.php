@@ -74,19 +74,22 @@ Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->na
 Route::middleware('auth')->group((function () {
 
 
-  // gestion usuario
-  Route::get('/cambiarPerfil', [UserController::class, 'profile'])->name('user.profile');
-  Route::get('/perfil', [UserController::class, 'userProfile'])->name('user.userProfile');
-  Route::patch('/cambiarPerfil', [UserController::class, 'editProfile'])->name('user.changeProfile');
+// gestion usuario
+Route::get('/cambiarPerfil', [UserController::class, 'profile'])->name('user.profile');
+Route::get('/perfil', [UserController::class, 'userProfile'])->name('user.userProfile');
+Route::patch('/cambiarPerfil', [UserController::class, 'editProfile'])->name('user.changeProfile');
 
-  // tienda
-  Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
-  Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop');
-  Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
-  Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
-  Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
-  Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
-  Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdateProduct'])->name('shop.showEditProduct');
+// tienda
+Route::get('/crearNuevaTienda', [ShopController::class, 'createNewShop'])->name('shop.createNewShop');
+Route::post('/registrar', [ShopController::class, 'registerShop'])->name('register.createNewShop'); 
+Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
+Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
+Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
+Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProducPendent'])->name('shop.editProduct');
+Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdateProduct'])->name('shop.showEditProduct');
+
+Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
+
 
   Route::group(['middleware' => ['web']], function () {
     Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
@@ -98,3 +101,6 @@ Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.sh
 
 
 Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');
+Route::get('/pedido', [OrderController::class, 'show'])->name('order.show');
+Route::get('/venta', [OrderController::class, 'selled'])->name('order.selled');
+// /{id}

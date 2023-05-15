@@ -40,10 +40,9 @@
                             <tr>
                                 <td class="header"
                                     style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; padding: 25px 0; text-align: center;">
-                                    <a target="_blank" rel="noopener noreferrer" href="http://localhost"
+                                    <a target="_blank" rel="noopener noreferrer"
                                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 19px; font-weight: bold; text-decoration: none; display: inline-block;">
-                                        <img src="http://127.0.0.1:8000/images/logo.png" class="logo"
-                                            alt="Logo"
+                                        <img src="{{ asset('/images/logo.png') }}" class="logo" alt="Logo"
                                             style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; ">
                                     </a>
                                 </td>
@@ -114,8 +113,6 @@
                                                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
                                                         El enlace expira en 24h.<br>
                                                         CraftMade</p>
-
-
                                                     <table class="subcopy" width="100%" cellpadding="0"
                                                         cellspacing="0" role="presentation"
                                                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; border-top: 1px solid #e8e5ef; margin-top: 25px; padding-top: 25px;">
@@ -128,14 +125,13 @@
                                                                         Si tiene problemas para hacer clic en el botón
                                                                         "Cambiar Contraseña", copie y pegue la siguiente
                                                                         URL
-                                                                        into your web browser: <span class="break-all"
+                                                                        en su navegador: <span class="break-all"
                                                                             style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; word-break: break-all;"><a
                                                                                 target="_blank"
                                                                                 rel="noopener noreferrer"
-                                                                                href="http://127.0.0.1:8000/reset-password/{{ $token }}"
-                                                                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3869d4;">http://127.0.0.1:8000/email/verify/1000/ea97b75619f5cb2b9df9d184c4541aafe3b87484?expires=1683469979&amp;signature=4323b51aae3b0dcbe057876743a8651bbc22d9ba0d5015fd46c8599a95da77ce</a></span>
+                                                                                href="{{ route('reset.password.get', $token) }}"
+                                                                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3869d4;">{{ route('reset.password.get', $token) }}</a></span>
                                                                     </p>
-
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -160,7 +156,6 @@
                                                     <p
                                                         style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; line-height: 1.5em; margin-top: 0; color: #b0adc5; font-size: 12px; text-align: center;">
                                                         © 2023 CraftMade. Todos los derechos reservados.</p>
-
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -173,7 +168,6 @@
             </tr>
         </tbody>
     </table>
-
 </body>
 
 </html>

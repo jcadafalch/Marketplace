@@ -28,4 +28,24 @@ class OrderController extends Controller
         $categories = Category::all();
         return view('order.orderSummary', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all()]);
     }
+
+    public function show(/*$id*/) {
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        }
+        $categories = Category::all();
+    return view('order.order', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/]);
+    }
+
+    public function selled(/*$id*/) {
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        }
+        $categories = Category::all();
+    return view('order.selled', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/]);
+    }
 }

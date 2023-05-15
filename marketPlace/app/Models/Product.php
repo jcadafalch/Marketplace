@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Api;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
@@ -127,6 +128,32 @@ class Product extends Model
       $i = DB::table('images')->where('images.id', '=', $proImg->image_id)->first();
       array_push($images, $i->url);
     }
+
+    return $images;
+  }
+
+  public function updateMainImage(){
+    $productImage =
+        ProductImage::all()
+        ->where('isMain', true)
+        ->where('product_id', $this->id)->first();
+
+      $mainImage = Image::where('images.id', '=', $productImage->image_id)->first();
+
+      return $mainImage;
+  }
+
+  public function updateAlternativeImages(){
+    $productImage = ProductImage::all()
+    ->where('isMain', false)
+    ->where('product_id', $this->id)->all();
+
+    $images = [];
+
+  foreach ($productImage as $proImg) {
+    $i = Image::where('images.id', '=', $proImg->image_id)->first();
+    array_push($images, $i);
+  }
 
     return $images;
   }
@@ -294,75 +321,97 @@ class Product extends Model
     }
     array_push($result, $title, $p);
 
-    //dd($result);
     return $result;
   }
 
   public static function addProduct($request)
   {
-    $shopId = Shop::where("user_id", Auth::id())->first()->id;
+    if ($request->file("file") != null) {
+      $shopId = Shop::all()->where("user_id", Auth::id())->first()->id;
 
-    $requestAll = $request->all();
+      $productExists = Product::all()->where("name", $request['name'])->first();
 
-    //Guardar Producte
-    $product = new Product();
-    $product->name = $requestAll['name'];
-    $product->description = $requestAll['detail'];
-    $product->price = $requestAll['price'] * 100;
-    $product->isVisible = true;
-    $product->isDeleted = false;
-    $product->order = 1;
-    $product->shop_id = $shopId;
+      if ($productExists == null) {
 
-    $product->save();
+        $request->validate([
+          'name' => 'required|min:5',
+          'price' => 'required|min:1',
+          'detail' => 'required|min:5'
+        ]);
 
-    $imageFile = $request->file("file");
+        $requestAll = $request->all();
 
-    $api = new Api();
-    $urlImage = $api->pushImage($imageFile);
+        //Guardar Producte
+        $product = new Product();
+        $product->name = $requestAll['name'];
+        $product->description = $requestAll['detail'];
+        $product->price = $requestAll['price'] * 100;
+        $product->isVisible = true;
+        $product->isDeleted = false;
+        $product->order = 1;
+        $product->shop_id = $shopId;
 
-    $image = new Image();
-    $image->name = $requestAll['name'];
-    $image->url =  $urlImage;
-    $image->save();
-
-    $productImage = new ProductImage();
-    $productImage->isMain = true;
-    $productImage->image_id = $image->id;
-    $productImage->product_id = $product->id;
-    $productImage->save();
-
-    $cont = 1;
-
-    Log::alert($requestAll);
+        $product->save();
 
 
-    if ($request->file('otrasImagenes') != null) {
-      foreach ($request->file('otrasImagenes') as $value) {
-        Log::alert("Entra");
 
-        $imageFile = $value;
+        $imageFile = $request->file("file");
 
         $api = new Api();
         $urlImage = $api->pushImage($imageFile);
-
+        
         $image = new Image();
-        $image->name = $requestAll['name'] . "-$cont";
+        $image->name = $requestAll['name'];
         $image->url =  $urlImage;
         $image->save();
 
         $productImage = new ProductImage();
-        $productImage->isMain = false;
+        $productImage->isMain = true;
         $productImage->image_id = $image->id;
         $productImage->product_id = $product->id;
         $productImage->save();
 
-        $cont++;
-      }
-    }
+        $cont = 1;
 
-    //Guardar categories
-    CategoryProduct::addCategoryToProduct($request->input('category'), $product->id);
+        Log::alert($requestAll);
+
+
+        if ($request->file('otrasImagenes') != null) {
+          foreach ($request->file('otrasImagenes') as $value) {
+            Log::alert("Entra");
+
+            $imageFile = $value;
+
+            $api = new Api();
+            $urlImage = $api->pushImage($imageFile);
+
+            $image = new Image();
+            $image->name = $requestAll['name'] . "-$cont";
+            $image->url =  $urlImage;
+            $image->save();
+
+            $productImage = new ProductImage();
+            $productImage->isMain = false;
+            $productImage->image_id = $image->id;
+            $productImage->product_id = $product->id;
+            $productImage->save();
+
+            $cont++;
+          }
+        }
+        //Guardar categories
+        if ($request->input('category') != []) {
+          CategoryProduct::addCategoryToProduct($request->input('category'), $product->id);
+        } else {
+          return "cat";
+        }
+
+        return true;
+      }
+    } else {
+      return "img";
+    }
+    return false;
   }
 
   public static function updateProduct($request, $id)
@@ -390,15 +439,18 @@ class Product extends Model
       }
 
       $product->save();
-
+    
       if ($request->file("file") != null) {
+        self::deleteMainImage($product);
+
         $imageFile = $request->file("file");
 
-        $imageFile->store("/public/img");
+        $api = new Api();
+        $urlImage = $api->pushImage($imageFile);
 
         $image = new Image();
         $image->name = $requestAll['name'];
-        $image->url = $imageFile->hashName();
+        $image->url = $urlImage;
         $image->save();
 
         $productImage = new ProductImage();
@@ -410,15 +462,22 @@ class Product extends Model
 
       if ($request->file('otrasImagenes') != null) {
         $cont = 1;
+        $nImages = count($request->file('otrasImagenes'));
+
+        // Numero d'imatges a eliminar.
+        self::deleteNumAlternativeImages($product, $nImages);
+
 
         foreach ($request->file('otrasImagenes') as $value) {
           $imageFile = $value;
 
-          $imageFile->store("/public/img");
+          $api = new Api();
+          $urlImage = $api->pushImage($imageFile);
+  
 
           $image = new Image();
           $image->name = $requestAll['name'] . "-$cont";
-          $image->url = $imageFile->hashName();
+          $image->url = $urlImage;
           $image->save();
 
           $productImage = new ProductImage();
@@ -436,4 +495,27 @@ class Product extends Model
     }
     return false;
   }
+
+  public static function deleteMainImage($product){
+    $api = new Api();
+    $MainImage = $product->updateMainImage();
+    $ImageName = basename($MainImage->url);
+    $api->deleteImage($ImageName);
+    $MainImage->delete();
+
+  }
+
+  public static function deleteNumAlternativeImages($product, $nImages){
+    $api = new Api();
+    $allAlternativeImages = [];
+    $allAlternativeImages = $product->updateAlternativeImages();
+    $AlternativeImagesToDelete = [];
+    for ($i=0; $i < $nImages; $i++) { 
+      $deleteImage = $allAlternativeImages[$i];
+      array_push($AlternativeImagesToDelete, basename($allAlternativeImages[$i]->url));
+      $deleteImage->delete();
+    }
+    $api->deleteAllImagesProduct($AlternativeImagesToDelete);
+  }
+
 }
