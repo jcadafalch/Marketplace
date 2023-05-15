@@ -24,9 +24,9 @@
                     <div class="product-image">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             @if ($product->getMainImage() != null)
-                                <img src="{{ $product->getMainImage() }}" />
+                                <img src="{{ env('API_URL_IMAGES') . $product->getMainImage() }}" />
                             @else
-                                <img src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
+                                <img src="{{ asset('/images/imagesNotFound.webp') }}" />
                             @endif
                         </a>
                     </div>
