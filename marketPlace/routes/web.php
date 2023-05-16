@@ -90,6 +90,8 @@ Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdatePro
 
 Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 
+Route::get('/tienda/ordenarProducto/', [ShopController::class, 'updateOrderProduct'])->name('shop.showEditProduct');
+
 
   Route::group(['middleware' => ['web']], function () {
     Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
