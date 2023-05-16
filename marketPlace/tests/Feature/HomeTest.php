@@ -4,8 +4,12 @@ namespace Tests\Feature;
 
 
 use Tests\TestCase;
+use App\Models\Shop;
+use App\Models\User;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -92,22 +96,22 @@ class HomeTest extends TestCase
 
         
         $response = $this->call('GET', '/searchProduct', ['search' => '12312312414','category' =>3,]);
-        $response->assertSeeText('404 Not found!');
+        $response->assertSeeText('productoNoEncontrado');
     }
 
     public function test_get_not_found_product_by_category_not_exist(){
         $this->createDummyAllProduct();
 
 
-        $response =  $response = $this->call('GET', '/searchProduct', ['search' => '','category' => 13123132]);
-        $response->assertSeeText('404 Not found!');
+        $response =  $this->call('GET', '/searchProduct', ['search' => '','category' => 13123132]);
+        $response->assertSeeText('productoNoEncontrado');
     }
 
     public function test_get_product_by_name_with_accent(){
         $this->createDummyAllProduct();
         
 
-        $response =  $response = $this->call('GET', '/searchProduct', ['search' => 'quàé','category' => 'allCategories']);
+        $response =  $this->call('GET', '/searchProduct', ['category' => 'allCategories','search' => 'quàé', 'order' => 'DESC']);
         $response->assertSeeText('quàé');
     }
 
@@ -157,36 +161,32 @@ class HomeTest extends TestCase
             1 => [
                 'name' => 'quàé',
                 'id' => '1',
-                'price' => 222.74,
-                'url' => 'imgN64120e0448e76.jpg',
+                'price' => 222,
                 'description' => 'Quod cumque earum ut quia ex incidunt possimus.',
+                'isMain' => true
             ],
             2 => [
                 'name' => 'voluptas',
                 'id' => '2',
-                'price' => 696.58,
-                'url' => '',
+                'price' => 696,
                 'description' => 'Enim officiis illo vero ea consequatur veniam et dolorem. Asperiores ea reiciendis dolor a reiciendis.',
             ],
             3 => [
                 'name' => 'laboriosam',
                 'id' => '3',
-                'price' => 139.13,
-                'url' => '',
+                'price' => 139,
                 'description' => 'Est neque esse error omnis et minima expedita.',
             ],
             4 => [
                 'name' => 'placeat',
                 'id' => '4',
-                'price' => 983.44,
-                'url' => '',
+                'price' => 983,
                 'description' => 'Iusto id et qui autem veritatis. Molestiae non aut et qui ea eius porro.',
             ],
             5 => [
                 'name' => 'dolores',
                 'id' => '5',
-                'price' => 739.06,
-                'url' => '',
+                'price' => 739,
                 'description' => 'Nisi asperiores veritatis qui quos sunt assumenda voluptatum.',
             ],
         ];
@@ -212,7 +212,22 @@ class HomeTest extends TestCase
                 'id' => '5',
             ],
         ];
+
+        $user = new User();
+        $user->name = "test";
+        $user->path = "storage/app/public/img/imgN640cc8af60f70.jpg";
+        $user->email = "Recio@test.com";
+        $user->email_verified_at = now();
+        $user->password = "Hol@1234";
+        $user->remember_token = "gKriN6GNfW";
+        $user->save();
+
+        $image = Image::createImageObject('Marisco Fresco', 'MarketPlace.com');
+
+        $shop =  Shop::createShopObject('Antonio', 'Mariscos Recio', '45773999B', $user->id, $image->id);
+
        
+    
 
         foreach ($Products as $c) {
             $num = uniqid();
@@ -221,9 +236,16 @@ class HomeTest extends TestCase
             $p->id = $c['id'];
             $p->name = $c['name'];
             $p->price = $c['price'];
-            $p->url = $name;
+            $p->order = 1;
+            $p->shop_id = $shop->id;
             $p->description = $c['description'];
             $p->save();
+
+            $productImage = new ProductImage();
+            $productImage->isMain = true;
+            $productImage->image_id = $image->id;
+            $productImage->product_id = $p->id;
+            $productImage->save();
         }
 
         foreach ($Categoris as $c) {
