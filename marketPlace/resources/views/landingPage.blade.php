@@ -12,7 +12,7 @@
                         @if ($i < 8)
                             <li>
                                 <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image"
-                                        src="{{ $item->url }}" />
+                                        src="{{ env('API_URL_IMAGES') . $item->url }}" />
                                     <p>{{ $item->name }}</p>
                                     <p>{{ $item->price }}€</p>
                                 </a>

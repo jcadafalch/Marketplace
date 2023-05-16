@@ -160,4 +160,31 @@ class OrderController extends Controller
         $orderLine->send_at = now();
         $orderLine->save();
     }
+
+     public function orderList()
+    {
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        }
+        $categories = Category::all();
+        return view('order.orderList', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/]);
+    }
+
+    public function selledList(/*$id*/)
+    {
+        $user_id = Auth::user()->id;
+        $userShop = Shop::where('user_id', '=', $user_id)->first();
+        $shops = Shop::all();
+        $categories = Category::all()->where('parent_id', '=', null);
+        if (!isset($_COOKIE["shoppingCartProductsId"])) {
+            $producte = [];
+        } else {
+            $producte = Product::getInfoFromId($_COOKIE['shoppingCartProductsId']);
+        }
+        $categories = Category::all();
+        return view('order.selledList', ['categories' => $categories], ['producte' => $producte, 'shops' => Shop::all(), /*'order' => Order::findOrFile($id)*/ 'shop' => $userShop]);
+
+    }
 }

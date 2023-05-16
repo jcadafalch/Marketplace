@@ -19,10 +19,10 @@
                     <a href="{{ route('product.show', ['id' => $productec->id]) }}">
                         @if ($productec->getMainImage() != null)
                             <img class="shoppingcart-main-article-productImage"
-                                src="{{ asset('storage/img/' . $productec->getMainImage()) }}" />
+                                src="{{ env('API_URL_IMAGES') . $productec->getMainImage() }}" />
                         @else
                             <img class="shoppingcart-main-article-productImage"
-                                src="{{ asset('/images/imagesNotFound.webp' . $productec->getMainImage()) }}" />
+                                src="{{ asset('/images/imagesNotFound.webp') }}" />
                         @endif
                     </a>
                     <div>
@@ -52,7 +52,7 @@
                     <li>{{!! $error !!}}</li>
                 @endforeach
             </ul>
-            <a class="button-newShop" href={{ route('shoppingCart.confirmOrder') }}>
+            <a class="button-order" href={{ route('shoppingCart.confirmOrder') }}>
                 Realizar pedido
                 {{-- <button class="button-newShop">Realizar pedido</button> --}}
             </a>

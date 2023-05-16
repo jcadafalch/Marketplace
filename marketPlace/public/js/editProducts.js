@@ -31,6 +31,8 @@ buttonAble.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
         ShopEditProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
             if (res !== true) {
+                const parent = elementAction.parentElement.parentElement;
+                parent.style.backgroundColor='white';
                 return;
             }
             return;
@@ -46,6 +48,8 @@ buttonDelete.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
         ShopEditProduct(parseInt(elementAction.id, ), elementAction.htmlFor).then((res) => {
             if (res !== true) {
+                const parent = elementAction.parentElement.parentElement;
+                parent.style.display='none';
                 return;
             }
             return;
@@ -60,6 +64,8 @@ buttonDissable.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
         ShopEditProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
             if (res !== true) {
+                const parent = elementAction.parentElement.parentElement;
+                parent.style.backgroundColor='#f7d7da';
                 return;
             }
             return;

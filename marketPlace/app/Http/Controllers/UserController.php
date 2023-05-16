@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserEdit;
 use App\Models\ProductOderLine;
 use App\Models\CompleteOrderLine;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -56,20 +57,15 @@ class UserController extends Controller
         }
 
         if ($request->string('password') !== null && $request->string('password')->length() > 0) {
-            // en proceso de terminar
             if (!Hash::check($request->get('password'), $user->password)) {
                 return back()->with('error', "La contraseña actual no es valida");
             } else {
                 $user->password = Hash::make($request->string('newPassword'));
             }
-            // $credentials = $request->only('password');
-            // if (!Auth::attempt($credentials)) {
-            //     return redirect()->route('home.index')->with('message', 'La contraseña introducida es incorrecta.');
-            // } else
         }
 
         $user->save();
-
+        Log::info("Editado información de usuario:" . $user);
         return redirect()->route('user.userProfile', ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
@@ -82,6 +78,7 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+        Log::info("Cerrado sesión se usuario");
     }
 
    /**

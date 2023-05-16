@@ -39,17 +39,6 @@ class CategoryProduct extends Model
             ->pluck("name")
             ->toArray();
 
-
-
-        // $delete = self::where("category_id", $currentCategoryProductsId[$keyCurrent]);
-        // $delete->delete();
-
-        // $newCategoryProduct = new CategoryProduct();
-        // $newCategoryProduct->category_id = intval(Category::where("name", $requestCategory)->first()->id);
-        // $newCategoryProduct->product_id = $productId;
-        // $newCategoryProduct->save();
-
-
         foreach ($request as $key => $value) {
             if (!in_array($value, $currentCategoryNames)) {
                 $newCategoryProduct = new CategoryProduct();

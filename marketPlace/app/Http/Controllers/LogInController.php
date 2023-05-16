@@ -53,6 +53,7 @@ class LogInController extends Controller
             $message->to($request->email);
             $message->subject('Recuperar contraseña');
         });
+        Log::info("Enviado mensaje para recuperación de psswd con token: " . $token);
 
         return back()->with('message', 'Hemos enviado un correo con el enlace para recuperar la contraseña!');
     }

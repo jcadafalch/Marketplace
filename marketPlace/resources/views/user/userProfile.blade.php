@@ -25,7 +25,8 @@
             </div>
         </article>
         <article class="user-order">
-            <details class="user-order-history">
+            <a href="{{route('order.orderList')}}">Lista de pedidos Realizados</a>
+            {{-- <details class="user-order-history">
                 <summary class="user-order-history-title">Pedidos realizados</summary>
                 <ul class="user-order-history-list">
                     @foreach ($completedOrderLines as $completedOrderLine)
@@ -47,10 +48,11 @@
                         <hr>
                     @endforeach
                 </ul>
-            </details>
+            </details> --}}
         </article>
         @if ($shop != null)
-            <article class="user-order">
+        <a href="{{route('order.selledList')}}">Lista de pedidos vendidos</a>
+            {{-- <article class="user-order">
                 <details class="user-order-history">
                     <summary class="user-order-history-title">Ventas realizadas</summary>
                     <ul class="user-order-history-list">
@@ -72,7 +74,7 @@
                         @endforeach
                     </ul>
                 </details>
-            </article>
+            </article> --}}
         @endif
     </section>
 @endsection

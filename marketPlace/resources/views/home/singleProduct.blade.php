@@ -11,15 +11,15 @@
                         <div class="slide">
                             @if ($product->getMainImage() != null)
                                 <img class="product-images-img"
-                                    src="{{ $product->getMainImage()}}" />
+                                    src="{{ env('API_URL_IMAGES') . $product->getMainImage()}}" />
                             @else
                                 <img class="product-images-img"
-                                    src="{{ asset('/images/imagesNotFound.webp' . $product->getMainImage()) }}" />
+                                    src="{{ asset('/images/imagesNotFound.webp') }}" />
                             @endif
                         </div>
                         @foreach ($product->getAlternativeImages() as $key => $imgUrl)
                             <div class="slide">
-                                <img class="product-images-img" src="{{  $imgUrl }}" />
+                                <img class="product-images-img" src="{{env('API_URL_IMAGES') . $imgUrl }}" />
                             </div>
                         @endforeach
                     </div>

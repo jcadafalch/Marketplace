@@ -104,4 +104,18 @@
             color: white;
         }
     }
+
+    &-order {
+        background-color: $primaryColor;
+        border: none;
+        border-radius: 3rem;
+        padding: 1rem;
+        min-width: 3rem;
+        text-align: center;
+
+        &:hover {
+            background-color: $hoverColor;
+            color: white;
+        }
+    }
 }

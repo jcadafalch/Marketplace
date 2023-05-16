@@ -19,6 +19,7 @@ class Shop extends Model
 
     public function getAllShopProducts(){
         return Product::where('shop_id', $this->id)
+        ->where('isDeleted','=',0)
         ->paginate(env('PAGINATE', 10));
     }
     

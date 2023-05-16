@@ -469,8 +469,6 @@ class Product extends Model
 
 
         foreach ($request->file('otrasImagenes') as $value) {
-          Log::alert("Entra");
-         
           $imageFile = $value;
 
           $api = new Api();

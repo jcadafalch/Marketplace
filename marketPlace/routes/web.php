@@ -85,7 +85,7 @@ Route::post('/registrar', [ShopController::class, 'registerShop'])->name('regist
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
-Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
+Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProducPendent'])->name('shop.editProduct');
 Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdateProduct'])->name('shop.showEditProduct');
 
 // Pedidos
@@ -97,16 +97,22 @@ Route::get('/venta/{id}/pdf', [OrderController::class, 'selledPdf'])->name('orde
 
 Route::get('/venta/paid/{id}', [OrderController::class, 'setPaid'])->name('order.paid');
 Route::get('/venta/sent/{id}', [OrderController::class, 'setSent'])->name('order.sent');
+Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 
+
+  Route::group(['middleware' => ['web']], function () {
+    Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
+    Route::post('/tienda/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
+  });
 }));
-
-Route::group(['middleware' => ['web']], function () {
-  Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
-  Route::get('/tienda/añadirProducto/cat', [ShopController::class, 'getSubcategories']);
-  Route::post('/tienda/añadirProducto', [ShopController::class, 'addProduct'])->name('shop.addProduct');
-});
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
 
-Route::get('/pedido', [OrderController::class, 'show'])->name('order.show');
 
+Route::get('/resumen-pedido', [OrderController::class, 'index'])->name('order.summary');
+Route::get('/pedido', [OrderController::class, 'order'])->name('order.show');
+Route::get('/venta', [OrderController::class, 'selled'])->name('order.selled');
+// /{id}
+
+Route::get('/lista-pedidos', [OrderController::class, 'orderList'])->name('order.orderList');
+Route::get('/lista-vendidos', [OrderController::class, 'selledList'])->name('order.selledList');

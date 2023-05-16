@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductCreate;
 use App\Models\Shop;
 use App\Models\User;
 use App\Models\Image;
@@ -10,9 +9,11 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopEdit;
-use App\Http\Requests\ShopCreate;
 use App\Models\CategoryProduct;
+use App\Http\Requests\ShopCreate;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\ProductCreate;
+use App\Http\Requests\ProductUpdate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Http\FormRequest;
@@ -43,10 +44,12 @@ class ShopController extends Controller
 
         //Obtenir l'id de l'usuari que està connectat
         $userId = Auth::id();
-    
+
         $img = self::saveImage($request);
         $image = Image::createImageObject($request['shopName'], $img);
         $shop = Shop::createShopObject($request['name'], $request['shopName'], $request['nif'], $userId, $image->id);
+
+        Log::info("El usuario" . $userId . "ha creado una nueva tienda");
 
         return redirect()->route("shop.show", ['shopName' => $request['shopName']]);
     }
@@ -64,27 +67,23 @@ class ShopController extends Controller
         return view('shop.newProductForm', ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
-    public function addProduct(Request $request)
+    public function addProduct(ProductCreate $request)
     {
+        $request->validated();
+
         $return = Product::addProduct($request);
 
         if (!$return) {
             return redirect()->route('shop.newProduct')->withInput()->with([
                 "error" => "El nombre de este producto ya está registrado, prueba con otro nombre"
             ]);
-        } else if ($return === "img") {
-            return redirect()->route('shop.newProduct')->withInput()->with([
-                "error" => "Por favor, escoge una imagen destacada"
-            ]);
-        } else if ($return === "cat") {
-            return redirect()->route('shop.newProduct')->withInput()->with([
-                "error" => "Por favor, escoge al menos una categoría"
-            ]);
         } else {
             return redirect()->route('shop.newProduct')->with([
                 "message" => "Producto añadido!"
             ]);
         }
+
+        Log::info("Se ha añadido un nuevo producto a una tienda:" . $return);
     }
 
     /**
@@ -135,8 +134,11 @@ class ShopController extends Controller
         $userId = Auth::id();
         $shop = Shop::where('user_id', $userId)->first();
 
+        Log::info("Intentando acceder a pagina de edición de tienda:" . $shop);
+
         if ($userId != null) {
             $productsShop = $shop->getAllShopProducts();
+            //dd($productsShop);
         } else {
             return redirect()->route('error.shopNotFound');
         }
@@ -144,7 +146,8 @@ class ShopController extends Controller
         return view('shop.edit', ['products' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
-    public function editShop(ShopEdit $request){
+    public function editShop(ShopEdit $request)
+    {
         $request->validated();
 
         $userId = Auth::id();
@@ -152,19 +155,21 @@ class ShopController extends Controller
         $shop = Shop::where('user_id', '=', $userId)->first();
         // if ($request->shopDescription != null) {
 
-            $shop->description = $request->shopDescription;
-            $shop->save();
+        Log::info("Intentando editar una tienda:" . $shop);
+
+        $shop->description = $request->shopDescription;
+        $shop->save();
         // }
 
-        if($request->shopBanner != null){
-            if($shop->banner_id != null){
+        if ($request->shopBanner != null) {
+            if ($shop->banner_id != null) {
                 self::deleteOldShopBanner($shop, $request);
                 $img = self::saveBannerImage($request);
                 $image = Image::createImageObject($shop->nif, $img);
 
                 $shop->banner_id = $image->id;
                 $shop->save();
-            }else{
+            } else {
                 $img = self::saveBannerImage($request);
                 $image = Image::createImageObject($shop->nif, $img);
 
@@ -172,10 +177,10 @@ class ShopController extends Controller
                 $shop->save();
             }
         }
-        
-        if($request->profileImg != null){
+
+        if ($request->profileImg != null) {
             self::deleteOldShopImage($shop, $request);
-            $img = self::saveImage($request); 
+            $img = self::saveImage($request);
             $image = Image::createImageObject($shop->name, $img);
             $shop->logo_id = $image->id;
             $shop->save();
@@ -186,11 +191,9 @@ class ShopController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateProduct(Request $request, $id)
+    public function updateProductPendent(Request $request, $id)
     {
         $return = Product::updateProduct($request, $id);
-
-        $userId = Auth::id();
 
         if ($return) {
             return redirect()->route('shop.showEditProduct', $id)->withInput()->with([
@@ -201,6 +204,51 @@ class ShopController extends Controller
                 "message" => "ERROR!"
             ]);
         }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateProduct(Request $request)
+    {
+        $response = [
+            "status" => "",
+            "msg" => "",
+            "action" => ""
+        ];
+        $executed = false;
+        try {
+            $product = Product::findOrFail($request->query('id'));
+            switch ($request->query('action')) {
+                case "habilitar":
+                    $product->isVisible = true;
+                    $executed = true;
+                    $response['action'] =  "able";
+                    break;
+                case "deshabilitar":
+                    $product->isVisible = false;
+                    $executed = true;
+                    $response['action'] =  "dissable";
+                    break;
+                case "eliminar":
+                    $product->isDeleted = true;
+                    $executed = true;
+                    $response['action'] =  "delete";
+                    break;
+                default:
+                    break;
+            }
+            if ($executed) {
+                $product->save();
+                $response['status'] = $executed;
+                $response['msg'] =  $product->name;
+            }
+        } catch (\Throwable $th) {
+            $response['status'] = $executed;
+            $response['msg'] = 'Error';
+        }
+
+        return response()->json($response);
     }
 
     public function showUpdateProduct($id)
@@ -242,6 +290,7 @@ class ShopController extends Controller
 
             $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfile', $img);
+            Log::info("Guardado imagen de perfil de tienda en Storage:" . $img);
         }
         if ($request->profileImg != null) {
             $file = $request->file('profileImg');
@@ -249,48 +298,59 @@ class ShopController extends Controller
 
             $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfile', $img);
+            Log::info("Guardado imagen de perfil de tienda en Storage:" . $img);
         }
-        return $img; 
+        return $img;
     }
 
-    public function saveBannerImage($request){
+    public function saveBannerImage($request)
+    {
 
-        if($request->shopBanner != null){
+        if ($request->shopBanner != null) {
             $file = $request->file('shopBanner');
 
             $extension = $file->getClientOriginalExtension();
             $img = 'profileBanner' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfileBanner', $img);
-            return $img; 
+            return $img;
+
+            Log::info("Cambiado imagen de banner de tienda:" . $img);
+
         }
         return redirect()->route('error.genericError');
     }
 
-    public function deleteOldShopImage($shop, $request){
-        
-        if($request->profileImg != null){
-            $image = Image::where('name',$shop->name)->first();
-            
+    public function deleteOldShopImage($shop, $request)
+    {
+
+        if ($request->profileImg != null) {
+            $image = Image::where('name', $shop->name)->first();
+
             $disc = Storage::disk('img');
             $disc->delete('shopProfile/' . $image->url);
 
             $shop->logo_id = null;
             $shop->save();
             $image->delete();
-        }   
+
+            Log::info("Eliminado imagen de perfil de tienda Storage:" . $image);
+
+        }
     }
 
-    public function deleteOldShopBanner($shop, $request){
-       
-        if($request->shopBanner != null){
-            $image = Image::where('name',$shop->nif)->first();
-          
+    public function deleteOldShopBanner($shop, $request)
+    {
+
+        if ($request->shopBanner != null) {
+            $image = Image::where('name', $shop->nif)->first();
+
             $disc = Storage::disk('img');
             $disc->delete('shopProfileBanner/' . $image->url);
-           
+
             $shop->banner_id = null;
             $shop->save();
             $image->delete();
+            Log::info("Eliminado imagen de perfil de tienda Storage:" . $image);
         }
     }
 }
