@@ -66,6 +66,15 @@ class Shop extends Model
         return User::where('id', $this->user_id)->first();
     }
 
+    public static function getLastOrderProduct($idShop){
+      $lastOrder = 
+       Product::where('shop_id', $idShop)
+        ->latest('order')->first();
+        return $lastOrder->order;
+
+    }
+
+
     public static function getShopNameByProductId($selectedId){
 
         $result = DB::table('shops')
