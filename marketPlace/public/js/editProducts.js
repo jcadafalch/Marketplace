@@ -68,8 +68,7 @@ buttonDelete.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
         ShopEditProduct(parseInt(elementAction.id, ), elementAction.htmlFor).then((res) => {
             if (res !== true) {
-                const parent = elementAction.parentElement.parentElement;
-                parent.style.display='none';
+                location.reload();
                 return;
             }
             return;
