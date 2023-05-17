@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Api;
+use App\Models\Shop;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
@@ -340,7 +341,8 @@ class Product extends Model
         ]);
 
         $requestAll = $request->all();
-
+        $actualId = Shop::getLastOrdreProductByNewProduct($shopId);
+        
         //Guardar Producte
         $product = new Product();
         $product->name = $requestAll['name'];
@@ -348,7 +350,7 @@ class Product extends Model
         $product->price = $requestAll['price'] * 100;
         $product->isVisible = true;
         $product->isDeleted = false;
-        $product->order = 1;
+        $product->order = $actualId =  $actualId != null ? $actualId->order +1 : 1;
         $product->shop_id = $shopId;
 
         $product->save();

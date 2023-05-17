@@ -49,9 +49,7 @@ class ApiController extends Controller
 
     public function getAllImage(Request $request)
     {
-        $path = Storage::path('img');
-        $disc = Storage::disk('img');
-        //dd(url('/'));
+     
         if ($request->bearerToken() == env('API_TOKEN')) {
             Log::info("Agafar totes les imatges");
             try {
@@ -111,7 +109,6 @@ class ApiController extends Controller
             Log::info("imagen borrada" . $request->name);
             try {
                 Storage::disk('img')->delete($request->name);
-                //Log::error(Storage::disk('img')->exists($request->name));
                 self::generateResponse("Imagen Borrada", 200, $request->name);
             } catch (Throwable $th) {
                 self::generateResponse("Imagen no encontrada", 404 . " Not Found", $request->name);
@@ -150,10 +147,6 @@ class ApiController extends Controller
 
     public function deleteAllImages(Request $request)
     {
-        $disc = Storage::disk('img');
-        $path = Storage::path('img');
-        //Log::info($disc);
-        //Log::debug($url);
         if ($request->bearerToken() == env('API_TOKEN')) {
             Log::info("Se han borrado todas las imagenes");
             try {

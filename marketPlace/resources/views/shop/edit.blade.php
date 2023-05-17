@@ -97,9 +97,9 @@
                             <label title="Eliminar" class='delete' for="eliminar" id="{{ $product->id }}"></label>
                             <br>
                             <input type="button" class="edit-list-ableDissable" name="up">
-                            <label title="Mover" class='up' for="up" id="{{ $product->id }}"></label>
+                            <label title="Mover" class='up' for="up" id="{{ $product->id }}" style="{{ $product->order == $firstOrder ? 'display:none;' : '';   }}"  ></label>
                             <input type="button" class="edit-list-ableDissable" name="down">
-                            <label title="Mover" class='down' for="down" id="{{ $product->id }}"></label>
+                            <label title="Mover" class='down' for="down" id="{{ $product->id }}" style="{{ $product->order == $lastOrder ? 'display:none;' : '';   }}"></label>
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
@@ -109,7 +109,7 @@
                         <div class="product-details">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
                                 <p class="product-name"> {{ $product->name }} </p>
-                                <p class="product-price"> {{ $product->price }}€ </p>
+                                <p class="product-price"> {{ round($product->price / 100, 2) }}€ </p> 
                             </a>
                         </div>
                     </li>

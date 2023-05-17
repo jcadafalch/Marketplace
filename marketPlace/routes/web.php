@@ -104,6 +104,8 @@ Route::get('/venta/sent/{id}', [OrderController::class, 'setSent'])->name('order
 
 Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 
+Route::get('/tienda/ordenarProducto/', [ShopController::class, 'updateOrderProduct'])->name('shop.showEditProduct');
+
 
   Route::group(['middleware' => ['web']], function () {
     Route::get('/tienda/añadirProducto', [ShopController::class, 'newProduct'])->name('shop.newProduct');
