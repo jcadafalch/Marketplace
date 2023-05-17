@@ -139,11 +139,12 @@ class ShopController extends Controller
         if ($userId != null) {
             $productsShop = $shop->getAllShopProducts(); 
             $lastOrder = Shop::getLastOrderProduct($shop->id);
+            $firstOrder = Shop::getFirstOrderProduct($shop->id);
         } else {
             return redirect()->route('error.shopNotFound');
         }
 
-        return view('shop.edit', ['products' => $productsShop, 'shop' => $shop, 'lastOrder' =>  $lastOrder ], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('shop.edit', ['products' => $productsShop, 'shop' => $shop, 'lastOrder' =>  $lastOrder,'firstOrder'=> $firstOrder ], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function editShop(ShopEdit $request)
