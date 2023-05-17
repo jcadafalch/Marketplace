@@ -69,10 +69,21 @@ class Shop extends Model
     public static function getLastOrderProduct($idShop){
       $lastOrder = 
        Product::where('shop_id', $idShop)
+        ->where('isDeleted',0)
         ->latest('order')->first();
         return $lastOrder->order;
 
     }
+
+    public static function getFirstOrderProduct($idShop){
+        $firstOrder = 
+         Product::where('shop_id', $idShop)
+          ->where('isDeleted',0)
+          ->orderBy('order', 'asc')
+          ->first();
+          return $firstOrder->order;
+  
+      }
 
 
     public static function getShopNameByProductId($selectedId){
