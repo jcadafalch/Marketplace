@@ -25,56 +25,10 @@
             </div>
         </article>
         <article class="user-order">
-            <a href="{{route('order.orderList')}}">Lista de pedidos Realizados</a>
-            {{-- <details class="user-order-history">
-                <summary class="user-order-history-title">Pedidos realizados</summary>
-                <ul class="user-order-history-list">
-                    @foreach ($completedOrderLines as $completedOrderLine)
-                        <a href="{{ route('order.summary', ['id' => $completedOrderLine->orderId]) }}">
-                            <li class="order-product" id="1">
-                                <img class="order-product-image"
-                                    src="{{ asset('storage/img/shopProfile/' . $completedOrderLine->shopLogoUrl) }}"
-                                    onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Logo de la tienda">
-                                <div>
-                                    <h3 class="order-product-name">{{ $completedOrderLine->shopName }}</h3>
-                                </div>
-                                <div>
-                                    <p class="order-product-price"> Fecha: {{ $completedOrderLine->orderDate }} </p>
-                                    <p class="order-product-price"> {{ $completedOrderLine->orderLineStatus }} </p>
-                                    <p class="order-product-price"> Total: {{ $completedOrderLine->price }}€ </p>
-                                </div>
-                            </li>
-                        </a>
-                        <hr>
-                    @endforeach
-                </ul>
-            </details> --}}
+            <a href="{{ route('order.orderList') }}">Lista de pedidos Realizados</a>
         </article>
         @if ($shop != null)
-        <a href="{{route('order.selledList')}}">Lista de pedidos vendidos</a>
-            {{-- <article class="user-order">
-                <details class="user-order-history">
-                    <summary class="user-order-history-title">Ventas realizadas</summary>
-                    <ul class="user-order-history-list">
-                        @foreach ($completedShopOrderLines as $completedShopOrderLine)
-                            <a href="{{ route('order.selled', ['id' => $completedShopOrderLine->orderLineId]) }}">
-                                <li class="order-product" id="1">
-                                    <div>
-                                        <h3 class="order-product-name">{{ $completedShopOrderLine->shopName }}</h3>
-                                    </div>
-                                    <div>
-                                        <p class="order-product-price"> Fecha: {{ $completedShopOrderLine->orderDate }}
-                                        </p>
-                                        <p class="order-product-price"> {{ $completedShopOrderLine->orderLineStatus }} </p>
-                                        <p class="order-product-price"> Total: {{ $completedShopOrderLine->price }}€</p>
-                                    </div>
-                                </li>
-                            </a>
-                            <hr>
-                        @endforeach
-                    </ul>
-                </details>
-            </article> --}}
+            <a href="{{ route('order.selledList') }}">Lista de pedidos vendidos</a>
         @endif
     </section>
 @endsection

@@ -9,7 +9,7 @@
     <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
 
 
-    <title>Resumen pedido {{ $order->id }}</title>
+    <title>Resumen linea pedido {{ $orderLine->id }}</title>
 
     <style>
         .pedido-info {
@@ -66,18 +66,22 @@
 
 
 <body>
-    <img src={{ public_path('images/Logo.png') }} alt="Logo de la tienda">
-    <h1>Detalle de Pedido</h1>
-    <div style="margin-bottom: 50px;">
-        <span style="float: left;">Número de pedido: {{ $order->id }}</span>
-        <span style="float: right;">Fecha del pedido: {{ $orderDate }}</span>
+    @php
+        $logo_url = public_path('images/Logo.png');
+        $logo_base64 = base64_encode(file_get_contents($logo_url));
+    @endphp
+    <img src="data:image/png;base64,{{ $logo_base64 }}" alt="Logo de la tienda">
+    <h1>Detalle de linea de pedido</h1>
+    <div style="margin-bottom: 20px;">
+        <span><strong>Número de pedido:</strong> {{ $order->id }}</span><br>
+        <span style="float: left; "><strong>Número de linea de pedido:</strong> {{ $orderLine->id }}</span>
+        <span style="float: right;"><strong>Fecha del pedido:</strong> {{ $orderDate }}</span>
     </div>
+    <p style="margin-bottom: 30px;"><strong>Tienda:</strong> {{ $shop->name }}</p>
     <table>
         <thead>
             <tr>
-                <th>Imagen</th>
                 <th>Nombre</th>
-                <th>Tienda</th>
                 <th>Precio</th>
             </tr>
         </thead>
@@ -88,22 +92,12 @@
                     $imagen_base64 = base64_encode(file_get_contents($imagen_url));
                 @endphp
                 <tr>
-                    <td><img src="data:image/png;base64,{{ $imagen_base64 }}"></td>
                     <td>{{ $productec->name }}</td>
-                    @php
-                        $shop = $shops->firstWhere('id', $productec->shop_id);
-                        if ($shop == null) {
-                            $shop = 'Desconocido';
-                        } else {
-                            $shop = $shop->name;
-                        }
-                    @endphp
-                    <td>{{ $shop }}</td>
                     <td>{{ round($productec->price / 100, 2) }} €</td>
                 </tr>
             @endforeach
             <tr class="total">
-                <td colspan="3">Total:</td>
+                <td>Total:</td>
                 <td>{{ round($producte->sum('price') / 100, 2) }}€</td>
             </tr>
         </tbody>
