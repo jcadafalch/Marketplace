@@ -83,7 +83,14 @@ class Shop extends Model
           ->first();
           return $firstOrder->order;
   
-      }
+    }
+
+    public static function getLastOrdreProductByNewProduct($idShop){
+        $lastOrder = 
+        Product::where('shop_id', $idShop)
+         ->latest('order')->first();
+         return $lastOrder;
+    }
 
 
     public static function getShopNameByProductId($selectedId){
