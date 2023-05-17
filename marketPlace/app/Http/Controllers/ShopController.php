@@ -137,13 +137,13 @@ class ShopController extends Controller
         Log::info("Intentando acceder a pagina de edición de tienda:" . $shop);
 
         if ($userId != null) {
-            $productsShop = $shop->getAllShopProducts();
-            //dd($productsShop);
+            $productsShop = $shop->getAllShopProducts(); 
+            $lastOrder = Shop::getLastOrderProduct($shop->id);
         } else {
             return redirect()->route('error.shopNotFound');
         }
 
-        return view('shop.edit', ['products' => $productsShop, 'shop' => $shop], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('shop.edit', ['products' => $productsShop, 'shop' => $shop, 'lastOrder' =>  $lastOrder ], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 
     public function editShop(ShopEdit $request)
@@ -153,13 +153,11 @@ class ShopController extends Controller
         $userId = Auth::id();
 
         $shop = Shop::where('user_id', '=', $userId)->first();
-        // if ($request->shopDescription != null) {
-
+       
         Log::info("Intentando editar una tienda:" . $shop);
 
         $shop->description = $request->shopDescription;
         $shop->save();
-        // }
 
         if ($request->shopBanner != null) {
             if ($shop->banner_id != null) {
@@ -269,18 +267,19 @@ class ShopController extends Controller
         ->get();
 
         $Nproducts = count($ShopProducts) -1;
+        $isFinal = false;
         
         for ($i=0; $i < count($ShopProducts) ; $i++) { 
            
             if($ShopProducts[$i]->id == $request->query('id')){
                 $Actualproduct = $ShopProducts[$i];
                 if($i != 0){
-                    $previousProduct = $ShopProducts[$i -1];   
-                }if($i != $Nproducts){
+                    $previousProduct = $ShopProducts[$i -1];            
+                }
+                if($i != $Nproducts){
                     $laterProduct = $ShopProducts[$i +1];
                 }
             }  
-           
         }
 
         $executed = false;
