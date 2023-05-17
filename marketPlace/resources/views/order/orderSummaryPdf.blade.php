@@ -66,7 +66,11 @@
 
 
 <body>
-    <img src={{ public_path('images/Logo.png') }} alt="Logo de la tienda">
+    @php
+        $logo_url = public_path('images/Logo.png');
+        $logo_base64 = base64_encode(file_get_contents($logo_url));
+    @endphp
+    <img src="data:image/png;base64,{{ $logo_base64 }}" alt="Logo de la tienda">
     <h1>Detalle de Pedido</h1>
     <div style="margin-bottom: 50px;">
         <span style="float: left;">Número de pedido: {{ $order->id }}</span>
@@ -84,7 +88,7 @@
         <tbody>
             @foreach ($producte as $productec)
                 @php
-                    $imagen_url = $productec->updateMainImage()->url;
+                    $imagen_url = env('API_URL_IMAGES') . $productec->updateMainImage()->url;
                     $imagen_base64 = base64_encode(file_get_contents($imagen_url));
                 @endphp
                 <tr>

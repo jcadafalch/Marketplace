@@ -88,7 +88,7 @@
         <tbody>
             @foreach ($producte as $productec)
                 @php
-                    $imagen_url = $productec->updateMainImage()->url;
+                    $imagen_url = env('API_URL_IMAGES') . $productec->updateMainImage()->url;
                     $imagen_base64 = base64_encode(file_get_contents($imagen_url));
                 @endphp
                 <tr>

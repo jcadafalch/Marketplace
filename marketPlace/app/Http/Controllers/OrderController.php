@@ -298,8 +298,10 @@ class OrderController extends Controller
 
            foreach ($orderLines as $orderLine) {
                
-               $shop = Shop::find($orderLine->id);
+               $shop = Shop::find($orderLine->shop_id);
+               
                $products = ProductOderLine::getProductOfOrderLine($orderLine->id);
+
 
                $completeOrderLine = new CompleteOrderLine();
                $completeOrderLine->orderDate = $orderDate = strval(date('d-m-Y', strtotime($order->closed_at)));
