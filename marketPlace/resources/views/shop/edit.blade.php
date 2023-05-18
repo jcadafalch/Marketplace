@@ -90,7 +90,7 @@
                     <a href="{{ route('shop.newProduct') }}">Añadir Producto</a>
                 </li>
                 @foreach ($products as $key => $product)
-                    <li class="product edit" id="{{ $product->id }}">
+                    <li class="{{ $product->isVisible == true ? 'product edit enabled' : 'product edit dissabled' }}" id="{{ $product->id }}">
                         <div class="edit-list">
                             <input type="button" class="edit-list-ableDissable" name="deshabilitar">
                             <label title="Deshabilitar" class='dissable' id="{{ $product->id }}"
