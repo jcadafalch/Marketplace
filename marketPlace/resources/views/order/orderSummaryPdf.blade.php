@@ -92,7 +92,7 @@
                     $imagen_base64 = base64_encode(file_get_contents($imagen_url));
                 @endphp
                 <tr>
-                    <td><img src="data:image/png;base64,{{ $imagen_base64 }}"></td>
+                    <td><img src="data:image/png;base64,{{ $imagen_base64 }}" alt=""></td>
                     <td>{{ $productec->name }}</td>
                     @php
                         $shop = $shops->firstWhere('id', $productec->shop_id);
