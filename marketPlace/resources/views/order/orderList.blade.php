@@ -4,6 +4,9 @@
     <section class="profile">
         <h2>Pedidos realizados</h2>
         <article class="user-order">
+            @if ($orders == null || count($orders) == 0)
+                <p>Todavía no has realizdo ningún pedido</p>
+            @endif
             @if ($orders != null)
                 @foreach ($orders as $order)
                     <details class="user-order-history">

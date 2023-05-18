@@ -3,6 +3,9 @@
 @section('content')
     <section class="order-section">
         <h2>Pedidos vendidos</h2>
+        @if ($completedShopOrderLines == null || count($completedShopOrderLines) == 0)
+            <br><p>Todavía no has vendido ningún pedido</p>
+        @endif
         @if ($shop != null)
             <article class="user-order">
                 <ul class="user-order-history-list">
