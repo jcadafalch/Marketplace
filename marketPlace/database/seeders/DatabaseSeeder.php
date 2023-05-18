@@ -33,8 +33,8 @@ class DatabaseSeeder extends Seeder
     }  
     
       if ($this->command->confirm('Vols recrear un entorn per proves unitaries', false)) {
-        $numProducts = $this->command->ask('Quantes productes vols generar?');
-        $numCategories = $this->command->ask('Quants categories vols generar?');
+        $numProducts = $this->command->ask('Quantes productes vols generar?', 20);
+        $numCategories = $this->command->ask('Quants categories vols generar?', 10);
         
         self::generateProducts($numProducts);
         $this->command->info('Taula productes inicialitzada amb èxit');   
@@ -45,16 +45,16 @@ class DatabaseSeeder extends Seeder
     }
     if ($this->command->confirm('Vols recrear el Fakers?', true)) {
 
-        $numUsers = $this->command->ask('Quant usuaris vols crear?');
+        $numUsers = $this->command->ask('Quant usuaris vols crear?', 5);
         self::createUsers($numUsers);
-        $numImages = $this->command->ask('Quantes imatges vols generar');
-        $numShops = $this->command->ask('Quantes tendes vols crear??');
-        $productCategories = $this->command->ask('Quantes categories ha de tenir un producte?');
-        $numProductImages = $this->command->ask('Quantes imatges ha de tenir un producte?');
-        $numProducts = $this->command->ask('Quants productes vols generar?');
-        $numCategories = $this->command->ask('Quants categories vols generar?');
-        $numCategories2nivell = $this->command->ask('Quants categories de segon nivell vols generar?');
-        $numSubCategories = $this->command->ask('Quants subcategories ha de tenir una cetegoria?');
+        $numImages = $this->command->ask('Quantes imatges vols generar', 100);
+        $numShops = $this->command->ask('Quantes tendes vols crear?', 5);
+        $productCategories = $this->command->ask('Quantes categories ha de tenir un producte?', 5);
+        $numProductImages = $this->command->ask('Quantes imatges ha de tenir un producte?', 5);
+        $numProducts = $this->command->ask('Quants productes vols generar?', 50);
+        $numCategories = $this->command->ask('Quants categories vols generar?', 50);
+        $numCategories2nivell = $this->command->ask('Quants categories de segon nivell vols generar?', 25);
+        $numSubCategories = $this->command->ask('Quants subcategories ha de tenir una cetegoria?', 4);
         
         
         self::createImages($numImages);
