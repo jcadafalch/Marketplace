@@ -51,7 +51,7 @@
                                         alt="Imagen del producto" />
                                 @else
                                     <img src="{{ asset('/images/imagesNotFound.webp') }}"
-                                        alt="Imagen del producto" />
+                                        alt="Imagen no encontrada" />
                                 @endif
                             </a>
                         </div>
