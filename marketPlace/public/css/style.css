@@ -972,7 +972,7 @@ a.slide_btn {
     position: relative;
     border-radius: 0;
     border: none;
-    box-shadow: 0; }
+    box-shadow: none; }
     .shop-body .avatar-preview-img {
       width: 15rem;
       height: 15rem;
