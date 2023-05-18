@@ -1,6 +1,6 @@
 === Enllaç al repositori
 
-**Enllaç** -> https://git.copernic.cat/cadafalch.miro.jaume/marketplace[Enllaç Repositori]
+**Enllaç** -> https://github.com/jcadafalch/Marketplace[Enllaç Repositori]
 
 === Branca de Producció 
 
@@ -8,8 +8,8 @@ La branca de producció és la branca **[underline]#main#**.
 
 === Arxiu .env
 
-L'arxiu **.env** està copiat amb un nou diferent per poder pujar al git.
-El nom de l'arxiu es diu **EnvFile**, recordar de substituir-ho pel teu propi.
+L'arxiu **.env** està copiat amb un nom diferent per poder pujar al git.
+El nom de l'arxiu es **EnvFile**, recordar de substituir-ho pel teu propi.
 
 === Guia per pujar el Vagrant
 
@@ -24,6 +24,56 @@ Un cop aixecat el **Vagrant** has d'introduir la següent ruta http://172.16.0.1
 .Atenció::
 [IMPORTANT]
 ====
-Avis el **Vagrant** pot trigar amb aixecar-se entre 1~2 minuts.
+El **Vagrant** pot trigar en aixecar-se entre 1~2 minuts.
 
 ====
+
+=== Un cop en l'aplicació
+
+==== Usuari no identificat
+
+Quan hagis accedit a l'aplicació, la primera pàgina que veuràs serà la _Landing_, on trobaràs els productes destacats del moment.
+
+Pots veure el detall del producte desitjat fent clic a sobre, a la pàgina de detall, trobaràs el nom, la descripció, el preu i el nom de la botiga que ven aquest producte.
+
+Si cliques sobre el nom de la botiga del venedor, et redirigirá a la pàgina de la botiga, on trobarás més productes del mateix venedor. 
+
+Pots afegir protuctes al carret de la compra fent clic sobre el botó 'Añadir', per consultar els productes que tens en el carret t'has de dirigir a l'icone del 'carret' situat en la part superior dreta de la pantalla.
+
+Per últim, per realitzar una compra, has de clicar sobre el botó 'Comprar' 
+
+==== Usuari identificat
+
+Per identificar-te a l'aplicació, prem sobre el botó 'Identificate' situat a la part superior dreta de la pàgina.
+
+En cas de tenir ja un compe d'usuari, inicia sessió emplenant les dades que es demanen. 
+
+Si ets un nou usuari, clica sobre l'enllaç 'Registra't aquí' situat a la part inferior del mateix formulari i omple les dades demanades, un cop ho hagis fet, rebràs un correu electrònic per verificar el registre.
+
+Com a usuari verificat, tindrán un perfil d'usuari, en aquesta pagina, trobaràs tres diferents botons.
+
+. "Editar perfil publico": On podrás modificar les dades del teu perfil, com, el nom d'usuari, l'imatge de perfil i la contrasenya.
+
+. "Mi tienda": Pots crear la teva propia botiga si vols vendre productes fets per tu. Només has d'emplenar el formulari amb les dades demanades per donal d'alta la teva propia botiga.
+
+. "Pedidos realizados": On trobarás un historis de totes les teves comandes realitzades.
+
+Un cop d'onat d'atla una botiga, en el perfil d'usuari apareixerán dos botons més.
+
+. Ara el botó "Mi tienda", et redirigeix a la pagina de la teva botiga.
+
+. Sota d'aquesta trobarás "Editar mi tienda" on podrás: 
+* Personalitzar la teva botiga afegint un banner, una descripció o cambiar el Logo. 
+* Afegir nous productes a la botiga.
+* Podrás habilitar u deshabilitar productes ja afegits a la teva botiga, o eliminar-los.
+* Triar l'ordre en el que vols que els altres usuaris vegin els productes de la teva botiga.
+
+. "Pedidos vendidos": On trobarás un historis de tots els teus productes venuts.
+
+Instruccions per afegir/modificar un nou producte
+
+* Per afegir un nou producte, des de "Mi tienda" clica sobre "Producto nuevo" i emplena el formulari amb les dades demanades
+
+* Pots modificar un producte ja afegit fent clic sobre el producte desitgat des de "Mi tienda", al fer-ho et redirigirá a un nou formulari ja emplenat amb les dades del producte, només haurás de modificar les dades desitgades i guardar els cambis.
+
+
