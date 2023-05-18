@@ -34,6 +34,12 @@ a{
         color: $hoverColor;
     }
 }
+
+.volver {
+    position: absolute;
+    top: 11rem;
+    z-index: 1;
+}
 // Arxius importats, codi dividit en arxius de manera mes organitzada
 // Compta de posar amb '';
 
