@@ -25,10 +25,10 @@
             </div>
         </article>
         <article class="user-order">
-            <a href="{{ route('order.orderList') }}">Lista de pedidos Realizados</a>
+            <a href="{{ route('order.orderList') }}"><p>Lista de pedidos Realizados</p></a>
+            @if ($shop != null)
+                <a href="{{ route('order.selledList') }}"><p>Lista de pedidos vendidos</p></a>
+            @endif
         </article>
-        @if ($shop != null)
-            <a href="{{ route('order.selledList') }}">Lista de pedidos vendidos</a>
-        @endif
     </section>
 @endsection

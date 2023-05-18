@@ -1,3 +1,4 @@
 === Implementacions pendents
 
-Futures implementacions 
+De les funcionalitats proposades, ens ha faltat implementar la missatgeria interna, com a futures implementacions, ens agradaria implementar la missatgeria interna i afegir 'el modo oscuro' a l'aplicació
+

@@ -13,7 +13,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-
+use Illuminate\Support\Facades\Redirect;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,7 +85,7 @@ Route::post('/registrar', [ShopController::class, 'registerShop'])->name('regist
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
-Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProducPendent'])->name('shop.editProduct');
+Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProducPendent'])->name('shop.editProductContent');
 Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdateProduct'])->name('shop.showEditProduct');
 
 // Pedidos
@@ -104,6 +104,8 @@ Route::get('/venta/sent/{id}', [OrderController::class, 'setSent'])->name('order
 
 Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');
 
+Route::get('/tienda/añadirProducto/cat', [ShopController::class, 'getSubcategories']);
+
 Route::get('/tienda/ordenarProducto/', [ShopController::class, 'updateOrderProduct'])->name('shop.showEditProduct');
 
 
@@ -114,3 +116,7 @@ Route::get('/tienda/ordenarProducto/', [ShopController::class, 'updateOrderProdu
 }));
 
 Route::get('/tienda/{shopName}', [ShopController::class, 'show'])->name('shop.show');
+
+Route::get('/volver', function() {
+  return redirect()->route('user.userProfile');
+})->name('volver');

@@ -5,7 +5,7 @@ Per instal·lar el programa **marketPlace**, prèviament necessitarem tenir desc
 * https://www.vagrantup.com/[Vagrant]
 * https://www.virtualbox.org/[VirtualBox] (o un altre software de virtualització)
 
-Per descarregar-nos el programa, accedim al https://git.copernic.cat/cadafalch.miro.jaume/marketplace[repositori del projecte] i ens baixem la carpeta _marketPlace_Server_.
+Per descarregar-nos el programa, accedim al https://github.com/jcadafalch/Marketplace[repositori del projecte] i ens baixem la carpeta _marketPlace_Server_.
 
 
 Un cop hem baixat la carpeta i estem dins d'aquesta, obrim un terminal (que estigui situat en la carpeta) i executem la següent comanda:
