@@ -3,6 +3,9 @@
 @section('title', 'Editar tienda')
 
 @section('content')
+    <form action="{{ route('volver') }}" method="GET">
+        <button type="submit" class="volver">Volver</button>
+    </form>
     <form action="{{ route('shop.editConfiguration') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
@@ -10,12 +13,13 @@
         <section class="shopedit-banner">
             <div class="shopedit-banner-upload">
                 <div class="shopedit-banner-edit">
-                    <input type='file' id="bannerUpload" class="imageUpload" name="shopBanner" accept=".png, .jpg, .jpeg" />
+                    <input type='file' id="bannerUpload" class="imageUpload" name="shopBanner"
+                        accept=".png, .jpg, .jpeg" />
                     <label for="bannerUpload"></label><span>Añadir banner</span>
-                    @if ($shop->getBanner() != null)
+                    {{-- @if ($shop->getBanner() != null)
                     <input type='button' id="bannerDelete" name="shopBannerDelete"  />
                     <label for="bannerDelete"></label><span>Eliminar banner</span>
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="shopedit-banner-preview">
                     <div class="shopedit-banner-imagePreview imagePreview">
@@ -97,19 +101,25 @@
                             <label title="Eliminar" class='delete' for="eliminar" id="{{ $product->id }}"></label>
                             <br>
                             <input type="button" class="edit-list-ableDissable" name="up">
-                            <label title="Mover" class='up' for="up" id="{{ $product->id }}" style="{{ $product->order == $firstOrder ? 'display:none;' : '';   }}"  ></label>
+                            <label title="Mover" class='up' for="up" id="{{ $product->id }}"
+                                style="{{ $product->order == $firstOrder ? 'display:none;' : '' }}"></label>
                             <input type="button" class="edit-list-ableDissable" name="down">
-                            <label title="Mover" class='down' for="down" id="{{ $product->id }}" style="{{ $product->order == $lastOrder ? 'display:none;' : '';   }}"></label>
+                            <label title="Mover" class='down' for="down" id="{{ $product->id }}"
+                                style="{{ $product->order == $lastOrder ? 'display:none;' : '' }}"></label>
                         </div>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                                <img src="{{ env('API_URL_IMAGES') . $product->getMainImage() }}" />
+                                <img src="{{ env('API_URL_IMAGES') . $product->getMainImage() }}"
+                                    alt="Imagen de producto" />
                             </a>
                         </div>
                         <div class="product-details">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
                                 <p class="product-name"> {{ $product->name }} </p>
-                                <p class="product-price"> {{ round($product->price / 100, 2) }}€ </p> 
+                                <a href="{{ route('shop.editProductContent', ['id' => $product->id]) }}">
+                                    <p class="product-editar">Editar</p>
+                                </a>
+                                <p class="product-price"> {{ round($product->price / 100, 2) }}€ </p>
                             </a>
                         </div>
                     </li>
