@@ -3,3 +3,6 @@ Vagrant/.vagrant
 marketPlace/public/css/style.css.map
 marketPlace/public/css/style.css
 marketPlace/storage/debugbar/*
+
+vagrant/tenda/vendor
+vagrant/api/vendor
