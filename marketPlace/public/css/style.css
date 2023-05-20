@@ -219,6 +219,12 @@ a:hover {
 .product-name::first-letter {
   text-transform: uppercase;
 }
+.product-nameSingle {
+  color: black;
+}
+.product-nameSingle::first-letter {
+  text-transform: uppercase;
+}
 .product:hover {
   box-shadow: 0 3px 5px 0 black;
 }

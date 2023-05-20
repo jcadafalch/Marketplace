@@ -31,7 +31,7 @@
         </article>
 
         <article class="product-details">
-            <h3 class="product-name">{{ $product->name }}</h3>
+            <h3 class="product-nameSingle">{{ $product->name }}</h3>
             <p class="product-price">{{ round($product->price/100, 2) }} €</p>
             <p class="product-description">{{ $product->description }}</p>
             <p>
