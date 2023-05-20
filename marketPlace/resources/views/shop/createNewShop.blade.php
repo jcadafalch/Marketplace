@@ -19,8 +19,7 @@
                     </div>
                     <div class="avatar-preview">
                         <div class="avatar-preview-img imagePreview">
-                            <img class="imageUploaded" src="{{asset('storage/img/profile/' . Auth::user()->path) }}"
-                            onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Imagen de perfil">
+                            <img class="imageUploaded" src="{{ asset('images/imagesNotFound.webp') }}" alt="Imagen de perfil">
                         </div>
                     </div>
                 </div>
