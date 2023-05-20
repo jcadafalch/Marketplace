@@ -5,7 +5,7 @@
 @section('content')
     <section class='landing'>
         @for ($i = 0; $i < count($titles); $i++)
-            <article class="landing-card">
+            <div class="landing-card">
                 <h2 class="landing-title">{{ $titles[$i] }}</h2>
                 <ul class="landing-products">
                     @foreach ($products[$i] as $item)
@@ -20,9 +20,9 @@
                         @endif
                     @endforeach
                 </ul>
-                <a id="{{ $i }}" href="{{ route('landingPage.showAll', ['id' => $i]) }}"><button
-                        class="button-landing"> Ver todo </button></a>
-            </article>
+                <a class="button-landing" id="{{ $i }}" href="{{ route('landingPage.showAll', ['id' => $i]) }}">
+                    Ver todo </a>
+            </div>
         @endfor
     </section>
 

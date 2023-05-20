@@ -14,13 +14,13 @@
             <div class="user-info">
                 <p class="user-name">{{ Auth::user()->name }}</p>
 
-                <a href={{ route('user.profile') }}><button class="button-UserProfile">Modificar perfil</button></a>
+                <a href={{ route('user.profile') }}><p class="button-UserProfile">Modificar perfil</p></a>
                 @if ($shop != null)
-                    <a href={{ route('shop.show', ['shopName' => $shop->name]) }}><button class="button-UserProfile">Mi
-                            tienda</button></a>
-                    <a href={{ route('shop.edit') }}><button class="button-UserProfile">Editar mi tienda</button></a>
+                    <a href={{ route('shop.show', ['shopName' => $shop->name]) }}><p class="button-UserProfile">Mi
+                            tienda</p></a>
+                    <a href={{ route('shop.edit') }}><p class="button-UserProfile">Editar mi tienda</p></a>
                 @else
-                    <a href={{ route('shop.createNewShop') }}><button class="button-UserProfile">Mi tienda</button></a>
+                    <a href={{ route('shop.createNewShop') }}><p class="button-UserProfile">Mi tienda</p></a>
                 @endif
             </div>
         </article>

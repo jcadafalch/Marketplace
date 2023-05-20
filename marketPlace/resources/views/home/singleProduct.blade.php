@@ -3,7 +3,7 @@
 @section('title', 'Show')
 
 @section('content')
-    <section class="product-detailsPage" id="{{ $product->id }}">
+    <section class="product-detailsPage" {{--id="{{ $product->id }}"--}}>
         <article>
             <div class="slider">
                 <div class="slide_viewer">
@@ -40,7 +40,7 @@
                     target="_blank">
                     <em>{{ $shop[0]->name }}</em> </a>
             </p>
-            <input class="button-addToCart" type="button" value="Añadir" width="100%" id="{{ $product->id }}">
+            <input class="button-addToCart" type="button" value="Añadir" id="{{ $product->id }}">
         </article>
     </section>
 

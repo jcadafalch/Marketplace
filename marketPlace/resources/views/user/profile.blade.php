@@ -46,7 +46,7 @@
                 <input type="password" name="repeatNewPassword" placeholder="Repita nueva Contraseña">
             </div>
             <div class="userForm-form-button">
-                <button class="button-form" type="submit" id="imageUpload">Guardar Cambios</button>
+                <button class="button-form" type="submit" id="profileUpload">Guardar Cambios</button>
             </div>
             @if ($errors->any())
                 <div class="userForm-form-item">

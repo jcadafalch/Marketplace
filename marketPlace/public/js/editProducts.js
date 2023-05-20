@@ -49,7 +49,7 @@ const ShopOrderProduct = async (id, action) => {
 */
 buttonAble.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
-        ShopEditProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
+        ShopEditProduct(parseInt(elementAction.parentElement.id), elementAction.htmlFor.split('-')[0]).then((res) => {
             if (res !== true) {
                 const parent = elementAction.parentElement.parentElement;
                 parent.style.backgroundColor='white';
@@ -66,7 +66,7 @@ buttonAble.forEach((elementAction) => {
 buttonDelete.forEach((elementAction) => {
    
     elementAction.addEventListener("click", function (e) {
-        ShopEditProduct(parseInt(elementAction.id, ), elementAction.htmlFor).then((res) => {
+        ShopEditProduct(parseInt(elementAction.parentElement.id), elementAction.htmlFor.split('-')[0]).then((res) => {
             if (res !== true) {
                 location.reload();
                 return;
@@ -81,7 +81,7 @@ buttonDelete.forEach((elementAction) => {
 */
 buttonDissable.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
-        ShopEditProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
+        ShopEditProduct(parseInt(elementAction.parentElement.id), elementAction.htmlFor.split('-')[0]).then((res) => {
             if (res !== true) {
                 const parent = elementAction.parentElement.parentElement;
                 parent.style.backgroundColor='#f7d7da';
@@ -97,7 +97,7 @@ buttonDissable.forEach((elementAction) => {
 */
 buttonUp.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
-        ShopOrderProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
+        ShopOrderProduct(parseInt(elementAction.parentElement.id), elementAction.htmlFor.split('-')[0]).then((res) => {
             if (res !== true) {
                 const parent = elementAction.parentElement.parentElement;
                 location.reload();
@@ -113,7 +113,7 @@ buttonUp.forEach((elementAction) => {
 */
 buttonDown.forEach((elementAction) => {
     elementAction.addEventListener("click", function (e) {
-        ShopOrderProduct(parseInt(elementAction.id), elementAction.htmlFor).then((res) => {
+        ShopOrderProduct(parseInt(elementAction.parentElement.id), elementAction.htmlFor.split('-')[0]).then((res) => {
             if (res !== true) {
                 const parent = elementAction.parentElement.parentElement;
                 location.reload();

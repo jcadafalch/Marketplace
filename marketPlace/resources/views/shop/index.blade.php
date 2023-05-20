@@ -43,7 +43,7 @@
 
             <ul class="products-section">
                 @foreach ($productsShop as $key => $product)
-                    <li class="product" id="{{ $product->id }}">
+                    <li class="product" {{--id="{{ $product->id }}"--}}>
                         <div class="product-image">
                             <a href="{{ route('product.show', ['id' => $product->id]) }}">
                                 @if ($product->getMainImage() != null)
