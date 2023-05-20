@@ -22,7 +22,7 @@ class ShopCreate extends FormRequest
     public function rules(): array
     {
         return [
-           'shopName' => 'required|min:5',
+           'shopName' => 'required|min:5|max:255',
            'name' => 'required|max:30',
            'nif' =>  ['required', 'regex:/^\d{8,8}[a-zA-Z]$/'],
            'profilePhoto' => 'required|image|mimes:png,jpg,jpeg'
