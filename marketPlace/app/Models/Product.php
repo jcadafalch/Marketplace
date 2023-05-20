@@ -408,6 +408,13 @@ class Product extends Model
           return "cat";
         }
 
+        //Guardar subcategories
+        if ($request->input('subCategory') != []) {
+          CategoryProduct::addCategoryToProduct($request->input('subCategory'), $product->id);
+        } else {
+          return "subCat";
+        }
+
         return true;
       }
     } else {
