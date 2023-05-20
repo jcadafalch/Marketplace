@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\Paginator;
 
 class LandingPageController extends Controller
@@ -18,15 +19,15 @@ class LandingPageController extends Controller
         session()->forget(['category', 'search']);
 
         if (count($productsFilter[0]) > 0) {
-        return view('landingPage', ['titles' => $productsFilter[0],'products' => $productsFilter[1]], ['categories' => Category::all()->where('parent_id', '=', null)]);
+            return view('landingPage', ['titles' => $productsFilter[0], 'products' => $productsFilter[1]], ['categories' => Category::all()->where('parent_id', '=', null)]);
         }
-
+        Log::info("Landing page sin productos a mostrar: ");
         return redirect()->route('home.index');
     }
 
     public function showAll($id)
     {
         $productsFilter = Product::landingPageFilter();
-        return view('home.index', ['titles' => $productsFilter[0],'products' => $productsFilter[1][$id]], ['categories' => Category::all()->where('parent_id', '=', null)]);
+        return view('home.index', ['titles' => $productsFilter[0], 'products' => $productsFilter[1][$id]], ['categories' => Category::all()->where('parent_id', '=', null)]);
     }
 }

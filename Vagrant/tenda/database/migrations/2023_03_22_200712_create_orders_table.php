@@ -17,6 +17,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger("user_id")->nullable();
             $table->boolean("in_process")->nullable()->default(false);
+            $table->timestamp("closed_at")->nullable();
         
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
         });

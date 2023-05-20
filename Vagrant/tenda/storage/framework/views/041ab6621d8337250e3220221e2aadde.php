@@ -26,7 +26,7 @@
 
             <div class="userForm-form-item">
                 <label>Precio</label>
-                <input type="number" step="0.10" min="0.00" name="price" value="<?php echo e(old('price')); ?>" required>
+                <input type="number" step="0.01" min="0.00" name="price" value="<?php echo e(old('price')); ?>" required>
             </div>
 
             <div class="userForm-form-item">

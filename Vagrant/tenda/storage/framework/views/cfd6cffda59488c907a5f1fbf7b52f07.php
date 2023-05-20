@@ -10,7 +10,7 @@
                         <?php if($i < 8): ?>
                             <li>
                                 <a href="<?php echo e(route('product.show', ['id' => $item->id])); ?>"><img class="landing-image"
-                                        src="<?php echo e(env('API_URL_IMAGES') . $item->url); ?>" />
+                                        src="<?php echo e(env('API_URL_IMAGES') . $item->url); ?>" alt="Imagen de producto" />
                                     <p><?php echo e($item->name); ?></p>
                                     <p><?php echo e($item->price); ?>€</p>
                                 </a>

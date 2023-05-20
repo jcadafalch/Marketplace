@@ -18,6 +18,8 @@ sudo apt install php8.1-pdo -y
 
 sudo apt install curl -y
 
+sudo apt install php8.1-gd -y
+
 sudo apt-get install php8.1-curl -y
 
 sudo apt install php8.1-cli unzip -y
@@ -38,9 +40,13 @@ sudo cp -rf /var/www/html/php.ini /etc/php/8.1/cli/
 
 sudo cp -rf /var/www/html/hosts /etc/
 
-php artisan storage:link
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 
-# sudo apt install ttf-mscorefonts-installer -y
+sudo apt-get install -y ttf-mscorefonts-installer
+
+sudo cp -rf /var/www/html/arial.ttf /var/www/html/app/Http/Controllers/
+
+sudo cp -rf /var/www/html/ApiController.php /var/www/html/app/Http/Controllers/
 
 sudo a2enmod ssl
 

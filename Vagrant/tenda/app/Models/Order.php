@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderLine;
 use App\Models\ProductOderLine;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -147,13 +148,73 @@ class Order extends Model
         return OrderLine::getOrderLineProducts($orderId);
     }
 
+    /**
+     * Esta función cierra un pedido actualizando su estado, actualizando el estado de sus líneas de
+     * pedido y actualizando la visibilidad y la fecha de venta de los productos asociados con el
+     * pedido.
+     * 
+     * @param orderId El parámetro  es un número entero que representa el ID de la orden que
+     * debe cerrarse.
+     * 
+     * @return string Si todo va bien, devuelve "true". Si hay un error, devuelve un
+     * mensaje de error.
+     */
     public static function closeOrder($orderId)
     {
+        // Comenzamos la transacción
+        DB::beginTransaction();
+
         $order = Order::find($orderId);
         if ($order == null) {
-            return null;
+            Log::error("No se ha encontrado la order con id $orderId");
+            DB::rollBack();
+            return "No se ha encontrado el pedido";
         }
 
-        // TODO: marcar order com acabada
+        $order->in_process = 0;
+        $order->closed_at = now();
+        $order->save();
+
+        $orderLines = OrderLine::where('order_id', '=', $order->id)->get();
+
+        if($orderLines == null){
+            Log::error("No se han encontrado las lineas de la order con id $orderId");
+            DB::rollBack();
+            return "No se han encontrado las lineas lineas del pedido";
+        }
+
+        OrderLine::query()->where('order_id', '=', $order->id)->update(['pendingToPay' => 1]);
+
+        $orderLineIds = $orderLines->pluck('id');
+
+        $productIds = ProductOderLine::whereIn('orderLine_id', $orderLineIds)->pluck('product_id');
+
+        if($productIds == null){
+            Log::error("No se han encontrado los productos de la order con id $orderId");
+            DB::rollBack();
+            return "No se han encontrado los productos de estre pedido";
+        }
+
+        $numProductsUpdated = Product::whereIn('id', $productIds)->update([
+            'isVisible' => 0,
+            'selled_at' => now()
+        ]);
+
+        if($numProductsUpdated === 0){
+            Log::error("No se han podido actualizar los productos de la order con id $orderId");
+            DB::rollBack();
+            return "No se han encontrado los productos relacionados con este pedido";
+        }
+
+        // Confirmamos la transacción
+        DB::commit();
+
+        Log::info("La order $orderId se ha realizo correctamente.");
+
+        // Eliminamos la cookie para indicar que el carrito esta vacio
+        setcookie('shoppingCartProductsId', '', time() - 3600, '/', '', false, true);
+
+
+        return "true";
     }
 }

@@ -49,6 +49,8 @@ class ShopController extends Controller
         $image = Image::createImageObject($request['shopName'], $img);
         $shop = Shop::createShopObject($request['name'], $request['shopName'], $request['nif'], $userId, $image->id);
 
+        Log::info("El usuario" . $userId . "ha creado una nueva tienda");
+
         return redirect()->route("shop.show", ['shopName' => $request['shopName']]);
     }
 
@@ -80,6 +82,8 @@ class ShopController extends Controller
                 "message" => "Producto añadido!"
             ]);
         }
+
+        Log::info("Se ha añadido un nuevo producto a una tienda:" . $return);
     }
 
     /**
@@ -130,9 +134,16 @@ class ShopController extends Controller
         $userId = Auth::id();
         $shop = Shop::where('user_id', $userId)->first();
 
+        Log::info("Intentando acceder a pagina de edición de tienda:" . $shop);
+
         if ($userId != null) {
-            $productsShop = $shop->getAllShopProducts();
-            //dd($productsShop);
+            $productsShop = $shop->getAllShopProducts(); 
+            
+            if($productsShop->count() > 0){
+                $lastOrder = Shop::getLastOrderProduct($shop->id);
+                $firstOrder = Shop::getFirstOrderProduct($shop->id);
+                return view('shop.edit', ['products' => $productsShop, 'shop' => $shop, 'lastOrder' =>  $lastOrder,'firstOrder'=> $firstOrder ], ['categories' => Category::all()->where('parent_id', '=', null)]);
+            }
         } else {
             return redirect()->route('error.shopNotFound');
         }
@@ -147,11 +158,11 @@ class ShopController extends Controller
         $userId = Auth::id();
 
         $shop = Shop::where('user_id', '=', $userId)->first();
-        // if ($request->shopDescription != null) {
+       
+        Log::info("Intentando editar una tienda:" . $shop);
 
         $shop->description = $request->shopDescription;
         $shop->save();
-        // }
 
         if ($request->shopBanner != null) {
             if ($shop->banner_id != null) {
@@ -243,6 +254,78 @@ class ShopController extends Controller
         return response()->json($response);
     }
 
+
+    public function updateOrderProduct(Request $request)
+    {
+        $response = [
+            "status" => "",
+            "action" => "",
+            "msg" => "",
+            'actualProduct' => "",
+            'ProductAnterior' =>"",
+            'ProductPosterior' =>""
+        ];
+        $ActualShop = Shop::where('user_id',Auth::user()->id)->first();
+
+        $ShopProducts = Product::where('shop_id','=', $ActualShop->id)
+        ->orderBy('order', 'asc')
+        ->get();
+
+        $Nproducts = count($ShopProducts) -1;
+        $isFinal = false;
+        
+        for ($i=0; $i < count($ShopProducts) ; $i++) { 
+           
+            if($ShopProducts[$i]->id == $request->query('id')){
+                $Actualproduct = $ShopProducts[$i];
+                if($i != 0){
+                    $previousProduct = $ShopProducts[$i -1];            
+                }
+                if($i != $Nproducts){
+                    $laterProduct = $ShopProducts[$i +1];
+                }
+            }  
+        }
+
+        $executed = false;
+        try {
+            switch ($request->query('action')) {
+                case "up":
+                    $Actualproduct->decrement('order');
+                    $Actualproduct->save();
+                    $previousProduct->increment('order');
+                    $previousProduct->save();
+                    $executed = true;
+                    $response['action'] =  "ordarChange Up";
+                    $response['actualProduct'] = $Actualproduct->name;
+                    $response['ProductPosterior'] = $previousProduct->name; 
+                    break;
+                case "down":
+                    $Actualproduct->increment('order');
+                    $Actualproduct->save();
+                    $laterProduct->decrement('order');
+                    $laterProduct->save();
+                    $executed = true;
+                    $response['action'] =  "ordarChange down";
+                    $response['actualProduct'] = $Actualproduct->name;
+                    $response['ProductAnterior'] = $previousProduct->name; 
+                    break;
+                default:
+                    break;
+            }
+            if ($executed) {
+                $product->save();
+                $response['status'] = $executed;
+                $response['msg'] =  "Hecho";
+            }
+        } catch (\Throwable $th) {
+            $response['status'] = $executed;
+            $response['msg'] = 'Error';
+        }
+
+        return response()->json($response);
+    }
+
     public function showUpdateProduct($id)
     {
         $userId = Auth::id();
@@ -282,6 +365,7 @@ class ShopController extends Controller
 
             $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfile', $img);
+            Log::info("Guardado imagen de perfil de tienda en Storage:" . $img);
         }
         if ($request->profileImg != null) {
             $file = $request->file('profileImg');
@@ -289,6 +373,7 @@ class ShopController extends Controller
 
             $img = 'profileImg' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfile', $img);
+            Log::info("Guardado imagen de perfil de tienda en Storage:" . $img);
         }
         return $img;
     }
@@ -303,6 +388,9 @@ class ShopController extends Controller
             $img = 'profileBanner' . Auth::user()->id . '.' .  $extension;
             $file->storeAs('public/img/shopProfileBanner', $img);
             return $img;
+
+            Log::info("Cambiado imagen de banner de tienda:" . $img);
+
         }
         return redirect()->route('error.genericError');
     }
@@ -319,6 +407,9 @@ class ShopController extends Controller
             $shop->logo_id = null;
             $shop->save();
             $image->delete();
+
+            Log::info("Eliminado imagen de perfil de tienda Storage:" . $image);
+
         }
     }
 
@@ -334,6 +425,7 @@ class ShopController extends Controller
             $shop->banner_id = null;
             $shop->save();
             $image->delete();
+            Log::info("Eliminado imagen de perfil de tienda Storage:" . $image);
         }
     }
 }

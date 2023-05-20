@@ -30,8 +30,8 @@ class ProductCreate extends FormRequest
             'otrasImagenes' => [
                 'required',
                 function ($attribute, $value, $fail) {
-                    if (count($value) > 5) {
-                        $fail('Solo se permiten subir hasta 5 imágenes en Otras imágenes');
+                    if (count($value) > 4) {
+                        $fail('Solo se permiten subir hasta 4 imágenes en Otras imágenes');
                     }
                 },
             ],

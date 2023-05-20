@@ -102,23 +102,4 @@ class OrderLine extends Model
 
         return $orderLineProducts;
     }
-
-    public static function setOrderLinePendingToPay($orderId){
-
-        $orderLines = OrderLine::where('order_id', '=', $orderId)->get();
-
-        if($orderLines == null){
-            return null;
-        }
-
-        $productOrderLine = ProductOrderLine::setProductOfOrderLineAsSelled($orderLines->pluck('id')->toArray());
-
-        if($productOrderLine == null){
-            return null;
-        }
-
-        OrderLine::query()->where('order_id ', $orderId)->update(['pendingToPay' => true]);
-
-        return true;
-    }
 }

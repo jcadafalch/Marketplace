@@ -19,7 +19,6 @@ class ShoppingCartController extends Controller
      */
     public function index()
     {
-
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
             $producte = [];
         } else {
@@ -33,16 +32,18 @@ class ShoppingCartController extends Controller
     {
         if (!isset($_COOKIE["shoppingCartProductsId"])) {
             setcookie("shoppingCartProductsId", "$id.", ["Path" => "/", "SameSite" => "Lax"]);
-            if(Auth::check()){
+            if (Auth::check()) {
                 Order::addIds("$id.", Auth::id());
             }
             return true;
+            Log::info("Añadido producto a carrito");
         } else {
             setcookie("shoppingCartProductsId", $_COOKIE["shoppingCartProductsId"] . "$id.", ["Path" => "/", "SameSite" => "Lax"]);
-            if(Auth::check()){
+            if (Auth::check()) {
                 Order::addIds($id, Auth::id());
             }
             return true;
+            Log::info("Añadido producto a carrito");
         }
     }
 
@@ -50,13 +51,21 @@ class ShoppingCartController extends Controller
     {
         if (isset($_COOKIE["shoppingCartProductsId"])) {
             setcookie("shoppingCartProductsId", str_replace("$id.", "", $_COOKIE["shoppingCartProductsId"]), ["Path" => "/", "SameSite" => "Lax"]);
-            if(Auth::check()){
+            if (Auth::check()) {
                 Order::delIds($id);
             }
             return true;
+            Log::info("Eliminado producto de carrito");
         }
     }
 
+    /**
+     * La función confirma un pedido al verificar si el usuario tiene un carrito, si los productos en
+     * el carrito aún están disponibles y luego cierra el pedido.
+     * 
+     * @return view sea una redirección a la página del tablero o una vista del carrito de compras con
+     * errores, si los hay.
+     */
     public function confirmOrder()
     {
         Log::debug("Confirmar pedido");
@@ -64,32 +73,38 @@ class ShoppingCartController extends Controller
         $userId = Auth::user()->id;
         $order = Order::where('user_id', '=', $userId)->where('in_process', '=', 1)->first();
 
-        if($order == null){
+        if ($order == null) {
             $errors = ['No se ha encontrado el carrito'];
             return $this->showShoppingCartWithErrors($errors);
-            
         }
-        
+
         $products = Order::getOrderProducts($order->id);
 
         $errors = [];
 
         foreach ($products as $product) {
-            if($product->sellet_at != null || $product->isVisible == 0 || $product->isDeleted == 1){
+            if ($product->sellet_at != null || $product->isVisible == 0 || $product->isDeleted == 1) {
                 array_push($errors, "El producto <strong>{$product->name}</strong> ya no està disponible. Eliminalo para poder hacer el pedido.");
             }
         }
 
-        if(!empty($errors)){
+        if (!empty($errors)) {
             return $this->showShoppingCartWithErrors($errors);
         }
 
-        
+        $result = Order::closeOrder($order->id);
 
-        return redirect('home/dashboard');
+        if($result != "true"){
+
+            $errors = [$result];
+            return $this->showShoppingCartWithErrors($errors);
+        }
+
+        $orderId = $order->id;
+        return redirect()->route('order.summary', ['id' => $order->id]);
     }
 
-    
+
     /**
      * Esta función muestra el carrito de compras con errores y recupera información de productos de
      * cookies y categorías de la base de datos.

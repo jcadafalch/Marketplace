@@ -50,14 +50,14 @@
                                         alt="Imagen del producto" />
                                 <?php else: ?>
                                     <img src="<?php echo e(asset('/images/imagesNotFound.webp')); ?>"
-                                        alt="Imagen del producto" />
+                                        alt="Imagen no encontrada" />
                                 <?php endif; ?>
                             </a>
                         </div>
                         <div class="product-details">
                             <a href="<?php echo e(route('product.show', ['id' => $product->id])); ?>">
                                 <p class="product-name"> <?php echo e($product->name); ?> </p>
-                                <p class="product-price"> <?php echo e($product->price); ?>€ </p>
+                                <p class="product-price"> <?php echo e(round($product->price / 100, 2)); ?>€ </p>
                             </a>
                         </div>
 

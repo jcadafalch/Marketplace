@@ -40,16 +40,10 @@ GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%';
 
 EOF
 
-php artisan migrate
-
 sudo cp -rf /var/www/html/php.ini /etc/php/8.1/cli/
 
 sudo cp -rf /var/www/html/hosts /etc/
 
-php artisan storage:link
-
 sudo a2enmod ssl
-
-php artisan storage:link
 
 sudo systemctl restart apache2.service

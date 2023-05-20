@@ -22,9 +22,9 @@
                     <div class="product-image">
                         <a href="<?php echo e(route('product.show', ['id' => $product->id])); ?>">
                             <?php if($product->getMainImage() != null): ?>
-                                <img src="<?php echo e(env('API_URL_IMAGES') . $product->getMainImage()); ?>" />
+                                <img src="<?php echo e(env('API_URL_IMAGES') . $product->getMainImage()); ?>" alt="Imagen de producto" />
                             <?php else: ?>
-                                <img src="<?php echo e(asset('/images/imagesNotFound.webp')); ?>" />
+                                <img src="<?php echo e(asset('/images/imagesNotFound.webp')); ?>" alt="Imagen no encontrada"/>
                             <?php endif; ?>
                         </a>
                     </div>

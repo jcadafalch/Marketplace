@@ -23,13 +23,11 @@
             </div>
         </article>
         <article class="user-order">
-            <a href="<?php echo e(route('order.orderList')); ?>">Lista de pedidos Realizados</a>
-            
+            <a href="<?php echo e(route('order.orderList')); ?>"><p>Lista de pedidos Realizados</p></a>
+            <?php if($shop != null): ?>
+                <a href="<?php echo e(route('order.selledList')); ?>"><p>Lista de pedidos vendidos</p></a>
+            <?php endif; ?>
         </article>
-        <?php if($shop != null): ?>
-        <a href="<?php echo e(route('order.selledList')); ?>">Lista de pedidos vendidos</a>
-            
-        <?php endif; ?>
     </section>
 <?php $__env->stopSection(); ?>
 

@@ -20,6 +20,7 @@ class Shop extends Model
     public function getAllShopProducts(){
         return Product::where('shop_id', $this->id)
         ->where('isDeleted','=',0)
+        ->orderBy('order', 'asc')
         ->paginate(env('PAGINATE', 10));
     }
     
@@ -64,6 +65,33 @@ class Shop extends Model
     public function getOwner(){
         return User::where('id', $this->user_id)->first();
     }
+
+    public static function getLastOrderProduct($idShop){
+      $lastOrder = 
+       Product::where('shop_id', $idShop)
+        ->where('isDeleted',0)
+        ->latest('order')->first();
+        return $lastOrder->order;
+
+    }
+
+    public static function getFirstOrderProduct($idShop){
+        $firstOrder = 
+         Product::where('shop_id', $idShop)
+          ->where('isDeleted',0)
+          ->orderBy('order', 'asc')
+          ->first();
+          return $firstOrder->order;
+  
+    }
+
+    public static function getLastOrdreProductByNewProduct($idShop){
+        $lastOrder = 
+        Product::where('shop_id', $idShop)
+         ->latest('order')->first();
+         return $lastOrder;
+    }
+
 
     public static function getShopNameByProductId($selectedId){
 

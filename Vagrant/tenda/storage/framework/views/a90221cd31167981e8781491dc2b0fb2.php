@@ -9,15 +9,15 @@
                         <div class="slide">
                             <?php if($product->getMainImage() != null): ?>
                                 <img class="product-images-img"
-                                    src="<?php echo e(env('API_URL_IMAGES') . $product->getMainImage()); ?>" />
+                                    src="<?php echo e(env('API_URL_IMAGES') . $product->getMainImage()); ?>" alt="Imagen principal de producto" />
                             <?php else: ?>
                                 <img class="product-images-img"
-                                    src="<?php echo e(asset('/images/imagesNotFound.webp')); ?>" />
+                                    src="<?php echo e(asset('/images/imagesNotFound.webp')); ?>" alt="Imagen no encontrada" />
                             <?php endif; ?>
                         </div>
                         <?php $__currentLoopData = $product->getAlternativeImages(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $imgUrl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="slide">
-                                <img class="product-images-img" src="<?php echo e(env('API_URL_IMAGES') . $imgUrl); ?>" />
+                                <img class="product-images-img" src="<?php echo e(env('API_URL_IMAGES') . $imgUrl); ?>" alt="Imagen de producto"/>
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
