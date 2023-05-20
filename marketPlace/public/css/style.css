@@ -291,7 +291,9 @@ a:hover {
 .shoppingcart-main-article-productImage {
   grid-area: shoppingcart-main-article-productImage;
   width: 100%;
-  height: auto;
+  height: 12vw;
+  border-radius: 1.8rem;
+  object-fit: cover;
   padding: 0.5rem;
 }
 .shoppingcart-main-article-productName {
