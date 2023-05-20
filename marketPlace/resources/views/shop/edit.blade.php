@@ -3,9 +3,9 @@
 @section('title', 'Editar tienda')
 
 @section('content')
-    <form action="{{ route('volver') }}" method="GET">
+    {{-- <form action="{{ route('volver') }}" method="GET">
         <button type="submit" class="volver">Volver</button>
-    </form>
+    </form> --}}
     <form action="{{ route('shop.editConfiguration') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
