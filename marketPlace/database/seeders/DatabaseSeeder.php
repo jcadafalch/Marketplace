@@ -103,18 +103,13 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $imagen = 
-        Image::factory()->create([
-            'name'=> 'venedor',
-            'url'=>  'profileImg999.webp',
-        ]);
 
         Shop::factory()->create([
             'ownerName'=>'venedor',
             'name'=> 'venedor',
             'nif'=>fake()->unique()->postcode(),
             'user_id'=> 999,
-            'logo_id'=> $imagen->id,
+            'logo_id'=> null,
         ]);
 
 
@@ -124,14 +119,6 @@ class DatabaseSeeder extends Seeder
     * Funcio per generar Usuaris
     */
     private static function createUsers($numUsers){
-        User::factory()->create([
-            'name' => "User Test",
-            'path' => "storage/app/public/img/imgN640cc8af60f70.jpg",
-            'email' => "usertest@test.com",
-            'email_verified_at' => now(),
-            'password' => Hash::make('1234'),
-            'remember_token' => Str::random(10),
-        ]);
         User::factory($numUsers)->create();
     }
 
@@ -144,9 +131,25 @@ class DatabaseSeeder extends Seeder
     * Funcio per generar Tendes
     */
     private static function createShops($numShops){
-        Shop::factory($numShops)->create();
+        $total =  intval($numShops);
+        $idUser = 0;
+        $numUser = User::count() -2;
+        for ($i=0; $i < $total; $i++) {
+            $idUser ++; 
+            Log::debug($idUser);
+              
+            if($idUser <= $numUser){
+                $shop =  Shop::factory()->create();
+                $shop->user_id = $idUser; 
+                $shop->save(); 
+            }else{
+                $shop =  Shop::factory()->create();
+                $shop->user_id = 1; 
+                $shop->save();   
+            }
+        }
     }
-    
+
     /**
      * Funcio per generar Productes
      */

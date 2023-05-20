@@ -20,19 +20,13 @@ class ShopFactory extends Factory
      */
     public function definition(): array
     {   
-        $allUsersId = User::count();
-        $userId = rand(1, $allUsersId - 1);
-
-        $allImageId = Image::count();
-        $imageId = rand(1, $allImageId);
-
-        
+       
         return [
             'ownerName'=>fake()->unique()->name($gender = 'female'),
             'name'=>fake()->unique()->company(),
             'nif'=>fake()->unique()->postcode(),
-            'user_id'=> $userId,
-            'logo_id'=> $imageId,
+            'user_id'=> 1,
+            'logo_id'=> null,
         ];
     }
 }
