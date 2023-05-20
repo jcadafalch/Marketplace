@@ -1678,6 +1678,7 @@ a.slide_btn {
 .is-active .checkbox-dropdown-list {
   opacity: 1;
   pointer-events: auto;
+  background: white;
 }
 .checkbox-dropdown-list li label {
   display: block;
