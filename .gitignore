@@ -5,4 +5,20 @@ marketPlace/public/css/style.css
 marketPlace/storage/debugbar/*
 
 vagrant/tenda/vendor
-vagrant/api/vendor
+vagrant/api/vendor  
+vagrant/api_bk/vendor  
+vagrant/tenda_bk/vendor
+
+vagrant/api/storage/app/public/img  
+vagrant/api_bk/storage/app/public/img  
+vagrant/tenda/storage/app/public/img  
+vagrant/tenda_bk/storage/app/public/img  
+
+*/storage/img/*
+
+vagrant/api/storage/debugbar/*
+vagrant/api_bk/storage/debugbar/*
+vagrant/tenda_bk/storage/app/public/img  
+vagrant/tenda/storage/debugbar/*
+
+Vagrant\api\public\storage\img\
