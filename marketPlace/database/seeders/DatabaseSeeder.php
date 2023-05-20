@@ -33,10 +33,10 @@ class DatabaseSeeder extends Seeder
     }  
     
       if ($this->command->confirm('Vols recrear un entorn per proves unitaries', false)) {
-        $numProducts = $this->command->ask('Quantes productes vols generar?', 20);
+        $numProducts = $this->command->ask('Quantes productes vols generar per cada tenda?', 20);
         $numCategories = $this->command->ask('Quants categories vols generar?', 10);
         
-        self::generateProducts($numProducts);
+        self::generateProductsForShop($numProducts);
         $this->command->info('Taula productes inicialitzada amb èxit');   
         self::generateCategoriesEntornDeProves($numCategories);
         $this->command->info('Taula categories inicialitzada amb èxit');
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
         $numShops = $this->command->ask('Quantes tendes vols crear?', 5);
         $productCategories = $this->command->ask('Quantes categories ha de tenir un producte?', 5);
         $numProductImages = $this->command->ask('Quantes imatges ha de tenir un producte?', 5);
-        $numProducts = $this->command->ask('Quants productes vols generar?', 50);
+        $numProducts = $this->command->ask('Quants productes vols per cada tenda generar?', 50);
         $numCategories = $this->command->ask('Quants categories vols generar?', 50);
         $numCategories2nivell = $this->command->ask('Quants categories de segon nivell vols generar?', 25);
         $numSubCategories = $this->command->ask('Quants subcategories ha de tenir una cetegoria?', 4);
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Usuaris de test creats'); 
         self::createShops($numShops);
         $this->command->info($numShops . ' de tendes creades.');   
-        self::generateProducts($numProducts);
+        self::generateProductsForShop($numProducts);
         $this->command->info('Taula productes inicialitzada amb èxit');
         self::attachImageProduct($numProductImages);
         $this->command->info($numProductImages . " Producte amb imatges enllaçat.");    
@@ -82,6 +82,7 @@ class DatabaseSeeder extends Seeder
 
     private static function createUsersTest(){
         User::factory()->create([
+            "id" => 998,
             'name' => "comprador",
             'path' => "storage/app/public/img/imgN640cc8af60f70.jpg",
             'email' => "comprador@test.com",
@@ -89,6 +90,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'remember_token' => Str::random(10),
         ]);
+
+       
 
         User::factory()->create([
             "id" => 999,
@@ -100,15 +103,18 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        $allImageId = Image::count();
-        $imageId = rand(1, $allImageId);
+        $imagen = 
+        Image::factory()->create([
+            'name'=> 'venedor',
+            'url'=>  'profileImg999.webp',
+        ]);
 
         Shop::factory()->create([
             'ownerName'=>'venedor',
-            'name'=>fake()->unique()->company(),
+            'name'=> 'venedor',
             'nif'=>fake()->unique()->postcode(),
             'user_id'=> 999,
-            'logo_id'=> $imageId,
+            'logo_id'=> $imagen->id,
         ]);
 
 
@@ -144,8 +150,20 @@ class DatabaseSeeder extends Seeder
     /**
      * Funcio per generar Productes
      */
-    private static function generateProducts($numProducts){
-        Product::factory($numProducts)->create();
+    private static function generateProductsForShop($numProducts){
+
+        $shops =  Shop::all();
+       
+        foreach ($shops as  $shop) {
+            $order = 0;
+            for ($i=0; $i < $numProducts ; $i++) { 
+              $order ++;
+              $product =  Product::factory()->create();
+              $product->shop_id =  $shop->id;
+              $product->order = $order;
+              $product->save();
+            }
+        }
     }
     
     private static function clearImages(){   
