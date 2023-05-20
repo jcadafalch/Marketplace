@@ -500,6 +500,7 @@ class Product extends Model
       }
 
       CategoryProduct::updateCategoryProduct($request->input('category'), $id);
+      CategoryProduct::updateCategoryProduct($request->input('subCategory'), $id);
       return true;
     }
     return false;
