@@ -281,7 +281,8 @@ class Product extends Model
     }
     $resultOrder = $order == 'ASC' ?  $result->sortBy('name') : $result->sortByDesc('name');
     // Instanciem  un objecte Paginator, amb els paràmetres de la collection
-    return new LengthAwarePaginator($resultOrder, $result->total(), $result->perPage());
+ 
+    return new LengthAwarePaginator($resultOrder, $result->total(), $result->perPage(),null, ['path' => url('/') . '/searchProduct']);
   }
 
   /**
