@@ -25,7 +25,8 @@ class Api extends Model
        
         $url = env('API_URL') . $this->endpointCreateImage;
 
-        $response = Http::withToken(env('API_TOKEN'))
+        $response = Http::withoutVerifying()
+        ->withToken(env('API_TOKEN'))
         ->get($url, ['ContextName' => $ImageName]);
 
 
@@ -43,7 +44,8 @@ class Api extends Model
 
         $url = env('API_URL') . $this->endpointDeleteImage;
 
-        $response = Http::withToken(env('API_TOKEN'))
+        $response = Http::withoutVerifying()
+        ->withToken(env('API_TOKEN'))
             ->delete($url, ['name' => $ImageName]);
 
         if ($response->ok()) {
@@ -69,7 +71,8 @@ class Api extends Model
 
         $photo_path = 'storage/img/'. $img;
     
-        $response = Http::withToken(env('API_TOKEN'))->attach('imagen', file_get_contents($photo_path), basename($photo_path))->post($url);
+        $response = Http::withoutVerifying()
+        ->withToken(env('API_TOKEN'))->attach('imagen', file_get_contents($photo_path), basename($photo_path))->post($url);
         Storage::disk('img')->delete($img);
         $urlPhoto = $response->json();
         
@@ -80,17 +83,9 @@ class Api extends Model
     {
         $url = env('API_URL') . $this->endpointDeleteAllImageProduct;
 
-        // Ejemplo
-      /*  $products =[     
-            0 => "645a7c4de3bd8.png",
-            1 => "645a7c4ed6328.png",
-            2 => "645a7c8780996.png",
-            3 => "645a78d4cb2fc.png"
-        ];*/
 
-
-
-        $response = Http::withToken(env('API_TOKEN'))
+        $response = Http::withoutVerifying()
+        ->withToken(env('API_TOKEN'))
             ->withHeaders([
                 'Content-Type' => 'application/json',
             ])
@@ -109,7 +104,8 @@ class Api extends Model
 
         $url = env('API_URL') . $this->endpointDeleteAllImageApi;
 
-        $response = Http::withToken(env('API_TOKEN'))->delete($url);
+        $response = Http::withoutVerifying()
+        ->withToken(env('API_TOKEN'))->delete($url);
 
         if ($response->ok()) {
            return $response->json();
