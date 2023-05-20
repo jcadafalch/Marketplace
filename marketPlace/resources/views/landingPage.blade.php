@@ -8,15 +8,21 @@
             <div class="landing-card">
                 <h2 class="landing-title">{{ $titles[$i] }}</h2>
                 <ul class="landing-products">
+                    @php
+                        $cont = 0;
+                    @endphp
                     @foreach ($products[$i] as $item)
-                        @if ($i < 8)
+                        @if ($cont < 8)
                             <li>
                                 <a href="{{ route('product.show', ['id' => $item->id]) }}"><img class="landing-image"
                                         src="{{ env('API_URL_IMAGES') . $item->url }}" alt="Imagen de producto" />
                                     <p>{{ $item->name }}</p>
-                                    <p>{{ $item->price }}€</p>
+                                    <p>{{ round($item->price / 100, 2) }}€</p>
                                 </a>
                             </li>
+                            @php
+                                $cont++;
+                            @endphp
                         @endif
                     @endforeach
                 </ul>
