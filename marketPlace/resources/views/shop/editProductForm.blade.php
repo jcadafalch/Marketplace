@@ -65,20 +65,22 @@
                         </select>
                         <div class="overSelect"></div>
                     </div> --}}
-                    <div id="checkboxes" class="checkbox-dropdown-list">
+                    <ul id="checkboxes" class="checkbox-dropdown-list">
                         @foreach ($categories as $item)
-                            <label for="{{ $item->name }}">
-                                <input type="checkbox" name="category[]" class="checkbox" id="{{ $item->name }}"
-                                    value="{{ $item->name }}"
-                                    @foreach ($productCategories as $productCategory)
+                            <li>
+                                <label for="{{ $item->name }}">
+                                    <input type="checkbox" name="category[]" class="checkbox" id="{{ $item->name }}"
+                                        value="{{ $item->name }}"
+                                        @foreach ($productCategories as $productCategory)
                                         @if ($productCategory === $item->name)
                                             checked
                                         @endif @endforeach />{{ $item->name }}</label>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
                 </div>
 
-                <div id="multiselect2" class="multiselect checkbox-dropdown" hidden>
+                <div id="multiselect2" class="multiselect checkbox-dropdown">
                     <p>Subcategorias</p>
                     {{-- <div class="selectBox" onclick="showCheckboxes2()">
                         <select>
