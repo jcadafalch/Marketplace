@@ -16,10 +16,6 @@
                     <input type='file' id="bannerUpload" class="imageUpload" name="shopBanner"
                         accept=".png, .jpg, .jpeg" />
                     <label for="bannerUpload"></label><span>Añadir banner</span>
-                    {{-- @if ($shop->getBanner() != null)
-                    <input type='button' id="bannerDelete" name="shopBannerDelete"  />
-                    <label for="bannerDelete"></label><span>Eliminar banner</span>
-                    @endif --}}
                 </div>
                 <div class="shopedit-banner-preview">
                     <div class="shopedit-banner-imagePreview imagePreview">
@@ -46,9 +42,14 @@
                         </div>
                         <div class="avatar-preview">
                             <div class="shop-info-detail-shop-img imagePreview">
+                                @if  ($shop->getLogo() == null)
                                 <img id="shopLogo" class="imageUploaded"
+                                    src='{{ asset('images/imagesNotFound.webp') }}' alt="Logo de la tienda">
+                                @else
+                                    <img id="shopLogo" class="imageUploaded"
                                     src="{{ asset('storage/img/shopProfile/' . $shop->getLogo()->url) }}"
-                                    onerror="this.src='{{ asset('images/imagesNotFound.webp') }}'" alt="Logo de la tienda">
+                                    alt="Logo de la tienda">
+                                @endif    
                             </div>
                         </div>
                     </div>

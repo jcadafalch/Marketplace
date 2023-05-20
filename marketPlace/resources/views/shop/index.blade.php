@@ -19,8 +19,14 @@
         <article class="shop-info">
             <div class="shop-info-detail-shop">
                 <div class="shop-info-detail-shop-img">
-                    <img src="{{ asset('storage/img/shopProfile/' . $shop->getLogo()->url) }}"
-                        onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'" alt="Logo de la tienda">
+                    @if  ($shop->getLogo() == null)
+                        <img id="shopLogo" class="imageUploaded"
+                        src='{{ asset('images/imagesNotFound.webp') }}' alt="Logo de la tienda">
+                    @else
+                        <img id="shopLogo" class="imageUploaded"
+                        src="{{ asset('storage/img/shopProfile/' . $shop->getLogo()->url) }}"
+                        alt="Logo de la tienda">
+                    @endif  
                 </div>
                 <p> {{ $shop->name }} </p>
             </div>
