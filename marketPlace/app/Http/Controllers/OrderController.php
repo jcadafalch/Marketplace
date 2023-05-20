@@ -461,8 +461,8 @@ class OrderController extends Controller
      * ciertas condiciones.
     */
     private function checkOrderLineStatus($orderLine){
-        $order = Order::find($orderLine->shop_id);
-
+        $order = Order::find($orderLine->order_id);
+       
         $orderDate = Carbon::createFromFormat('Y-m-d H:i:s', $order->closed_at);
 
         if($orderLine->pendingToPay && $orderDate->addWeek()->isPast())
