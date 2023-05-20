@@ -1,15 +1,18 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 Vagrant.configure("2") do |config|
-  config.vm.box = "debian/bullseye64"
-  config.vm.hostname = "javamariadb"
-  config.vm.define "javamariadb"
-  config.vm.network "private_network", ip: "172.16.0.100"
-  config.vm.provision "shell", path: "bootstrap.sh"
-  config.vm.provider "virtualbox" do |vb|
-	vb.name = "Marketplace_grup5" 
-    vb.memory = "512"
-    vb.cpus = 1
+
+  config.vm.define "tenda" do |tenda|
+    tenda.vm.box = "ubuntu/focal64"
+    tenda.vm.network "private_network", ip: "172.16.50.50"
+    tenda.vm.synced_folder "./tenda", "/var/www/html"
+    tenda.vm.provision "shell", path: "setupTenda.sh"
+    tenda.vm.define "vagrantTenda"
+  end
+
+  config.vm.define "api" do |api|
+    api.vm.box = "ubuntu/focal64"
+    api.vm.network "private_network", ip: "172.16.50.60"
+    api.vm.synced_folder "./api", "/var/www/html"
+    api.vm.provision "shell", path: "setupApi.sh"
+    api.vm.define "vagrantApi"
   end
 end
