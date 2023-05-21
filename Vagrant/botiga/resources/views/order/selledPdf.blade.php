@@ -67,7 +67,7 @@
 
 <body>
     @php
-        $logo_url = public_path('images/Logo.png');
+        $logo_url = public_path('images/logo.png');
         $logo_base64 = base64_encode(file_get_contents($logo_url));
     @endphp
     <img src="data:image/png;base64,{{ $logo_base64 }}" alt="Logo de la tienda">
