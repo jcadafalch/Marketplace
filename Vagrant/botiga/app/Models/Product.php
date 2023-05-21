@@ -444,8 +444,8 @@ class Product extends Model
         $product->name = $requestAll['name'];
       } else if ($requestAll['detail'] != null && $requestAll['detail'] != $productExsists->description) {
         $product->description = $requestAll['detail'];
-      } else if ($requestAll['price'] != null && $requestAll['price'] != $productExsists->price) {
-        $product->price = $requestAll['price'];
+      } else if ($requestAll['price'] != null && $requestAll['price'] != $productExsists->price/100) {
+        $product->price = $requestAll['price'] * 100;
       }
 
       $product->save();

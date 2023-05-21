@@ -88,8 +88,8 @@
         <tbody>
             @foreach ($producte as $productec)
                 @php
-                    $imagen_url = env('API_URL_IMAGES') . $productec->updateMainImage()->url;
-                    $imagen_base64 = base64_encode(file_get_contents($imagen_url));
+                    $imagen_url = Http::withoutVerifying()->get(env('API_URL_IMAGES') . $productec->updateMainImage()->url);
+                    $imagen_base64 = base64_encode($imagen_url->body());
                 @endphp
                 <tr>
                     <td><img src="data:image/png;base64,{{ $imagen_base64 }}" alt=""></td>

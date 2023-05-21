@@ -344,7 +344,7 @@ class OrderController extends Controller
                $completeOrderLine->orderLineId = $orderLine->id;
                $completeOrderLine->orderLineStatus = $this->getOrderLineStatus($orderLine);
                $completeOrderLine->shopName = $shop->name;
-               $completeOrderLine->shopLogoUrl = $shop->getLogo()->url;
+               $completeOrderLine->shopLogoUrl = $shop->getLogo() != null ? $shop->getLogo()->url:asset('/images/imagesNotFound.webp');
                $completeOrderLine->price = round($products->sum('price') / 100, 2);
                $completeOrderLine->productsName = implode(", ", $products->pluck('name')->toArray());
 
@@ -382,7 +382,7 @@ class OrderController extends Controller
                 $completeOrderLine->orderLineId = $orderLine->id;
                 $completeOrderLine->orderLineStatus = $this->getOrderLineStatus($orderLine);
                 $completeOrderLine->shopName = $shop->name;
-                $completeOrderLine->shopLogoUrl = $shop->getLogo()->url;
+                $completeOrderLine->shopLogoUrl = $shop->getLogo() != null ? $shop->getLogo()->url:asset('/images/imagesNotFound.webp');
                 $completeOrderLine->price = round($products->sum('price') / 100, 2);
                 $completeOrderLine->productsName = implode(", ", $products->pluck('name')->toArray());
 

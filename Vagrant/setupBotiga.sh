@@ -22,6 +22,8 @@ sudo apt-get install php8.1-xml -y
 
 sudo apt install php8.1-mbstring -y
 
+sudo apt install php8.1-gd -y
+
 sudo apt install curl -y
 
 sudo apt-get install php8.1-curl -y

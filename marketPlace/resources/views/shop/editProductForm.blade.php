@@ -26,7 +26,7 @@
 
             <div class="userForm-form-item">
                 <label>Precio</label>
-                <input type="number" name="price" value="{{ $product->price }}" required>
+                <input type="number" name="price" value="{{ round($product->price / 100, 2) }}" required>
             </div>
 
             <div class="userForm-form-item">

@@ -85,7 +85,7 @@ Route::post('/registrar', [ShopController::class, 'registerShop'])->name('regist
 Route::get('/administrarTenda/{id}', [ManageShopController::class, 'index'])->name('manage.manageShop');
 Route::get('/tienda/editar', [ShopController::class, 'showEdit'])->name('shop.edit');
 Route::patch('/tienda/editarTienda', [ShopController::class, 'editShop'])->name('shop.editConfiguration');
-Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProducPendent'])->name('shop.editProduct');
+Route::post('/tienda/editarProducto/{id}', [ShopController::class, 'updateProductPendent'])->name('shop.editProduct');
 Route::get('/tienda/editarProducto/{id}', [ShopController::class, 'showUpdateProduct'])->name('shop.showEditProduct');
 
 Route::get('/tienda/editarProducto/', [ShopController::class, 'updateProduct'])->name('shop.editProduct');

@@ -209,11 +209,11 @@ class ShopController extends Controller
         $return = Product::updateProduct($request, $id);
 
         if ($return) {
-            return redirect()->route('shop.showEditProduct', $id)->withInput()->with([
+            return redirect()->route('shop.showEditProductContent', $id)->withInput()->with([
                 "error" => "Producto actualizado!"
             ]);
         } else {
-            return redirect()->route('shop.showEditProduct', $id)->with([
+            return redirect()->route('shop.showEditProductContent', $id)->with([
                 "message" => "ERROR!"
             ]);
         }
