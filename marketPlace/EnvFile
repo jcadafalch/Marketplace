@@ -1,7 +1,7 @@
 APP_NAME=CraftMade
 APP_ENV=local
 APP_KEY=base64:yGbfJFeBgn60hYUmIu8WBSf8cKWgE/VBJAF+Lmrxi84=
-APP_DEBUG=true
+APP_DEBUG=false
 APP_URL=http://localhost:8000
 
 LOG_CHANNEL=stack
