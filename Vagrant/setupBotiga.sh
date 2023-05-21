@@ -46,7 +46,6 @@ composer update
 
 composer install
 
-sudo chmod -R 777 .
 
 rm -rf public/storage
 
@@ -67,5 +66,7 @@ sudo cp -rf /var/www/html/php.ini /etc/php/8.1/apache2/
 sudo cp -rf /var/www/html/hosts /etc/
 
 sudo a2enmod ssl
+
+sudo chmod -R 777 .
 
 sudo systemctl restart apache2.service
