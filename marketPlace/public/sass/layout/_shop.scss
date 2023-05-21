@@ -7,8 +7,8 @@
 
         &-image {
             object-fit: cover;
-            height: -webkit-fill-available;
-            width: -webkit-fill-available;
+            height: 100%;
+            width: 100%;
         }
     }
 
@@ -486,8 +486,8 @@
 
             img {
                 object-fit: cover;
-                height: -webkit-fill-available;
-                width: -webkit-fill-available;
+                height: 100%;
+                width: 100%;
                 position: inherit;
             }
         }

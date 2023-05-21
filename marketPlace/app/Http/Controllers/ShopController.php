@@ -182,11 +182,21 @@ class ShopController extends Controller
         }
 
         if ($request->profileImg != null) {
-            self::deleteOldShopImage($shop, $request);
-            $img = self::saveImage($request);
-            $image = Image::createImageObject($shop->name, $img);
-            $shop->logo_id = $image->id;
-            $shop->save();
+
+            if($shop->banner_id != null){
+                self::deleteOldShopImage($shop, $request);
+                $img = self::saveImage($request);
+                $image = Image::createImageObject($shop->name, $img);
+                $shop->logo_id = $image->id;
+                $shop->save();
+
+            }else{
+                $img = self::saveImage($request);
+                $image = Image::createImageObject($shop->name, $img);
+                $shop->logo_id = $image->id;
+                $shop->save();
+            }
+           
         }
         return redirect()->route('shop.edit');
     }
