@@ -42,11 +42,11 @@ sudo cp -rf /home/vagrant/botiga/.env /var/www/html/
 
 cd /var/www/html
 
-sudo chmod 777 -R .
-
 composer update
 
 composer install
+
+sudo chmod 777 -R .
 
 rm -rf public/storage
 

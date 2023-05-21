@@ -36,9 +36,9 @@ sudo cp -rf /home/vagrant/api/.env /var/www/html/
 
 cd /var/www/html
 
-sudo chmod 777 -R .
-
 composer update
+
+sudo chmod 777 -R .
 
 rm -rf public/storage
 
