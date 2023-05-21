@@ -28,7 +28,7 @@ curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 
 sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
-sudo cp -rf /home/vagrant/botiga/envFile /home/vagrant/botiga/.env
+sudo cp -rf /home/vagrant/api/envFile /home/vagrant/botiga/.env
 
 sudo cp -rf /home/vagrant/api/* /var/www/html
 
