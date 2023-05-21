@@ -26,7 +26,7 @@
         @endif
     </main>
     @include('partials.footer')
-    <script src="{{ asset('js/DeleteFromCart.js') }}"></script>
+    <script src="{{ asset('js/deleteFromCart.js') }}"></script>
     <script src="{{ asset('js/addToCart.js') }}"></script>
 </body>
 
