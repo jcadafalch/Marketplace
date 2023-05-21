@@ -121,6 +121,9 @@ checkboxes.forEach(function (checkbox) {
                 subcategories.forEach(element => {
                     const label = document.createElement('label');
                     const input = document.createElement('input');
+                    input.name = "subCategory[]";
+                    input.id = element;
+                    input.value = element;
                     input.type = 'checkbox';
                     input.innerHTML = element;
                     label.innerHTML = element;

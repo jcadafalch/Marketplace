@@ -1,49 +1,53 @@
 .product {
-    &-editar {
-      font-weight: 700;
-      &:hover{
-        color: $primaryColor;
-      }
+  &-editar {
+    font-weight: 700;
+
+    &:hover {
+      color: $primaryColor;
     }
+  }
 
-    &-name {
-        // line-height: 5rem;
-        margin-bottom: 1rem;
-        word-wrap: break-word;
+  &-name {
+    // line-height: 5rem;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+  }
+
+  &-detailsPage {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+
+    gap: 3rem;
+    padding: 3vh 10vw 3vh 10vw;
+  }
+
+
+  &-images {
+    display: flex;
+    flex-direction: column;
+
+    &-img {
+      width: 100%;
+      // height: auto;
+      height: 34rem;
+      object-fit: cover;
+      text-align: center;
+      // width: 31rem;
     }
+  }
 
-    &-detailsPage {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  &-price {
+    font-weight: 600;
+    line-height: 5rem;
+  }
 
-        gap: 3rem;
-        padding: 3vh 10vw 3vh 10vw;
-    }
+  &-description {
+    word-wrap: break-word;
+  }
 
-
-    &-images {
-        display: flex;
-        flex-direction: column;
-
-        &-img {
-            width: 76%;
-            height: auto;
-            // width: 31rem;
-        }
-    }
-
-    &-price {
-        font-weight: 600;
-        line-height: 5rem;
-    }
-
-    &-description {
-      word-wrap: break-word;
-    }
-
-    &-storeName {
-        line-height: 5rem;
-    }
+  &-storeName {
+    line-height: 5rem;
+  }
 
 }
 
@@ -75,12 +79,12 @@
   display: block;
 }
 
-.slide_buttons {
-  // left: 0;
-  position: absolute;
-  // right: 0;
-  text-align: center;
-}
+// .slide_buttons {
+//   // left: 0;
+//   position: absolute;
+//   // right: 0;
+//   text-align: center;
+// }
 
 a.slide_btn {
   color: #474544;
@@ -93,7 +97,8 @@ a.slide_btn {
   transition: all 0.4s ease-in-out;
 }
 
-.slide_btn.active, .slide_btn:hover {
+.slide_btn.active,
+.slide_btn:hover {
   color: #428CC6;
   cursor: pointer;
 }
@@ -122,7 +127,8 @@ a.slide_btn {
   top: 0;
 }
 
-.previous_btn, .next_btn {
+.previous_btn,
+.next_btn {
   cursor: pointer;
   height: 65px;
   opacity: 0.5;
@@ -134,7 +140,8 @@ a.slide_btn {
   width: 65px;
 }
 
-.previous_btn:hover, .next_btn:hover {
+.previous_btn:hover,
+.next_btn:hover {
   opacity: 1;
 }
 
@@ -142,6 +149,7 @@ a.slide_btn {
   .previous_btn {
     left: 50px;
   }
+
   .next_btn {
     right: 50px;
   }

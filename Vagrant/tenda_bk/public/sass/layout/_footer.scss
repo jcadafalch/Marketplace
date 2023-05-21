@@ -1,0 +1,34 @@
+.footer {
+    background: $primaryColor;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    &-content {
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        gap: 20px;
+        align-items: center;
+        font-size: 1.25rem;
+        padding: 1rem;
+        justify-items: end;
+
+        &-image {
+            height: auto;
+            width: 9rem;
+            padding: 1rem;
+        }
+
+        &-creators {
+            text-align: start;
+        }
+
+        &-copyright {
+            text-align: center;
+            align-self: flex-end;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+    }
+}

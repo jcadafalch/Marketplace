@@ -33,9 +33,9 @@
         @guest
             <div class="header-cartAndProfile-login">
                 <a href="{{ route('auth.login') }}">
-                    <button>
+                    <p class="button-header">
                         Identificate
-                    </button>
+                    </p>
                 </a>
             </div>
         @else

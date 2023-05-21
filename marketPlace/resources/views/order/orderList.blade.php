@@ -26,7 +26,6 @@
                                 @if ($completedOrderLine->orderId == $order->id)
                                     <li class="order-product" id="1">
                                         <div>
-                                            <p>Logo tienda</p>
                                             <img class="order-product-image"
                                                 src="{{ asset('storage/img/shopProfile/' . $completedOrderLine->shopLogoUrl) }}"
                                                 onerror="this.src='{{ asset('/images/imagesNotFound.webp') }}'"

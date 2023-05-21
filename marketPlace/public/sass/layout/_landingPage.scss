@@ -37,8 +37,11 @@
     }
 
     &-image {
-        width: 100%;
-        height: auto;
+        // width: 100%;
+        // height: auto;
+        width: 32vh;
+        height: 27vh;
+        object-fit: cover;
         border-radius: 3rem;
     }
 }
