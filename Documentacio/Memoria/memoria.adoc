@@ -1,277 +1,287 @@
 === Diari
 
-==== Semana 1 (27/02/2023 - 02/03/2023).
+==== Setmana 1 (27/02/2023 - 02/03/2023).
 
-*Planificación de la semana* 
+*Planificació de la setmana* 
 
 * [*] Planficació inicial del projecte - 13h  
-* [*]  Crear estructura de memoria - 1h.
-* [*]  Crear compte Gmail + Notion - 1h
+* [*] Crear estructura de memòria - 1h
+* [*] Crear compte Gmail + Notion - 1h
 * [*] Crear Trello - 1h
-* [*] Crear proyecto Laravel - 1h
+* [*] Crear projecte Laravel - 1h
 * [*] Crear repository Git - 1h
-* [*] Crear logger en Laravel - 2h
-* [*] Recerca de MarketPlace, per agafar ideés de com desenvolupar la nostra aplicació - 2h
+* [*] Crear logger a Laravel - 2h
+* [*] Recerca de MarketPlace, per agafar idees de com desenvolupar la nostra aplicació - 2h
 * [*] Pensar estructura de base dades - 2h
 * [*] Crear Model Factories - 1h
 * [*] Guia d'estils - 9h
 * [*] Crear Seeders - 1h
 * [*] Crear header i footer - 2h
-* [*] HomePage - diseño - 4h
+* [*] Disseny de HomePage - 4h
 * [*] Crear model i migració de la estructura de la base de dades - 6h
-* [*] HomePage - FrontEnd - 6h
+* [*] FrontEnd de HomePage - 6h
 
  
-Total horas invertidas: *53 horas*. 
+Total hores invertides: *53 horas*. 
 
-*Valoracion*
+*Valoració*
 
-Nos hemos dado cuenta, que depende que tareas hemos tardo menos y en otras más de lo planificado. Finalmente, se han podido completar todas las tareas planificadas para esta semana, en el total de horas planificado.
+Ens hem adonat, que depèn que tasques hem trigat menys i en altres més del planificat. Finalment, s'han pogut completar totes les tasques planificades per a aquesta setmana, en el total d'hores planificades.
 
 
-==== Semana 2 (06/03/2023 - 09/03/2023).
+==== Setmana 2 (06/03/2023 - 09/03/2023).
 
-*Planificación de la semana* 
+*Planificació de la setmana* 
 
-* [*] Backend - HomePage - 3h  
+* [*] Backend de HomePage - 3h  
 * [*] Login (temporal) - 1h
-* [*] Pagina detalle Producto basico - 5h
-* [*] Modificar pagina Home ppara poder añadir productos al carrito de compra - 2h
-* [*] Testos unitarios pagina Producto - 3h
-* [*] Diseño pagina Carrito - 2h
-* [ ] Arreglar bug en Header (harra de busqueda) - 2h
-* [ ] Filtro de busqueda pagina Home (backend) - 5h
-* [ ] Modificar Header para mostrar y modificar Productos que están en carrito - 1h
-* [ ] Carrito de la compra (frontEnd) - 6h
-* [ ] Testos unitarios pagina Home - 5h
-* [ ] Pagina carrito de compra (backEnd) - 9h
-* [ ] Revisar bug diseño responsive en Header 
+* [*] Pàgina detall Producte bàsic - 5h
+* [*] Modificar pagina Home per poder afegir productes al carret de la compra - 2h
+* [*] Tests unitaris pàgina Producte - 3h
+* [*] Disseny pagina Carret - 2h
+* [ ] Arreglar bug a Header (barra de cerca) - 2h
+* [ ] Filtre de cerca pàgina Home (backend) - 5h
+* [ ] Modificar Header per mostrar i modificar Productes que estan al carret - 1h
+* [ ] Carret de la compra (frontEnd) - 6h
+* [ ] Tests unitaris pàgina Home - 5h
+* [ ] Pàgina carret de compra (backEnd) - 9h
+* [ ] Revisar bug disseny responsive a Header 
 
 Total horas invertidas: *16 horas*. 
 
-*Valoracion*
+*Valoració*
 
-Debido a una mala planificación de las tareas de esta semana e imprevistos surgidos que han derivado en más horas no nos ha dado tiempor a acabar todas las tareas.
+Degut a una mala planificació de les tasques d'aquesta setmana i imprevistos sorgits que han derivat en més hores no ens ha donat temps a acabar totes les tasques.
 
-==== Semana 3 (13/03/2023 - 16/03/2023).
 
-*Planificación de la semana* 
+==== Setmana 3 (13/03/2023 - 16/03/2023).
 
-* [*] Arreglar bug en Header (harra de busqueda) - 2h
-* [*] Filtro de busqueda pagina Home (backend) - 5h
-* [*] Modificar Header para mostrar y modificar Productos que están en carrito - 1h
-* [*] Crear algun prodructo que tenga acentos - 1h
-* [*] Revisar inserción de acentos en BBDD y Laravel - 6h
-* [*] Eliminar ramas que no se utilizan - 1h
-* [*] Cambiar faker a español - 1h
-* [*] Hacer paginación de la página Home - 3h
-* [ ] Carrito de la compra (frontEnd) - 6h
-* [ ] Testos unitarios pagina Home - 5h
-* [ ] Pagina carrito de compra (backEnd) - 9h
-* [ ] Revisar bug diseño responsive en Header 
+*Planificació de la setmana* 
+
+* [*] Arreglar bug a Header (barra de cerca) - 2h
+* [*] Filtre de cerca pàgina Home (backend) - 5h
+* [*] Modificar Header per mostrar i modificar Productes que estan a la cistella - 1h
+* [*] Crear algun producte que tingui accents - 1h
+* [*] Revisar inserció d'accents a BBDD i Laravel - 6h
+* [*] Eliminar branques que no es fan servir - 1h
+* [*] Canviar faker a espanyol - 1h
+* [*] Fer paginació de la pàgina Home - 3h
+* [ ] Carret de la compra (frontEnd) - 6h
+* [ ] Tests unitaris pàgina Home - 5h
+* [ ] Pàgina carret de compra (backEnd) - 9h
+* [ ] Revisar bug disseny responsive a Header 
 
  
 Total horas invertidas: *20 horas*. 
 
-*Valoracion*
+*Valoració*
 
-Esta semana nos hemos dado cuenta de que se han tenido que corregir varios bugs. Aunque han sido bugs pequeños a nivel individual, la suma de todos ellos ha derivado en un gran tiempo de desarrollo.
+Aquesta setmana ens hem adonat que s'han hagut de corregir diversos errors. Tot i que han estat bugs petits a nivell individual, la suma de tots ha derivat en un gran temps de desenvolupament.
 
 
-==== Semana 4 (20/03/2023 - 23/03/2023). 
-*Planificación de la semana* 
+==== Setmana 4 (20/03/2023 - 23/03/2023). 
 
-* [*] Organizar semana 4 - 1h
-* [*] Hacer ordenación ASC y DESC del producto - 2h
-* [*] Actualizar readme de la rama main - 1h
-* [*] Corregir enlace del Figma de la memoria - 1h
-* [*] Diseño página he olvidado la contraseña - 1h
-* [*] Diseño página perfil usuario - 1h
-* [*] Diseño página donar alta tienda - 1h
-* [*] Diseño página registro - 3h
-* [*] Diseño login page - 2h
-* [*] Carrito compra frontend - 6h
-* [*] Login página Home - 3h 
-* [*] Página registro frontend - 2h
-* [*] Página dar de alta tienda - 3h
-* [*] Página olvidar contraseña frontend - 2h
-* [*] Página administración tienda basic - 1h
-* [*] Test unitarios página Home - 5h
-* [*] Bug paginación - 6h
-* [*] Carrito de la compra servidor - 2h
-* [*] Refactor categorías - 12h
-* [*] Carrito de la compra Backend - 9h
+*Planificació de la setmana* 
+
+* [*] Organitzar setmana 4 - 1h
+* [*] Fer ordenació ASC i DESC del producte - 2h
+* [*] Actualitzar readme de la branca main - 1h
+* [*] Corregir enllaç del Figma de la memòria - 1h
+* [*] Disseny pàgina he oblidat la contrasenya - 1h
+* [*] Disseny pàgina perfil d'usuari - 1h
+* [*] Disseny pàgina donar alta botiga - 1h
+* [*] Disseny pàgina registre - 3h
+* [*] Disseny login page - 2h
+* [*] Carret compra frontend - 6h
+* [*] Login pàgina Home - 3h 
+* [*] Pàgina registre frontend - 2h
+* [*] Pàgina donar d'alta botiga - 3h
+* [*] Pàgina oblidar contrasenya frontend - 2h
+* [*] Pàgina administració botiga basic - 1h
+* [*] Test unitaris pàgina Home - 5h
+* [*] Bug paginació - 6h
+* [*] Carret de la compra servidor - 2h
+* [*] Refactor categories - 12h
+* [*] Carret de la compra Backend - 9h
 * [*] Refactor header - 5h
-* [*] Cambiar tipo paginación con Bootstrap - 1h
-* [*] Bug en hacer una búsqueda y cambiar página es pierde el filtro - 6h
-* [ ] Página registro backend - 5h
-* [ ] Refactor carrito de la compra - 4h
-* [ ] Página he olvidado contraseña backend - 4h
-* [ ] Carrito de la compra servidor - 2h
+* [*] Canviar tipus de paginació amb Bootstrap - 1h
+* [*] Bug en fer una cerca i canviar pàgina és perd el filtre - 6h
+* [ ] Pàgina registre backend - 5h
+* [ ] Refactor carret de la compra - 4h
+* [ ] Pàgina he oblidat contrasenya backend - 4h
+* [ ] Carret de la compra servidor - 2h
 
-Total horas calculadas: *91 horas* + 
+Total horas calculades: *91 horas* + 
 Total horas invertidas: *82 horas*
 
-*Desviaciones*
+*Desviacions*
 
-Esta semana hemos tendio desviaciones tanto positivas como negativas.
+Aquesta setmana hem tingut desviacions tant positives com negatives.
 
-_Las tareas con desviaciones ponsitivas han estado:_
+_Les tasques amb desviacions positives han estat:_
 
-* [*] Diseño página registro - 3h -> 1h
-* [*] Diseño login page - 2h -> 1h
-* [*] Página olvidar contraseña frontend - 2h -> 1h + 
-Desviación total positiva: *_4 horas menos_*.
+* [*] Disseny pàgina registre - 3h -> 1h
+* [*] Disseny login page - 2h -> 1h
+* [*] Pàgina oblidar contrasenya frontend - 2h -> 1h + 
+Desviació total positiva: *_4 hores menys_*.
 
-_Las tareas con desviaciones negativas han estado:_
+_Les tasques amb desviacions negatives han estat:_
 
-* [*] Organizar semana 4 - 1h -> 2h
-* [*] Carrito compra frontend - 6h -> 10h
-* [*] Test unitarios página Home - 5h -> 7h
-* [*] Carrito de la compra servidor - 2h -> 4h
-* [*] Refactor categorías - 12h -> 13h +
-Desviación total negativa: *_10 horas más_*.
+* [*] Organitzar setmana 4 - 1h -> 2h
+* [*] Carret compra frontend - 6h -> 10h
+* [*] TTest unitaris pàgina Home - 5h -> 7h
+* [*] Carret de la compra servidor - 2h -> 4h
+* [*] Refactor categories - 12h -> 13h +
+Desviació total negativa: *_10 hores més_*.
 
 
-*Valoracion*
+*Valoració*
 
 Esta semana teníamos bastantes tareas planificadas y se ha llegado a la gran mayoría. + 
 Hemos tenido tareas que se han planificado con más horas y se ha tardado menos y viceversa. + 
 Nuestro error ha sido que hemos creído que ciertas tareas que se harían más rápido, y no ha sido así; por consecuencia ha habido tareas que no se han podido acabar.
+348 / 5.000
+Resultados de traducción
+Resultado de traducción
+Aquesta setmana teníem força tasques planificades i s'ha arribat a la gran majoria. +
+Hem tingut tasques que s'han planificat amb més hores i s'ha trigat menys i viceversa. +
+El nostre error ha estat que hem cregut que certes tasques es farien més ràpid, i no ha estat així; per tant hi ha hagut tasques que no s'han pogut acabar.
 
-==== Semana 5 (27/03/2023 - 30/03/2023). 
-*Planificación de la semana* 
+==== Setmana 5 (27/03/2023 - 30/03/2023). 
 
-* [*] Refactor seguimiento semanal 13/03/23 - 6h
-* [*] Planificar esta semana - 3h
-* [ ] Refactor carrito de la compra - 4h
-* [ ] Página registro backend - 5h
-* [ ] Página he olvidado contraseña backend - 4h
-* [ ] Carrito de la compra servidor - 2h
+*Planificació de la setmana* 
+
+* [*] Refactor seguiment setmanal 13/03/23 - 6h
+* [*] Planificar aquesta setmana - 3h
+* [ ] Refactor carret de la compra - 4h
+* [ ] Pàgina registre backend - 5h
+* [ ] Pàgina he oblidat contrasenya backend - 4h
+* [ ] Carret de la compra servidor - 2h
 * [ ] Login page backend - 3h
-* [ ] Pagina donar alta tenda backend - 3h
-* [ ] Pagina perfil usuario frontend - 6h
-* [ ] Pagina perfil usuari backend - 9h
+* [ ] Pàgina donar alta botiga backend - 3h
+* [ ] Pàgina perfil usuari frontend - 6h
+* [ ] Pàgina perfil d'usuari backend - 9h
 
-*Valoracion*
+*Valoració*
 
-Esta semana hemos contado con un día menos debido a que el miércoles no ha habido clase. + 
-Al inicio de la semana, mientras documentábamos la semana anterior, nos hemos dado cuenta de que perdemos mucho tiempo organizándonos y planificándonos, principalmente por dejarlo para última hora.
+Aquesta setmana hem comptat amb un dia menys pel fet que dimecres no hi ha hagut classe. +
+A l'inici de la setmana, mentre documentàvem la setmana anterior, ens hem adonat que perdem molt de temps organitzant-nos i planificant-nos, principalment per deixar-ho per darrera hora.
 
-==== Semana 6 (12/04/2023 - 13/04/2023).
-*Planificación de la semana* 
 
-* [*] Cambiar orden de las migraciones por término de la estructura de la creación  - 1h
-* [*] Acabar backend por la creación de una tienda nueva  - 3h
-* [*] Afegir nom d'usuari que ha iniciat sessió al header  - 1h
-* [*] Crear factoria para shop.  - 1h
-* [*] Cambiar api de imágenes  - 1h
-* [*] Eliminar migración duplicada - 1h
-* [*] Añadir creación de tienda al seeder - 1h
-* [*] Página perfil de usuario Backend - 9h
-* [*] Página he olvidado contraseña backend -4h 
-* [*] Refactor backend LandingPage - 4h
-* [*] Refactor JavaScript añadir producto al carrete de la compra - 5h
-* [*] Frontend perfil de usuario -2h
-* [*] Diseño Landing Page -2h 
+==== Setmana 6 (12/04/2023 - 13/04/2023).
+
+*Planificació de la setmana* 
+
+* [*] Canviar ordre de les migracions per terme de l'estructura de la creació - 1h
+* [*] Acabar backend per crear una botiga nova  - 3h
+* [*] Afegir nom d'usuari que ha iniciat sessió al header - 1h
+* [*] Crear factoria per a shop.  - 1h
+* [*] Canviar api d'imatges  - 1h
+* [*] Eliminar migració duplicada - 1h
+* [*] Afegir creació de botiga al seeder - 1h
+* [*] Pàgina perfil d'usuari Backend - 9h
+* [*] Pàgina he oblidat contrasenya backend -4h 
+* [*] Refactor backend Landing Page - 4h
+* [*] Refactor JavaScript afegir producte al carret de la compra - 5h
+* [*] Frontend perfil d'usuari - 2h
+* [*] Disseny Landing Page -2h 
 * [*] Backend Logout -1h
-* [*] Aplicar refactor de categorias -12h
+* [*] Aplicar refactor de categories - 12h
 
 
 Total horas calculadas: *44 horas*
 
 
+*Valoració*
 
-*Valoracion*
+Aquesta setmana ha estat una setmana una mica especial, ja que veníem de setmana Santa, alguns dels nostres hem aprofitat per avançar.
+La valoració global és que ha estat una setmana curta, on s'ha avançat força.( Tenint en compte les circumstàncies de venir d'un pont).
 
-Esta semana ha sido una semana un poco especial, ya que veníamos de semana Santa, algunos de nuestros hemos aprovechado para avanzar.
-La valoración global es que ha sido una semana corta, donde se ha avanzado bastante.( Teniendo en cuenta las circunstancias de venir de un puente).
+*Desviacions*
 
-*Desviaciones*
+Com que ha estat setmana santa i que aquesta setmana només hem tingut 2 dies, ha estat una setmana irregular, cosa que fa impossible calcular una desviació que s'acosti a la realitat.
 
-Dado que ha sido semana santa y que esta semana solo hemos 2 días, ha sido una semana irregular, cosa que haces imposible calcular una desviación que se acerque a la realidad.
+==== Setmana 7 (17/04/2023 - 20/04/2023).
 
-==== Semana 7 (17/04/2023 - 20/04/2023).
-*Planificación de la semana* 
+*Planificació de la setmana* 
 
-* [*] Refactor categorias - 12h
-* [*] Documentar semana 6 - 4h
-* [*] Crear proyecto Laravel para API - 1h
+* [*] Refactor categories - 12h
+* [*] Documentar setmana 6 - 4h
+* [*] Crear projecte Laravel per a API - 1h
 * [*] Landing page FrontEnd - 4h
 
 
-Total horas calculadas: *21 horas*
+Total hores calculades: *21 horas*
 
 
+*Valoració*
 
-*Valoracion*
+Aquesta setmana vam estar fent refactor de categories que estava planejat per a menys temps, pensàvem que seria més fàcil i ràpid de fer però va resultar més complex del que s'esperava.
 
-Esta semana estuvimos haciendo refactor de categorias que estaba planeado para menos tiempo, pensabamos que sería más facil y rapido de hacer pero resultó más complejo de lo esperado.
+*Desviacions*
 
-*Desviaciones*
-
-Esta semana la planificación que hicimos fue de menos horas en las tareas y a la hora de realizarlas resultarón ser más complejas y tardamos más tiempo de lo esperado.
+Aquesta setmana la planificació que vam fer va ser de menys hores en les tasques i a l'hora de fer-les va resultar ser més complexes i vam trigar més temps del que s'esperava.
 
 
-==== Semana 8 (22/04/2023 - 25/04/2023).
-*Planificación de la semana* 
+==== Setmana 8 (22/04/2023 - 25/04/2023).
 
-* [*] API EndPoint subir y obtener imagen - 4h
-* [*] API EndPoint eliminar imagenes - 2h
-* [*] API EndPoint generar y obtener imagen de prueba - 8h
-* [*] Crear usuaros de prueba - 1h
-* [*] Arreglad bug: se puede acceder a cualquier pagina sin iniciar sesión - 1h
+*Planificació de la setmana* 
+
+* [*] API EndPoint pujar i obtenir imatge - 4h
+* [*] API EndPoint eliminar imatges - 2h
+* [*] API EndPoint generar i obtenir imatge de prova - 8h
+* [*] Crear usuaris de prova - 1h
+* [*] Arreglar bug: es pot accedir a qualsevol pagina sense iniciar sessió - 1h
 * [*] Refactor Landing page - 2h
-* [*] Refactor de formularios HTML y CSS - 4h
-* [*] Carrito de compra en servidor - 2h
+* [*] Refactor de formularis HTML i CSS - 4h
+* [*] Carret de compra al servidor - 2h
 * [*] Solucionar error JS addToCart - 1h
-* [*] Refactor diseño carrito de la compra - 4h
+* [*] Refactor disseny carret de la compra - 4h
 * [*] Refactor responsive de header - 4h
-* [*] Pagina registro backend - 6h
-* [*] Paginas de error personalizadas - 4h
-* [*] Cambiar redirección de logos de la web a LandingPage - 1h
-* [*] Refactor carrito compra, eliminar productos - 3h 
+* [*] Pàgina registre backend - 6h
+* [*] Pagines d'error personalitzades - 4h
+* [*] Canviar adreça de logotips de la web a Landing Page - 1h
+* [*] Refactor carret compra, eliminar productes - 3h 
 
 
-Total horas calculadas: *47 horas*
+Total hores calculades: *47 horas*
 
 
+*Valoració*
 
-*Valoracion*
-
-Realizar el carrito de la compra en servidor nos llevó más tiempo de lo esperado porque tiene mucha complejidad de la forma que lo planteamos.
+Realitzar el carret de la compra a servidor ens va portar més temps del que s'esperava perquè té molta complexitat de la manera que ho plantegem.
 
 
-==== Semana 9 (1/05/2023 - 4/05/2023).
-*Planificación de la semana* 
+==== Setmana 9 (1/05/2023 - 4/05/2023).
 
-* [*] Refactor frontend registro y login -2h 
-* [*] Aplicar seguridad a la API - 4h
-* [*] Añadido redirección a detalle de producto desde Home pulsando sobre su imagen o nombre - 1h
-* [*] Diseño pagina Administrar tienda - 2h
-* [*] Diseño pagina Vista de tienda - 1h
-* [*] Diseño pagina Mensajeria interna - 1h
-* [*] Diseño pagina Historico de comandos - 2h
-* [*] Diseño pagina Detalle de producto - 2h
-* [*] Diseño pagina Añadir/Editar producto - 2h
+*Planificació de la setmana* 
+
+* [*] Refactor frontend registre i login -2h 
+* [*] Aplicar seguretat a l'API - 4h
+* [*] Afegit redirecció a detall de producte des de Home prement sobre la seva imatge o nom - 1h
+* [*] Disseny pagina Administrar botiga - 2h
+* [*] Disseny pagina Vista de botiga - 1h
+* [*] Disseny pagina Missatgeria interna - 1h
+* [*] Disseny pagina Històric d'ordres - 2h
+* [*] Disseny pagina Detall de producte - 2h
+* [*] Disseny pagina Afegir/Editar producte - 2h
 * [*] Refactor landing page - 2h
-* [*] FrontEnd vista de la tienda - 3h
-* [*] FrontEnd añadir nuevo producto - 2h
-* [*] Refactor base de datos - 72h
-* [*] Refactor registro, contraseña segura - 1h
-* [*] BackEnd refactor detalle producto - 2h
-* [*] FrontEnd refactor detalle producto - 2h
-* [*] Documentar seguimiento semanal - 6h 
+* [*] FrontEnd vista de la botiga - 3h
+* [*] FrontEnd afegir nou producte - 2h
+* [*] Refactor base de dades - 72h
+* [*] Refactor registre, contrasenya segura - 1h
+* [*] BackEnd refactor detall producte - 2h
+* [*] FrontEnd refactor detall producte - 2h
+* [*] Documentar seguiment setmanal - 6h 
 
 
-Total horas calculadas: *101 horas*
+Total hores calculades: *101 horas*
 
 
+*Valoració*
 
-*Valoracion*
+Aquesta setmana la tasca principal i la més important va ser realitzar el refactor de la base de dades, adaptant-la als darrers requeriments. També s'ha fet la majoria dels dissenys pendents i s'han fet alguns frontend de les pagines, a finals de setmana s'ha començat a fer alguns dels backends.
 
-Esta semana la tarea principal y la más importante fue realizar el refactor de la base de datos, adaptandola a los ultimos requerimientos. Tambien se ha hecho la mayoría de los diseños pendientes y se han hecho algunos frontEnd de las paginas, a finales de semana se ha empezado a hacer algunos de los backEnds.
+*Desviacions*
 
-*Desviaciones*
-
-La base de datos estaba planificada para 24h pero finalmente se ha tardado aproximadamente 72h ya que se ha tenido que adaptar los backend a la nueva estructura de base de datos.
+La base de dades estava planificada per a 24h però finalment s'ha trigat aproximadament 72h ja que s'han hagut d'adaptar els backend a la nova estructura de base de dades.
