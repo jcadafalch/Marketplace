@@ -1,0 +1,59 @@
+$primaryColor: #FFD0AF;
+$hoverColor: #f5a166;
+$textColor: #000000;
+html {
+    font-size: 62.5%;
+    /* 1 rem = 10 px*/
+    position: relative;
+    min-height: 100%;
+    background-color: rgba(136, 168, 249, 0.03);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    margin-bottom: 12rem;
+}
+
+.content--section {
+    // margin: 3vh 10vw 0vh 10vw;
+    font-size: 1.6rem;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+    &:hover {
+        color: $hoverColor;
+    }
+}
+
+.volver {
+    position: absolute;
+    top: 11rem;
+    z-index: 1;
+}
+// Arxius importats, codi dividit en arxius de manera mes organitzada
+// Compta de posar amb '';
+
+@import "header";
+@import "footer";
+@import "home";
+@import "shoppingCart";
+@import "signInSignUp";
+@import "recoveryPassword";
+@import "createNewTenant";
+@import "user";
+@import "landingPage";
+@import "singleProduct";
+@import "error";
+@import "shop";
+@import "order";
+

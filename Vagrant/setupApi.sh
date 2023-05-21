@@ -28,9 +28,19 @@ curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 
 sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+sudo cp -rf /home/vagrant/api/* /var/www/html
+
+sudo cp -rf /home/vagrant/api/.env /var/www/html/
+
 cd /var/www/html
 
+sudo chmod 777 -R .
+
 composer update
+
+rm -rf public/storage
+
+php artisan storage:link
 
 sudo cp -rf /var/www/html/000-default.conf /etc/apache2/sites-available/000-default.conf
 
