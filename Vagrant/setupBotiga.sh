@@ -46,6 +46,8 @@ sudo chmod 777 -R .
 
 composer update
 
+composer install
+
 rm -rf public/storage
 
 php artisan storage:link
