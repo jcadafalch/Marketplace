@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class ProducteTest extends TestCase
 {
-    public function test_get_product_name()
+    public function testGetProductName()
     {
         $p = new Product();
         $p->name = "Joguina";
@@ -21,7 +21,7 @@ class ProducteTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function test_get_product_description()
+    public function testGetProductDescription()
     {
         $p = new Product();
         $p->name = "Joguina";
@@ -32,7 +32,7 @@ class ProducteTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function test_get_product_selled_at()
+    public function testGetProductSelledAt()
     {
         $p = new Product();
         $p->name = "Joguina";
@@ -43,7 +43,7 @@ class ProducteTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    public function test_get_product_name_is_not_string()
+    public function testGetProductNameIsNotString()
     {
         $p = new Product();
         $p->name = true;
@@ -54,7 +54,7 @@ class ProducteTest extends TestCase
         $this->assertNotEquals($expected, $actual);
     }
 
-    public function test_get_product_selled_at_is_timestamp()
+    public function testGetProductSelledAtIsTimestamp()
     {
         $p = new Product();
         $p->name = "Joguina";
