@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
     botiga.vm.box = "ubuntu/focal64"
     botiga.vm.network "private_network", ip: "172.16.50.50"
     botiga.vm.synced_folder "./botiga", "/home/vagrant/botiga/"
-    botiga.vm.provision "shell", path: "setupTenda.sh"
+    botiga.vm.provision "shell", path: "setupBotiga.sh"
     botiga.vm.define "vagrantBotiga"
   end
   
