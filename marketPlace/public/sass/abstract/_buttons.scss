@@ -6,7 +6,8 @@
         border-radius: 2rem;
         padding: 0.5rem;
         margin: 1rem;
-        // width: -webkit-fill-available;
+        width: -webkit-fill-available;
+        width: -moz-available;
 
         &:hover:enabled {
             background-color: $hoverColor;
