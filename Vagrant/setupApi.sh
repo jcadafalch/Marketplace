@@ -50,6 +50,8 @@ sudo a2enmod rewrite
 
 sudo cp -rf /var/www/html/php.ini /etc/php/8.1/cli/
 
+sudo cp -rf /var/www/html/php.ini /etc/php/8.1/apache2/
+
 sudo cp -rf /var/www/html/hosts /etc/
 
 echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
