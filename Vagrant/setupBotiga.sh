@@ -18,6 +18,8 @@ sudo apt install php8.1 -y
 
 sudo apt install php8.1-mysql -y
 
+sudo apt install php8.1-sqlite3 -y
+
 sudo apt-get install php8.1-xml -y
 
 sudo apt install php8.1-mbstring -y
