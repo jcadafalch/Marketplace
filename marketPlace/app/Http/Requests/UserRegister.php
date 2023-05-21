@@ -35,7 +35,7 @@ class UserRegister extends FormRequest
             'required' => 'El campo :attribute no puede estar vacio',
             'same' => 'La contraseñas no conciden',
             'unique' => 'Este correo ya está registrado',
-            'regex' => 'La contraseña tiene que tener: mínimo 8 caracteres, 1 carácter en mayúsculas y al menos 1 carácter especial',
+            'regex' => 'La contraseña tiene que tener: mínimo 8 caracteres, 1 carácter en mayúsculas, 1 caracter numerico y al menos 1 carácter especial',
             'min' => ['string' => 'El campo :attribute tiene que tener como minimo :min caracteres']
             
         ];
