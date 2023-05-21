@@ -22,7 +22,7 @@ class HomeTest extends TestCase
      * A basic feature test example.
      */
    
-    public function test_get_all_categories(){
+    public function testGetAllCategories(){
         $this->createDummyAllProduct();
         $request = [
             'search' => '',
@@ -33,7 +33,7 @@ class HomeTest extends TestCase
         $this->assertSameSize([1,2,3,4,5], $actual);
     }
    
-    public function test_get_one_category(){
+    public function testGetOneCategory(){
         $this->createDummyAllProduct();
         $p = new Product();
         $p->id = '1';
@@ -54,7 +54,7 @@ class HomeTest extends TestCase
         $this->assertEquals($expected, $actual[0]->name);
     }
       
-    public function test_get_all_categories_with_filter_by_name(){
+    public function testGetAllCategoriesWithFilterByName(){
         $this->createDummyAllProduct();
         $request = [
             'search' => 'dolores',
@@ -72,7 +72,7 @@ class HomeTest extends TestCase
         $this->assertEquals($expected, $actual[0]->name);
     }
     
-    public function test_get_one_category_with_filter_by_name(){
+    public function testGetOneCategoryWithFilterByName(){
         $this->createDummyAllProduct();
         $request = [
             'search' => 'laboriosam',
@@ -91,7 +91,7 @@ class HomeTest extends TestCase
         $this->assertEquals($expected, $actual[0]->name);
     }
 
-    public function test_get_not_found_product_by_name_not_exist(){
+    public function testGetNotFoundProductByNameNotExist(){
         $this->createDummyAllProduct();
 
         
@@ -99,7 +99,7 @@ class HomeTest extends TestCase
         $response->assertSeeText('productoNoEncontrado');
     }
 
-    public function test_get_not_found_product_by_category_not_exist(){
+    public function testGetNotFoundProductByCategoryNotExist(){
         $this->createDummyAllProduct();
 
 
@@ -107,7 +107,7 @@ class HomeTest extends TestCase
         $response->assertSeeText('productoNoEncontrado');
     }
 
-    public function test_get_product_by_name_with_accent(){
+    public function testGetProductByNameWithAccent(){
         $this->createDummyAllProduct();
         
 
@@ -115,7 +115,7 @@ class HomeTest extends TestCase
         $response->assertSeeText('quàé');
     }
 
-    public function test_get_all_product_order_by_Asc(){
+    public function testGetAllProductOrderByAsc(){
         $this->createDummyAllProduct();
 
         $request = [
@@ -135,7 +135,7 @@ class HomeTest extends TestCase
         $this->assertEquals($expected, $actual[4]->name);
     }
 
-    public function test_get_all_product_order_by_Desc(){
+    public function testGetAllProductOrderByDesc(){
         $this->createDummyAllProduct();
 
         $request = [

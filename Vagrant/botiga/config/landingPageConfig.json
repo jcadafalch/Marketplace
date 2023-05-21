@@ -2,17 +2,17 @@
     "categorys": {
         "0": {
             "title": "Productos en Rebajas",
-            "categoryName": "eaque",
+            "categoryName": "rem",
             "orderBy": "DESC"
         },
         "1": {
             "title": "Productos más vendidos",
-            "categoryName": "et",
+            "categoryName": "quidem",
             "orderBy": "DESC"
         },
         "2": {
             "title": "Novedades",
-            "categoryName": "quae",
+            "categoryName": "nam",
             "orderBy": "DESC"
         }
     }

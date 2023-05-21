@@ -4,23 +4,23 @@
 
 @section('content')
     <section class="home-section">
-        <article class="home-section-title">
+        <div class="home-section-title">
             <h1> Todos los productos </h1>
             @if (!Route::is('landingPage.showAll'))
                 <form id="form-order" action="{{ route('home.searchProduct') }}" method="get">
                     <input type="hidden" name="category" id="category" />
                     <input type="hidden" name="search" id="search" />
                     <select name="order" id="order">
-                        <option value="" disabled selected hiden>Ordenar por</option>
+                        <option value="" disabled selected hidden>Ordenar por</option>
                         <option value="ASC">A-Z</option>
                         <option value="DESC">Z-A</option>
                     </select>
                 </form>
             @endif
-        </article>
+        </div>
         <ul class="products-section">
             @foreach ($products as $key => $product)
-                <li class="product" id="{{ $product->id }}">
+                <li class="product" {{--id="{{ $product->id }}"--}}>
                     <div class="product-image">
                         <a href="{{ route('product.show', ['id' => $product->id]) }}">
                             @if ($product->getMainImage() != null)

@@ -183,7 +183,7 @@ class ShopController extends Controller
 
         if ($request->profileImg != null) {
 
-            if($shop->banner_id != null){
+            if($shop->logo_id != null){
                 self::deleteOldShopImage($shop, $request);
                 $img = self::saveImage($request);
                 $image = Image::createImageObject($shop->name, $img);

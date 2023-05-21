@@ -23,7 +23,6 @@
                                 </div>
                             </li>
                         </a>
-                        <hr>
                     @endforeach
                 </ul>
             </article>

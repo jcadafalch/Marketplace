@@ -4,7 +4,7 @@
 
         &-title {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
             align-items: center;
             margin-bottom: 2rem;
 
@@ -71,6 +71,14 @@
         }
     }
 
+    &-nameSingle {
+        color: black;
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
+    }
+
     &:hover {
         box-shadow: 0 3px 5px 0 black;
     }
@@ -88,6 +96,20 @@
 
     li {
         border: 1px solid rgba(37, 50, 56, 0.05);
-        padding: 1rem 3rem 1rem 3rem;
+        
+        span {
+            padding: 1rem 3rem 1rem 3rem;
+            display: block;
+        }
+
+        a {
+            padding: 1rem 3rem 1rem 3rem;
+            display: block;
+            height: 100%;
+        }
+    }
+
+    .active {
+        color: $hoverColor;
     }
 }
