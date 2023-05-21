@@ -46,7 +46,7 @@ composer update
 
 composer install
 
-sudo chmod 777 -R .
+sudo chmod -R 777 .
 
 rm -rf public/storage
 
