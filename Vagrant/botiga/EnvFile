@@ -2,7 +2,7 @@ APP_NAME=CraftMade
 APP_ENV=local
 APP_KEY=base64:yGbfJFeBgn60hYUmIu8WBSf8cKWgE/VBJAF+Lmrxi84=
 APP_DEBUG=true
-APP_URL=http://localhost:8000
+APP_URL=https://botiga.com
 
 LOG_CHANNEL=stack
 LOG_DEPRECATIONS_CHANNEL=null
@@ -11,9 +11,9 @@ LOG_LEVEL=debug
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=
+DB_DATABASE=marketplace
+DB_USERNAME=admin
+DB_PASSWORD=Aa123456?
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
@@ -60,12 +60,10 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 PAGINATE = 10
 
-LANDING_PAGE_CONFIG =  \config\landingPageConfig.json
-
-DOWNLOAD_PDF_AUTOMATICALLY = false
+LANDING_PAGE_CONFIG =  /config/landingPageConfig.json
 
 API_TOKEN= "9ab84c04-e834-11ed-a05b-0242ac120003"
 
-API_URL= "http://127.0.0.1:8000/api/"
+API_URL= "https://172.16.50.60/api/"
 
-API_URL_IMAGES= "http://127.0.0.1:8000/"
+API_URL_IMAGES= "https://172.16.50.60/"
