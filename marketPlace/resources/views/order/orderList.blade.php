@@ -24,7 +24,7 @@
                         <ul class="user-order-history-list">
                             @foreach ($completedOrderLines as $completedOrderLine)
                                 @if ($completedOrderLine->orderId == $order->id)
-                                    <li class="order-product" id="1">
+                                    <li class="order-product">
                                         <div>
                                             <img class="order-product-image"
                                                 src="{{ asset('storage/img/shopProfile/' . $completedOrderLine->shopLogoUrl) }}"
@@ -51,8 +51,6 @@
                                             </a>
                                         </div>
                                     </li>
-
-                                    <hr>
                                 @endif
                             @endforeach
                         </ul>

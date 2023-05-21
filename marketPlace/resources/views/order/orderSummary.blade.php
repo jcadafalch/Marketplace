@@ -4,10 +4,6 @@
     <section class="order-section">
         <article class="order-title">
             <h1>Resumen del pedido</h1>
-            {{-- <section>
-            <h1>Resumen de tu pedido</h1>
-            <h5>{{ count($producte) }} artículos</h5>
-        </section> --}}
             <a href="{{ route('order.orderSummaryPdf', ['id' => $order->id]) }}">
                 <span class="material-symbols-outlined">
                     download

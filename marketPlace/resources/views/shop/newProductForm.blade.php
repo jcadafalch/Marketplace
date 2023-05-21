@@ -36,7 +36,7 @@
             <div class="upload-container">
                 <div class="drop-area">
                     <label for="file-input"> Imagen destacada </label>
-                    <input name="file" type="file" id="file-input" accept="image/*" value="{{ old('file') }}"
+                    <input name="file" type="file" id="file-input" accept="image/*"
                         hidden />
 
                     <div class="preview-container hidden">
@@ -49,9 +49,9 @@
             <div class="upload__box drop-area">
                 <div class="upload__btn-box">
                     <label class="upload__btn">
-                        <p>Otras Imagenes</p>
+                        Otras Imagenes
                         <input name="otrasImagenes[]" type="file" multiple data-max_length="5" accept="image/*"
-                            class="upload__inputfile" value="{{ old('otrasImagenes[]') }}">
+                            class="upload__inputfile">
                     </label>
                 </div>
                 <div class="upload__img-wrap"></div>
@@ -60,12 +60,6 @@
 
                 <div id="multiselect" class="multiselect checkbox-dropdown">
                     <p>Categorias</p>
-                    {{-- <div class="selectBox" onclick="showCheckboxes()">
-                        <select>
-                            <option>Selecciona categorias</option>
-                        </select>
-                        <div class="overSelect"></div>
-                    </div> --}}
                     <ul id="checkboxes" class="checkbox-dropdown-list">
                         @foreach ($categories as $item)
                             <li>
@@ -79,12 +73,6 @@
 
                 <div id="multiselect2" class="multiselect checkbox-dropdown" hidden>
                     <p>Subcategorias</p>
-                    {{-- <div class="selectBox" onclick="showCheckboxes2()">
-                        <select>
-                            <option>Selecciona subcategorias</option>
-                        </select>
-                        <div class="overSelect"></div>
-                    </div> --}}
                     <ul id="checkboxes2" class="checkbox-dropdown-list">
                         <li class="check">
 
