@@ -14,13 +14,13 @@
 |====================
 
 * **Primary color**	
-** El Color primario de la app es el azul, se utiliza en la cabecera, el pie de pagina y los botones
+** El Color primari de l'app és el taronja, s'utilitza a la capçalera, el peu de pagina i els botons.
 * **Secunday Color**
-** Utilizado para el Hover de los enlaces e iconos. Al ponerse encima de un enlace o icono cambia de color negro a azul.
+** Utilitzat per al Hover dels enllaços i icones. En posar-se sobre un enllaç o icona canvia de color negre a taronja.
 * **Text Color**
-** El texto de la aplicacion se visualizara en color negro.
+** El text de l'aplicació es mostra en color negre.
 * **Hover Color**
-** Al posesionarse encima de un botón el texto del mismo cambiará de negro a blanco.
+** En posicionar-se damunt d'un botó el text canviarà de negre a blanc.
 
 
 ==== Logo
@@ -82,7 +82,7 @@ image::Images\Buttons\Botton_Hover.png[width="20%"]
 ==== Fondo de pantalla
 
 
-El fondo de pantalla sera de color blanco, el header y el footer del color primary. 
+El fons de pantalla serà de color blanc, el header i el footer del color primary.
 
 [width="30%"]
 |====================
