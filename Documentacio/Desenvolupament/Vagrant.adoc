@@ -11,15 +11,21 @@ Farem ser la següent configuració perla nostra màquina amb Vagrant.
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "debian/bullseye64"
-  config.vm.hostname = "javamariadb"
-  config.vm.define "javamariadb"
-  config.vm.network "private_network", ip: "172.16.0.100"
-  config.vm.provision "shell", path: "bootstrap.sh"
-  config.vm.provider "virtualbox" do |vb|
-	vb.name = "Marketplace_grup5" 
-    vb.memory = "512"
-    vb.cpus = 1
+
+  config.vm.define "tenda" do |tenda|
+    tenda.vm.box = "ubuntu/focal64"
+    tenda.vm.network "private_network", ip: "172.16.50.50"
+    tenda.vm.synced_folder "./tenda", "/var/www/html"
+    tenda.vm.provision "shell", path: "setupTenda.sh"
+    tenda.vm.define "vagrantTenda"
+  end
+
+  config.vm.define "api" do |api|
+    api.vm.box = "ubuntu/focal64"
+    api.vm.network "private_network", ip: "172.16.50.60"
+    api.vm.synced_folder "./api", "/var/www/html"
+    api.vm.provision "shell", path: "setupApi.sh"
+    api.vm.define "vagrantApi"
   end
 end
 
@@ -27,93 +33,178 @@ end
 
 
 
-==== Script bash
+==== Script bash per configurar l'api
 
 [source, shell]
 ----
-#!/bin/sh
+#!/bin/bash
 
-apt-get update
-# apt-get upgrade -y
-apt-get install -y mariadb-server mariadb-client
+sudo apt update
 
-# Crear la base de dades
+sudo apt install -y mysql-server
 
+sudo add-apt-repository ppa:ondrej/php -y
 
-# Configuració de MariaDB:
-# - Permet connexions des de qualsevol host
-# - Activa GROUP BY estricte
-# - Permet || com a CONCAT (PIPES_AS_CONCAT)
-# - No permet " com a delimitador de cadenes, només ' (ANSI_QUOTES)
-echo *** Configura MariaDB ***
-cp /vagrant/50-server.cnf /etc/mysql/mariadb.conf.d
+sudo apt install php8.1 -y
 
-# Crea l'usuari admin amb accés remot
-echo *** Crea usuari ***
-mysql << EOF
-CREATE OR REPLACE USER admin@'%' IDENTIFIED BY '1234';
-GRANT ALL ON *.* TO admin@'%';
+sudo apt install php8.1-mysql -y
+
+sudo apt-get install php8.1-xml -y
+
+sudo apt install php8.1-mbstring -y
+
+sudo apt install php8.1-pdo -y
+
+sudo apt install curl -y
+
+sudo apt install php8.1-gd -y
+
+sudo apt-get install php8.1-curl -y
+
+sudo apt install php8.1-cli unzip -y
+
+curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+
+sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+cd /var/www/html
+
+composer update
+
+sudo cp -rf /var/www/html/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+sudo a2enmod rewrite
+
+sudo cp -rf /var/www/html/php.ini /etc/php/8.1/cli/
+
+sudo cp -rf /var/www/html/hosts /etc/
+
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+
+sudo apt-get install -y ttf-mscorefonts-installer
+
+sudo cp -rf /var/www/html/arial.ttf /var/www/html/app/Http/Controllers/
+
+sudo cp -rf /var/www/html/ApiController.php /var/www/html/app/Http/Controllers/
+
+sudo a2enmod ssl
+
+sudo systemctl restart apache2.service
+
+----
+
+<1> Actualitzem les llibreries del repositori d'ubuntu
+
+<2> Instal·lem php 8.1 més totes les llibreries que fan falta per fer funcionar l'api.
+
+<3> Renombrem el fitxer __"envFile"__ a __".env"__ per a que funcioni la nostra web.
+
+<3> Copiem el fitxer env y tota l'aplicació de la botiga al la carpeta del lloc d'apache.
+
+<4> Entrem a la carpeta del lloc d'apache y donem permisos a tots els fitxers.
+
+<5> Actualitzem composer.
+
+<6> Eliminem la carpeta de __public/storage__ y per a continuació fer un __storage:link__.
+
+<7> Copiem la configuració dels llocs disponibles.
+
+<8> Fem un __a2enmod rewrite__ per modificar l'url del lloc.
+
+<9> Copiem el __php.ini__ amb les llibreries necesaries per el funcionament de l'api.
+
+<10> Copiem el fitxer de __hosts__ amb l'ip de l'api afegida.
+
+<11> Instalem el gestor de fonts y copiem la correcció y la font instalada a la carpeta del controlador. Ho fem per evitar un problema amb la font a l'hora de treballar amb imatges.
+
+<12> Activem l'ssl
+
+<13> Per últim, reiniciem apache.
+ 
+==== Script bash per configurar la botiga
+
+[source, shell]
+----
+#!/bin/bash
+
+sudo apt update
+
+sudo apt install -y mysql-server
+
+sudo add-apt-repository ppa:ondrej/php -y
+
+sudo apt install php8.1 -y
+
+sudo apt install php8.1-mysql -y
+
+sudo apt-get install php8.1-xml -y
+
+sudo apt install php8.1-mbstring -y
+
+sudo apt install curl -y
+
+sudo apt-get install php8.1-curl -y
+
+sudo apt install php8.1-cli unzip -y
+
+curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+
+sudo php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
+cd /var/www/html
+
+composer update
+
+sudo cp -rf /var/www/html/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+sudo a2enmod rewrite
+
+sudo mysql -u root << EOF
+
+CREATE USER 'admin'@'%' IDENTIFIED BY 'Aa123456?';
+
+GRANT ALL PRIVILEGES ON * . * TO 'admin'@'%';
+
 EOF
 
-systemctl restart mariadb
+sudo cp -rf /var/www/html/php.ini /etc/php/8.1/cli/
+
+sudo cp -rf /var/www/html/hosts /etc/
+
+sudo a2enmod ssl
+
+sudo systemctl restart apache2.service
 
 ----
+<1> Actualitzem les llibreries del repositori d'ubuntu
 
-<1> Substituirem l'arxiu de configuració de Mariadb de connexions, per poder connectar-nos a la base de dades de la màquina virtual.
+<2> Instal·lem mysql
 
-<2> Script de sql, on farem tota la configuració de la base de dades:
-** Creació de l'usuari que farem servir.
-** Creació de la base dades.
-** Inserts inicials a la base de dades.
+<3> Creem y domnem permisos a un nou usuari de mysql
 
-==== Configuració Mariadb per les connexions
+<4> Instal·lem php 8.1 més totes les llibreries que fan falta per fer funcionar l'api.
 
-[source, bash]
+<5> Renombrem el fitxer __"envFile"__ a __".env"__ per a que funcioni la nostra web.
 
-----
-#
-# These groups are read by MariaDB server.
-# Use it for options that only the server (but not clients) should see
+<6> Copiem el fitxer env y tota l'aplicació de la botiga al la carpeta del lloc d'apache.
 
-# this is read by the standalone daemon and embedded servers
-[server]
+<7> Entrem a la carpeta del lloc d'apache y donem permisos a tots els fitxers.
 
-# this is only for the mysqld standalone daemon
-[mysqld]
+<8> Actualitzem composer.
 
-#
-# * Basic Settings
-#
+<9> Eliminem la carpeta de __public/storage__ y per a continuació fer un __storage:link__.
 
-user                    = mysql
-pid-file                = /run/mysqld/mysqld.pid
-basedir                 = /usr
-datadir                 = /var/lib/mysql
-tmpdir                  = /tmp
-lc-messages-dir         = /usr/share/mysql
-lc-messages             = en_US
-skip-external-locking
+<10> Fem un __migrate__ per crear la base de dades y un __db:seed__ per afegir dades de prova.
 
-# Broken reverse DNS slows down connections considerably and name resolve is
-# safe to skip if there are no "host by domain name" access grants
-#skip-name-resolve
+<11> Copiem la configuració dels llocs disponibles.
 
-# Instead of skip-networking the default is now to listen only on
-# localhost which is more compatible and is not less secure.
-bind-address            = 0.0.0.0 <1>
-----
+<12> Fem un __a2enmod rewrite__ per modificar l'url del lloc.
 
-<1> Donarem permisos perquè qualsevol pugui accedir.
+<13> Copiem el __php.ini__ amb les llibreries necesaries per el funcionament de la botiga.
 
+<14> Copiem el fitxer de __hosts__ amb l'ip de la botiga afegida.
 
-==== Script sql
+<12> Activem l'ssl.
 
-[source, sql]
-
-----
-
-
-
-
-----
+<13> Per últim, reiniciem apache.
 

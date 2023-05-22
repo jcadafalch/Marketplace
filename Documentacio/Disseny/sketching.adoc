@@ -21,6 +21,7 @@ image::.\..\Images\Sketching\recuperar_passwd.jpg[width="60%"]
 ==== Home Page
 .Home page 
 image::.\..\Images\Sketching\home.jpg[width="60%"]
+
 .Disseny Home anterior
 image::.\..\Images\Sketching\HomePage.jpg[width="60%"]
 

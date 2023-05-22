@@ -43,9 +43,6 @@ include::Memoria\memoria.adoc[]
 - Apache
 - Vagrant
 
-=== Requisits de Funcionament  
-
-
  
 == Disseny
 include::./Disseny/Disseny.adoc[]
@@ -86,6 +83,12 @@ include::Conclusions/Conclusions.adoc[]
 == Glossari 
 
 ===  Recursos de consulta
+* https://stackoverflow.com/[Stackoverflow]
+
+* https://laravel.com/[Web Ofcial]
+
+* https://laracasts.com/[Laracast]
+
 
 ==== Documentació per Php 
 
@@ -135,8 +138,15 @@ include::Conclusions/Conclusions.adoc[]
 
 * https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[Manual Oficial AsciiDoc]
 
+==== Laravel 
 
+* https://quejox.gitlab.io/materialsweb/curs22_23/daw_m07laravel/apunts.html[Apunts Laravel Josep Queralt]
 
+* https://git.copernic.cat/josep.queralt/laravel_daw[Repositori de Classe Laravel]
+
+==== Apunts DAW Jaume y Dani
+
+* https://jcadafalch.notion.site/Apunts-DAW-3d160537de7d414d8e514f9ce80eb96e[Notion Personal]
 
 == Presentació del projecte
 
