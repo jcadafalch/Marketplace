@@ -45,9 +45,6 @@
 
 **Enllaç Video**-> https://youtu.be/33SM8cCGoWU[Video]
 
-**Enllaç Presentacío** -> 
-
-
 ==== Memòria
 
 **Enllaç Memòria**->  https://github.com/jcadafalch/Marketplace/blob/main/Documentacio/Memoria.adoc[Memoria]
