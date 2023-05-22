@@ -54,7 +54,7 @@ include::Desenvolupament/Vagrant.adoc[]
 include::Desenvolupament/GestioDependencies.adoc[]
 
 include::Desenvolupament/InjeccioDependencies.adoc[]
-include::Desenvolupament/PhpMailer.adoc[]
+include::Desenvolupament/Mail.adoc[]
 
 
 ==  Manual d’instal·lació/distribució de l’aplicació.
@@ -150,6 +150,9 @@ include::Conclusions/Conclusions.adoc[]
 
 == Presentació del projecte
 
+Enllaç video de presentació del projecte.
+
+* https://youtu.be/33SM8cCGoWU[Video Presentació]
 
 == Appendix: Llicència: 
 === Llicència pel text:

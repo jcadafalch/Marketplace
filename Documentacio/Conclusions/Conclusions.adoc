@@ -1,5 +1,5 @@
 :sectnums: |,all|
 
-Després d'estar treballant en el projecte de Laravel, amb modalitat d'ABP, podem dir que:
+Després de treballar en el projecte de Laravel utilitzant la metodologia ABP, podem dir el següent:
 
-Hem pogut adquirir unes bones bases, amb el framework de Laravel, a força de treballar diàriament. Les primeres setmanes han sigut una mica dures, ja que estàs en fase d'adaptar-te a com funciona Laravel. Podem dir com a valoració personal, que en el moment que agafes ritma i entens com funciona tot, ja comença a anar tot rodat. Com a conclusió de l'ús d'un framework, podem dir que et dona moltes facilitats a l'hora de desenvolupar, un plus de seguretat irapidesa a l'hora de desenvolupar una pàgina web.
+Hem aconseguit adquirir unes bones bases en el framework de Laravel mitjançant el treball diari. Les primeres setmanes han estat una mica dures, ja que estàvem en procés d'adaptar-nos a com funciona Laravel. En la nostra opinió personal, un cop ens hem habituat i hem entès com funciona tot, les coses han començat a fluir millor. Com a conclusió sobre l'ús d'un framework, podem afirmar que ens proporciona moltes facilitats a l'hora de desenvolupar, a més d'oferir una major seguretat i rapidesa en el desenvolupament de pàgines web.

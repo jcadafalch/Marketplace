@@ -47,3 +47,4 @@ $ composer require barryvdh/laravel-debugbar
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
     }
+----
