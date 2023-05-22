@@ -1,16 +1,49 @@
 === Injecció de dependencies
-==== PHPMailer
-Per instalar PHPMailer, obrim un terminal, ens col·loquem a la carpeta arrel del projecte.
+==== Dompdf
+Per instalar Dompdf, obrim un terminal, ens col·loquem a la carpeta arrel del projecte.
 
 [,PS]
 ----
-$ composer require phpmailer/phpmailer
+$ composer require dompdf/dompdf
 ----
-image::Images\Desenvolupament\instalarPhpMailer.PNG[Imatge del terminal al instalar el phpmailer, 800]
 
-Un cop instalat, veurem que se'ns ha creat una nova carpeta anomenada _vendor_ on dins trobarem: una carpeta composer i la carpeta de la dependencia que acabem d'instalar.
+Llibreria per poder generar PDF.
 
-El fitxer *composer.json* també s'ha actualitzat afegint la nova dependencia.
-I s'ha creat un nou fitxer anomenat _composer.lock_ la qual inclou una llista de les versions exactes dels paquets que s’han instal·lat.
+==== barryvdh/laravel-debugbar
 
-image::Images\Desenvolupament\CarpetesAmbPhpMailerInstalat.PNG[Imatge de les carpetes i fitxers creats després de instalar PhpMailer]
+Debug bar per facilitar el desenvolupament de l'aplicació, per poder debugar el codi.
+[,PS]
+----
+$ composer require barryvdh/laravel-debugbar
+----
+
+*Json del composer*
+
+
+[,Json]
+----
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1",
+        "dompdf/dompdf": "^2.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^10.0",
+        "laravel/sanctum": "^3.2",
+        "laravel/tinker": "^2.8",
+        "laravel/ui": "^4.2"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.8",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/pint": "^1.0",
+        "laravel/sail": "^1.18",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
+    }
