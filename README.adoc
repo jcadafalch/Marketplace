@@ -32,7 +32,7 @@
 
 ==== Repositori 
 
-**Enllaç repository**->   https://git.copernic.cat/cadafalch.miro.jaume/marketplace[Enllaç Repositori]
+**Enllaç repository**->   https://github.com/jcadafalch/Marketplace[Enllaç Repositori]
 
 ==== Trello 
 **Enllaç trello**-> https://trello.com/b/usLdqm1T/abp-2-grupo5[Trello]
@@ -43,12 +43,12 @@
 
 ==== Presentació 
 
-**Enllaç Video**-> 
+**Enllaç Video**-> https://youtu.be/33SM8cCGoWU[Video]
 
 **Enllaç Presentacío** -> 
 
 
 ==== Memòria
 
-**Enllaç Memòria**->  https://git.copernic.cat/cadafalch.miro.jaume/marketplace/-/blob/Develop/Documentacio/Memoria.adoc[Memoria]
+**Enllaç Memòria**->  https://github.com/jcadafalch/Marketplace/blob/main/Documentacio/Memoria.adoc[Memoria]
 

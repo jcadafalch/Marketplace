@@ -1,0 +1,3 @@
+:sectnums: |,all|
+
+Gràcies a aquest projecte, ens hem familiaritzat amb el _framework_ *Laravel* i après a treballar amb *ORM* (Object Relational Mapping), en aquest cas *Eloquent*, que és l'ORM que integra Laravel.
