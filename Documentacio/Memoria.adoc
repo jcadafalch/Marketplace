@@ -71,9 +71,16 @@ include::Manual_de_Instalacio\ManualDeInstalacio.adoc[]
 
 include::Linies_Futures\LiniesFutures.adoc[]
 
-== Conclusions
+== Desviacions el la planificació
 
-=== Aportacions del projecte als coneixements de l’alumne
+include::Conclusions/Desviacions_Planificacio.adoc[]
+
+== Aportacions del projecte
+
+include::Conclusions/AportacióDelProjecte.adoc[]
+
+== Conclusions
+include::Conclusions/Conclusions.adoc[]
 
 
 == Glossari 
