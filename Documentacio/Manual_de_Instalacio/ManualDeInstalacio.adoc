@@ -5,14 +5,38 @@ Per instal·lar el programa **marketPlace**, prèviament necessitarem tenir desc
 * https://www.vagrantup.com/[Vagrant]
 * https://www.virtualbox.org/[VirtualBox] (o un altre software de virtualització)
 
-Per descarregar-nos el programa, accedim al https://github.com/jcadafalch/Marketplace[repositori del projecte] i ens baixem la carpeta _marketPlace_Server_.
+Per descarregar-nos el programa, accedim al https://github.com/jcadafalch/Marketplace[repositori del projecte] i entrem a la catpeta __vagrant__ a través de terminal.
 
 
-Un cop hem baixat la carpeta i estem dins d'aquesta, obrim un terminal (que estigui situat en la carpeta) i executem la següent comanda:
+Un cop dins la carpeta i estem dins d'aquesta carpeta a través de terminal, executem la següent comanda:
 [,PS]
 ----
 $ vagrant up
 ----
 
+.Atenció:
+[IMPORTANT]
+====
+El Vagrant pot trigar en aixecar-se entre 3~5 minuts depenent dels components de la máquina real.
 
-A partir d'aquest moment ja podrem obrir un navegador i buscar la següent URL:  http://172.16.0.100/[http://172.16.0.100/]
+====
+
+Avanç de conectarse a l'aplicació, haurem de canviar els hosts de la nostre máquina, ja que per defecte es conectará a una altra web que no es la nostra. 
+
+En el cas de Windows:
+
+- Anar a la carpeta: Disc Local C -> Windows -> System32 -> drivers -> etc
+
+- Obrir el fitxer de __hosts__
+
+- Afegir a l'ultima linea __172.16.50.50 botiga.com__
+
+En el cas d'Ubuntu:
+
+- Anar a la carpeta: etc
+
+- Afegir a l'ultima linea __172.16.50.50 botiga.com__
+
+A partir d'aquest moment ja podrem obrir un navegador i buscar la següent URL: https://botiga.com[https://botiga.com]
+
+
