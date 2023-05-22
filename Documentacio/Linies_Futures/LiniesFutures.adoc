@@ -1,4 +1,7 @@
 === Implementacions pendents
 
-De les funcionalitats proposades, ens ha faltat implementar la missatgeria interna, com a futures implementacions, ens agradaria implementar la missatgeria interna i afegir 'el modo oscuro' a l'aplicació
+De les funcionalitats proposades, ens ha faltat implementar la missatgeria interna, com a futures implementacions, ens agradaria implementar 'el modo oscuro' a l'aplicació
 
+=== Errors a solucionar
+
+A l'hora de la entrega, vem trobar que un usuari no logat, si fa una comanda, dona un error 500. Investigant ens vam adonar de que té una solcució molt senzilla y la voldríem aplicar.
