@@ -6,8 +6,8 @@
 |====================
 ^| Primary color ^| Secunday Color ^| Text Color ^| Hover Color 
 ^| #88a8f9 ^| #576DA5 ^| #000000 ^| #FFFFFF 
-^a| image::https://encycolorpedia.com/88a8f9.svg[primary color, 100]
-^a| image::https://encycolorpedia.com/576da5.svg[secondary color, 100]
+^a| image::https://encycolorpedia.com/ffd0af.svg[primary color, 100]
+^a| image::https://encycolorpedia.com/f5a166.svg[secondary color, 100]
 ^a| image::https://encycolorpedia.com/000000.svg[text color, 100]
 ^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
 
@@ -22,22 +22,15 @@
 * **Hover Color**
 ** Al posesionarse encima de un botón el texto del mismo cambiará de negro a blanco.
 
-.Ombres
-[width="100%",options="header,footer"]
-|====================
-^| Light Shadow ^| Dark Shadow ^| Complementary Shadow
-^| #exa  ^| #exa  ^| #exa 
-^a|  color
-^a| color
-^a| 
-|====================
 
 ==== Logo
 
 
-Casos de uso:
+Cas d'ús:
  
-El *logotip genèric* sempre serà de color _#complementary_ i s'ubicarà sempre que es pugui sobre _#light_. En aquest cas, la 'G' sempre anirà separada de 'expenses' i totes les lletres seran majúscules per a mantenir els estàndards d'imatge de marca.
+El *logotip genèric* sempre serà de color *_Negre_* i s'ubicarà sempre que es pugui sobre *_Primary color_*. 
+
+Pel *Header*, la *'CM'* sempre anirà darrere, com a sigles de *'Craft Made'* i totes les lletres seran majúscules per a mantenir els estàndards d'imatge de marca.
 
 .Logo Header
 [width="40%"]
@@ -45,6 +38,7 @@ El *logotip genèric* sempre serà de color _#complementary_ i s'ubicarà sempre
 ^a| image::Logo.png[]
 |====================
 
+Pel *Footer*, fem servir les sigles *'CM'*, totes les lletres seran majúscules per a mantenir els estàndards d'imatge de marca.
 
 
 .Logo Footer
@@ -78,36 +72,22 @@ image::Images\Buttons\Button.png[width="20%"]
 .boton con Hover
 image::Images\Buttons\Botton_Hover.png[width="20%"]
 
-==== Hovers
+.Botón sin hover Header y Landing
+image::Images\Buttons\Landing_Page_Sin_Hover.png[width="20%"]
 
-Els _hover_ que succeeixin sobre un fons _#light_ es representaran amb un fons de color _#light shadow_; sense obligació de canviar el color de cap altre element implicat.
-
-
-.hover sobre #light
-[width="25%"]
-|====================
-^a|  
-|====================
-
-  
-Els _hover_ que succeeixin sobre un fons _#darker_ es representaran canviant el color de l'element implicat a _#complementary_.
-
-
-.hover sobre #darker
-[width="25%"]
-|====================
-^a|  
-|====================
+.Botón con hover Header y Landing
+image::Images\Buttons\Botton_Hover.png[width="20%"]
 
 
 ==== Fondo de pantalla
 
 
-El fondo de pantalla sera de color blanco. 
+El fondo de pantalla sera de color blanco, el header y el footer del color primary. 
 
-[width="10%"]
+[width="30%"]
 |====================
-^| Primary color
-^| #Logo
+^| Primary color ^| Color   Blanc 
+^a| image::Logo.png[] ^a| image::Logo.png[]
+^a| image::https://encycolorpedia.com/ffd0af.svg[hover color, 100]
 ^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
 |====================
