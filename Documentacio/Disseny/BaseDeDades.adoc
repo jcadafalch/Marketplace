@@ -2,12 +2,138 @@
 === Base de dades
 ==== Diagrama Relacional
 
-Aquí va la imatge
+image::Images\Base_de_datos\Diagrama.png[with="40%"]
 
-==== Scripts
-===== Creació de la base de dades
-[,SQL]
+==== Migracions
+[,PHP]
 ----
-
+   Schema::create('images', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->string('name');
+        $table->string('url');
+    });
+        
+    Schema::create('users', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->string('path')->nullable();
+        $table->string('email')->unique();
+        $table->timestamp('email_verified_at')->nullable();
+        $table->string('password');
+        $table->rememberToken();
+        $table->timestamps();
+    });    
+    
+    Schema::create('shops', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->string('ownerName')->nullable(false);
+        $table->string('name')->unique()->nullable(false);
+        $table->string('nif')->unique()->nullable(false);
+        $table->string('description')->nullable();
+    
+        $table->unsignedBigInteger('logo_id')->index()->nullable();
+        $table->unsignedBigInteger('banner_id')->index()->nullable();
+        $table->unsignedBigInteger('user_id')->index();
+        $table->foreign('logo_id')->references('id')->on('images');
+        $table->foreign('banner_id')->references('id')->on('images');
+        $table->foreign('user_id')->references('id')->on('users')->cascadOnDelete();
+    });
+    
+    Schema::create('password_reset_tokens', function (Blueprint $table) {
+        $table->id();
+        $table->string('email');
+        $table->string('token');
+        $table->timestamp('created_at')->nullable();
+        $table->timestamp('expires_at')->nullable();
+    });
+    
+    Schema::create('personal_access_tokens', function (Blueprint $table) {
+        $table->id();
+        $table->morphs('tokenable');
+        $table->string('name');
+        $table->string('token', 64)->unique();
+        $table->text('abilities')->nullable();
+        $table->timestamp('last_used_at')->nullable();
+        $table->timestamp('expires_at')->nullable();
+        $table->timestamps();
+    });
+    
+    Schema::create('products', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->string('name')->unique()->nullable(false);
+        $table->string('description')->nullable(false);
+        $table->integer('price');
+        $table->timestamp('selled_at')->nullable();
+        $table->boolean('isVisible')->default(true);
+        $table->boolean('isDeleted')->default(false);
+        $table->integer('order');
+        $table->unsignedBigInteger('shop_id')->index();
+        $table->foreign('shop_id')->references('id')->on('shops')->cascadOnDelete();
+    });
+    
+    Schema::create('categories', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->string('name')->unique()->nullable(false);
+        $table->bigInteger('parent_id')->nullable(true);
+    });
+    
+    Schema::create('category_product', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->unsignedBigInteger('category_id')->index();
+        
+        $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
+        $table->unsignedBigInteger('product_id')->index();
+        $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+    });
+    
+    Schema::create('orders', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->unsignedBigInteger("user_id")->nullable();
+        $table->boolean("in_process")->nullable()->default(false);
+        $table->timestamp("closed_at")->nullable();
+    
+        $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+    });
+    
+    Schema::create('order_lines', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->unsignedBigInteger("order_id")->nullable();           
+        $table->unsignedBigInteger('shop_id')->index()->nullable();
+        $table->timestamp('paid_at')->nullable();
+        $table->boolean("pendingToPay")->nullable()->default(false);
+        $table->timestamp('send_at')->nullable();
+        $table->timestamp('recieved_at')->nullable();
+          
+        $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
+        $table->foreign('shop_id')->references('id')->on('shops')->cascadeOnDelete();
+    });
+    
+    Schema::create('product_oder_lines', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->integer('price');
+        $table->unsignedBigInteger('orderLine_id')->index();
+        $table->unsignedBigInteger('product_id')->index();
+        $table->foreign('orderLine_id')->references('id')->on('order_lines')->cascadeOnDelete();
+        $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+    });
+    
+    Schema::create('product_images', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+        $table->boolean('isMain')->default(false);
+        $table->unsignedBigInteger('image_id')->index();
+        $table->unsignedBigInteger('product_id')->index();
+        $table->foreign('image_id')->references('id')->on('images')->cascadeOnDelete();
+        $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
+    });
+    
 ----
 
