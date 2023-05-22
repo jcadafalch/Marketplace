@@ -64,7 +64,7 @@ include::Desenvolupament/PhpMailer.adoc[]
 include::Manual_de_Instalacio\ManualDeInstalacio.adoc[]
 
 == Manual d’usuari
-
+include::Guia\GuiaUsuari.adoc[]
 
 
 == Línies futures
