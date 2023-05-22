@@ -56,7 +56,7 @@ Com a usuari verificat, tindrán un perfil d'usuari, en aquesta pagina, trobarà
 
 . "Mi tienda": Pots crear la teva propia botiga si vols vendre productes fets per tu. Només has d'emplenar el formulari amb les dades demanades per donal d'alta la teva propia botiga.
 
-. "Pedidos realizados": On trobarás un historis de totes les teves comandes realitzades.
+. "Pedidos realizados": On trobarás un historics de totes les teves comandes realitzades.
 
 Un cop d'onat d'atla una botiga, en el perfil d'usuari apareixerán dos botons més.
 
