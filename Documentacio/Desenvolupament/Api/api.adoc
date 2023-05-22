@@ -1,4 +1,6 @@
-== Que es una API REST?
+=== APi
+
+==== Que es una API REST?
 Una API REST (Representational State Transfer) és un estil arquitectònic per a dissenyar serveis web que permet la comunicació entre sistemes distribuïts a través del protocol HTTP. Proporciona una forma estàndard i flexible d'intercanvi de dades entre diferents aplicacions o components de programari.
 
 Una API REST defineix un conjunt de mètodes, també coneguts com a verbs HTTP, que representen les operacions que es poden realitzar sobre els recursos exposats pel servei web. Els mètodes més comuns en una API REST són els següents:
@@ -23,10 +25,45 @@ A més d'aquests mètodes bàsics, també existeixen altres mètodes menys utili
 Aquests mètodes permeten realitzar operacions CRUD (Create, Read, Update, Delete) bàsiques en els recursos exposats per una API REST, la qual cosa facilita la interacció i manipulació de dades entre diferents sistemes.
 
 
-== Seguretat de la API
+==== Seguretat de la API
 La seguretat de l'API es basa en un bearen token ubicat tant en el servidor de l'API com en el servidor client. Si els bearen token d'ambdós servidors no coincideixen, no es té accés a l'API.
 
 
+==== Endpoints que conté l'Api.
+
+
+===== Endpoint */getImage* 
+
+Aquest endpoint s'encarrega de retornar el nom de la imatge si existeix al servidor, si no retorna un missatge d'imatge no trobada amb un *status 404*.
+
+
+
+===== Endpoint */getImages* 
+
+Aquest endpoint s'encarrega de retornar el nom de totes les imatges que hi ha al servidor, si no retorna un missatge d'imatge no trobada amb un *status 404*.
+
+
+===== Endpoint */createImage* 
+
+Aquest endpoint s'encarrega de retornar l'URL per poder consumir una imatge que s'ha generat a l'api. En el cas de falla el procés, retorna un missatge, per indicar que ha fallat el procés de crear la imatge amb un *status 500*.
+
+===== Endpoint */pushImage*
+
+Aquest endpoint s'encarrega de retornar l'URL d'una imatge pujada a servidor. En el cas de falla el procés, retorna un missatge, per indicar que ha fallat el procés de pujar una imatge amb un *status 500*.
+
+===== Endpoint */deleteImage*
+
+Aquest endpoint s'encarrega d'eliminar una imatge allotjada al servidor. En el cas que no troba la imatge, retorna un missatge per indicar que no ha trobat la imatge amb un *status 404*.
+
+
+===== Endpoint */deleteImageByProductName*
+
+Aquest endpoint s'encarrega d'eliminar un conjunt d'imatges, enviades a servidor amb format d'array. Està pensat per eliminar N imatges d'un producte. En el cas de falla el procés, retorna un missatge per indicar que no ha trobat el producte amb un *status 404*.
+
+
+===== Endpoint */deleteAllImages*
+
+Aquest endpoint s'encarrega d'eliminar totes les imatges del servidor, no es demanava, però crec que és molt útil, sobretot per l'hora de llançar el sedeer i buidar l'api.
 
 
 
@@ -44,13 +81,3 @@ La seguretat de l'API es basa en un bearen token ubicat tant en el servidor de l
 
 
 
-
-
-
-/getImage
-/getImages
-/createImage
-/pushImage
-/deleteImage
-/deleteImageByProductName
-/deleteAllImages

@@ -49,6 +49,8 @@ include::./Disseny/Disseny.adoc[]
 
 == Desenvolupament
 
+include::Desenvolupament/Api/api.adoc[]
+
 include::Desenvolupament/Vagrant.adoc[]
 
 include::Desenvolupament/GestioDependencies.adoc[]
