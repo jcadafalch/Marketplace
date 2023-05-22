@@ -285,3 +285,57 @@ Aquesta setmana la tasca principal i la més important va ser realitzar el refac
 *Desviacions*
 
 La base de dades estava planificada per a 24h però finalment s'ha trigat aproximadament 72h ja que s'han hagut d'adaptar els backend a la nova estructura de base de dades.
+
+==== Setmana 9 (8/05/2023 - 11/05/2023).
+
+*Planificació de la setmana* 
+
+* [*] Refactor frontend registre i inici de sessió - 2h
+* [*] Recuperar contrasenya enllaç expira després de 24 hores - 1h
+* [*] Frontend pàgina administrar botiga - 2h
+* [*] Backend pàgina vista de la botiga - 8h
+* [*] Backend pàgina personalització botiga - 4h
+* [*] Editar productes - 4h
+* [*] Frontend pàgina realitzar comanda - 2h
+* [*] Bug els productes es guarden en cèntims - 2h
+
+
+Total hores calculades: *25 horas*
+
+
+*Valoració*
+
+Penúltima setmana del projecte, aquesta setmana ens hem centrat a intentar acabar desenvolupaments que teníem a mig fer i decidir quina de les coses que queden són prioritàries.
+
+==== Setmana 9 (15/05/2023 - 19/05/2023).
+
+*Planificació de la setmana* 
+
+* [*] Arreglar problema cookies carret - 2h
+* [*] Frontend pàgina comanda realitzada - 2h
+* [*] Lògica categories afegir/editar producte - 2h
+* [*] Refactor del sistema d'errors en afegir i editar productes - 2h
+* [*] Backend pàgina administrar botiga - 8h
+* [*] Integrar API Imatges - 12h
+* [*] Frontend pàgina historic de comandes - 2h
+* [*] Afegir direcció de l'API al fitxer .env - 1h
+* [*] Backend pàgina realitzar comanda + refactor carrito - 8h
+* [*] Backend pàgina històric de comandes - 3h
+* [*] Refactor pàgina editar tenda - 1h
+* [*] Actualitzar estat de comanda - 1h
+* [*] Configuració d'entorns de desplegament - 20h
+* [*] Afegir logs - 2h
+* [*] Actualitzar guia d'estils - 4h
+* [*] Disseny pàgina realitzar comanda
+* [*] Diversos tests - 8h
+* [*] Documentar projecte - 12h
+
+
+
+Total hores calculades: *90 horas*
+
+
+*Valoració*
+
+Última setmana del projecte, ha sigut una setmana molt intensa, ja que hem hagut d'acabar la gran part de coses pendents.  
+El més destacable d'aquesta setmana, és la generació de l'entorn de desenvolupament. I generar versió estable i final del projecte.
