@@ -6,10 +6,10 @@
 |====================
 ^| Primary color ^| Secunday Color ^| Text Color ^| Hover Color 
 ^| #88a8f9 ^| #576DA5 ^| #000000 ^| #FFFFFF 
-^a| image::https://encycolorpedia.com/ffd0af.svg[primary color, 100]
-^a| image::https://encycolorpedia.com/f5a166.svg[secondary color, 100]
-^a| image::https://encycolorpedia.com/000000.svg[text color, 100]
-^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
+^a| image::Images\Images\ffd0af.svg[primary color, 100]
+^a| image::Images\Images\f5a166.svg[secondary color, 100]
+^a| image::Images\Images\000000.svg[text color, 100]
+^a| image::Images\Images\ffffff.svg[hover color, 100]
 
 |====================
 
@@ -35,7 +35,7 @@ Pel *Header*, la *'CM'* sempre anirà darrere, com a sigles de *'Craft Made'* i 
 .Logo Header
 [width="40%"]
 |====================
-^a| image::Logo.png[]
+^a| image::Images\Logo\Logo.png[]
 |====================
 
 Pel *Footer*, fem servir les sigles *'CM'*, totes les lletres seran majúscules per a mantenir els estàndards d'imatge de marca.
@@ -44,7 +44,7 @@ Pel *Footer*, fem servir les sigles *'CM'*, totes les lletres seran majúscules 
 .Logo Footer
 [width="40%"]
 |====================
-^a|  image::Logo_footer.png[]
+^a|  image::Images\Logo\Logo_footer.png[]
 |====================
 
 
@@ -54,7 +54,7 @@ Pel *Footer*, fem servir les sigles *'CM'*, totes les lletres seran majúscules 
 ** "**Poppins Bold**"
 ** "**Poppins Regular**" 
 
-image::Tipografia\Tipografias.png[]
+image::Images\Tipografia\Tipografias.png[]
 
 ==== Icones
 
@@ -79,7 +79,7 @@ image::Images\Buttons\Landing_Page_Sin_Hover.png[width="20%"]
 image::Images\Buttons\Botton_Hover.png[width="20%"]
 
 
-==== Fondo de pantalla
+==== Fons de pantalla
 
 
 El fons de pantalla serà de color blanc, el header i el footer del color primary.
@@ -87,7 +87,7 @@ El fons de pantalla serà de color blanc, el header i el footer del color primar
 [width="30%"]
 |====================
 ^| Primary color ^| Color   Blanc 
-^a| image::Logo.png[] ^a| image::Logo.png[]
-^a| image::https://encycolorpedia.com/ffd0af.svg[hover color, 100]
-^a| image::https://encycolorpedia.com/ffffff.svg[hover color, 100]
+^a| image::Images\Logo\Logo.png[] ^a| image::Images\Logo\Logo.png[]
+^a| image::Images\Images\ffd0af.svg[hover color, 100]
+^a| image::Images\Images\ffffff.svg[hover color, 100]
 |====================

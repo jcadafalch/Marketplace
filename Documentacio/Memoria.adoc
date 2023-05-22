@@ -156,7 +156,7 @@ Enllaç video de presentació del projecte.
 
 == Appendix: Llicència: 
 === Llicència pel text:
-image::https://licensebuttons.net/l/by-sa/4.0/88x31.png[Tux,170,150]
+image::Images\Images\88x31.png[Tux,170,150]
 
 Aquesta obra està subjecta a una llicència de link:https://creativecommons.org/licenses/by-sa/4.0/[Reconeixement-CompartirIgual 4.0 Internacional de Creative Commons]
 

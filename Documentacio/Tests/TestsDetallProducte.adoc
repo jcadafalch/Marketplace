@@ -2,7 +2,7 @@ Per fer els tests unitaris de detall de producte hem volgut comprovar que l'obje
 
 Per comprovar que les amb les que hem construït l'objecte són correctes, hem fet proves amb l'"_assertEquals()_". Si les dades de l'Objecte són iguals a les dades que fiquem a mà, el test és un èxit.
 
-image::../Images/Tests/testProducteDadesCorrectes.PNG[]
+image::Images\Tests\testProducteDadesCorrectes.PNG[]
 
 Per comprovar que les dades són del tipus correcte, hem utilitzat la funció "_gettype()_" la qual retorna el tipus de la dada que introdueixes per paràmetre.
 
@@ -10,4 +10,4 @@ En aquests tests hem decidit, a part de fer servir "_assertEquals()_", usar "_as
 
 En aquest exemple hem fet que el nom del producte sigui un booleà i la dada passada a mà sigui un de tipus "_string_". En l'altre exemple hem comprovat que els tipus siguin els dos de tipus "_time()_".
 
-image::../Images/Tests/testProducteTipusDadesCorrectes.PNG[]
+image::Images\Tests\testProducteTipusDadesCorrectes.PNG[]
