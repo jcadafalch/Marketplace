@@ -1,5 +1,72 @@
 === Wireframe
-https://marvelapp.com/prototype/j9f9eee/screen/90879016[Clica aquí per accedir al WireFrame]
 
-=== Imatge
+==== Header i Footer
+.Header d'uasuari registrat
+image::.\..\Images\Wireframe\HeaderRegistrat.png[width="60%"]
+
+.Header d'uasuari no registrat
+image::.\..\Images\Wireframe\HeaderNoRegistrat.png[width="60%"]
+
+.Footer
+image::.\..\Images\Wireframe\Footer.png[width="60%"]
+
+==== Landing
+.Landing page
+image::.\..\Images\Wireframe\LandingPage.png[width="60%"]
+
+==== Registre i inici de sessió 
+.Inici de sessió
+image::.\..\Images\Wireframe\LogIn.png[width="60%"]
+
+.Registre
+image::.\..\Images\Wireframe\Registro.png[width="60%"]
+
+.Recuperació de contrasenya
+image::.\..\Images\Wireframe\RecuperarContraseña.png[width="60%"]
+
+==== Home Page
+.Home page
+image::.\..\Images\Wireframe\HomeNoRegistrado.png[width="60%"]
+
+.Detall d'un producte
+image::.\..\Images\Wireframe\DetalleDeProducto.png[width="60%"]
+
+==== Carrito de la compra
+.Carret de la compra
+image::.\..\Images\Wireframe\Carrito.png[width="60%"]
+
+==== Ordre
+.Comanda
+image::.\..\Images\Wireframe\PedidoDetalle.png[width="60%"]
+
+.Històric de comandes
+image::.\..\Images\Wireframe\HistoricoPedidos.png[width="60%"]
+
+===== Usuari
+.Perfil d'usuari
+image::.\..\Images\Wireframe\PerfilUsuario.png[width="60%"]
+
+.Modificar dades de perfil
+image::.\..\Images\Wireframe\CambiarDatosUsuario.png[width="60%"]
+
+==== Botiga
+.Donar d'alta una botiga
+image::.\..\Images\Wireframe\AltaTienda.png[width="60%"]
+
+.Vista d'una botiga
+image::.\..\Images\Wireframe\Tienda.png[width="60%"]
+
+.Personalitzar una botiga
+image::.\..\Images\Wireframe\EditarTienda.png[width="60%"]
+
+.Afegir o editar un producte
+image::.\..\Images\Wireframe\AñadirProducto.png[width="60%"]
+
+==== Missatgeria
+
+.Històric de missatges
+image::.\..\Images\Wireframe\BandejaDeMensajes.png[width="60%"]
+
+.Missatges
+image::.\..\Images\Wireframe\Conversacion.png[width="60%"]
 

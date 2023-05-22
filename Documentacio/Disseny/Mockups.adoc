@@ -1,12 +1,72 @@
 === Mockups
-==== Home Page
 
-.Home con usuario sin iniciar sessión
+==== Header i Footer
+.Header d'uasuari registrat
+image::.\..\Images\Mokups\HeaderRegistrat.png[width="60%"]
+
+.Header d'uasuari no registrat
+image::.\..\Images\Mokups\HeaderNoRegistrat.png[width="60%"]
+
+.Footer
+image::.\..\Images\Mokups\Footer.png[width="60%"]
+
+==== Landing
+.Landing page
+image::.\..\Images\Mokups\LandingPage.png[width="60%"]
+
+==== Registre i inici de sessió 
+.Inici de sessió
+image::.\..\Images\Mokups\LogIn.png[width="60%"]
+
+.Registre
+image::.\..\Images\Mokups\Registro.png[width="60%"]
+
+.Registre
+image::.\..\Images\Mokups\RecuperarContraseña.png[width="60%"]
+
+==== Home Page
+.Home page
 image::.\..\Images\Mokups\HomeNoRegistrado.png[width="60%"]
 
-.Home con usuario que ha iniciado sessión
-image::.\..\Images\Mokups\HomeRegistrado.png[width="60%"]
+.Detall d'un producte
+image::.\..\Images\Mokups\DetalleDeProducto.png[width="60%"]
 
 ==== Carrito de la compra
-.Carrito de la compra sin iniciar sessión
-image::.\..\Images\Mokups\CarritoCompraNoRegistrado.png[with="40%"]
+.Carret de la compra
+image::.\..\Images\Mokups\Carrito.png[width="60%"]
+
+==== Ordre
+.Comanda
+image::.\..\Images\Mokups\PedidoDetalle.png[width="60%"]
+
+.Històric de comandes
+image::.\..\Images\Mokups\HistoricoPedidos.png[width="60%"]
+
+===== Usuari
+.Perfil d'usuari
+image::.\..\Images\Mokups\PerfilUsuario.png[width="60%"]
+
+.Modificar dades de perfil
+image::.\..\Images\Mokups\CambiarDatosUsuario.png[width="60%"]
+
+==== Botiga
+.Donar d'alta una botiga
+image::.\..\Images\Mokups\AltaTienda.png[width="60%"]
+
+.Vista d'una botiga
+image::.\..\Images\Mokups\Tienda.png[width="60%"]
+
+.Personalitzar una botiga
+image::.\..\Images\Mokups\EditarTienda.png[width="60%"]
+
+.Afegir o editar un producte
+image::.\..\Images\Mokups\AñadirProducto.png[width="60%"]
+
+==== Missatgeria
+
+.Històric de missatges
+image::.\..\Images\Mokups\BandejaDeMensajes.png[width="60%"]
+
+.Missatges
+image::.\..\Images\Mokups\Conversacion.png[width="60%"]
+

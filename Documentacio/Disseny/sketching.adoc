@@ -1,9 +1,62 @@
 === Sketching
-==== Home Page
 
-.Sketch pagina home
-image::.\..\Images\Sketching\HomePage.jpg[]
+==== Header i Footer
+.Header 
+image::.\..\Images\Sketching\header.jpg[width="60%"]
+
+==== Landing
+.Landing page
+image::.\..\Images\Sketching\landing.jpg[width="60%"]
+
+==== Registre i inici de sessió 
+.Inici de sessió
+image::.\..\Images\Sketching\login.jpg[width="60%"]
+
+.Registre
+image::.\..\Images\Sketching\registro.jpg[width="60%"]
+
+.Recuperació de contrasenya
+image::.\..\Images\Sketching\recuperar_passwd.jpg[width="60%"]
+
+==== Home Page
+.Home page 
+image::.\..\Images\Sketching\home.jpg[width="60%"]
+.Disseny Home anterior
+image::.\..\Images\Sketching\HomePage.jpg[width="60%"]
+
+.Detall d'un producte
+image::.\..\Images\Sketching\detalle_producto.jpg[width="60%"]
 
 ==== Carrito de la compra
-.Sketch Carrito de la compra sin iniciar sessión
-image::.\..\Images\Sketching\CarritoCompra.jpg[][with="40%"]
+.Carret de la compra
+image::.\..\Images\Sketching\carrito.jpg[width="60%"]
+
+.Disseny carret de la compra anterior
+image::.\..\Images\Sketching\CarritoCompra.jpg[width="60%"]
+
+==== Ordre
+.Comanda
+image::.\..\Images\Sketching\detalle_pedido.jpg[width="60%"]
+
+.Històric de comandes
+image::.\..\Images\Sketching\lista_productos.jpg[width="60%"]
+
+===== Usuari
+.Perfil d'usuari
+image::.\..\Images\Sketching\perfil_usuario.jpg[width="60%"]
+
+.Modificar dades de perfil
+image::.\..\Images\Sketching\editar_perfil.jpg[width="60%"]
+
+==== Botiga
+.Donar d'alta una botiga
+image::.\..\Images\Sketching\nueva_tienda.jpg[width="60%"]
+
+.Vista d'una botiga
+image::.\..\Images\Sketching\tienda.jpg[width="60%"]
+
+.Personalitzar una botiga
+image::.\..\Images\Sketching\editar_tienda.jpg[width="60%"]
+
+.Afegir o editar un producte
+image::.\..\Images\Sketching\crear_producto.jpg[width="60%"]

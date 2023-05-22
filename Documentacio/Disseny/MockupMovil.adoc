@@ -1,0 +1,71 @@
+=== Mockup Mòbil
+
+==== Header i Footer
+.Header d'uasuari registrat
+image::.\..\Images\MockupMov\HeaderRegistrat.png[width="60%"]
+
+.Header d'uasuari no registrat
+image::.\..\Images\MockupMov\HeaderNoRegistrat.png[width="60%"]
+
+.Footer
+image::.\..\Images\MockupMov\Footer.png[width="60%"]
+
+==== Landing
+.Landing page
+image::.\..\Images\MockupMov\LandingPage.png[width="60%"]
+
+==== Registre i inici de sessió 
+.Inici de sessió
+image::.\..\Images\MockupMov\LogIn.png[width="60%"]
+
+.Registre
+image::.\..\Images\MockupMov\Registro.png[width="60%"]
+
+.Recuperació de contrasenya
+image::.\..\Images\MockupMov\RecuperarContraseña.png[width="60%"]
+
+==== Home Page
+.Home page
+image::.\..\Images\MockupMov\HomeNoRegistrado.png[width="60%"]
+
+.Detall d'un producte
+image::.\..\Images\MockupMov\DetalleDeProducto.png[width="60%"]
+
+==== Carrito de la compra
+.Carret de la compra
+image::.\..\Images\MockupMov\Carrito.png[width="60%"]
+
+==== Ordre
+.Comanda
+image::.\..\Images\MockupMov\PedidoDetalle.png[width="60%"]
+
+.Històric de comandes
+image::.\..\Images\MockupMov\HistoricoPedidos.png[width="60%"]
+
+===== Usuari
+.Perfil d'usuari
+image::.\..\Images\MockupMov\PerfilUsuario.png[width="60%"]
+
+.Modificar dades de perfil
+image::.\..\Images\MockupMov\CambiarDatosUsuario.png[width="60%"]
+
+==== Botiga
+.Donar d'alta una botiga
+image::.\..\Images\MockupMov\AltaTienda.png[width="60%"]
+
+.Vista d'una botiga
+image::.\..\Images\MockupMov\Tienda.png[width="60%"]
+
+.Personalitzar una botiga
+image::.\..\Images\MockupMov\EditarTienda.png[width="60%"]
+
+.Afegir o editar un producte
+image::.\..\Images\MockupMov\AñadirProducto.png[width="60%"]
+
+==== Missatgeria
+
+.Històric de missatges
+image::.\..\Images\MockupMov\BandejaMensajes.png[width="60%"]
+
+.Missatges
+image::.\..\Images\MockupMov\Conversacion.png[width="60%"]
