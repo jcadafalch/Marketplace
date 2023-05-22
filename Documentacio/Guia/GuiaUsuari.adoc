@@ -48,6 +48,8 @@ Per identificar-te a l'aplicació, prem sobre el botó 'Identificate' situat a l
 
 En cas de tenir ja un compe d'usuari, inicia sessió emplenant les dades que es demanen. 
 
+En el cas de no recordar la contrasenya, a l'hora d'iniciar sessió, tens un enllaç que s'anomena has "olvidado tu contraseña", el qual et portarà cap a una pantalla nova, on hauràs d'introduir el teu correu. Tot seguit rebràs a la teva bústia, un correu amb l'enllaç que et redirigís a una pantalla, en la qual introduiràs la nova contrasenya i la confirmaràs. Un cop actualitzada, l'aplicació et mostrarà l'inici de sessió, en el qual faràs inici de sessió, ja amb la contrasenya nova introduïda anteriorment.
+
 Si ets un nou usuari, clica sobre l'enllaç 'Registra't aquí' situat a la part inferior del mateix formulari i omple les dades demanades, un cop ho hagis fet, rebràs un correu electrònic per verificar el registre.
 
 Com a usuari verificat, tindrán un perfil d'usuari, en aquesta pagina, trobaràs tres diferents botons.
@@ -75,5 +77,14 @@ Instruccions per afegir/modificar un nou producte
 * Per afegir un nou producte, des de "Mi tienda" clica sobre "Producto nuevo" i emplena el formulari amb les dades demanades
 
 * Pots modificar un producte ja afegit fent clic sobre el producte desitgat des de "Mi tienda", al fer-ho et redirigirá a un nou formulari ja emplenat amb les dades del producte, només haurás de modificar les dades desitgades i guardar els cambis.
+
+==== Procés de compra
+
+. En la pantalla de l'aplicació, pots anar afegint productes al carret. 
+. Un cop amb tots els productes que vols desitjats, cliques a la icona del carret, que està a la part superior dreta. En aquesta pantalla, podràs veure, un resumen de tots els productes que as afegit al carret, amb l'opció d'eliminar el que no vulguis si fos el cas. 
+. A l'hora de posar la comanda en marxa, en el cas que no estiguessis identificat com usuari, hauràs d'iniciar sessió, amb un compte existent o crear-te una nova. 
+. En el moment que el venedor accepta el pagament, autoritza l'enviament del producte. 
+. L'usuari tindrà el PDF del resum de la comanda per poder descarregar en tot moment, dins del seu perfil d'usuari, dividits amb dues seccions, pedidos realizados i ventas realizadas.
+
 
 
