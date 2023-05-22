@@ -1,26 +1,30 @@
-Api res 
+== Que es una API REST?
+Una API REST (Representational State Transfer) és un estil arquitectònic per a dissenyar serveis web que permet la comunicació entre sistemes distribuïts a través del protocol HTTP. Proporciona una forma estàndard i flexible d'intercanvi de dades entre diferents aplicacions o components de programari.
+
+Una API REST defineix un conjunt de mètodes, també coneguts com a verbs HTTP, que representen les operacions que es poden realitzar sobre els recursos exposats pel servei web. Els mètodes més comuns en una API REST són els següents:
+
+* **GET**: Recupera un o diversos recursos. S'utilitza per a llegir informació del servidor. Per exemple, en sol·licitar una llista d'usuaris o obtenir els detalls d'un producte específic.
+
+* **POST**: Crea un nou recurs. S'utilitza per a enviar dades al servidor per al seu processament. Per exemple, en enviar un formulari de registre o agregar un nou element a una llista.
+
+* **PUT**: Actualitza un recurs existent. S'utilitza per a enviar dades que reemplacen completament un recurs en el servidor. Per exemple, en actualitzar la informació d'un usuari o modificar els detalls d'un producte.
+
+* **DELETE**: Elimina un recurs. S'utilitza per a eliminar un recurs específic del servidor. Per exemple, en esborrar un usuari o eliminar un element d'una llista.
+
+A més d'aquests mètodes bàsics, també existeixen altres mètodes menys utilitzats, com:
+
+* **PATCH**: Actualitza parcialment un recurs. S'utilitza per a enviar dades que modifiquen parcialment un recurs existent en el servidor.
+
+* **HEAD**: Sol·licita únicament els encapçalats de resposta del servidor, sense recuperar el contingut complet del recurs.
+
+* **OPTIONS**: Sol·licita informació sobre les opcions de comunicació disponibles per al recurs sol·licitat.
 
 
+Aquests mètodes permeten realitzar operacions CRUD (Create, Read, Update, Delete) bàsiques en els recursos exposats per una API REST, la qual cosa facilita la interacció i manipulació de dades entre diferents sistemes.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+== Seguretat de la API
+La seguretat de l'API es basa en un bearen token ubicat tant en el servidor de l'API com en el servidor client. Si els bearen token d'ambdós servidors no coincideixen, no es té accés a l'API.
 
 
 
